@@ -310,7 +310,11 @@ async function glRequestRateLock(tradeAddress) {
   await client.initializeConsensusSmartContract();
 
   // Try PRIMARY benchmark first (BCRP×BCB). If it fails consensus, fall back.
-  let fn = "request_rate_lock_primary";
+  // Set SKIP_PRIMARY_BENCHMARK=1 to go straight to fallback (useful for demos
+  // where the 44s BCRP consensus wait would exceed recording time budget).
+  let fn = process.env.SKIP_PRIMARY_BENCHMARK === "1"
+    ? "request_rate_lock_fallback"
+    : "request_rate_lock_primary";
   log("genlayer", `${fn}(${tradeAddress})`);
   let hash = await client.writeContract({
     address:      GL_ORACLE,
@@ -367,7 +371,9 @@ async function glRequestRoll(tradeAddress, newDueDate) {
   await glFund(account.address);
   await client.initializeConsensusSmartContract();
 
-  let fn = "request_roll_primary";
+  let fn = process.env.SKIP_PRIMARY_BENCHMARK === "1"
+    ? "request_roll_fallback"
+    : "request_roll_primary";
   log("genlayer", `${fn}(${tradeAddress}, ${newDueDate})`);
   let hash = await client.writeContract({
     address:      GL_ORACLE,
