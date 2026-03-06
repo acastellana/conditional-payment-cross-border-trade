@@ -232,8 +232,7 @@
     </div>
     <h1>A distributed control plane for cross-border invoice settlement</h1>
     <p class="hero-sub">
-      GenLayer validators reach consensus on an FX benchmark. Base Sepolia holds the settlement state machine.
-      A cross-border invoice becomes a locked, extendable settlement amount — with a complete on-chain audit trail.
+      GenLayer coordinates the FX settlement of cross-border invoices by locking a benchmark rate and applying it consistently when payment occurs or settlement dates change.
     </p>
     <div class="hero-actions">
       <a href="#settlement" class="btn btn-dark" style="padding:10px 22px;font-size:14px">View Live Settlement ↓</a>
@@ -255,6 +254,41 @@
       <div class="hero-stat">
         <div class="hero-stat-val">1</div>
         <div class="hero-stat-label">ROLLS COMPLETED</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHAT THIS IS NOT ── -->
+<section style="padding:0 0 56px">
+  <div class="container">
+    <div style="border:1px solid var(--border);border-radius:var(--radius-xl);padding:28px 36px;display:flex;align-items:flex-start;gap:48px;flex-wrap:wrap">
+      <div style="flex-shrink:0">
+        <div style="font-family:'DM Mono',monospace;font-size:11px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);margin-bottom:12px">This system is not</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:10px">
+          <li style="display:flex;align-items:center;gap:10px;font-size:15px;font-weight:500">
+            <span style="width:18px;height:18px;border-radius:50%;border:1.5px solid var(--border);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;color:var(--muted)">✕</span>
+            A letter of credit
+          </li>
+          <li style="display:flex;align-items:center;gap:10px;font-size:15px;font-weight:500">
+            <span style="width:18px;height:18px;border-radius:50%;border:1.5px solid var(--border);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;color:var(--muted)">✕</span>
+            A bank payment rail
+          </li>
+          <li style="display:flex;align-items:center;gap:10px;font-size:15px;font-weight:500">
+            <span style="width:18px;height:18px;border-radius:50%;border:1.5px solid var(--border);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;color:var(--muted)">✕</span>
+            A trade document platform
+          </li>
+          <li style="display:flex;align-items:center;gap:10px;font-size:15px;font-weight:500">
+            <span style="width:18px;height:18px;border-radius:50%;border:1.5px solid var(--border);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;color:var(--muted)">✕</span>
+            A cargo dispute resolution system
+          </li>
+        </ul>
+      </div>
+      <div style="flex:1;min-width:220px;border-left:1px solid var(--border);padding-left:48px">
+        <div style="font-family:'DM Mono',monospace;font-size:11px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);margin-bottom:12px">It is</div>
+        <p style="font-size:15px;line-height:1.7;color:var(--dark)">
+          A coordination layer that locks a benchmark FX rate to a specific invoice, applies that rate when payment occurs, and records a complete audit trail — including any date extensions — on a public chain.
+        </p>
       </div>
     </div>
   </div>
@@ -490,24 +524,90 @@
       <p class="section-sub">GenLayer handles oracle consensus. Base Sepolia holds the state machine. A dedicated relayer bridges them.</p>
     </div>
 
-    <!-- Flow diagram -->
-    <div class="oracle-flow" style="margin-bottom:36px">
-      <div class="oracle-node">
-        <div class="oracle-label" style="color:var(--muted)">Base Sepolia</div>
-        <div class="oracle-name">TradeFxSettlement.sol</div>
-        <div class="oracle-detail">State machine: DRAFT → RATE_PENDING → RATE_LOCKED → ROLLED → SETTLED<br/><br/>Emits: RateLockRequested, RollRequested<br/>Accepts: receiveRate(), receiveRolledRate() from <em>oracleRelayer</em> only</div>
+    <!-- Control flow diagram -->
+    <div style="display:flex;gap:24px;margin-bottom:36px;flex-wrap:wrap">
+      <!-- Main flow -->
+      <div style="flex:1;min-width:300px">
+        <div style="font-family:'DM Mono',monospace;font-size:11px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);margin-bottom:16px">Control Flow</div>
+        <div style="display:flex;flex-direction:column;align-items:flex-start;gap:0">
+          <!-- Trade Contract -->
+          <div style="background:#fff;border:1.5px solid var(--dark);border-radius:var(--radius);padding:16px 24px;width:100%;position:relative">
+            <div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);margin-bottom:4px">Base Sepolia</div>
+            <div style="font-weight:700;font-size:15px">Trade Contract</div>
+            <div style="font-size:13px;color:var(--muted);margin-top:4px">Holds state machine. Emits events. Accepts rate callbacks from relayer wallet only.</div>
+          </div>
+          <!-- Arrow down -->
+          <div style="display:flex;flex-direction:column;align-items:center;width:48px;margin:0 24px">
+            <div style="width:2px;height:14px;background:var(--muted)"></div>
+            <div style="font-size:14px;color:var(--muted);line-height:1">↓</div>
+            <div style="width:2px;height:14px;background:var(--muted)"></div>
+          </div>
+          <!-- Benchmark Oracle -->
+          <div style="background:#1a1817;border:1.5px solid #3d3b39;border-radius:var(--radius);padding:16px 24px;width:100%">
+            <div style="font-family:'DM Mono',monospace;font-size:11px;color:#5a5755;margin-bottom:4px">GenLayer Studionet</div>
+            <div style="font-weight:700;font-size:15px;color:#fff">Benchmark Oracle</div>
+            <div style="font-size:13px;color:#9ca3af;margin-top:4px">5 validators fetch market rate independently. strict_eq consensus. Returns benchmark_type, benchmark_id, rate_18.</div>
+          </div>
+          <!-- Arrow down -->
+          <div style="display:flex;flex-direction:column;align-items:center;width:48px;margin:0 24px">
+            <div style="width:2px;height:14px;background:var(--muted)"></div>
+            <div style="font-size:14px;color:var(--muted);line-height:1">↓</div>
+            <div style="width:2px;height:14px;background:var(--muted)"></div>
+          </div>
+          <!-- Settlement Engine -->
+          <div style="background:#fff;border:1.5px solid var(--dark);border-radius:var(--radius);padding:16px 24px;width:100%">
+            <div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);margin-bottom:4px">Base Sepolia</div>
+            <div style="font-weight:700;font-size:15px">Settlement Engine</div>
+            <div style="font-size:13px;color:var(--muted);margin-top:4px">Applies rate to invoice. Computes settlement_amount. Stores roll records. State becomes RATE_LOCKED or ROLLED.</div>
+          </div>
+          <!-- Arrow down -->
+          <div style="display:flex;flex-direction:column;align-items:center;width:48px;margin:0 24px">
+            <div style="width:2px;height:14px;background:var(--muted)"></div>
+            <div style="font-size:14px;color:var(--muted);line-height:1">↓</div>
+            <div style="width:2px;height:14px;background:var(--muted)"></div>
+          </div>
+          <!-- Payment Confirmation -->
+          <div style="background:var(--green-light);border:1.5px solid rgba(21,128,61,0.3);border-radius:var(--radius);padding:16px 24px;width:100%">
+            <div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--green);margin-bottom:4px">On-chain event</div>
+            <div style="font-weight:700;font-size:15px;color:var(--green)">Payment Confirmation</div>
+            <div style="font-size:13px;color:#166534;margin-top:4px">Settled event emitted with final amount, benchmark reference, and timestamp. Complete audit trail from events alone.</div>
+          </div>
+        </div>
       </div>
-      <div class="oracle-arrow">→</div>
-      <div class="oracle-node gl">
-        <div class="oracle-label">GenLayer Studionet</div>
-        <div class="oracle-name">FxBenchmarkOracle.py</div>
-        <div class="oracle-detail">5 validators each independently fetch open.er-api (BOB/PEN). Deterministic rounding to 0.001 (10 bps bucket). strict_eq: all 5 must return identical JSON string. Result stored per trade address.</div>
-      </div>
-      <div class="oracle-arrow">→</div>
-      <div class="oracle-node">
-        <div class="oracle-label" style="color:var(--muted)">Relayer Process</div>
-        <div class="oracle-name">fx-settlement-relayer.mjs</div>
-        <div class="oracle-detail">Watches Base Sepolia events → calls GenLayer oracle → reads result → delivers callback to TradeFxSettlement. Stateless between runs. Uses dedicated relayer wallet (0x7b97…).</div>
+
+      <!-- Side: optional + relayer -->
+      <div style="width:240px;display:flex;flex-direction:column;gap:16px">
+        <div>
+          <div style="font-family:'DM Mono',monospace;font-size:11px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);margin-bottom:12px">Relayer Bridge</div>
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px">
+            <div style="font-weight:600;font-size:14px;margin-bottom:6px">fx-settlement-relayer</div>
+            <div style="font-size:13px;color:var(--muted);line-height:1.6">Watches Base Sepolia events → calls GenLayer oracle → delivers callbacks. Dedicated wallet. Stateless between runs.</div>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:'DM Mono',monospace;font-size:11px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);margin-bottom:12px">Optional — not in main flow</div>
+          <div style="background:var(--card);border:1px dashed var(--border);border-radius:var(--radius);padding:16px;opacity:0.7">
+            <div style="font-weight:600;font-size:14px;margin-bottom:6px">Exception Handler</div>
+            <div style="font-size:13px;color:var(--muted);line-height:1.6">exceptionFlagged + exceptionPaused flags. Orthogonal to lifecycle. Admin-controlled. Does not affect settlement math.</div>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:'DM Mono',monospace;font-size:11px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);margin-bottom:12px">Benchmark hierarchy</div>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:10px 12px;display:flex;align-items:center;gap:8px">
+              <span style="font-family:'DM Mono',monospace;font-size:11px;background:var(--green-light);color:var(--green);padding:1px 6px;border-radius:4px;font-weight:700">1</span>
+              <span style="font-size:13px;">BCRP×BCB cross</span>
+            </div>
+            <div style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:10px 12px;display:flex;align-items:center;gap:8px">
+              <span style="font-family:'DM Mono',monospace;font-size:11px;background:var(--blue-light);color:var(--blue);padding:1px 6px;border-radius:4px;font-weight:700">2</span>
+              <span style="font-size:13px;">Market aggregate</span>
+            </div>
+            <div style="background:#fff;border:1px dashed var(--border);border-radius:8px;padding:10px 12px;display:flex;align-items:center;gap:8px;opacity:0.6">
+              <span style="font-family:'DM Mono',monospace;font-size:11px;background:var(--red-light);color:var(--red);padding:1px 6px;border-radius:4px;font-weight:700">✕</span>
+              <span style="font-size:13px;">No lock delivered</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
