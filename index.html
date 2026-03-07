@@ -38,30 +38,23 @@
     .btn-dark { display: inline-flex; align-items: center; gap: 6px; background: var(--dark); color: #fff; border: none; border-radius: 9999px; padding: 7px 16px; font-size: 13px; font-weight: 600; cursor: pointer; text-decoration: none; transition: all 0.15s; }
     .btn-dark:hover { background: #2d2927; }
 
-    /* ══════════════════════
-       HERO
-    ══════════════════════ */
-    .hero { padding: 80px 0 60px; }
+    /* ── HERO ── */
+    .hero { padding: 80px 0 56px; }
     .hero-eyebrow { display: inline-flex; align-items: center; gap: 6px; background: var(--card); border: 1px solid var(--border); border-radius: 9999px; padding: 4px 14px; font-size: 12px; font-weight: 600; color: var(--muted); font-family: 'DM Mono', monospace; margin-bottom: 24px; }
     .hero-eyebrow .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
     @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.35} }
-    .hero h1 { font-size: clamp(36px, 5vw, 58px); font-weight: 700; line-height: 1.07; letter-spacing: -1.5px; max-width: 760px; margin-bottom: 14px; }
-    .hero-sub { font-size: 16px; color: var(--muted); font-weight: 500; margin-bottom: 20px; }
-    .hero-value { font-size: 16px; color: var(--dark); line-height: 1.65; max-width: 600px; padding: 14px 18px; background: var(--blue-light); border-left: 3px solid var(--blue); border-radius: 0 var(--radius) var(--radius) 0; margin-bottom: 32px; }
-    .hero-flow { display: flex; align-items: center; gap: 0; flex-wrap: nowrap; }
-    .hf-step { background: #fff; border: 1px solid var(--border); border-radius: 9px; padding: 9px 15px; font-size: 13px; font-weight: 600; white-space: nowrap; box-shadow: var(--shadow); flex-shrink: 0; }
-    .hf-arrow { color: var(--muted); font-size: 18px; padding: 0 8px; flex-shrink: 0; }
+    .hero h1 { font-size: clamp(36px, 5vw, 56px); font-weight: 700; line-height: 1.07; letter-spacing: -1.5px; max-width: 720px; margin-bottom: 20px; }
+    .hero-story { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 4px 0; max-width: 560px; margin-bottom: 28px; }
+    .hero-story-row { display: flex; align-items: center; gap: 12px; padding: 13px 20px; }
+    .hero-story-row + .hero-story-row { border-top: 1px solid var(--border); }
+    .hero-value { font-size: 15px; color: var(--dark); line-height: 1.65; max-width: 560px; padding: 14px 18px; background: var(--blue-light); border-left: 3px solid var(--blue); border-radius: 0 var(--radius) var(--radius) 0; }
 
-    /* ══════════════════════
-       EXAMPLE TRADE
-    ══════════════════════ */
+    /* ── EXAMPLE TRADE (dark) ── */
     .example-section { background: var(--dark); padding: 64px 0; }
     .example-section .section-label { color: rgba(255,255,255,0.35); }
-    .example-section h2 { font-size: clamp(26px, 4vw, 40px); font-weight: 700; letter-spacing: -0.8px; color: #fff; margin-bottom: 6px; }
-    .example-section .ex-sub { font-size: 14px; color: rgba(255,255,255,0.4); margin-bottom: 36px; }
-
+    .example-section h2 { font-size: clamp(22px, 3.5vw, 36px); font-weight: 700; letter-spacing: -0.7px; color: #fff; margin-bottom: 6px; }
+    .ex-sub { font-size: 14px; color: rgba(255,255,255,0.4); margin-bottom: 36px; }
     .ex-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
-
     .ex-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-xl); padding: 26px 30px; }
     .ex-card-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1.4px; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 18px; }
     .ex-row { display: flex; justify-content: space-between; align-items: center; padding: 11px 0; border-bottom: 1px solid rgba(255,255,255,0.07); font-size: 14px; }
@@ -71,8 +64,7 @@
     .ex-val.green { color: #86efac; }
     .ex-val.amber { color: #fbbf24; }
     .ex-badge { display: inline-flex; align-items: center; background: rgba(124,58,237,0.25); border: 1px solid rgba(124,58,237,0.4); border-radius: 9999px; padding: 2px 10px; font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 600; color: #c4b5fd; }
-
-    .ex-links { margin-top: 16px; display: flex; flex-direction: column; gap: 7px; }
+    .ex-links { display: flex; flex-direction: column; gap: 7px; }
     .ex-link { display: flex; align-items: center; gap: 7px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.09); border-radius: 8px; padding: 9px 13px; font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.65); text-decoration: none; transition: all 0.15s; }
     .ex-link:hover { background: rgba(255,255,255,0.09); color: #fff; }
     .ex-link svg { opacity: 0.4; flex-shrink: 0; }
@@ -80,8 +72,6 @@
     .ex-link.demo:hover { background: rgba(29,78,216,0.3); }
     .ex-link.demo svg { opacity: 0.7; }
     .demo-dur { font-family: 'DM Mono', monospace; font-size: 10px; margin-left: auto; color: rgba(147,197,253,0.5); }
-
-    /* flow diagram on right */
     .ex-flow { display: flex; flex-direction: column; align-items: center; }
     .ex-node { width: 100%; max-width: 300px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-xl); padding: 18px 22px; text-align: center; }
     .ex-node.mid { background: #fff; }
@@ -99,109 +89,131 @@
     .ex-line { width: 2px; height: 18px; background: rgba(255,255,255,0.12); }
     .ex-arrow { color: rgba(255,255,255,0.25); font-size: 13px; margin-top: -3px; }
 
-    /* ══════════════════════
-       TRADE LIFECYCLE TIMELINE
-    ══════════════════════ */
-    .timeline-section { padding: 64px 0; background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .timeline-section h2 { font-size: clamp(22px, 3vw, 32px); font-weight: 700; letter-spacing: -0.5px; margin-bottom: 36px; }
+    /* ══════════════════════════════════════
+       MAIN LIFECYCLE TIMELINE
+    ══════════════════════════════════════ */
+    .lifecycle-section { padding: 72px 0; }
+    .lifecycle-section h2 { font-size: clamp(22px, 3vw, 34px); font-weight: 700; letter-spacing: -0.6px; margin-bottom: 8px; }
+    .lifecycle-sub { font-size: 15px; color: var(--muted); max-width: 540px; margin-bottom: 48px; }
 
-    .tl-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    .tl-outer { display: grid; grid-template-columns: 1fr 340px; gap: 48px; align-items: start; }
 
-    .tl-steps { display: flex; flex-direction: column; gap: 0; position: relative; }
+    /* Vertical step list */
+    .tl-steps { display: flex; flex-direction: column; }
     .tl-step { display: flex; gap: 20px; position: relative; }
     .tl-left { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; width: 36px; }
     .tl-dot { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 700; flex-shrink: 0; z-index: 1; }
-    .tl-dot.draft   { background: var(--card); border: 2px solid var(--border); color: var(--muted); }
-    .tl-dot.locked  { background: var(--green-light); border: 2px solid rgba(21,128,61,0.3); color: var(--green); }
-    .tl-dot.pending { background: var(--amber-light); border: 2px solid rgba(180,83,9,0.3); color: var(--amber); }
-    .tl-dot.rolled  { background: var(--purple-light); border: 2px solid rgba(124,58,237,0.3); color: var(--purple); }
-    .tl-spine { width: 2px; flex: 1; min-height: 28px; background: var(--border); margin-top: 2px; }
+    .tl-dot.step1 { background: var(--card); border: 2px solid var(--border); color: var(--muted); }
+    .tl-dot.step2 { background: var(--green-light); border: 2px solid rgba(21,128,61,0.3); color: var(--green); }
+    .tl-dot.step3 { background: var(--blue-light); border: 2px solid rgba(29,78,216,0.3); color: var(--blue); }
+    .tl-dot.step4 { background: var(--amber-light); border: 2px solid rgba(180,83,9,0.3); color: var(--amber); }
+    .tl-dot.step5 { background: var(--dark); border: 2px solid var(--dark); color: #fff; }
+    .tl-dot.step5.timely  { background: var(--green); border-color: var(--green); }
+    .tl-dot.step5.late    { background: var(--red); border-color: var(--red); }
+    .tl-dot.step5.manual  { background: var(--amber); border-color: var(--amber); }
+    .tl-spine { width: 2px; flex: 1; min-height: 24px; background: var(--border); margin-top: 2px; }
     .tl-step:last-child .tl-spine { display: none; }
-    .tl-body { flex: 1; padding-bottom: 32px; }
+    .tl-body { flex: 1; padding-bottom: 36px; }
     .tl-step:last-child .tl-body { padding-bottom: 0; }
-    .tl-state { font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 4px; }
-    .tl-state.draft   { color: var(--muted); }
-    .tl-state.locked  { color: var(--green); }
-    .tl-state.pending { color: var(--amber); }
-    .tl-state.rolled  { color: var(--purple); }
-    .tl-title { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
-    .tl-detail { font-size: 14px; color: var(--muted); line-height: 1.55; margin-bottom: 8px; }
+    .tl-tag { font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 4px; color: var(--muted); }
+    .tl-tag.green  { color: var(--green); }
+    .tl-tag.blue   { color: var(--blue); }
+    .tl-tag.amber  { color: var(--amber); }
+    .tl-title { font-size: 17px; font-weight: 700; margin-bottom: 6px; }
+    .tl-detail { font-size: 14px; color: var(--muted); line-height: 1.55; margin-bottom: 10px; }
     .tl-detail strong { color: var(--dark); }
-    .tl-tx { display: inline-flex; align-items: center; gap: 5px; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--blue); text-decoration: none; border: 1px solid var(--border); border-radius: 9999px; padding: 3px 10px; background: var(--bg); }
+    .tl-tx { display: inline-flex; align-items: center; gap: 5px; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--blue); text-decoration: none; border: 1px solid var(--border); border-radius: 9999px; padding: 3px 10px; background: var(--bg); margin-right: 6px; margin-bottom: 4px; }
     .tl-tx:hover { border-color: var(--blue); }
-    .tl-tx svg { opacity: 0.5; }
 
-    /* right side: what the timeline proves */
-    .tl-proof { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 24px 26px; }
+    /* ── SHIPMENT CHECK STEP ── */
+    .sc-selector { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+    .sc-btn { border: 1px solid var(--border); background: var(--card); border-radius: 9999px; padding: 6px 14px; font-size: 13px; font-weight: 600; cursor: pointer; color: var(--muted); transition: all 0.15s; font-family: 'DM Sans', system-ui, sans-serif; white-space: nowrap; }
+    .sc-btn:hover { border-color: #aaa; color: var(--dark); }
+    .sc-btn.accepted.active  { background: var(--green-light); border-color: rgba(21,128,61,0.4); color: var(--green); }
+    .sc-btn.contested.active { background: var(--red-light);   border-color: rgba(220,38,38,0.3);  color: var(--red); }
+    .sc-btn.late.active      { background: var(--red-light);   border-color: rgba(220,38,38,0.3);  color: var(--red); }
+    .sc-btn.manual.active    { background: var(--amber-light); border-color: rgba(180,83,9,0.3);   color: var(--amber); }
+
+    /* Accepted result */
+    .sc-accepted-msg { display: none; align-items: center; gap: 10px; padding: 12px 16px; background: var(--green-light); border: 1px solid rgba(21,128,61,0.2); border-radius: var(--radius); font-size: 14px; color: var(--green); font-weight: 500; }
+    .sc-accepted-msg.show { display: flex; }
+
+    /* Inline court panel (dark, full width) */
+    .sc-court-panel { display: none; background: var(--dark); border-radius: var(--radius-xl); padding: 24px 28px; margin-top: 4px; }
+    .sc-court-panel.show { display: block; }
+    .sc-court-header { margin-bottom: 20px; }
+    .sc-court-tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 6px; }
+    .sc-court-disputed { display: flex; align-items: flex-start; gap: 10px; padding: 12px 16px; background: rgba(252,165,165,0.08); border: 1px solid rgba(252,165,165,0.2); border-radius: var(--radius); margin-bottom: 16px; }
+    .sc-court-disputed-dot { width: 8px; height: 8px; border-radius: 50%; background: #fca5a5; flex-shrink: 0; margin-top: 5px; animation: pulse 2s infinite; }
+    .sc-court-disputed-text { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.6; }
+    .sc-court-disputed-text strong { color: #fca5a5; }
+    .sc-court-statement { font-size: 13px; font-style: italic; color: rgba(255,255,255,0.55); line-height: 1.65; padding: 12px 16px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); border-radius: var(--radius); }
+
+    .sc-evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+    .sc-ev-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-xl); padding: 16px 18px; }
+    .sc-ev-label { font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 8px; }
+    .sc-ev-label.clause   { color: rgba(147,197,253,0.8); }
+    .sc-ev-label.question { color: rgba(196,181,253,0.8); }
+    .sc-ev-label.exporter { color: rgba(134,239,172,0.8); }
+    .sc-ev-label.importer { color: rgba(252,211,77,0.8); }
+    .sc-ev-label.verdict  { color: rgba(255,255,255,0.4); }
+    .sc-ev-label.outcome  { color: rgba(255,255,255,0.4); }
+    .sc-ev-text { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.6; }
+    .sc-ev-text strong { color: rgba(255,255,255,0.85); }
+    .sc-ev-img-wrap { margin-top: 10px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); border-radius: var(--radius); padding: 8px; }
+    .sc-ev-img { width: 100%; max-height: 90px; object-fit: cover; border-radius: 5px; opacity: 0.7; }
+    .sc-ev-caption { font-family: 'DM Mono', monospace; font-size: 10px; color: rgba(255,255,255,0.28); margin-top: 5px; line-height: 1.5; }
+    .sc-ev-caption a { color: rgba(255,255,255,0.28); text-decoration: none; }
+    .sc-ev-caption a:hover { color: rgba(255,255,255,0.5); }
+
+    .sc-verdict-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .sc-verdict-badge { display: inline-flex; align-items: center; gap: 7px; border-radius: 9999px; padding: 6px 14px; font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 700; }
+    .sc-verdict-badge.vtrue  { background: rgba(134,239,172,0.15); border: 1px solid rgba(134,239,172,0.3); color: #86efac; }
+    .sc-verdict-badge.vfalse { background: rgba(252,165,165,0.15); border: 1px solid rgba(252,165,165,0.3); color: #fca5a5; }
+    .sc-verdict-badge.vund   { background: rgba(251,191,36,0.12);  border: 1px solid rgba(251,191,36,0.25);  color: #fbbf24; }
+    .sc-verdict-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .sc-verdict-badge.vtrue .sc-verdict-dot  { background: #86efac; }
+    .sc-verdict-badge.vfalse .sc-verdict-dot { background: #fca5a5; }
+    .sc-verdict-badge.vund .sc-verdict-dot   { background: #fbbf24; }
+
+    .sc-outcome { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-xl); padding: 16px 20px; }
+    .sc-outcome-text { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.6; }
+    .sc-outcome-text strong { color: #fff; }
+    .sc-outcome-links { margin-top: 10px; display: flex; flex-direction: column; gap: 4px; }
+    .sc-outcome-link { font-family: 'DM Mono', monospace; font-size: 11px; text-decoration: none; }
+    .sc-outcome-link.green  { color: rgba(134,239,172,0.6); }
+    .sc-outcome-link.red    { color: rgba(252,165,165,0.6); }
+    .sc-outcome-link.amber  { color: rgba(251,191,36,0.6); }
+    .sc-outcome-link:hover { opacity: 0.9; }
+
+    /* ── STEP 5 DYNAMIC OUTCOME ── */
+    .outcome-default { font-size: 15px; color: var(--muted); font-style: italic; }
+    .outcome-panel { display: none; }
+    .outcome-panel.show { display: block; }
+    .outcome-badge { display: inline-flex; align-items: center; gap: 8px; border-radius: 9999px; padding: 7px 16px; font-size: 14px; font-weight: 700; margin-bottom: 8px; font-family: 'DM Mono', monospace; }
+    .outcome-badge.release { background: var(--green-light); border: 1px solid rgba(21,128,61,0.3); color: var(--green); }
+    .outcome-badge.refund  { background: var(--red-light);   border: 1px solid rgba(220,38,38,0.2);  color: var(--red); }
+    .outcome-badge.manual  { background: var(--amber-light); border: 1px solid rgba(180,83,9,0.2);   color: var(--amber); }
+    .outcome-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .outcome-badge.release .outcome-dot { background: var(--green); }
+    .outcome-badge.refund  .outcome-dot { background: var(--red); }
+    .outcome-badge.manual  .outcome-dot { background: var(--amber); }
+    .outcome-desc { font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .outcome-desc strong { color: var(--dark); }
+
+    /* ── PROOF SIDEBAR ── */
+    .tl-proof { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 22px 24px; position: sticky; top: 80px; }
     .tl-proof-title { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
     .proof-row { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid var(--border); }
     .proof-row:last-child { border-bottom: none; }
     .proof-check { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
-    .proof-text { font-size: 14px; line-height: 1.5; }
+    .proof-text { font-size: 13px; line-height: 1.5; color: var(--muted); }
     .proof-text strong { color: var(--dark); }
-    .proof-text span { color: var(--muted); font-size: 13px; }
 
-    /* ══════════════════════
-       VALUE FLOW DIAGRAM
-    ══════════════════════ */
-    .flow-section { padding: 56px 0; }
-    .flow-section h2 { font-size: clamp(20px, 2.8vw, 30px); font-weight: 700; letter-spacing: -0.4px; margin-bottom: 32px; }
-
-    .flow-diagram { display: flex; align-items: stretch; gap: 0; max-width: 780px; }
-    .flow-party { flex: 1; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 22px 24px; text-align: center; }
-    .flow-party-flag { font-size: 22px; margin-bottom: 6px; }
-    .flow-party-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
-    .flow-party-name { font-size: 14px; font-weight: 700; margin-bottom: 8px; }
-    .flow-party-amount { font-family: 'DM Mono', monospace; font-size: 18px; font-weight: 700; color: var(--dark); }
-    .flow-party-amount.green { color: var(--green); }
-    .flow-party-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
-
-    .flow-connector { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 16px; gap: 4px; flex-shrink: 0; }
-    .flow-connector-line { width: 48px; height: 2px; background: var(--border); }
-    .flow-connector-arrow { color: var(--muted); font-size: 14px; }
-    .flow-connector-label { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 0.5px; white-space: nowrap; }
-
-    .flow-contract { background: var(--dark); border-radius: var(--radius-xl); padding: 22px 24px; text-align: center; flex: 1; }
-    .flow-contract-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 4px; }
-    .flow-contract-name { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 6px; }
-    .flow-contract-detail { font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.6; margin-bottom: 8px; }
-    .flow-contract-rate { display: inline-block; background: rgba(134,239,172,0.15); border: 1px solid rgba(134,239,172,0.25); border-radius: 6px; padding: 3px 10px; font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 600; color: #86efac; }
-
-    /* ══════════════════════
-       PROBLEM
-    ══════════════════════ */
-    .problem-section { padding: 56px 0; background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .problem-section h2 { font-size: clamp(22px, 3vw, 32px); font-weight: 700; letter-spacing: -0.4px; margin-bottom: 24px; }
-    .prob-list { list-style: none; max-width: 640px; display: flex; flex-direction: column; gap: 10px; margin-bottom: 22px; }
-    .prob-list li { display: flex; gap: 14px; align-items: flex-start; font-size: 16px; line-height: 1.6; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 13px 16px; }
-    .prob-dot { flex-shrink: 0; width: 8px; height: 8px; border-radius: 50%; background: var(--amber); margin-top: 9px; }
-    .prob-conclusion { font-size: 17px; font-weight: 600; border-left: 3px solid var(--green); padding-left: 16px; max-width: 600px; line-height: 1.5; }
-
-    /* ══════════════════════
-       HOW IT WORKS
-    ══════════════════════ */
-    .how-section { padding: 56px 0; }
-    .how-section h2 { font-size: clamp(20px, 2.8vw, 30px); font-weight: 700; letter-spacing: -0.4px; margin-bottom: 24px; }
-    .how-steps { display: flex; flex-direction: column; gap: 1px; max-width: 600px; }
-    .how-step { display: flex; gap: 16px; align-items: flex-start; padding: 16px 20px; background: var(--card); border: 1px solid var(--border); }
-    .how-step:first-child { border-radius: var(--radius-xl) var(--radius-xl) 0 0; }
-    .how-step:last-child { border-radius: 0 0 var(--radius-xl) var(--radius-xl); }
-    .how-num { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--dark); color: #fff; display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 600; margin-top: 2px; }
-    .how-title { font-size: 15px; font-weight: 700; margin-bottom: 2px; }
-    .how-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
-
-    .scope-wrap { max-width: 600px; margin-top: 20px; padding: 14px 18px; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-xl); }
-    .scope-title { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
-    .scope-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 10px; }
-    .scope-tag { display: flex; align-items: center; gap: 5px; font-size: 13px; color: var(--muted); background: var(--bg); border: 1px solid var(--border); border-radius: 9999px; padding: 3px 11px; }
-    .scope-x { color: var(--red); font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700; }
-    .scope-conclusion { font-size: 14px; font-weight: 600; border-left: 3px solid var(--blue); padding-left: 12px; }
-
-    /* ══════════════════════
-       CONSOLE / PROOF
-    ══════════════════════ */
+    /* ── CONSOLE ── */
     .console-section { padding: 56px 0; background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .console-section h2 { font-size: clamp(18px, 2.5vw, 26px); font-weight: 700; letter-spacing: -0.3px; margin-bottom: 20px; color: var(--muted); }
+    .console-section h2 { font-size: clamp(18px, 2.5vw, 26px); font-weight: 700; letter-spacing: -0.3px; margin-bottom: 6px; color: var(--muted); }
+    .console-sub { font-size: 14px; color: var(--muted); margin-bottom: 20px; }
     .console { background: var(--dark); border-radius: var(--radius-xl); overflow: hidden; max-width: 680px; }
     .console-bar { background: #242220; padding: 10px 18px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(255,255,255,0.06); }
     .cdot { width: 10px; height: 10px; border-radius: 50%; }
@@ -220,30 +232,34 @@
     .adv-toggle[open] .adv-chevron { transform: rotate(90deg); }
     .adv-body { padding: 0 22px 14px; }
 
-    /* ══════════════════════
-       ARCHITECTURE
-    ══════════════════════ */
-    .arch-section { padding: 48px 0; }
-    .arch-section h2 { font-size: clamp(16px, 2.2vw, 24px); font-weight: 700; letter-spacing: -0.2px; margin-bottom: 22px; color: var(--muted); }
-    .arch-inner { display: grid; grid-template-columns: auto 1fr; gap: 36px; align-items: start; }
-    .arch-flow { display: flex; flex-direction: column; }
+    /* ── ARCHITECTURE ── */
+    .arch-section { padding: 56px 0; }
+    .arch-section h2 { font-size: clamp(18px, 2.5vw, 26px); font-weight: 700; letter-spacing: -0.3px; margin-bottom: 6px; color: var(--muted); }
+    .arch-sub { font-size: 14px; color: var(--muted); margin-bottom: 28px; }
+    .arch-inner { display: grid; grid-template-columns: auto 1fr; gap: 40px; align-items: start; }
+
+    /* Branching flow diagram */
+    .arch-flow { display: flex; flex-direction: column; min-width: 200px; }
     .af-node { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 8px 16px; font-size: 13px; font-weight: 600; font-family: 'DM Mono', monospace; white-space: nowrap; }
     .af-node.hi { background: var(--dark); color: #fff; border-color: var(--dark); }
-    .af-node.opt { border-style: dashed; color: var(--muted); font-size: 12px; }
-    .af-line { width: 2px; height: 14px; background: var(--border); margin-left: 16px; }
-    .af-opt-row { display: flex; align-items: center; gap: 8px; }
-    .af-opt-lbl { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+    .af-line { width: 2px; height: 14px; background: var(--border); margin-left: 20px; }
+    .af-branch-row { display: flex; align-items: flex-start; gap: 0; margin: 0; }
+    .af-branch-left { display: flex; flex-direction: column; }
+    .af-branch-right { display: flex; flex-direction: column; margin-left: 12px; }
+    .af-branch-line-h { width: 40px; height: 2px; background: var(--border); margin-top: 19px; flex-shrink: 0; }
+    .af-node.accepted { background: var(--green-light); border-color: rgba(21,128,61,0.25); color: var(--green); }
+    .af-node.court { background: rgba(220,38,38,0.08); border: 1px dashed rgba(220,38,38,0.3); color: var(--red); font-size: 12px; }
+    .af-node.outcome { background: var(--dark); color: #fff; border-color: var(--dark); font-size: 12px; }
+    .af-verdict-arrow { display: flex; align-items: center; gap: 4px; font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); padding: 3px 0 3px 6px; }
+    .af-branch-label { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 0.4px; padding: 2px 0; }
     .arch-cards { display: flex; flex-direction: column; gap: 8px; }
     .arch-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 14px 18px; }
     .arch-card-lbl { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
     .arch-addr { font-family: 'DM Mono', monospace; font-size: 12px; word-break: break-all; line-height: 1.6; }
     .arch-addr a { color: var(--blue); text-decoration: none; }
     .arch-addr a:hover { text-decoration: underline; }
-    .arch-note { margin-top: 8px; padding: 10px 14px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); font-size: 13px; color: var(--muted); line-height: 1.6; }
 
-    /* ══════════════════════
-       BENCHMARK
-    ══════════════════════ */
+    /* ── BENCHMARK ── */
     .bench-section { padding: 48px 0; background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
     .bench-section h2 { font-size: clamp(16px, 2.2vw, 24px); font-weight: 700; letter-spacing: -0.2px; margin-bottom: 20px; color: var(--muted); }
     .bench-cards { display: flex; gap: 10px; max-width: 600px; margin-bottom: 20px; flex-wrap: wrap; }
@@ -268,9 +284,7 @@
     .consensus-label { font-weight: 700; color: var(--green); }
     .consensus-rate { font-size: 15px; font-weight: 700; color: var(--dark); }
 
-    /* ══════════════════════
-       DEVELOPER DETAILS
-    ══════════════════════ */
+    /* ── DEVELOPER ── */
     .dev-section { padding: 40px 0; }
     .dev-section h2 { font-size: clamp(14px, 2vw, 20px); font-weight: 700; color: var(--muted); margin-bottom: 16px; }
     .dev-links { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
@@ -289,96 +303,25 @@
     .footer-links a:hover { color: #fff; }
     .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 16px; font-family: 'DM Mono', monospace; font-size: 10px; color: #4b5563; }
 
-    /* ══════════════════════
-       CONTESTED SHIPMENT SECTION
-    ══════════════════════ */
-    .court-section { padding: 64px 0; background: var(--dark); border-top: 1px solid rgba(255,255,255,0.08); }
-    .court-section .section-label { color: rgba(255,255,255,0.3); }
-    .court-section h2 { font-size: clamp(22px, 3vw, 34px); font-weight: 700; letter-spacing: -0.6px; color: #fff; margin-bottom: 8px; }
-    .court-intro { font-size: 15px; color: rgba(255,255,255,0.5); margin-bottom: 36px; max-width: 600px; line-height: 1.65; }
-    .court-intro strong { color: #fff; }
-
-    /* Scenario tabs */
-    .sc-tabs { display: flex; gap: 6px; margin-bottom: 28px; flex-wrap: wrap; }
-    .sc-tab { flex: 1; min-width: 140px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-xl); padding: 12px 16px; cursor: pointer; text-align: left; transition: all 0.15s; }
-    .sc-tab:hover { background: rgba(255,255,255,0.09); }
-    .sc-tab.active { border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); }
-    .sc-tab-badge { font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 4px; }
-    .sc-tab-badge.timely { color: #86efac; }
-    .sc-tab-badge.late   { color: #fca5a5; }
-    .sc-tab-badge.undetermined { color: #fbbf24; }
-    .sc-tab-title { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.7); }
-
-    /* Scenario panel */
-    .sc-panel { display: none; }
-    .sc-panel.active { display: block; }
-
-    /* Shared first steps */
-    .sc-common-steps { display: flex; gap: 0; margin-bottom: 24px; flex-wrap: nowrap; overflow-x: auto; }
-    .sc-step { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 8px 14px; font-size: 12px; font-weight: 600; font-family: 'DM Mono', monospace; white-space: nowrap; color: rgba(255,255,255,0.6); flex-shrink: 0; }
-    .sc-step.done { color: #86efac; background: rgba(134,239,172,0.08); border-color: rgba(134,239,172,0.2); }
-    .sc-step.active { color: #fff; background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.25); }
-    .sc-step.contested { color: #fca5a5; background: rgba(252,165,165,0.08); border-color: rgba(252,165,165,0.25); }
-    .sc-arrow { color: rgba(255,255,255,0.2); padding: 0 6px; display: flex; align-items: center; font-size: 14px; flex-shrink: 0; }
-
-    /* Disputed marker */
-    .sc-contested-marker { background: rgba(252,165,165,0.08); border: 1px solid rgba(252,165,165,0.25); border-radius: var(--radius-xl); padding: 14px 20px; margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
-    .sc-contested-dot { width: 10px; height: 10px; border-radius: 50%; background: #fca5a5; flex-shrink: 0; animation: pulse 2s infinite; }
-    .sc-contested-text { font-size: 14px; color: rgba(255,255,255,0.7); }
-    .sc-contested-text strong { color: #fca5a5; }
-
-    /* Main grid: clause + evidence + court */
-    .sc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
-    .sc-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.09); border-radius: var(--radius-xl); padding: 18px 20px; }
-    .sc-card-label { font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 8px; }
-    .sc-card-label.clause  { color: rgba(147,197,253,0.8); }
-    .sc-card-label.exporter { color: rgba(134,239,172,0.8); }
-    .sc-card-label.importer { color: rgba(252,211,77,0.8); }
-    .sc-card-label.question { color: rgba(196,181,253,0.8); }
-    .sc-card-label.verdict  { color: rgba(255,255,255,0.5); }
-    .sc-card-label.consequence { color: rgba(255,255,255,0.5); }
-    .sc-card-text { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.6; }
-    .sc-card-text strong { color: rgba(255,255,255,0.85); }
-
-    /* Evidence thumbnail */
-    .sc-evidence { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius); padding: 10px; margin-top: 10px; }
-    .sc-evidence-img { width: 100%; max-height: 100px; object-fit: cover; border-radius: 6px; opacity: 0.7; }
-    .sc-evidence-caption { font-family: 'DM Mono', monospace; font-size: 10px; color: rgba(255,255,255,0.3); margin-top: 6px; line-height: 1.5; }
-
-    /* Verdict badge */
-    .sc-verdict-badge { display: inline-flex; align-items: center; gap: 7px; border-radius: 9999px; padding: 6px 14px; font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 700; margin-bottom: 8px; }
-    .sc-verdict-badge.true  { background: rgba(134,239,172,0.15); border: 1px solid rgba(134,239,172,0.3); color: #86efac; }
-    .sc-verdict-badge.false { background: rgba(252,165,165,0.15); border: 1px solid rgba(252,165,165,0.3); color: #fca5a5; }
-    .sc-verdict-badge.undetermined { background: rgba(251,191,36,0.12); border: 1px solid rgba(251,191,36,0.25); color: #fbbf24; }
-    .sc-verdict-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-    .sc-verdict-badge.true  .sc-verdict-dot { background: #86efac; }
-    .sc-verdict-badge.false .sc-verdict-dot { background: #fca5a5; }
-    .sc-verdict-badge.undetermined .sc-verdict-dot { background: #fbbf24; }
-
-    /* Consequence */
-    .sc-consequence { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.09); border-radius: var(--radius-xl); padding: 16px 20px; }
-    .sc-consequence-text { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.6; }
-    .sc-consequence-text strong { font-size: 15px; color: #fff; }
-
     /* ── RESPONSIVE ── */
-    @media(max-width: 720px) {
+    @media(max-width: 860px) {
       nav { display: none; }
-      .ex-grid { grid-template-columns: 1fr; }
-      .tl-wrap { grid-template-columns: 1fr; }
-      .flow-diagram { flex-direction: column; }
-      .flow-connector { flex-direction: column; padding: 10px 0; }
-      .flow-connector-line { width: 2px; height: 24px; }
+      .tl-outer { grid-template-columns: 1fr; }
+      .tl-proof { position: static; }
       .arch-inner { grid-template-columns: 1fr; }
+      .sc-evidence-grid { grid-template-columns: 1fr; }
+    }
+    @media(max-width: 640px) {
+      .ex-grid { grid-template-columns: 1fr; }
       .validator-grid { grid-template-columns: repeat(3,1fr); }
-      .hero-flow { flex-wrap: wrap; gap: 8px; }
-      .hf-arrow { display: none; }
-      .footer-inner { flex-direction: column; gap: 20px; }
     }
   </style>
 </head>
 <body>
 
-<!-- HEADER -->
+<!-- ═══════════════════════════════════════
+     HEADER
+═══════════════════════════════════════ -->
 <header>
   <div class="header-inner">
     <a href="#" class="logo">
@@ -386,101 +329,68 @@
       Trade Finance × GenLayer
     </a>
     <nav>
-      <a href="#example">Example</a>
-      <a href="#timeline">Timeline</a>
-      <a href="#problem">Problem</a>
+      <a href="#trade">Trade</a>
+      <a href="#lifecycle">Lifecycle</a>
+      <a href="#proof">Proof</a>
       <a href="#architecture">Architecture</a>
     </nav>
-    <div style="display:flex;gap:4px;background:var(--card);border:1px solid var(--border);border-radius:9999px;padding:3px;">
-      <button id="tab-btn-standard" onclick="switchTab('standard')" style="border:none;cursor:pointer;border-radius:9999px;padding:5px 14px;font-size:13px;font-weight:600;background:var(--dark);color:#fff;transition:all 0.15s;">Standard Settlement</button>
-      <button id="tab-btn-dispute" onclick="switchTab('dispute')" style="border:none;cursor:pointer;border-radius:9999px;padding:5px 14px;font-size:13px;font-weight:600;background:transparent;color:var(--muted);transition:all 0.15s;">Contested Shipment</button>
-    </div>
-    <a href="https://sepolia.basescan.org/address/0x5231a9B232abD0d8533D7046994235baEb01696d" target="_blank" class="btn-dark" style="display:none;" id="header-basescan">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 8 16 12 12 16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+    <a href="https://sepolia.basescan.org/address/0x5231a9B232abD0d8533D7046994235baEb01696d" target="_blank" class="btn-dark">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
       Basescan
     </a>
   </div>
 </header>
 
 
-<!-- ══════════════════════════════════════════
+<!-- ═══════════════════════════════════════
      HERO
-══════════════════════════════════════════ -->
-<div id="tab-standard"><section class="hero">
+═══════════════════════════════════════ -->
+<section class="hero">
   <div class="container">
     <div class="hero-eyebrow">
       <span class="dot"></span>
       Live on Base Sepolia · GenLayer Studionet
     </div>
 
-    <h1>Lock and coordinate FX settlement for cross-border invoices</h1>
+    <h1>One trade. One settlement engine. One exception path when it's needed.</h1>
 
-    <!-- Trade story: flag rows -->
-    <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius-xl);padding:4px 0;max-width:560px;margin-bottom:28px;">
-      <div style="display:flex;align-items:center;gap:12px;padding:14px 20px;border-bottom:1px solid var(--border);">
+    <div class="hero-story">
+      <div class="hero-story-row">
         <img src="https://flagcdn.com/h24/bo.png" srcset="https://flagcdn.com/h48/bo.png 2x" height="20" alt="Bolivia" style="border-radius:2px;flex-shrink:0;">
-        <span style="font-size:16px;line-height:1.5;color:var(--muted);">A <strong style="color:var(--dark);">Bolivian exporter</strong> invoices in BOB.</span>
+        <span style="font-size:15px;color:var(--muted);"><strong style="color:var(--dark);">Bolivian exporter</strong> invoices 150,000 BOB.</span>
       </div>
-      <div style="display:flex;align-items:center;gap:12px;padding:14px 20px;border-bottom:1px solid var(--border);">
+      <div class="hero-story-row">
         <img src="https://flagcdn.com/h24/pe.png" srcset="https://flagcdn.com/h48/pe.png 2x" height="20" alt="Peru" style="border-radius:2px;flex-shrink:0;">
-        <span style="font-size:16px;line-height:1.5;color:var(--muted);">A <strong style="color:var(--dark);">Peruvian distributor</strong> pays in PEN.</span>
+        <span style="font-size:15px;color:var(--muted);"><strong style="color:var(--dark);">Peruvian distributor</strong> pays 73,950 PEN.</span>
       </div>
-      <div style="display:flex;align-items:center;gap:12px;padding:14px 20px;">
+      <div class="hero-story-row">
         <span style="font-size:18px;flex-shrink:0;">⚡</span>
-        <span style="font-size:16px;line-height:1.5;color:var(--muted);"><strong style="color:var(--dark);">GenLayer</strong> locks the FX benchmark and produces a single settlement amount — updated automatically if the payment date changes.</span>
+        <span style="font-size:15px;color:var(--muted);">GenLayer locks the FX benchmark, computes a canonical settlement amount, checks shipment, and — if contested — resolves the one disputed fact before settlement continues.</span>
       </div>
-    </div>
-
-    <div class="hero-flow">
-      <div class="hf-step">Invoice</div>
-      <div class="hf-arrow">→</div>
-      <div class="hf-step">Lock FX Benchmark</div>
-      <div class="hf-arrow">→</div>
-      <div class="hf-step">Payment Date Moves</div>
-      <div class="hf-arrow">→</div>
-      <div class="hf-step">Settlement Updated</div>
     </div>
   </div>
 </section>
 
 
-<!-- ══════════════════════════════════════════
-     EXAMPLE TRADE
-══════════════════════════════════════════ -->
-<section class="example-section" id="example">
+<!-- ═══════════════════════════════════════
+     EXAMPLE TRADE (dark)
+═══════════════════════════════════════ -->
+<section class="example-section" id="trade">
   <div class="container">
-    <div class="section-label">Live Example</div>
-    <h2>Quinoa export Bolivia → Peru</h2>
-    <p class="ex-sub">Example trade executed on-chain. Every step is verifiable.</p>
+    <div class="section-label">The Trade</div>
+    <h2>Quinoa export — Bolivia → Peru</h2>
+    <p class="ex-sub">A real trade, executed on-chain. Every step in the lifecycle below is verifiable.</p>
 
     <div class="ex-grid">
-
-      <!-- Left: card + links -->
       <div style="display:flex;flex-direction:column;gap:14px;">
         <div class="ex-card">
-          <div class="ex-card-label">Example trade executed on-chain</div>
-          <div class="ex-row">
-            <span class="ex-key">Invoice</span>
-            <span class="ex-val">150,000 BOB</span>
-          </div>
-          <div class="ex-row">
-            <span class="ex-key">Locked benchmark</span>
-            <span class="ex-val green">0.493 PEN / BOB</span>
-          </div>
-          <div class="ex-row">
-            <span class="ex-key">Settlement</span>
-            <span class="ex-val">73,950 PEN</span>
-          </div>
-          <div class="ex-row">
-            <span class="ex-key">Payment date</span>
-            <span class="ex-val amber">2026-04-05 → 2026-05-05</span>
-          </div>
-          <div class="ex-row">
-            <span class="ex-key">Final state</span>
-            <span class="ex-val"><span class="ex-badge">ROLLED</span></span>
-          </div>
+          <div class="ex-card-label">Trade — executed on-chain</div>
+          <div class="ex-row"><span class="ex-key">Invoice</span><span class="ex-val">150,000 BOB</span></div>
+          <div class="ex-row"><span class="ex-key">Locked benchmark</span><span class="ex-val green">0.493 PEN / BOB</span></div>
+          <div class="ex-row"><span class="ex-key">Settlement amount</span><span class="ex-val">73,950 PEN</span></div>
+          <div class="ex-row"><span class="ex-key">Payment date</span><span class="ex-val amber">2026-04-05 → 2026-05-05</span></div>
+          <div class="ex-row"><span class="ex-key">State</span><span class="ex-val"><span class="ex-badge">ROLLED</span></span></div>
         </div>
-
         <div class="ex-links">
           <a href="demo.mp4" target="_blank" class="ex-link demo">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
@@ -489,20 +399,18 @@
           </a>
           <a href="https://sepolia.basescan.org/tx/0x1298bbabfe992f144db5a72c3ba1444f7d13beb868f694a215a6c77c10560b5d" target="_blank" class="ex-link">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            View rate lock transaction
+            Rate lock transaction ↗
           </a>
           <a href="https://sepolia.basescan.org/tx/0x4a626e445dc1d1e036aea72833aaeccdc6e73546db4035065131b8a86c951533" target="_blank" class="ex-link">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            View roll transaction
+            Roll transaction ↗
           </a>
           <a href="https://sepolia.basescan.org/address/0x5231a9B232abD0d8533D7046994235baEb01696d" target="_blank" class="ex-link">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            View contract
+            View contract ↗
           </a>
         </div>
       </div>
-
-      <!-- Right: flow diagram -->
       <div style="display:flex;align-items:center;justify-content:center;">
         <div class="ex-flow" style="width:100%;max-width:300px;">
           <div class="ex-node">
@@ -515,7 +423,7 @@
           <div class="ex-node mid">
             <div class="ex-node-label">⚙️ GenLayer Contract</div>
             <div class="ex-node-name">FX Settlement Engine</div>
-            <div class="ex-node-sub">benchmark lock · date roll</div>
+            <div class="ex-node-sub">benchmark lock · date roll · shipment check</div>
             <div class="ex-node-rate">0.493 PEN / BOB</div>
           </div>
           <div class="ex-connector"><div class="ex-line"></div><div class="ex-arrow">▼</div></div>
@@ -527,237 +435,350 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
 
-<!-- ══════════════════════════════════════════
-     TRADE LIFECYCLE TIMELINE
-══════════════════════════════════════════ -->
-<section class="timeline-section" id="timeline">
+<!-- ═══════════════════════════════════════
+     MAIN LIFECYCLE TIMELINE
+═══════════════════════════════════════ -->
+<section class="lifecycle-section" id="lifecycle">
   <div class="container">
     <div class="section-label">Trade Lifecycle</div>
-    <h2>State machine, step by step</h2>
+    <h2>From invoice to settlement</h2>
+    <p class="lifecycle-sub">Five steps. One contract. If shipment timing is contested, InternetCourt resolves the disputed fact inline — and the same settlement engine continues.</p>
 
-    <div class="tl-wrap">
+    <div class="tl-outer">
 
-      <!-- Left: vertical steps -->
+      <!-- ── LEFT: STEPS ── -->
       <div class="tl-steps">
 
-        <!-- Step 1 -->
+        <!-- STEP 1: Invoice Created -->
         <div class="tl-step">
           <div class="tl-left">
-            <div class="tl-dot draft">1</div>
+            <div class="tl-dot step1">1</div>
             <div class="tl-spine"></div>
           </div>
           <div class="tl-body">
-            <div class="tl-state draft">DRAFT</div>
-            <div class="tl-title">Invoice created</div>
-            <div class="tl-detail"><strong>150,000 BOB</strong> · Bolivia → Peru quinoa trade</div>
+            <div class="tl-tag">DRAFT</div>
+            <div class="tl-title">Invoice Created</div>
+            <div class="tl-detail"><strong>150,000 BOB</strong> · Bolivia → Peru quinoa trade · importer funds escrowed</div>
             <a href="https://sepolia.basescan.org/address/0x5231a9B232abD0d8533D7046994235baEb01696d" target="_blank" class="tl-tx">
               <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              View contract ↗
+              Contract ↗
             </a>
           </div>
         </div>
 
-        <!-- Step 2 -->
+        <!-- STEP 2: Benchmark Locked -->
         <div class="tl-step">
           <div class="tl-left">
-            <div class="tl-dot locked">2</div>
+            <div class="tl-dot step2">2</div>
             <div class="tl-spine"></div>
           </div>
           <div class="tl-body">
-            <div class="tl-state locked">RATE_LOCKED</div>
-            <div class="tl-title">Benchmark locked</div>
-            <div class="tl-detail">Rate: <strong>0.493 PEN / BOB</strong><br>Settlement: <strong>73,950 PEN</strong></div>
+            <div class="tl-tag green">RATE_LOCKED</div>
+            <div class="tl-title">Benchmark Locked</div>
+            <div class="tl-detail">GenLayer validators reach consensus on <strong>0.493 PEN/BOB</strong>. Rate is delivered to Base Sepolia by the relayer and recorded on-chain.</div>
             <a href="https://sepolia.basescan.org/tx/0x1298bbabfe992f144db5a72c3ba1444f7d13beb868f694a215a6c77c10560b5d" target="_blank" class="tl-tx">
               <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              View transaction ↗
+              Rate lock tx ↗
             </a>
           </div>
         </div>
 
-        <!-- Step 3 -->
+        <!-- STEP 3: Settlement Amount Computed -->
         <div class="tl-step">
           <div class="tl-left">
-            <div class="tl-dot pending">3</div>
+            <div class="tl-dot step3">3</div>
             <div class="tl-spine"></div>
           </div>
           <div class="tl-body">
-            <div class="tl-state pending">ROLL_PENDING</div>
-            <div class="tl-title">Payment date moved</div>
-            <div class="tl-detail"><strong>2026-04-05 → 2026-05-05</strong><br>Roll requested by importer</div>
+            <div class="tl-tag blue">SETTLEMENT COMPUTED</div>
+            <div class="tl-title">Settlement Amount Computed</div>
+            <div class="tl-detail">150,000 BOB × 0.493 = <strong>73,950 PEN</strong>. Payment date moved 2026-04-05 → 2026-05-05. Rate re-locked at same value — settlement amount unchanged.</div>
             <a href="https://sepolia.basescan.org/tx/0x4a626e445dc1d1e036aea72833aaeccdc6e73546db4035065131b8a86c951533" target="_blank" class="tl-tx">
               <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              View transaction ↗
+              Roll tx ↗
             </a>
           </div>
         </div>
 
-        <!-- Step 4 -->
+        <!-- STEP 4: Shipment Check (INLINE BRANCH) -->
         <div class="tl-step">
           <div class="tl-left">
-            <div class="tl-dot rolled">4</div>
+            <div class="tl-dot step4">4</div>
+            <div class="tl-spine"></div>
           </div>
           <div class="tl-body">
-            <div class="tl-state rolled">ROLLED</div>
-            <div class="tl-title">Settlement updated</div>
-            <div class="tl-detail">Roll applied · rate re-locked at <strong>0.493</strong><br>Settlement unchanged: <strong>73,950 PEN</strong></div>
-            <a href="https://sepolia.basescan.org/tx/0x4a626e445dc1d1e036aea72833aaeccdc6e73546db4035065131b8a86c951533" target="_blank" class="tl-tx">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              View transaction ↗
-            </a>
+            <div class="tl-tag amber">SHIPMENT CHECK</div>
+            <div class="tl-title">Shipment Check</div>
+            <div class="tl-detail" style="margin-bottom:14px;">
+              When goods arrive, the importer confirms or contests the shipment timing. If contested, InternetCourt evaluates the one disputed fact — did the shipment cross on time? — and returns a verdict to the same settlement engine.
+            </div>
+
+            <!-- State selector -->
+            <div class="sc-selector">
+              <button class="sc-btn accepted active" onclick="selectState('accepted', this)">✓ Accepted</button>
+              <button class="sc-btn contested" onclick="selectState('timely', this)">Contested — Timely</button>
+              <button class="sc-btn late" onclick="selectState('late', this)">Contested — Late</button>
+              <button class="sc-btn manual" onclick="selectState('undetermined', this)">Contested — Undetermined</button>
+            </div>
+
+            <!-- ACCEPTED STATE -->
+            <div id="sc-accepted" class="sc-accepted-msg show">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Shipment accepted by importer. Settlement proceeds to final release.
+            </div>
+
+            <!-- CONTESTED — TIMELY -->
+            <div id="sc-timely" class="sc-court-panel">
+              <div class="sc-court-header">
+                <div class="sc-court-tag">InternetCourt · shipment-deadline-v1</div>
+                <div class="sc-court-disputed">
+                  <div class="sc-court-disputed-dot"></div>
+                  <div class="sc-court-disputed-text">
+                    Importer filed <strong>ShipmentContested</strong> on <a href="https://sepolia.basescan.org/address/0x78D5Aef1D3c20DBE1ddbbdCFa9b4D8d408CbcB17" target="_blank" style="color:rgba(252,165,165,0.7);font-family:'DM Mono',monospace;font-size:11px;">0x78D5…cB17</a> · case <code style="font-family:'DM Mono',monospace;font-size:11px;">qc-coop-2026-0003</code> · <a href="https://sepolia.basescan.org/tx/0xa52222f19c3b2324d43dd1dd9b359ea62e576fa57ecd4683553136c4ad498ba0" target="_blank" style="color:rgba(252,165,165,0.6);font-family:'DM Mono',monospace;font-size:11px;">contest tx ↗</a>
+                  </div>
+                </div>
+                <div class="sc-court-statement">"Shipment under Contract QC-COOP-2026-0003 crossed Bolivian export customs at Desaguadero on or before 2026-04-05 23:59 America/La_Paz."</div>
+              </div>
+              <div class="sc-evidence-grid">
+                <div class="sc-ev-card">
+                  <div class="sc-ev-label clause">Contract Clause</div>
+                  <div class="sc-ev-text" style="font-style:italic;">Shipment is timely if the shipment crossed Bolivian export customs at <strong>Desaguadero</strong> on or before <strong>2026-04-05 23:59 America/La_Paz</strong>.</div>
+                </div>
+                <div class="sc-ev-card">
+                  <div class="sc-ev-label question">Court Question</div>
+                  <div class="sc-ev-text"><strong>Did shipment QC-COOP-2026-0003 cross Bolivian export customs at Desaguadero on or before 2026-04-05 23:59?</strong></div>
+                </div>
+                <div class="sc-ev-card">
+                  <div class="sc-ev-label exporter">Exporter Evidence</div>
+                  <div class="sc-ev-text">Customs exit receipt — Desaguadero, <strong>2026-04-05T22:41 La_Paz</strong>. 78 minutes before deadline.</div>
+                  <div class="sc-ev-img-wrap">
+                    <img src="evidence/qc-coop-2026-0003/court_sheet_a.png" class="sc-ev-img" alt="Court Sheet A" onerror="this.src='evidence/images/03_COSCO_Bill_of_Lading.jpg'" />
+                    <div class="sc-ev-caption">court_sheet_a.png · <a href="https://gateway.pinata.cloud/ipfs/QmZXhAcnKXTF1a1qptL1h6vdNFmt539AyPkZVtZLsr79uj" target="_blank">QmZXhA…79uj ↗</a></div>
+                  </div>
+                </div>
+                <div class="sc-ev-card">
+                  <div class="sc-ev-label importer">Importer Evidence</div>
+                  <div class="sc-ev-text">Border gate event record — <strong>2026-04-06T00:18 La_Paz</strong>. 18 minutes after deadline.</div>
+                  <div class="sc-ev-img-wrap">
+                    <img src="evidence/qc-coop-2026-0003/court_sheet_b.png" class="sc-ev-img" alt="Court Sheet B" onerror="this.src='evidence/images/07_Purchase_Contract_Excerpt.jpg'" />
+                    <div class="sc-ev-caption">court_sheet_b.png · <a href="https://gateway.pinata.cloud/ipfs/QmQVwEC7N3j1tNBjPqRrkGgiEHBcD9hU9aojooQ6yG1zqW" target="_blank">QmQVwE…zqW ↗</a></div>
+                  </div>
+                </div>
+              </div>
+              <div class="sc-ev-card" style="margin-bottom:10px;">
+                <div class="sc-ev-label verdict">Verdict</div>
+                <div class="sc-verdict-row">
+                  <div class="sc-verdict-badge vtrue"><span class="sc-verdict-dot"></span> TRUE — TIMELY SHIPMENT</div>
+                </div>
+                <div class="sc-ev-text">Customs exit receipt shows crossing at 22:41, 78 minutes before deadline. Importer's gate record is a secondary system event. Exporter timestamp preferred per guideline.</div>
+              </div>
+              <div class="sc-outcome">
+                <div class="sc-ev-label outcome">Settlement Consequence</div>
+                <div class="sc-outcome-text"><strong>Settlement proceeds.</strong> shipmentStatus = TIMELY · exceptionPaused = false · 73,950 PEN released to exporter.</div>
+                <div class="sc-outcome-links">
+                  <a href="https://sepolia.basescan.org/tx/0xa52222f19c3b2324d43dd1dd9b359ea62e576fa57ecd4683553136c4ad498ba0" target="_blank" class="sc-outcome-link green">resolveShipmentVerdict tx: 0xa522…ba0 ↗</a>
+                  <a href="https://sepolia.basescan.org/tx/0xb2bce11cf2c7526fe8f2fbe4ce8d76f2814e61bfccfb53cf37f8943fe689bd33" target="_blank" class="sc-outcome-link green">finalizeAfterShipment tx: 0xb2bc…d33 ↗</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- CONTESTED — LATE -->
+            <div id="sc-late" class="sc-court-panel">
+              <div class="sc-court-header">
+                <div class="sc-court-tag">InternetCourt · shipment-deadline-v1</div>
+                <div class="sc-court-disputed">
+                  <div class="sc-court-disputed-dot"></div>
+                  <div class="sc-court-disputed-text">
+                    Importer filed <strong>ShipmentContested</strong> on <a href="https://sepolia.basescan.org/address/0xA464D16a6547F4A26097081928D9D95Ea3F26CDa" target="_blank" style="color:rgba(252,165,165,0.7);font-family:'DM Mono',monospace;font-size:11px;">0xA464…CDa</a> · case <code style="font-family:'DM Mono',monospace;font-size:11px;">qc-coop-2026-0004</code> · <a href="https://sepolia.basescan.org/tx/0x326d492ba5d85dfe15c35f2661ed72be6eee403ecc4a88df0a55239eaca25cb5" target="_blank" style="color:rgba(252,165,165,0.6);font-family:'DM Mono',monospace;font-size:11px;">contest tx ↗</a>
+                  </div>
+                </div>
+                <div class="sc-court-statement">"Shipment under Contract QC-COOP-2026-0004 crossed Bolivian export customs at Desaguadero on or before 2026-04-05 23:59 America/La_Paz."</div>
+              </div>
+              <div class="sc-evidence-grid">
+                <div class="sc-ev-card">
+                  <div class="sc-ev-label clause">Contract Clause</div>
+                  <div class="sc-ev-text" style="font-style:italic;">Shipment is timely if crossed at <strong>Desaguadero</strong> on or before <strong>2026-04-05 23:59 America/La_Paz</strong>.</div>
+                </div>
+                <div class="sc-ev-card">
+                  <div class="sc-ev-label question">Court Question</div>
+                  <div class="sc-ev-text"><strong>Did shipment QC-COOP-2026-0004 cross Bolivian export customs at Desaguadero on or before 2026-04-05 23:59?</strong></div>
+                </div>
+                <div class="sc-ev-card">
+                  <div class="sc-ev-label exporter">Exporter Evidence</div>
+                  <div class="sc-ev-text">Pre-shipment inspection — dated 2026-04-05. No customs crossing event. Goods remained in warehouse after inspection.</div>
+                  <div class="sc-ev-img-wrap">
+                    <img src="evidence/qc-coop-2026-0004/court_sheet_a.png" class="sc-ev-img" alt="Court Sheet A" onerror="this.src='evidence/images/02_SGS_PreShipment_Inspection.jpg'" />
+                    <div class="sc-ev-caption">court_sheet_a.png · <a href="https://gateway.pinata.cloud/ipfs/QmUkY5HDe4GyQ14qAaHJgwq8Jd3txkj9AMAYM1MDdsXeoF" target="_blank">QmUkY5…eoF ↗</a></div>
+                  </div>
+                </div>
+                <div class="sc-ev-card">
+                  <div class="sc-ev-label importer">Importer Evidence</div>
+                  <div class="sc-ev-text">Bill of lading — <strong>2026-04-09T09:15 La_Paz</strong>. Four days after deadline. Clear customs-crossing timestamp.</div>
+                  <div class="sc-ev-img-wrap">
+                    <img src="evidence/qc-coop-2026-0004/court_sheet_b.png" class="sc-ev-img" alt="Court Sheet B" onerror="this.src='evidence/images/03_COSCO_Bill_of_Lading.jpg'" />
+                    <div class="sc-ev-caption">court_sheet_b.png · <a href="https://gateway.pinata.cloud/ipfs/QmeKRDftoK1vQY3ggGMvYA6TYxeYoaDTAEYE366iLk5xVv" target="_blank">QmeKRD…xVv ↗</a></div>
+                  </div>
+                </div>
+              </div>
+              <div class="sc-ev-card" style="margin-bottom:10px;">
+                <div class="sc-ev-label verdict">Verdict</div>
+                <div class="sc-verdict-row">
+                  <div class="sc-verdict-badge vfalse"><span class="sc-verdict-dot"></span> FALSE — LATE SHIPMENT</div>
+                </div>
+                <div class="sc-ev-text">Bill of lading shows crossing on 2026-04-09 — four days after deadline. Exporter pre-inspection does not prove a customs crossing. Shipment was late.</div>
+              </div>
+              <div class="sc-outcome">
+                <div class="sc-ev-label outcome">Settlement Consequence</div>
+                <div class="sc-outcome-text"><strong>Settlement cancelled.</strong> shipmentStatus = LATE · resolveShipmentVerdict(2) triggered inline cancelAndRefund · 73,950 PEN returned to importer.</div>
+                <div class="sc-outcome-links">
+                  <a href="https://sepolia.basescan.org/tx/0x77ef285367430a70853234ffa057be969c21a2e1d7938cf79692aae36b3843dd" target="_blank" class="sc-outcome-link red">resolveShipmentVerdict + refund tx: 0x77ef…3dd ↗</a>
+                  <a href="https://sepolia.basescan.org/address/0xA464D16a6547F4A26097081928D9D95Ea3F26CDa" target="_blank" class="sc-outcome-link red">Contract: 0xA464…CDa ↗</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- CONTESTED — UNDETERMINED -->
+            <div id="sc-undetermined" class="sc-court-panel">
+              <div class="sc-court-header">
+                <div class="sc-court-tag">InternetCourt · shipment-deadline-v1</div>
+                <div class="sc-court-disputed">
+                  <div class="sc-court-disputed-dot"></div>
+                  <div class="sc-court-disputed-text">
+                    Importer filed <strong>ShipmentContested</strong> on <a href="https://sepolia.basescan.org/address/0x6A05444f8Ea647b1b86ed159bC2a3b363d46c0f8" target="_blank" style="color:rgba(252,165,165,0.7);font-family:'DM Mono',monospace;font-size:11px;">0x6A05…60f8</a> · case <code style="font-family:'DM Mono',monospace;font-size:11px;">qc-coop-2026-0005</code> · <a href="https://sepolia.basescan.org/tx/0x36df8f7a881e74013ff30caf496ad81bd94700d120320f6246ec78fa7656bf6e" target="_blank" style="color:rgba(252,165,165,0.6);font-family:'DM Mono',monospace;font-size:11px;">contest tx ↗</a>
+                  </div>
+                </div>
+                <div class="sc-court-statement">"Shipment under Contract QC-COOP-2026-0005 crossed Bolivian export customs at Desaguadero on or before 2026-04-05 23:59 America/La_Paz."</div>
+              </div>
+              <div class="sc-evidence-grid">
+                <div class="sc-ev-card">
+                  <div class="sc-ev-label clause">Contract Clause</div>
+                  <div class="sc-ev-text" style="font-style:italic;">Shipment is timely if crossed at <strong>Desaguadero</strong> on or before <strong>2026-04-05 23:59 America/La_Paz</strong>.</div>
+                </div>
+                <div class="sc-ev-card">
+                  <div class="sc-ev-label question">Court Question</div>
+                  <div class="sc-ev-text"><strong>Did shipment QC-COOP-2026-0005 cross Bolivian export customs at Desaguadero on or before 2026-04-05 23:59?</strong></div>
+                </div>
+                <div class="sc-ev-card">
+                  <div class="sc-ev-label exporter">Exporter Evidence</div>
+                  <div class="sc-ev-text">Lab analysis report — confirms quality only. No shipment reference, location, or crossing timestamp.</div>
+                  <div class="sc-ev-img-wrap">
+                    <img src="evidence/qc-coop-2026-0005/court_sheet_a.png" class="sc-ev-img" alt="Court Sheet A" onerror="this.src='evidence/images/04_BureauVeritas_Lab_Analysis.jpg'" />
+                    <div class="sc-ev-caption">court_sheet_a.png · <a href="https://gateway.pinata.cloud/ipfs/QmPFLuuPaJ2XDLnTfBv54K3FHU2uPCRCV7eYTDW22gUx8B" target="_blank">QmPFLu…Ux8B ↗</a></div>
+                  </div>
+                </div>
+                <div class="sc-ev-card">
+                  <div class="sc-ev-label importer">Importer Evidence</div>
+                  <div class="sc-ev-text">Arrival inspection — date field illegible. Could read Apr 04 or Apr 14. Crossing date cannot be determined.</div>
+                  <div class="sc-ev-img-wrap">
+                    <img src="evidence/qc-coop-2026-0005/court_sheet_b.png" class="sc-ev-img" alt="Court Sheet B" onerror="this.src='evidence/images/05_Arrival_Inspection_Report.jpg'" />
+                    <div class="sc-ev-caption">court_sheet_b.png · <a href="https://gateway.pinata.cloud/ipfs/Qmf2h7M5om5d2xeNAxigW2mHd5n2QxTMeb9mc5zTFuPcdb" target="_blank">Qmf2h7…Pcdb ↗</a></div>
+                  </div>
+                </div>
+              </div>
+              <div class="sc-ev-card" style="margin-bottom:10px;">
+                <div class="sc-ev-label verdict">Verdict</div>
+                <div class="sc-verdict-row">
+                  <div class="sc-verdict-badge vund"><span class="sc-verdict-dot"></span> UNDETERMINED — INSUFFICIENT EVIDENCE</div>
+                </div>
+                <div class="sc-ev-text">Neither document provides a reliable customs-crossing timestamp. Evidence insufficient to determine TRUE or FALSE.</div>
+              </div>
+              <div class="sc-outcome">
+                <div class="sc-ev-label outcome">Settlement Consequence</div>
+                <div class="sc-outcome-text"><strong>Settlement frozen.</strong> shipmentStatus = UNDETERMINED · exceptionPaused = true · a human arbitrator must review physical documents before the contract can proceed.</div>
+                <div class="sc-outcome-links">
+                  <a href="https://sepolia.basescan.org/tx/0xb026c6e3b33730b1d5cc51aaa5e57331b72db2c5ae4481c676ed2b53a2f9c1a9" target="_blank" class="sc-outcome-link amber">resolveShipmentVerdict tx: 0xb026…1a9 ↗</a>
+                  <a href="https://sepolia.basescan.org/address/0x6A05444f8Ea647b1b86ed159BC2a3b363d46c0f8" target="_blank" class="sc-outcome-link amber">Contract: 0x6A05…60f8 ↗</a>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
 
-      </div>
+        <!-- STEP 5: Final Outcome (dynamic) -->
+        <div class="tl-step">
+          <div class="tl-left">
+            <div class="tl-dot step5" id="step5-dot">5</div>
+          </div>
+          <div class="tl-body">
+            <div class="tl-tag" id="step5-tag">FINAL OUTCOME</div>
+            <div class="tl-title">Final Outcome</div>
 
-      <!-- Right: what this proves -->
+            <!-- Default (accepted) -->
+            <div id="outcome-accepted" class="outcome-panel show">
+              <div class="outcome-badge release"><span class="outcome-dot"></span> SETTLED — 73,950 PEN RELEASED</div>
+              <div class="outcome-desc">Shipment accepted. Settlement proceeds normally. <strong>73,950 PEN transferred to exporter.</strong></div>
+            </div>
+
+            <!-- Timely -->
+            <div id="outcome-timely" class="outcome-panel">
+              <div class="outcome-badge release"><span class="outcome-dot"></span> SETTLED — 73,950 PEN RELEASED</div>
+              <div class="outcome-desc">InternetCourt found shipment timely. Settlement resumed. <strong>73,950 PEN transferred to exporter.</strong> Same engine, same result as the standard path.</div>
+            </div>
+
+            <!-- Late -->
+            <div id="outcome-late" class="outcome-panel">
+              <div class="outcome-badge refund"><span class="outcome-dot"></span> CANCELLED — 73,950 PEN REFUNDED</div>
+              <div class="outcome-desc">InternetCourt found shipment late. Settlement cancelled inline. <strong>73,950 PEN returned to importer.</strong> No further action required.</div>
+            </div>
+
+            <!-- Undetermined -->
+            <div id="outcome-undetermined" class="outcome-panel">
+              <div class="outcome-badge manual"><span class="outcome-dot"></span> MANUAL REVIEW REQUIRED</div>
+              <div class="outcome-desc">Evidence was insufficient. Settlement is frozen. <strong>A human arbitrator must deliver a binding finding</strong> before the contract can proceed.</div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /tl-steps -->
+
+      <!-- ── RIGHT: PROOF SIDEBAR ── -->
       <div class="tl-proof">
-        <div class="tl-proof-title">What this proves</div>
+        <div class="tl-proof-title">What this demonstrates</div>
         <div class="proof-row">
           <div class="proof-check">✓</div>
-          <div class="proof-text"><strong>Rate lock is on-chain.</strong> <span>Every validator can reproduce the benchmark independently.</span></div>
+          <div class="proof-text"><strong>One trade, one lifecycle.</strong> Benchmark lock, shipment check, and settlement are steps in the same contract — not separate products.</div>
         </div>
         <div class="proof-row">
           <div class="proof-check">✓</div>
-          <div class="proof-text"><strong>Date changes are handled automatically.</strong> <span>No manual recalculation between parties.</span></div>
+          <div class="proof-text"><strong>InternetCourt is an exception path.</strong> It activates only when deterministic logic can no longer continue. The verdict feeds back into the same settlement engine.</div>
         </div>
         <div class="proof-row">
           <div class="proof-check">✓</div>
-          <div class="proof-text"><strong>Settlement amount is canonical.</strong> <span>One result both exporter and importer reference.</span></div>
+          <div class="proof-text"><strong>The court decides one fact only.</strong> Did the shipment cross on time? The contract maps that answer to Release, Refund, or Manual Review.</div>
         </div>
         <div class="proof-row">
           <div class="proof-check">✓</div>
-          <div class="proof-text"><strong>Every state transition has a transaction hash.</strong> <span>Full audit trail on Basescan.</span></div>
+          <div class="proof-text"><strong>Every state transition has a tx hash.</strong> Full audit trail on Basescan for all three contested scenarios.</div>
+        </div>
+        <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--border);">
+          <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Three scenarios — on-chain</div>
+          <div style="display:flex;flex-direction:column;gap:5px;">
+            <a href="https://sepolia.basescan.org/address/0x78D5Aef1D3c20DBE1ddbbdCFa9b4D8d408CbcB17" target="_blank" style="font-family:'DM Mono',monospace;font-size:11px;color:var(--green);text-decoration:none;">↗ TIMELY · 0x78D5…cB17</a>
+            <a href="https://sepolia.basescan.org/address/0xA464D16a6547F4A26097081928D9D95Ea3F26CDa" target="_blank" style="font-family:'DM Mono',monospace;font-size:11px;color:var(--red);text-decoration:none;">↗ LATE · 0xA464…CDa</a>
+            <a href="https://sepolia.basescan.org/address/0x6A05444f8Ea647b1b86ed159bC2a3b363d46c0f8" target="_blank" style="font-family:'DM Mono',monospace;font-size:11px;color:var(--amber);text-decoration:none;">↗ UNDETERMINED · 0x6A05…60f8</a>
+          </div>
         </div>
       </div>
 
-    </div>
+    </div><!-- /tl-outer -->
   </div>
 </section>
 
 
-<!-- ══════════════════════════════════════════
-     VALUE FLOW DIAGRAM
-══════════════════════════════════════════ -->
-<section class="flow-section" id="flow">
-  <div class="container">
-    <div class="section-label">Settlement Flow</div>
-    <h2>Two currencies, one result</h2>
-
-    <div class="flow-diagram">
-
-      <div class="flow-party">
-        <div class="flow-party-flag"><img src="https://flagcdn.com/h24/bo.png" height="22" alt="Bolivia" style="border-radius:2px;"></div>
-        <div class="flow-party-label">Exporter</div>
-        <div class="flow-party-name">Cooperativa Agrícola Andina</div>
-        <div class="flow-party-amount">150,000 BOB</div>
-        <div class="flow-party-sub">invoice issued</div>
-      </div>
-
-      <div class="flow-connector">
-        <div class="flow-connector-line"></div>
-        <div class="flow-connector-arrow">→</div>
-        <div class="flow-connector-label">benchmark lock</div>
-      </div>
-
-      <div class="flow-contract">
-        <div class="flow-contract-label">⚙️ GenLayer Contract</div>
-        <div class="flow-contract-name">FX Settlement Engine</div>
-        <div class="flow-contract-detail">locks benchmark · applies roll<br>produces canonical result</div>
-        <div class="flow-contract-rate">0.493 PEN / BOB</div>
-      </div>
-
-      <div class="flow-connector">
-        <div class="flow-connector-line"></div>
-        <div class="flow-connector-arrow">→</div>
-        <div class="flow-connector-label">settlement</div>
-      </div>
-
-      <div class="flow-party">
-        <div class="flow-party-flag"><img src="https://flagcdn.com/h24/pe.png" height="22" alt="Peru" style="border-radius:2px;"></div>
-        <div class="flow-party-label">Importer</div>
-        <div class="flow-party-name">Alimentos del Pacífico</div>
-        <div class="flow-party-amount green">73,950 PEN</div>
-        <div class="flow-party-sub">settlement amount</div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════
-     PROBLEM
-══════════════════════════════════════════ -->
-<section class="problem-section" id="problem">
-  <div class="container">
-    <div class="section-label">The Problem</div>
-    <h2>Why this exists</h2>
-
-    <ul class="prob-list">
-      <li><span class="prob-dot"></span><span>Cross-border invoices involve two currencies.</span></li>
-      <li><span class="prob-dot"></span><span>Payment dates move.</span></li>
-      <li><span class="prob-dot"></span><span>Each party often computes the FX settlement separately, which creates disagreements about which rate applies.</span></li>
-    </ul>
-
-    <p class="prob-conclusion">GenLayer produces one shared settlement result for the trade.</p>
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════
-     HOW IT WORKS
-══════════════════════════════════════════ -->
-<section class="how-section" id="how-it-works">
-  <div class="container">
-    <div class="section-label">How It Works</div>
-    <h2>What the system does</h2>
-
-    <div class="how-steps">
-      <div class="how-step">
-        <div class="how-num">1</div>
-        <div><div class="how-title">Record the invoice</div><div class="how-desc">The contract stores the trade obligation.</div></div>
-      </div>
-      <div class="how-step">
-        <div class="how-num">2</div>
-        <div><div class="how-title">Lock the benchmark</div><div class="how-desc">Validators agree on a reproducible FX rate.</div></div>
-      </div>
-      <div class="how-step">
-        <div class="how-num">3</div>
-        <div><div class="how-title">Adjust if the trade changes</div><div class="how-desc">Partial shipments or payment delays update settlement terms.</div></div>
-      </div>
-      <div class="how-step">
-        <div class="how-num">4</div>
-        <div><div class="how-title">Final settlement</div><div class="how-desc">The agreed result becomes the canonical settlement state.</div></div>
-      </div>
-    </div>
-
-    <div class="scope-wrap">
-      <div class="scope-title">What this is not</div>
-      <div class="scope-tags">
-        <span class="scope-tag"><span class="scope-x">✕</span> Letter of credit</span>
-        <span class="scope-tag"><span class="scope-x">✕</span> Bank payment rail</span>
-        <span class="scope-tag"><span class="scope-x">✕</span> Trade document platform</span>
-        <span class="scope-tag"><span class="scope-x">✕</span> Cargo dispute arbitration</span>
-      </div>
-      <div class="scope-conclusion">It is a coordination layer for FX settlement of cross-border invoices.</div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════
-     CONSOLE / PROOF
-══════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════
+     LIVE SETTLEMENT PROOF
+═══════════════════════════════════════ -->
 <section class="console-section" id="proof">
   <div class="container">
-    <div class="section-label">Live Settlement State</div>
-    <h2>On-chain explorer proof</h2>
+    <div class="section-label">On-Chain State</div>
+    <h2>Live settlement proof</h2>
+    <p class="console-sub">Settlement state for the example trade — every field verifiable on Basescan.</p>
 
     <div class="console">
       <div class="console-bar">
@@ -766,7 +787,7 @@
       </div>
       <div class="console-body">
         <div class="cl"><span class="cl-k">invoice_amount</span><span class="cl-v green">150000 BOB</span></div>
-        <div class="cl"><span class="cl-k">benchmark_rate</span><span class="cl-v green">0.493 BOB/PEN</span></div>
+        <div class="cl"><span class="cl-k">benchmark_rate</span><span class="cl-v green">0.493 PEN/BOB</span></div>
         <div class="cl"><span class="cl-k">settlement_amount</span><span class="cl-v green">73950 PEN</span></div>
         <div class="cl"><span class="cl-k">due_date</span><span class="cl-v amber">2026-05-05 (rolled from 2026-04-05)</span></div>
         <div class="cl"><span class="cl-k">state</span><span class="cl-v purple">ROLLED</span></div>
@@ -789,7 +810,7 @@
           <div class="cl"><span class="cl-k">comparison_mode</span><span class="cl-v green">strict_eq</span></div>
           <div class="cl"><span class="cl-k">roll_cost</span><span class="cl-v green">0</span></div>
           <div class="cl"><span class="cl-k">lifecycle_reconstruction</span><span class="cl-v green">on-chain events only</span></div>
-          <div class="cl"><span class="cl-k">exception_handling</span><span class="cl-v amber">InternetCourt (orthogonal · opt-in)</span></div>
+          <div class="cl"><span class="cl-k">exception_handling</span><span class="cl-v amber">InternetCourt (inline · if shipment contested)</span></div>
         </div>
       </details>
     </div>
@@ -797,15 +818,17 @@
 </section>
 
 
-<!-- ══════════════════════════════════════════
+<!-- ═══════════════════════════════════════
      ARCHITECTURE
-══════════════════════════════════════════ -->
+═══════════════════════════════════════ -->
 <section class="arch-section" id="architecture">
   <div class="container">
     <div class="section-label">Architecture</div>
     <h2>System components</h2>
+    <p class="arch-sub">One settlement flow. InternetCourt appears only as a conditional branch at the shipment check step.</p>
 
     <div class="arch-inner">
+      <!-- Left: branching flow -->
       <div class="arch-flow">
         <div class="af-node hi">Trade Contract</div>
         <div class="af-line"></div>
@@ -813,10 +836,34 @@
         <div class="af-line"></div>
         <div class="af-node">Settlement Engine</div>
         <div class="af-line"></div>
-        <div class="af-node">Payment Confirmation</div>
+        <div class="af-node" style="background:var(--amber-light);border-color:rgba(180,83,9,0.25);color:var(--amber);">Shipment Check</div>
+        <!-- Branch row -->
+        <div style="display:flex;align-items:flex-start;gap:0;margin-top:0;">
+          <!-- left branch: accepted -->
+          <div style="display:flex;flex-direction:column;align-items:center;">
+            <div style="width:2px;height:14px;background:var(--border);"></div>
+            <div class="af-node accepted" style="font-size:11px;padding:5px 10px;">✓ Accepted</div>
+            <div style="width:2px;height:14px;background:var(--border);"></div>
+          </div>
+          <!-- horizontal connector to right branch -->
+          <div style="display:flex;flex-direction:column;justify-content:flex-start;padding-top:14px;">
+            <div style="width:32px;height:2px;background:var(--border);"></div>
+          </div>
+          <!-- right branch: contested → InternetCourt -->
+          <div style="display:flex;flex-direction:column;align-items:flex-start;">
+            <div style="height:14px;"></div>
+            <div class="af-node court" style="font-size:11px;padding:5px 10px;white-space:nowrap;">If contested → InternetCourt</div>
+            <div style="display:flex;align-items:center;gap:4px;padding:3px 0 3px 10px;">
+              <div style="width:2px;height:14px;background:var(--border);"></div>
+            </div>
+            <div style="padding-left:10px;font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:4px;">verdict returned ↙</div>
+          </div>
+        </div>
         <div class="af-line"></div>
-        <div class="af-opt-row"><div class="af-node opt">Exception Handler</div><span class="af-opt-lbl">optional</span></div>
+        <div class="af-node hi" style="font-size:12px;">Outcome: Release · Refund · Manual Review</div>
       </div>
+
+      <!-- Right: contract addresses -->
       <div class="arch-cards">
         <div class="arch-card">
           <div class="arch-card-lbl">TradeFxSettlement · Base Sepolia 84532</div>
@@ -826,26 +873,36 @@
           <div class="arch-card-lbl">FxBenchmarkOracle · GenLayer Studionet</div>
           <div class="arch-addr"><a href="https://explorer-studio.genlayer.com/transactions/0x8085b03f9fc857785a242e64c7b00051790f04847de1b22e4b163ae5318f71c1" target="_blank">0x3B8501bAcaB70dedbC6f8B8EFCB888ba66cbc73e ↗</a></div>
         </div>
-        <div class="arch-note">If parties disagree — shipment evidence or fraud — <strong>InternetCourt</strong> can resolve on-chain. It activates only when both parties cannot agree. If shipment timing is contested, InternetCourt evaluates the evidence and returns the fact needed for settlement to continue.</div>
+        <div class="arch-card">
+          <div class="arch-card-lbl">ShipmentDeadlineCourt.py · GenLayer (guideline: shipment-deadline-v1)</div>
+          <div class="arch-addr" style="color:var(--muted);font-size:11px;">Frozen guideline stored in contract code. Court evaluates one fact only: did the shipment cross on time? Verdict codes: 1=TIMELY, 2=LATE, 3=UNDETERMINED.</div>
+        </div>
+        <div class="arch-card" style="background:var(--bg);">
+          <div class="arch-card-lbl">Contested scenario contracts</div>
+          <div class="arch-addr" style="display:flex;flex-direction:column;gap:4px;">
+            <a href="https://sepolia.basescan.org/address/0x78D5Aef1D3c20DBE1ddbbdCFa9b4D8d408CbcB17" target="_blank" style="color:var(--green);">TIMELY: 0x78D5…cB17 ↗</a>
+            <a href="https://sepolia.basescan.org/address/0xA464D16a6547F4A26097081928D9D95Ea3F26CDa" target="_blank" style="color:var(--red);">LATE: 0xA464…CDa ↗</a>
+            <a href="https://sepolia.basescan.org/address/0x6A05444f8Ea647b1b86ed159bC2a3b363d46c0f8" target="_blank" style="color:var(--amber);">UNDETERMINED: 0x6A05…60f8 ↗</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 
-<!-- ══════════════════════════════════════════
-     BENCHMARK DETAILS
-══════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════
+     BENCHMARK
+═══════════════════════════════════════ -->
 <section class="bench-section" id="benchmark">
   <div class="container">
     <div class="section-label">Benchmark</div>
     <h2>How the rate is determined</h2>
-
     <div class="bench-cards">
       <div class="bench-card live">
         <div class="bench-card-badge">Live benchmark</div>
         <div class="bench-card-name">Market aggregate</div>
-        <div class="bench-card-desc">Market aggregate rate reproducible by validators.</div>
+        <div class="bench-card-desc">Reproducible by any validator.</div>
       </div>
       <div class="bench-card audit">
         <div class="bench-card-badge">Audit reference</div>
@@ -853,7 +910,6 @@
         <div class="bench-card-desc">Central bank cross.</div>
       </div>
     </div>
-
     <div class="validator-grid">
       <div class="validator-card disagree"><div class="v-addr">0x57De…</div><div class="v-rate">0.493</div><div class="v-status disagree">disagree</div></div>
       <div class="validator-card agree"><div class="v-addr">0x6528…</div><div class="v-rate">0.493</div><div class="v-status agree">✓ agree</div></div>
@@ -861,20 +917,19 @@
       <div class="validator-card agree"><div class="v-addr">0x757F…</div><div class="v-rate">0.493</div><div class="v-status agree">✓ agree</div></div>
       <div class="validator-card agree"><div class="v-addr">0x8729…</div><div class="v-rate">0.493</div><div class="v-status agree">✓ agree</div></div>
     </div>
-
     <div class="consensus-bar">
       <span class="consensus-label">MAJORITY_AGREE</span>
       <span style="color:var(--muted)">·</span>
-      <span class="consensus-rate">0.493 BOB/PEN</span>
+      <span class="consensus-rate">0.493 PEN/BOB</span>
       <span style="margin-left:auto;color:var(--muted);font-family:'DM Mono',monospace;font-size:11px;">3/5 agree · benchmark accepted</span>
     </div>
   </div>
 </section>
 
 
-<!-- ══════════════════════════════════════════
-     DEVELOPER DETAILS
-══════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════
+     DEVELOPER
+═══════════════════════════════════════ -->
 <section class="dev-section" id="developers">
   <div class="container">
     <div class="section-label">Developer Details</div>
@@ -883,281 +938,18 @@
       <a href="https://sepolia.basescan.org/tx/0x1298bbabfe992f144db5a72c3ba1444f7d13beb868f694a215a6c77c10560b5d" target="_blank" class="dev-link">Rate Lock tx ↗</a>
       <a href="https://sepolia.basescan.org/tx/0x4a626e445dc1d1e036aea72833aaeccdc6e73546db4035065131b8a86c951533" target="_blank" class="dev-link">Roll tx ↗</a>
       <a href="https://explorer-studio.genlayer.com/transactions/0x8085b03f9fc857785a242e64c7b00051790f04847de1b22e4b163ae5318f71c1" target="_blank" class="dev-link">Oracle deploy tx ↗</a>
+      <a href="https://sepolia.basescan.org/tx/0xa52222f19c3b2324d43dd1dd9b359ea62e576fa57ecd4683553136c4ad498ba0" target="_blank" class="dev-link">contestShipment (TIMELY) tx ↗</a>
+      <a href="https://sepolia.basescan.org/tx/0x77ef285367430a70853234ffa057be969c21a2e1d7938cf79692aae36b3843dd" target="_blank" class="dev-link">resolveVerdict (LATE) tx ↗</a>
+      <a href="https://sepolia.basescan.org/tx/0xb026c6e3b33730b1d5cc51aaa5e57331b72db2c5ae4481c676ed2b53a2f9c1a9" target="_blank" class="dev-link">resolveVerdict (UNDETERMINED) tx ↗</a>
       <a href="https://github.com/acastellana/trade-finance-genlayer" target="_blank" class="dev-link muted">GitHub ↗</a>
     </div>
   </div>
 </section>
 
 
-</div><!-- /tab-standard -->
-
-<div id="tab-dispute" style="display:none;">
-<!-- ══════════════════════════════════════════
-     CONTESTED SHIPMENT
-══════════════════════════════════════════ -->
-<section class="court-section" id="disputed">
-  <div class="container">
-    <div class="section-label">Exception Path</div>
-    <h2>Contested Shipment</h2>
-    <p class="court-intro">
-      If shipment timing is contested, <strong>InternetCourt</strong> evaluates the evidence and returns the one fact needed for settlement to continue.
-      The court decides one disputed fact. The settlement contract maps that fact to a deterministic outcome.
-      This is an exception path — the benchmark-based FX settlement flow is the main product.
-    </p>
-    <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.09);border-radius:var(--radius);padding:12px 18px;max-width:760px;margin-bottom:28px;">
-      <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:6px;">Court Statement (frozen · shipment-deadline-v1)</div>
-      <div style="font-size:14px;color:rgba(255,255,255,0.7);line-height:1.7;font-style:italic;">"Shipment under Contract QC-COOP-2026-0003 crossed Bolivian export customs at Desaguadero on or before 2026-04-05 23:59 America/La_Paz."</div>
-    </div>
-
-    <!-- Scenario tabs -->
-    <div class="sc-tabs">
-      <button class="sc-tab active" onclick="showScenario('A', this)">
-        <div class="sc-tab-badge timely">Scenario A</div>
-        <div class="sc-tab-title">TIMELY SHIPMENT</div>
-      </button>
-      <button class="sc-tab" onclick="showScenario('B', this)">
-        <div class="sc-tab-badge late">Scenario B</div>
-        <div class="sc-tab-title">LATE SHIPMENT</div>
-      </button>
-      <button class="sc-tab" onclick="showScenario('C', this)">
-        <div class="sc-tab-badge undetermined">Scenario C</div>
-        <div class="sc-tab-title">INSUFFICIENT EVIDENCE</div>
-      </button>
-    </div>
-
-    <!-- ── SCENARIO A: TIMELY SHIPMENT ── -->
-    <div class="sc-panel active" id="sc-A">
-
-      <!-- Shared first steps -->
-      <div class="sc-common-steps">
-        <div class="sc-step done">RATE_LOCKED</div>
-        <div class="sc-arrow">→</div>
-        <div class="sc-step done">FUNDED</div>
-        <div class="sc-arrow">→</div>
-        <div class="sc-step contested">SHIPMENT CONTESTED</div>
-        <div class="sc-arrow">→</div>
-        <div class="sc-step active">COURT VERDICT</div>
-        <div class="sc-arrow">→</div>
-        <div class="sc-step">SETTLEMENT</div>
-      </div>
-
-      <!-- Contested marker -->
-      <div class="sc-contested-marker">
-        <div class="sc-contested-dot"></div>
-        <div class="sc-contested-text">
-          Importer filed <strong>ShipmentContested</strong> on trade <a href="https://sepolia.basescan.org/address/0x78D5Aef1D3c20DBE1ddbbdCFa9b4D8d408CbcB17" target="_blank" style="color:rgba(252,165,165,0.8);font-family:'DM Mono',monospace;font-size:11px;">0x78D5…cB17</a>.
-          Case <code style="font-family:'DM Mono',monospace;font-size:12px;color:rgba(255,255,255,0.5)">qc-coop-2026-0003</code> ·
-          <a href="https://sepolia.basescan.org/tx/0xa52222f19c3b2324d43dd1dd9b359ea62e576fa57ecd4683553136c4ad498ba0" target="_blank" style="color:rgba(252,165,165,0.6);font-family:'DM Mono',monospace;font-size:11px;">contest tx ↗</a>
-        </div>
-      </div>
-
-      <div class="sc-grid">
-        <!-- Contract clause -->
-        <div class="sc-card">
-          <div class="sc-card-label clause">Contract Clause</div>
-          <div class="sc-card-text" style="font-style:italic;">"Shipment under Contract QC-COOP-2026-0003 is timely if the shipment crossed Bolivian export customs at <strong>Desaguadero</strong> on or before <strong>2026-04-05 23:59 America/La_Paz</strong>."</div>
-        </div>
-        <!-- Court question -->
-        <div class="sc-card">
-          <div class="sc-card-label question">Court Question</div>
-          <div class="sc-card-text"><strong>Did shipment QC-COOP-2026-0003 cross Bolivian export customs at Desaguadero on or before 2026-04-05 23:59?</strong></div>
-        </div>
-        <!-- Exporter evidence -->
-        <div class="sc-card">
-          <div class="sc-card-label exporter">Exporter Evidence</div>
-          <div class="sc-card-text">Customs exit receipt — Desaguadero border post, <strong>2026-04-05T22:41 America/La_Paz</strong>. 78 minutes before deadline.</div>
-          <div class="sc-evidence">
-            <img src="evidence/qc-coop-2026-0003/court_sheet_a.png" alt="Court Sheet A — Exporter" class="sc-evidence-img" onerror="this.src='evidence/images/03_COSCO_Bill_of_Lading.jpg'" />
-            <div class="sc-evidence-caption">court_sheet_a.png · <a href="https://gateway.pinata.cloud/ipfs/QmZXhAcnKXTF1a1qptL1h6vdNFmt539AyPkZVtZLsr79uj" target="_blank" style="color:rgba(255,255,255,0.4);">QmZXhA…79uj ↗</a> · Doc type: customs exit receipt</div>
-          </div>
-        </div>
-        <!-- Importer evidence -->
-        <div class="sc-card">
-          <div class="sc-card-label importer">Importer Evidence</div>
-          <div class="sc-card-text">Border gate event record — <strong>2026-04-06T00:18 America/La_Paz</strong>. 18 minutes after deadline. Importer claims this is the authoritative crossing record.</div>
-          <div class="sc-evidence">
-            <img src="evidence/qc-coop-2026-0003/court_sheet_b.png" alt="Court Sheet B — Importer" class="sc-evidence-img" onerror="this.src='evidence/images/07_Purchase_Contract_Excerpt.jpg'" />
-            <div class="sc-evidence-caption">court_sheet_b.png · <a href="https://gateway.pinata.cloud/ipfs/QmQVwEC7N3j1tNBjPqRrkGgiEHBcD9hU9aojooQ6yG1zqW" target="_blank" style="color:rgba(255,255,255,0.4);">QmQVwE…zqW ↗</a> · Doc type: border gate event record</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Verdict -->
-      <div class="sc-card" style="margin-bottom:12px;">
-        <div class="sc-card-label verdict">Verdict</div>
-        <div class="sc-verdict-badge true"><span class="sc-verdict-dot"></span> TRUE</div>
-        <div class="sc-card-text">Customs exit receipt shows crossing at 22:41 — a customs-specific timestamp predating the deadline by 78 minutes. Importer's gate record (00:18) is a secondary system event. Exporter timestamp is preferred per guideline. Shipment was timely.</div>
-      </div>
-
-      <!-- Settlement consequence -->
-      <div class="sc-consequence">
-        <div class="sc-card-label consequence" style="margin-bottom:8px;">Settlement Consequence</div>
-        <div class="sc-consequence-text"><strong>Settlement proceeds.</strong> shipmentStatus = TIMELY · exceptionPaused = false · 73,950 PEN transferred to exporter.</div>
-        <div style="margin-top:10px;display:flex;flex-direction:column;gap:5px;">
-          <a href="https://sepolia.basescan.org/tx/0xa52222f19c3b2324d43dd1dd9b359ea62e576fa57ecd4683553136c4ad498ba0" target="_blank" class="sc-card-text" style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(134,239,172,0.6);">resolveShipmentVerdict tx: 0xa522…ba0 ↗</a>
-          <a href="https://sepolia.basescan.org/tx/0xb2bce11cf2c7526fe8f2fbe4ce8d76f2814e61bfccfb53cf37f8943fe689bd33" target="_blank" class="sc-card-text" style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(134,239,172,0.6);">finalizeAfterShipment tx: 0xb2bc…d33 ↗</a>
-          <a href="https://sepolia.basescan.org/address/0x78D5Aef1D3c20DBE1ddbbdCFa9b4D8d408CbcB17" target="_blank" class="sc-card-text" style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(134,239,172,0.6);">Contract: 0x78D5…cB17 ↗</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── SCENARIO B: LATE SHIPMENT ── -->
-    <div class="sc-panel" id="sc-B">
-
-      <div class="sc-common-steps">
-        <div class="sc-step done">RATE_LOCKED</div>
-        <div class="sc-arrow">→</div>
-        <div class="sc-step done">FUNDED</div>
-        <div class="sc-arrow">→</div>
-        <div class="sc-step contested">SHIPMENT CONTESTED</div>
-        <div class="sc-arrow">→</div>
-        <div class="sc-step active">COURT VERDICT</div>
-        <div class="sc-arrow">→</div>
-        <div class="sc-step">CANCELLED</div>
-      </div>
-
-      <div class="sc-contested-marker">
-        <div class="sc-contested-dot"></div>
-        <div class="sc-contested-text">
-          Importer filed <strong>ShipmentContested</strong> on trade <a href="https://sepolia.basescan.org/address/0xA464D16a6547F4A26097081928D9D95Ea3F26CDa" target="_blank" style="color:rgba(252,165,165,0.8);font-family:'DM Mono',monospace;font-size:11px;">0xA464…CDa</a>.
-          Case <code style="font-family:'DM Mono',monospace;font-size:12px;color:rgba(255,255,255,0.5)">qc-coop-2026-0004</code> ·
-          <a href="https://sepolia.basescan.org/tx/0x326d492ba5d85dfe15c35f2661ed72be6eee403ecc4a88df0a55239eaca25cb5" target="_blank" style="color:rgba(252,165,165,0.6);font-family:'DM Mono',monospace;font-size:11px;">contest tx ↗</a>
-        </div>
-      </div>
-
-      <div class="sc-grid">
-        <div class="sc-card">
-          <div class="sc-card-label clause">Contract Clause</div>
-          <div class="sc-card-text" style="font-style:italic;">"Shipment under Contract QC-COOP-2026-0004 is timely if the shipment crossed Bolivian export customs at <strong>Desaguadero</strong> on or before <strong>2026-04-05 23:59 America/La_Paz</strong>."</div>
-        </div>
-        <div class="sc-card">
-          <div class="sc-card-label question">Court Question</div>
-          <div class="sc-card-text"><strong>Did shipment QC-COOP-2026-0004 cross Bolivian export customs at Desaguadero on or before 2026-04-05 23:59?</strong></div>
-        </div>
-        <div class="sc-card">
-          <div class="sc-card-label exporter">Exporter Evidence</div>
-          <div class="sc-card-text">Pre-shipment inspection report — dated 2026-04-05. Does not show customs crossing event. SGS addendum notes goods remained in warehouse after inspection.</div>
-          <div class="sc-evidence">
-            <img src="evidence/qc-coop-2026-0004/court_sheet_a.png" alt="Court Sheet A — Exporter B" class="sc-evidence-img" onerror="this.src='evidence/images/02_SGS_PreShipment_Inspection.jpg'" />
-            <div class="sc-evidence-caption">court_sheet_a.png · <a href="https://gateway.pinata.cloud/ipfs/QmUkY5HDe4GyQ14qAaHJgwq8Jd3txkj9AMAYM1MDdsXeoF" target="_blank" style="color:rgba(255,255,255,0.4);">QmUkY5…eoF ↗</a> · Doc type: pre-shipment inspection</div>
-          </div>
-        </div>
-        <div class="sc-card">
-          <div class="sc-card-label importer">Importer Evidence</div>
-          <div class="sc-card-text">Bill of lading — Desaguadero, <strong>2026-04-09T09:15 America/La_Paz</strong>. Four days after deadline. Clear customs-crossing timestamp.</div>
-          <div class="sc-evidence">
-            <img src="evidence/qc-coop-2026-0004/court_sheet_b.png" alt="Court Sheet B — Importer B" class="sc-evidence-img" onerror="this.src='evidence/images/03_COSCO_Bill_of_Lading.jpg'" />
-            <div class="sc-evidence-caption">court_sheet_b.png · <a href="https://gateway.pinata.cloud/ipfs/QmeKRDftoK1vQY3ggGMvYA6TYxeYoaDTAEYE366iLk5xVv" target="_blank" style="color:rgba(255,255,255,0.4);">QmeKRD…xVv ↗</a> · Doc type: bill of lading</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="sc-card" style="margin-bottom:12px;">
-        <div class="sc-card-label verdict">Verdict</div>
-        <div class="sc-verdict-badge false"><span class="sc-verdict-dot"></span> FALSE</div>
-        <div class="sc-card-text">Bill of lading shows crossing on 2026-04-09 — four days after deadline. Exporter's pre-inspection does not prove a customs-crossing event on or before 2026-04-05. Shipment was late.</div>
-      </div>
-
-      <div class="sc-consequence">
-        <div class="sc-card-label consequence" style="margin-bottom:8px;">Settlement Consequence</div>
-        <div class="sc-consequence-text"><strong>Settlement cancelled.</strong> shipmentStatus = LATE · resolveShipmentVerdict(2) triggered cancelAndRefund · 73,950 PEN returned to importer.</div>
-        <div style="margin-top:10px;display:flex;flex-direction:column;gap:5px;">
-          <a href="https://sepolia.basescan.org/tx/0x77ef285367430a70853234ffa057be969c21a2e1d7938cf79692aae36b3843dd" target="_blank" class="sc-card-text" style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(252,165,165,0.6);">resolveShipmentVerdict + refund tx: 0x77ef…3dd ↗</a>
-          <a href="https://sepolia.basescan.org/address/0xA464D16a6547F4A26097081928D9D95Ea3F26CDa" target="_blank" class="sc-card-text" style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(252,165,165,0.6);">Contract: 0xA464…CDa ↗</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── SCENARIO C: UNDETERMINED ── -->
-    <div class="sc-panel" id="sc-C">
-
-      <div class="sc-common-steps">
-        <div class="sc-step done">RATE_LOCKED</div>
-        <div class="sc-arrow">→</div>
-        <div class="sc-step done">FUNDED</div>
-        <div class="sc-arrow">→</div>
-        <div class="sc-step contested">SHIPMENT CONTESTED</div>
-        <div class="sc-arrow">→</div>
-        <div class="sc-step active">COURT VERDICT</div>
-        <div class="sc-arrow">→</div>
-        <div class="sc-step" style="color:#fbbf24;border-color:rgba(251,191,36,0.25);">MANUAL REVIEW</div>
-      </div>
-
-      <div class="sc-contested-marker">
-        <div class="sc-contested-dot"></div>
-        <div class="sc-contested-text">
-          Importer filed <strong>ShipmentContested</strong> — date on arrival inspection is unclear.
-          InternetCourt case <code style="font-family:'DM Mono',monospace;font-size:12px;color:rgba(255,255,255,0.5)">qc-coop-2026-0005</code> created.
-        </div>
-      </div>
-
-      <div class="sc-grid">
-        <div class="sc-card">
-          <div class="sc-card-label clause">Contract Clause</div>
-          <div class="sc-card-text" style="font-style:italic;">"Shipment under Contract QC-COOP-2026-0005 is timely if the shipment crossed Bolivian export customs at <strong>Desaguadero</strong> on or before <strong>2026-04-05 23:59 America/La_Paz</strong>."</div>
-        </div>
-        <div class="sc-card">
-          <div class="sc-card-label question">Court Question</div>
-          <div class="sc-card-text"><strong>Did shipment QC-COOP-2026-0005 cross Bolivian export customs at Desaguadero on or before 2026-04-05 23:59?</strong></div>
-        </div>
-        <div class="sc-card">
-          <div class="sc-card-label exporter">Exporter Evidence</div>
-          <div class="sc-card-text">Lab analysis report — confirms product quality only. Contains no shipment reference, location, or crossing timestamp relevant to the court question.</div>
-          <div class="sc-evidence">
-            <img src="evidence/qc-coop-2026-0005/court_sheet_a.png" alt="Court Sheet A — Exporter C" class="sc-evidence-img" onerror="this.src='evidence/images/04_BureauVeritas_Lab_Analysis.jpg'" />
-            <div class="sc-evidence-caption">court_sheet_a.png · Doc type: lab analysis report · Ref: QC-COOP-2026-0005</div>
-          </div>
-        </div>
-        <div class="sc-card">
-          <div class="sc-card-label importer">Importer Evidence</div>
-          <div class="sc-card-text">Arrival inspection — date field partially illegible. Could read Apr 04 or Apr 14. Shipment reference not clearly visible. Cannot determine crossing date.</div>
-          <div class="sc-evidence">
-            <img src="evidence/qc-coop-2026-0005/court_sheet_b.png" alt="Court Sheet B — Importer C" class="sc-evidence-img" onerror="this.src='evidence/images/05_Arrival_Inspection_Report.jpg'" />
-            <div class="sc-evidence-caption">court_sheet_b.png · Doc type: arrival inspection (date illegible) · Ref: QC-COOP-2026-0005</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="sc-card" style="margin-bottom:12px;">
-        <div class="sc-card-label verdict">Verdict</div>
-        <div class="sc-verdict-badge undetermined"><span class="sc-verdict-dot"></span> UNDETERMINED</div>
-        <div class="sc-card-text">Exporter's document shows no customs-crossing event. Importer's document date is illegible. Neither sheet provides a reliable customs-crossing timestamp. Evidence insufficient to determine TRUE or FALSE.</div>
-      </div>
-
-      <div class="sc-consequence">
-        <div class="sc-card-label consequence" style="margin-bottom:8px;">Settlement Consequence</div>
-        <div class="sc-consequence-text"><strong>MANUAL_REVIEW.</strong> shipmentStatus = UNDETERMINED. Settlement stays paused. A human arbitrator must review physical documents and deliver a binding finding before the contract can proceed.</div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<script>
-  function showScenario(id, btn) {
-    document.querySelectorAll('.sc-panel').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.sc-tab').forEach(t => t.classList.remove('active'));
-    document.getElementById('sc-' + id).classList.add('active');
-    btn.classList.add('active');
-  }
-
-  function switchTab(tab) {
-    const isDispute = tab === 'dispute';
-    document.getElementById('tab-standard').style.display = isDispute ? 'none' : '';
-    document.getElementById('tab-dispute').style.display = isDispute ? '' : 'none';
-
-    const btnS = document.getElementById('tab-btn-standard');
-    const btnD = document.getElementById('tab-btn-dispute');
-    btnS.style.background = isDispute ? 'transparent' : 'var(--dark)';
-    btnS.style.color = isDispute ? 'var(--muted)' : '#fff';
-    btnD.style.background = isDispute ? 'var(--dark)' : 'transparent';
-    btnD.style.color = isDispute ? '#fff' : 'var(--muted)';
-  }
-</script>
-
-</div><!-- /tab-dispute -->
-
-<!-- FOOTER -->
+<!-- ═══════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════ -->
 <footer>
   <div class="container">
     <div class="footer-inner">
@@ -1166,7 +958,7 @@
           <span style="background:rgba(255,255,255,0.1);border-radius:6px;padding:2px 8px;font-family:'DM Mono',monospace;font-size:11px">FX</span>
           Trade Finance × GenLayer
         </div>
-        <div class="footer-note">A prototype demonstrating GenLayer as a coordination layer for FX-settled cross-border invoices. Deployed on Base Sepolia + GenLayer Studionet. Not production ready.</div>
+        <div class="footer-note">A prototype demonstrating GenLayer as a coordination layer for FX-settled cross-border invoices, with an inline InternetCourt exception path for contested shipment timing. Deployed on Base Sepolia + GenLayer Studionet. Not production ready.</div>
       </div>
       <div>
         <div class="footer-links">
@@ -1182,6 +974,37 @@
     </div>
   </div>
 </footer>
+
+<script>
+  const STATES = ['accepted', 'timely', 'late', 'undetermined'];
+
+  function selectState(state, btn) {
+    // Buttons
+    document.querySelectorAll('.sc-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    // Court panels
+    document.getElementById('sc-accepted').classList.remove('show');
+    document.querySelectorAll('.sc-court-panel').forEach(p => p.classList.remove('show'));
+
+    if (state === 'accepted') {
+      document.getElementById('sc-accepted').classList.add('show');
+    } else {
+      document.getElementById('sc-' + state).classList.add('show');
+    }
+
+    // Outcome panels
+    STATES.forEach(s => document.getElementById('outcome-' + s).classList.remove('show'));
+    document.getElementById('outcome-' + state).classList.add('show');
+
+    // Step 5 dot color
+    const dot = document.getElementById('step5-dot');
+    dot.className = 'tl-dot step5';
+    if (state === 'timely' || state === 'accepted') dot.classList.add('timely');
+    else if (state === 'late') dot.classList.add('late');
+    else if (state === 'undetermined') dot.classList.add('manual');
+  }
+</script>
 
 </body>
 </html>

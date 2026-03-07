@@ -1,0 +1,56 @@
+{
+  "generated_at": "2026-03-07T12:35:00Z",
+  "network": "Base Sepolia 84532",
+  "mock_pen_token": "0x08bc87f6511913caa4e127c5e4e91618a37a9719",
+  "ipfs_gateway": "https://gateway.pinata.cloud/ipfs/",
+  "scenario_A": {
+    "label": "TIMELY SHIPMENT",
+    "case_id": "qc-coop-2026-0003",
+    "trade_contract": "0x78D5Aef1D3c20DBE1ddbbdCFa9b4D8d408CbcB17",
+    "court_sheet_a_cid": "QmZXhAcnKXTF1a1qptL1h6vdNFmt539AyPkZVtZLsr79uj",
+    "court_sheet_b_cid": "QmQVwEC7N3j1tNBjPqRrkGgiEHBcD9hU9aojooQ6yG1zqW",
+    "txs": {
+      "deploy":                  "0x6ad4c6eed9bd2ef20a044605154ca11e56e95254370f6aa7a746fc458007d31c",
+      "requestRateLock":         "0x5efe00fe7951c764065e8425cadf25d3297a0c0c15f38ac3fe35e0116067a194",
+      "receiveRate":             "0xf7c9ba8502bb31682a94424946365e539b02382c3f3b8a45926c482a2f44ff6e",
+      "fund":                    "0x1369a53905f4c87df8bc9c25dbe806e12deb077f776d4dcf10ad9398fc7bcd2b",
+      "contestShipment":         "0xa52222f19c3b2324d43dd1dd9b359ea62e576fa57ecd4683553136c4ad498ba0",
+      "resolveShipmentVerdict":  "0xa52222f19c3b2324d43dd1dd9b359ea62e576fa57ecd4683553136c4ad498ba0",
+      "finalizeAfterShipment":   "0xb2bce11cf2c7526fe8f2fbe4ce8d76f2814e61bfccfb53cf37f8943fe689bd33"
+    },
+    "verdict": "TRUE",
+    "final_shipment_status": "TIMELY",
+    "final_settlement_status": "SETTLED",
+    "settlement_amount_pen": "73950"
+  },
+  "scenario_B": {
+    "label": "LATE SHIPMENT",
+    "case_id": "qc-coop-2026-0004",
+    "trade_contract": "0xA464D16a6547F4A26097081928D9D95Ea3F26CDa",
+    "court_sheet_a_cid": "QmUkY5HDe4GyQ14qAaHJgwq8Jd3txkj9AMAYM1MDdsXeoF",
+    "court_sheet_b_cid": "QmeKRDftoK1vQY3ggGMvYA6TYxeYoaDTAEYE366iLk5xVv",
+    "txs": {
+      "contestShipment":        "0x326d492ba5d85dfe15c35f2661ed72be6eee403ecc4a88df0a55239eaca25cb5",
+      "resolveShipmentVerdict": "0x77ef285367430a70853234ffa057be969c21a2e1d7938cf79692aae36b3843dd"
+    },
+    "verdict": "FALSE",
+    "final_shipment_status": "LATE",
+    "final_settlement_status": "CANCELLED",
+    "refund_to_importer_pen": "73950"
+  },
+  "scenario_C": {
+    "label": "INSUFFICIENT EVIDENCE",
+    "case_id": "qc-coop-2026-0005",
+    "trade_contract": "0x6A05444f8Ea647b1b86ed159bC2a3b363d46c0f8",
+    "court_sheet_a_cid": "QmPFLuuPaJ2XDLnTfBv54K3FHU2uPCRCV7eYTDW22gUx8B",
+    "court_sheet_b_cid": "Qmf2h7M5om5d2xeNAxigW2mHd5n2QxTMeb9mc5zTFuPcdb",
+    "txs": {
+      "contestShipment":        "0x36df8f7a881e74013ff30caf496ad81bd94700d120320f6246ec78fa7656bf6e",
+      "resolveShipmentVerdict": "0xb026c6e3b33730b1d5cc51aaa5e57331b72db2c5ae4481c676ed2b53a2f9c1a9"
+    },
+    "verdict": "UNDETERMINED",
+    "final_shipment_status": "UNDETERMINED",
+    "final_settlement_status": "MANUAL_REVIEW",
+    "exception_paused": true
+  }
+}
