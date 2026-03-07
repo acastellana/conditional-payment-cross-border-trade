@@ -112,16 +112,22 @@ contract TradeFxSettlement {
     // ─── Shipment dispute ─────────────────────────────────────────────────────
 
     enum ShipmentStatus {
-        NOT_CONTESTED,  // 0 — no dispute raised
-        CONTESTED,      // 1 — importer raised dispute; court case in progress
-        TIMELY,         // 2 — verdict TRUE: shipment was on time; settlement proceeds
-        LATE,           // 3 — verdict FALSE: shipment was late; settlement cancelled
-        MANUAL_REVIEW   // 4 — verdict UNDETERMINED: human arbitration required
+        NONE,           // 0 — not yet reviewed
+        ACCEPTED,       // 1 — importer accepted shipment as timely
+        CONTESTED,      // 2 — importer contested; court case in progress
+        TIMELY,         // 3 — verdict TRUE: shipment was on time
+        LATE,           // 4 — verdict FALSE: shipment was late
+        UNDETERMINED    // 5 — verdict UNDETERMINED: insufficient evidence
     }
 
     ShipmentStatus public shipmentStatus;
-    bytes32        public evidenceManifestCid;  // IPFS CID of the evidence pack
-    bytes32        public courtRef;             // GenLayer court contract reference
+    string  public shipmentCaseId;
+    string  public shipmentManifestCid;
+    string  public shipmentGuidelineVersion;
+    string  public shipmentStatement;
+    uint256 public shipmentVerdictAt;
+    string  public shipmentVerdictReason;
+    bool    public shipmentReviewRequired;
 
     // ─── Events ──────────────────────────────────────────────────────────────
 
@@ -153,9 +159,11 @@ contract TradeFxSettlement {
     event ExceptionPauseSet(bool paused, address indexed by);
 
     // Shipment dispute events
-    event ShipmentContested(address indexed contestant, bytes32 evidenceCid, uint256 timestamp);
-    event ShipmentVerdictReceived(ShipmentStatus result, bytes32 verdictRef, address indexed deliveredBy);
+    event ShipmentAccepted(address indexed byImporter, uint256 timestamp);
+    event ShipmentContested(address indexed contestant, string manifestCid, string statement, uint256 timestamp);
+    event ShipmentVerdictReceived(uint8 verdict, string caseId, string reasonSummary, address indexed deliveredBy, uint256 timestamp);
     event SettlementCancelledByVerdict(address indexed importer, uint256 refundAmount);
+    event SettlementManualReview(string caseId, uint256 timestamp);
 
     // ─── Modifiers ───────────────────────────────────────────────────────────
 
@@ -426,55 +434,84 @@ contract TradeFxSettlement {
     // ─── Shipment dispute ─────────────────────────────────────────────────────
 
     /**
-     * @notice Importer contests the shipment timing.
-     *         Pauses settlement while the court case is active.
-     * @param evidenceCid  IPFS CID of the evidence manifest (bytes32, truncated)
+     * @notice Importer accepts that the shipment was timely.
+     *         Short-circuits the court path — settlement can proceed normally.
      */
-    function contestShipment(bytes32 evidenceCid)
+    function acceptShipment()
         external onlyImporter notTerminal
     {
+        require(shipmentStatus == ShipmentStatus.NONE, "TFX: shipment review already initiated");
         require(
-            shipmentStatus == ShipmentStatus.NOT_CONTESTED,
-            "TFX: shipment already contested"
+            status == Status.RATE_LOCKED || status == Status.ROLLED || status == Status.FUNDED,
+            "TFX: cannot accept shipment in current state"
         );
-        require(
-            status == Status.FUNDED || status == Status.RATE_LOCKED || status == Status.ROLLED,
-            "TFX: cannot contest in current state"
-        );
-
-        shipmentStatus      = ShipmentStatus.CONTESTED;
-        evidenceManifestCid = evidenceCid;
-        exceptionPaused     = true;
-
-        emit ShipmentContested(msg.sender, evidenceCid, block.timestamp);
+        shipmentStatus = ShipmentStatus.ACCEPTED;
+        emit ShipmentAccepted(msg.sender, block.timestamp);
     }
 
     /**
-     * @notice Deliver the court verdict to the contract.
-     *         Only the oracle relayer may call this.
+     * @notice Importer contests the shipment timing. Creates an off-chain court case.
+     *         Pauses settlement until a verdict is delivered.
      *
-     * @param verdictCode  1=TIMELY (proceed), 2=LATE (cancel+refund), 3=MANUAL_REVIEW (pause)
-     * @param verdictRef   Court case reference (bytes32 hash of case ID)
+     * @param manifestCid        IPFS CID of the evidence manifest (string)
+     * @param statement          Exact factual statement submitted to the court
+     * @param guidelineVersion   Version string of the frozen evaluation guideline
      */
-    function resolveShipmentVerdict(uint8 verdictCode, bytes32 verdictRef)
-        external onlyRelayer
+    function contestShipment(
+        string calldata manifestCid,
+        string calldata statement,
+        string calldata guidelineVersion
+    )
+        external onlyImporter notTerminal
     {
+        require(shipmentStatus == ShipmentStatus.NONE, "TFX: shipment review already initiated");
         require(
-            shipmentStatus == ShipmentStatus.CONTESTED,
-            "TFX: no active shipment contest"
+            status == Status.RATE_LOCKED || status == Status.ROLLED || status == Status.FUNDED,
+            "TFX: cannot contest in current state"
         );
 
-        if (verdictCode == 1) {
-            // TIMELY — shipment was on time, settlement can proceed
+        shipmentStatus           = ShipmentStatus.CONTESTED;
+        shipmentManifestCid      = manifestCid;
+        shipmentStatement        = statement;
+        shipmentGuidelineVersion = guidelineVersion;
+        shipmentReviewRequired   = true;
+        exceptionPaused          = true;
+
+        emit ShipmentContested(msg.sender, manifestCid, statement, block.timestamp);
+    }
+
+    /**
+     * @notice Deliver the court verdict from the GenLayer ShipmentDeadlineCourt.
+     *         Only the oracle relayer may call this.
+     *
+     * @param verdict       1=TIMELY, 2=LATE, 3=UNDETERMINED
+     * @param caseId        Court case ID (e.g. "qc-coop-2026-0003")
+     * @param reasonSummary One-sentence AI reasoning summary
+     */
+    function resolveShipmentVerdict(
+        uint8 verdict,
+        string calldata caseId,
+        string calldata reasonSummary
+    )
+        external onlyRelayer
+    {
+        require(shipmentStatus == ShipmentStatus.CONTESTED, "TFX: no active shipment contest");
+
+        shipmentCaseId      = caseId;
+        shipmentVerdictReason = reasonSummary;
+        shipmentVerdictAt   = block.timestamp;
+
+        emit ShipmentVerdictReceived(verdict, caseId, reasonSummary, msg.sender, block.timestamp);
+
+        if (verdict == 1) {
+            // TRUE — TIMELY
             shipmentStatus  = ShipmentStatus.TIMELY;
             exceptionPaused = false;
-            emit ShipmentVerdictReceived(ShipmentStatus.TIMELY, verdictRef, msg.sender);
 
-        } else if (verdictCode == 2) {
-            // LATE — cancel and refund importer
+        } else if (verdict == 2) {
+            // FALSE — LATE — cancel and refund
             shipmentStatus  = ShipmentStatus.LATE;
             exceptionPaused = false;
-            emit ShipmentVerdictReceived(ShipmentStatus.LATE, verdictRef, msg.sender);
 
             uint256 refund = fundedAmount;
             fundedAmount   = 0;
@@ -485,17 +522,39 @@ contract TradeFxSettlement {
             }
             emit SettlementCancelledByVerdict(importer, refund);
 
-        } else if (verdictCode == 3) {
-            // MANUAL_REVIEW — keep paused, escalate to human arbitrator
-            shipmentStatus = ShipmentStatus.MANUAL_REVIEW;
+        } else if (verdict == 3) {
+            // UNDETERMINED — escalate to manual review
+            shipmentStatus         = ShipmentStatus.UNDETERMINED;
+            shipmentReviewRequired = true;
             // exceptionPaused remains true
-            emit ShipmentVerdictReceived(ShipmentStatus.MANUAL_REVIEW, verdictRef, msg.sender);
+            emit SettlementManualReview(caseId, block.timestamp);
 
         } else {
             revert("TFX: invalid verdict code");
         }
+    }
 
-        courtRef = verdictRef;
+    /**
+     * @notice Apply deterministic consequence based on known shipment status.
+     *         Can proceed only when shipment is ACCEPTED or TIMELY.
+     *         Reverts if shipment is LATE (use cancelAndRefund), UNDETERMINED (manual), or NONE (not yet reviewed).
+     */
+    function finalizeAfterShipment()
+        external onlyParty notPaused
+    {
+        require(
+            shipmentStatus == ShipmentStatus.ACCEPTED ||
+            shipmentStatus == ShipmentStatus.TIMELY,
+            "TFX: shipment not confirmed as timely"
+        );
+        require(status == Status.FUNDED, "TFX: must be funded to finalize");
+
+        uint256 amount = fundedAmount;
+        fundedAmount = 0;
+        status = Status.SETTLED;
+
+        settlementToken.safeTransfer(exporter, amount);
+        emit Settled(exporter, amount, block.timestamp);
     }
 
     // ─── Views ────────────────────────────────────────────────────────────────

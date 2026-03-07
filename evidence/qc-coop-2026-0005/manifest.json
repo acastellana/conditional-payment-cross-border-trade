@@ -1,23 +1,48 @@
 {
   "case_id": "qc-coop-2026-0005",
-  "scenario": "C",
-  "label": "INSUFFICIENT EVIDENCE",
-  "verdict": "UNDETERMINED",
-  "consequence": "manual_review",
-  "trade_ref": "INV-BOL-2026-0005",
-  "contract_clause": "Shipment must cross Bolivian border before 2026-04-05T00:00:00Z",
-  "court_question": "Did the shipment cross the Bolivian border on or before 2026-04-05?",
-  "exporter_evidence": {
-    "label": "Exporter Evidence",
-    "description": "Bureau Veritas lab analysis — product quality only, no shipment date visible",
-    "file": "04_BureauVeritas_Lab_Analysis.jpg",
-    "ipfs_cid": "QmBV4LabAnalysis2026NoDate"
+  "statement": "Shipment under Contract QC-COOP-2026-0005 crossed Bolivian export customs at Desaguadero on or before 2026-04-05 23:59 America/La_Paz.",
+  "guideline_version": "shipment-deadline-v1",
+  "contract": {
+    "shipment_reference": "QC-COOP-2026-0005",
+    "deadline_iso": "2026-04-05T23:59:59-04:00",
+    "location": "Desaguadero",
+    "operative_event": "crossed Bolivian export customs"
   },
-  "importer_evidence": {
-    "label": "Importer Evidence",
-    "description": "Arrival inspection report — date partially illegible, could be Apr 04 or Apr 14",
-    "file": "05_Arrival_Inspection_Report.jpg",
-    "ipfs_cid": "QmARRIVAL5InspectionIllegible2026"
+  "audit_originals": {
+    "contract_summary": {
+      "cid": "ipfs://QmCONTRACT_SUMMARY_PLACEHOLDER",
+      "sha256": "d07f5708a1660a735a831258786e61a8932add1015e23e669cd6f289e74acd0e"
+    },
+    "exporter_record": {
+      "cid": "ipfs://QmEXPORTER_RECORD_C_PLACEHOLDER",
+      "sha256": "0d38e62f2ef511a01f3dabac4349ce27dd3b3f7a1f09ab2b02ea045ea146882d"
+    },
+    "importer_record": {
+      "cid": "ipfs://QmIMPORTER_RECORD_C_PLACEHOLDER",
+      "sha256": "0d38e62f2ef511a01f3dabac4349ce27dd3b3f7a1f09ab2b02ea045ea146882d"
+    }
   },
-  "settlement_consequence": "Case escalated to MANUAL_REVIEW. Settlement paused pending human arbitrator."
+  "court_inputs": {
+    "court_sheet_a": {
+      "cid": "ipfs://QmCOURT_SHEET_A_C_PLACEHOLDER",
+      "sha256": "e95269e231884b3de569329241c2182b1a1e267488da27ad726786610a060ec3"
+    },
+    "court_sheet_b": {
+      "cid": "ipfs://QmCOURT_SHEET_B_C_PLACEHOLDER",
+      "sha256": "8d955ca21e1aa49090f139e4ebd5151506a112dade1bd07839901dc07dcc8f3f"
+    }
+  },
+  "extracted_fields": {
+    "exporter_claimed_timestamp": null,
+    "importer_claimed_timestamp": null,
+    "exporter_doc_type": "lab analysis report",
+    "importer_doc_type": "arrival inspection report (date illegible)",
+    "exporter_location": "unknown",
+    "importer_location": "unknown",
+    "exporter_reference": "QC-COOP-2026-0005",
+    "importer_reference": "QC-COOP-2026-0005"
+  },
+  "expected_verdict": "UNDETERMINED",
+  "expected_consequence": "manual_review",
+  "prepared_at": "2026-03-07T12:22:13.557897Z"
 }

@@ -1,23 +1,48 @@
 {
   "case_id": "qc-coop-2026-0003",
-  "scenario": "A",
-  "label": "TIMELY SHIPMENT",
-  "verdict": "TRUE",
-  "consequence": "settlement_proceeds",
-  "trade_ref": "INV-BOL-2026-0003",
-  "contract_clause": "Shipment must cross Bolivian border before 2026-04-05T00:00:00Z",
-  "court_question": "Did the shipment cross the Bolivian border on or before 2026-04-05?",
-  "exporter_evidence": {
-    "label": "Exporter Evidence",
-    "description": "Bill of lading signed by COSCO at Santa Cruz customs — 2026-04-03T14:22:00Z",
-    "file": "03_COSCO_Bill_of_Lading.jpg",
-    "ipfs_cid": "QmTIMELY3aBillOfLadingCOSCO2026Apr03"
+  "statement": "Shipment under Contract QC-COOP-2026-0003 crossed Bolivian export customs at Desaguadero on or before 2026-04-05 23:59 America/La_Paz.",
+  "guideline_version": "shipment-deadline-v1",
+  "contract": {
+    "shipment_reference": "QC-COOP-2026-0003",
+    "deadline_iso": "2026-04-05T23:59:59-04:00",
+    "location": "Desaguadero",
+    "operative_event": "crossed Bolivian export customs"
   },
-  "importer_evidence": {
-    "label": "Importer Evidence",
-    "description": "Importer's internal logistics note citing 'expected late April' — pre-dispute misunderstanding, not proof of late shipment",
-    "file": "07_Purchase_Contract_Excerpt.jpg",
-    "ipfs_cid": "QmCONTRACT7PurchaseExcerpt2026"
+  "audit_originals": {
+    "contract_summary": {
+      "cid": "ipfs://QmCONTRACT_SUMMARY_PLACEHOLDER",
+      "sha256": "d07f5708a1660a735a831258786e61a8932add1015e23e669cd6f289e74acd0e"
+    },
+    "exporter_record": {
+      "cid": "ipfs://QmEXPORTER_RECORD_PLACEHOLDER",
+      "sha256": "0d38e62f2ef511a01f3dabac4349ce27dd3b3f7a1f09ab2b02ea045ea146882d"
+    },
+    "importer_record": {
+      "cid": "ipfs://QmIMPORTER_RECORD_PLACEHOLDER",
+      "sha256": "0d38e62f2ef511a01f3dabac4349ce27dd3b3f7a1f09ab2b02ea045ea146882d"
+    }
   },
-  "settlement_consequence": "Settlement proceeds as agreed. 73,950 PEN transferred to exporter."
+  "court_inputs": {
+    "court_sheet_a": {
+      "cid": "ipfs://QmCOURT_SHEET_A_PLACEHOLDER",
+      "sha256": "a6cfedfc365466a16c5e5ab026cb9c0f69b84bb911bd4029ccbf921ca0553e4d"
+    },
+    "court_sheet_b": {
+      "cid": "ipfs://QmCOURT_SHEET_B_PLACEHOLDER",
+      "sha256": "c718c4310c94101db305a31d5336f4000001ef51a2c270d50b60702db159f954"
+    }
+  },
+  "extracted_fields": {
+    "exporter_claimed_timestamp": "2026-04-05T22:41:00-04:00",
+    "importer_claimed_timestamp": "2026-04-06T00:18:00-04:00",
+    "exporter_doc_type": "customs exit receipt",
+    "importer_doc_type": "border gate event record",
+    "exporter_location": "Desaguadero",
+    "importer_location": "Desaguadero",
+    "exporter_reference": "QC-COOP-2026-0003",
+    "importer_reference": "QC-COOP-2026-0003"
+  },
+  "expected_verdict": "TRUE",
+  "expected_consequence": "settlement_proceeds",
+  "prepared_at": "2026-03-07T12:22:08.911173Z"
 }

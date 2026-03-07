@@ -1,18 +1,23 @@
 # { "Depends": "py-genlayer:test" }
-"""ShipmentDeadlineCourt — Single-question shipment deadline dispute for GenLayer.
+"""ShipmentDeadlineCourt — Single-question shipment deadline court for GenLayer.
 
-Evaluates ONE fact:
-    "Did the shipment cross the border before [deadline]?"
+Evaluates ONE factual statement:
+    "Shipment under Contract [REF] crossed Bolivian export customs at
+     Desaguadero on or before [DEADLINE]."
 
 Returns: TRUE | FALSE | UNDETERMINED
 
 Verdict mapping (enforced by TradeFxSettlement on Base Sepolia):
-    TRUE        → settlement proceeds
-    FALSE       → settlement cancelled, importer refunded
-    UNDETERMINED → settlement paused, MANUAL_REVIEW
+    TRUE        → shipmentStatus = TIMELY   → settlement proceeds
+    FALSE       → shipmentStatus = LATE     → settlement cancelled, importer refunded
+    UNDETERMINED → shipmentStatus = UNDETERMINED → MANUAL_REVIEW
 
-Evidence: image URLs (IPFS gateway or HTTP). Court fetches and renders
-both images for AI visual analysis.
+Evidence: exactly two composite court sheet images (IPFS CIDs).
+    court_sheet_a: contract summary snippet + exporter evidence
+    court_sheet_b: contract summary snippet + importer evidence
+
+Guideline is frozen and versioned. Do not allow ad hoc prompts per case.
+Current version: shipment-deadline-v1
 
 Lifecycle:
     CREATED → EVIDENCE_SUBMITTED → EVALUATED
@@ -21,38 +26,62 @@ Lifecycle:
 from genlayer import *
 import json
 
+# ─── Frozen guideline versions ────────────────────────────────────────────────
+
+GUIDELINES = {
+    "shipment-deadline-v1": (
+        "Evaluate the statement using only the two submitted court sheet images. "
+        "Confirm that the shipment reference matches the contract reference. "
+        "Determine whether the evidence shows that the shipment crossed Bolivian export "
+        "customs at Desaguadero on or before the stated deadline. "
+        "Prefer explicit timestamps tied to customs-crossing events over generic issue dates. "
+        "If the evidence clearly shows a qualifying timestamp on or before the deadline, return TRUE. "
+        "If the evidence clearly shows the earliest reliable customs-crossing timestamp is after "
+        "the deadline, return FALSE. "
+        "If the images are unreadable, references do not match, or the evidence conflicts "
+        "without a clearly more reliable timestamp, return UNDETERMINED."
+    )
+}
+
 
 class ShipmentDeadlineCourt(gl.Contract):
-    """Single-question shipment deadline court."""
+    """Single-question shipment deadline court. Accepts exactly two court sheet images."""
+
+    # --- Identity ---
+    case_id: str
+    trade_contract: str          # Base Sepolia trade contract address (cross-chain ref)
+    manifest_cid: str            # IPFS CID of the full evidence manifest
 
     # --- Parties ---
-    trade_contract: str  # Base Sepolia trade contract address (string, cross-chain ref)
     exporter: Address
     importer: Address
 
-    # --- Case parameters ---
-    court_question: str   # e.g. "Did the shipment cross the Bolivian border on or before 2026-04-05?"
-    deadline_iso: str     # ISO 8601 deadline string, used in prompt
-    contract_clause: str  # verbatim clause from the trade agreement
-    case_id: str          # e.g. "qc-coop-2026-0003"
+    # --- Case definition ---
+    statement: str               # Exact factual statement to evaluate
+    guideline_version: str       # Must be a key in GUIDELINES
 
-    # --- Evidence ---
-    exporter_evidence_url: str   # IPFS gateway URL or HTTPS URL
-    importer_evidence_url: str
+    # --- Evidence (two court sheet CIDs) ---
+    court_sheet_a_cid: str       # contract snippet + exporter evidence
+    court_sheet_b_cid: str       # contract snippet + importer evidence
 
-    # --- State ---
-    status: str  # created | evidence_submitted | evaluated
-    verdict: str  # TRUE | FALSE | UNDETERMINED | ""
-    reasoning: str
+    # --- Status ---
+    status: str                  # created | evaluated
+
+    # --- Result ---
+    verdict: str                 # TRUE | FALSE | UNDETERMINED | ""
+    verdict_reason_summary: str
+    verdict_timestamp: int       # Unix timestamp of evaluation
 
     def __init__(
         self,
         importer: Address,
-        trade_contract: str,
-        court_question: str,
-        deadline_iso: str,
-        contract_clause: str,
         case_id: str,
+        trade_contract: str,
+        manifest_cid: str,
+        statement: str,
+        guideline_version: str,
+        court_sheet_a_cid: str,
+        court_sheet_b_cid: str,
     ):
         self.exporter = gl.message.sender_address
 
@@ -60,97 +89,78 @@ class ShipmentDeadlineCourt(gl.Contract):
             importer = Address(importer)
         self.importer = importer
 
-        self.trade_contract = trade_contract
-        self.court_question = court_question
-        self.deadline_iso = deadline_iso
-        self.contract_clause = contract_clause
-        self.case_id = case_id
+        if guideline_version not in GUIDELINES:
+            raise Exception(f"ShipmentCourt: unknown guideline version '{guideline_version}'")
 
-        self.exporter_evidence_url = ""
-        self.importer_evidence_url = ""
+        self.case_id           = case_id
+        self.trade_contract    = trade_contract
+        self.manifest_cid      = manifest_cid
+        self.statement         = statement
+        self.guideline_version = guideline_version
+        self.court_sheet_a_cid = court_sheet_a_cid
+        self.court_sheet_b_cid = court_sheet_b_cid
 
-        self.status = "created"
-        self.verdict = ""
-        self.reasoning = ""
+        self.status                = "created"
+        self.verdict               = ""
+        self.verdict_reason_summary = ""
+        self.verdict_timestamp     = 0
 
-    # ─── Evidence submission ──────────────────────────────────────────────────
-
-    @gl.public.write
-    def submit_exporter_evidence(self, image_url: str) -> None:
-        """Exporter submits evidence image URL (IPFS gateway or HTTPS)."""
-        if gl.message.sender_address != self.exporter:
-            raise Exception("ShipmentCourt: not exporter")
-        if self.status not in ("created", "evidence_submitted"):
-            raise Exception("ShipmentCourt: cannot submit evidence in current status")
-        self.exporter_evidence_url = image_url
-        self._check_evidence_complete()
-
-    @gl.public.write
-    def submit_importer_evidence(self, image_url: str) -> None:
-        """Importer submits evidence image URL (IPFS gateway or HTTPS)."""
-        if gl.message.sender_address != self.importer:
-            raise Exception("ShipmentCourt: not importer")
-        if self.status not in ("created", "evidence_submitted"):
-            raise Exception("ShipmentCourt: cannot submit evidence in current status")
-        self.importer_evidence_url = image_url
-        self._check_evidence_complete()
-
-    def _check_evidence_complete(self) -> None:
-        if self.exporter_evidence_url and self.importer_evidence_url:
-            self.status = "evidence_submitted"
-
-    # ─── AI evaluation ────────────────────────────────────────────────────────
+    # ─── Evaluation ──────────────────────────────────────────────────────────
 
     @gl.public.write
     def evaluate(self) -> None:
-        """Trigger AI evaluation. Callable by either party after both evidence URLs are submitted.
-        Fetches both images and evaluates the single court question.
+        """Trigger AI evaluation. Callable by either party.
+        Fetches the two court sheet images and evaluates the statement.
+        Uses the frozen guideline for this case's guideline_version.
         """
-        if self.status != "evidence_submitted":
-            raise Exception("ShipmentCourt: evidence not yet complete")
+        if self.status == "evaluated":
+            raise Exception("ShipmentCourt: already evaluated")
         if gl.message.sender_address not in (self.exporter, self.importer):
             raise Exception("ShipmentCourt: not a party")
 
-        result = gl.get_webpage(self.exporter_evidence_url, mode="image")
-        exporter_doc = result if result else "[image not retrievable]"
+        guideline = GUIDELINES[self.guideline_version]
 
-        result2 = gl.get_webpage(self.importer_evidence_url, mode="image")
-        importer_doc = result2 if result2 else "[image not retrievable]"
+        # Fetch court sheets from IPFS gateway
+        gateway = "https://ipfs.io/ipfs/"
+        sheet_a_url = gateway + self.court_sheet_a_cid.lstrip("ipfs://")
+        sheet_b_url = gateway + self.court_sheet_b_cid.lstrip("ipfs://")
 
-        prompt = f"""You are evaluating a shipment dispute for a cross-border trade.
+        sheet_a = gl.get_webpage(sheet_a_url, mode="image")
+        sheet_b = gl.get_webpage(sheet_b_url, mode="image")
 
-Case ID: {self.case_id}
-Contract clause: {self.contract_clause}
-Deadline: {self.deadline_iso}
-Court question: {self.court_question}
+        if not sheet_a:
+            sheet_a = "[Court sheet A not retrievable]"
+        if not sheet_b:
+            sheet_b = "[Court sheet B not retrievable]"
 
-You have two documents:
+        prompt = f"""You are an AI juror evaluating a single disputed shipment fact.
 
-EXPORTER EVIDENCE:
-{exporter_doc}
+STATEMENT TO EVALUATE:
+{self.statement}
 
-IMPORTER EVIDENCE:
-{importer_doc}
+GUIDELINE:
+{guideline}
 
-Your task:
-1. Examine both documents carefully.
-2. Determine whether the shipment crossed the border before or on the deadline.
-3. Return exactly one of: TRUE, FALSE, or UNDETERMINED.
+COURT SHEET A (contract summary + exporter evidence):
+{sheet_a}
 
-Rules:
-- TRUE: evidence clearly shows the shipment crossed on or before {self.deadline_iso}
-- FALSE: evidence clearly shows the shipment crossed AFTER {self.deadline_iso}
-- UNDETERMINED: evidence is conflicting, illegible, or insufficient to determine the crossing date
+COURT SHEET B (contract summary + importer evidence):
+{sheet_b}
 
-Output format (JSON only, no other text):
+You must return exactly one of: TRUE, FALSE, or UNDETERMINED.
+- TRUE: the statement is supported by the evidence
+- FALSE: the evidence clearly contradicts the statement
+- UNDETERMINED: evidence is conflicting, unreadable, or insufficient
+
+Output ONLY valid JSON:
 {{
   "verdict": "TRUE" | "FALSE" | "UNDETERMINED",
-  "reasoning": "one sentence explanation"
+  "reason": "One sentence explaining the verdict based on the documents."
 }}
 """
 
         result_json = gl.eq_principle_strict_eq(
-            lambda: self._call_ai(prompt)
+            lambda: gl.exec_prompt(prompt)
         )
 
         try:
@@ -158,28 +168,27 @@ Output format (JSON only, no other text):
             v = parsed.get("verdict", "UNDETERMINED").strip().upper()
             if v not in ("TRUE", "FALSE", "UNDETERMINED"):
                 v = "UNDETERMINED"
-            self.verdict = v
-            self.reasoning = parsed.get("reasoning", "")
+            self.verdict               = v
+            self.verdict_reason_summary = parsed.get("reason", "")
         except Exception:
-            self.verdict = "UNDETERMINED"
-            self.reasoning = "Failed to parse AI response."
+            self.verdict               = "UNDETERMINED"
+            self.verdict_reason_summary = "Failed to parse AI evaluation response."
 
+        self.verdict_timestamp = int(gl.message.timestamp)
         self.status = "evaluated"
 
-    def _call_ai(self, prompt: str) -> str:
-        result = gl.exec_prompt(prompt)
-        return result
-
-    # ─── Views ────────────────────────────────────────────────────────────────
+    # ─── Views ───────────────────────────────────────────────────────────────
 
     @gl.public.view
     def get_verdict(self) -> dict:
         return {
-            "case_id": self.case_id,
-            "status": self.status,
-            "verdict": self.verdict,
-            "reasoning": self.reasoning,
-            "court_question": self.court_question,
+            "case_id":               self.case_id,
+            "status":                self.status,
+            "verdict":               self.verdict,
+            "verdict_reason_summary": self.verdict_reason_summary,
+            "verdict_timestamp":     self.verdict_timestamp,
+            "statement":             self.statement,
+            "guideline_version":     self.guideline_version,
         }
 
     @gl.public.view
