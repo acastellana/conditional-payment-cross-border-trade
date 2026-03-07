@@ -23,7 +23,7 @@ import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
  *     resolveShipmentVerdict(UNDETERMINED) → resolveManualReview(arbitrator)
  *
  * Contest deadline:
- *   contestShipment() reverts after contestDeadline.
+ *   contestShipment() reverts after contestDeadline (fundSettlement time + 7 days).
  *   acceptShipment() is callable by anyone (not just importer) after contestDeadline,
  *   allowing either party to unblock settlement if the importer does not act.
  *
@@ -121,7 +121,7 @@ contract TradeFxSettlement {
     uint256 public currentDueDate;
 
     /// @notice Deadline after which contestShipment() is rejected.
-    ///         Set to dueDate + 30 days at deployment.
+    ///         Set to shipmentCheckTime + 7 days when fundSettlement() is called.
     ///         After this deadline, anyone (not just the importer) can call acceptShipment().
     uint256 public contestDeadline;
 
@@ -275,8 +275,9 @@ contract TradeFxSettlement {
         fulfilledBps       = 10_000;
         status             = Status.DRAFT;
 
-        // Contest window: 30 days after due date
-        contestDeadline    = _dueDate + 30 days;
+        // Contest window is anchored to shipment check (funding time) + 7 days.
+        // Set to max-uint initially; updated to block.timestamp + 7 days when importer funds.
+        contestDeadline    = type(uint256).max;
 
         emit TradeCreated(_exporter, _importer, _invoiceAmount, _dueDate, _invoiceRef);
     }
