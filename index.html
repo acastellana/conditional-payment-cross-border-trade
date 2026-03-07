@@ -15,17 +15,16 @@
       --blue: #1d4ed8; --blue-light: #dbeafe; --amber: #b45309; --amber-light: #fef3c7;
       --red: #dc2626; --red-light: #fee2e2; --purple: #7c3aed; --purple-light: #ede9fe;
       --radius: 10px; --radius-xl: 16px;
-      --shadow: 0 1px 3px rgba(0,0,0,0.07), 0 1px 2px rgba(0,0,0,0.04);
-      --shadow-md: 0 4px 12px rgba(0,0,0,0.07);
+      --shadow: 0 1px 3px rgba(0,0,0,0.07); --shadow-md: 0 4px 12px rgba(0,0,0,0.07);
     }
     body { font-family: 'DM Sans', system-ui, sans-serif; background: var(--bg); color: var(--dark); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
-    .mono { font-family: 'DM Mono', monospace; }
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .container { max-width: 1060px; margin: 0 auto; padding: 0 24px; }
+    .section-label { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
 
     /* ── HEADER ── */
     header { position: sticky; top: 12px; z-index: 100; padding: 0 24px; }
     .header-inner {
-      max-width: 1100px; margin: 0 auto;
+      max-width: 1060px; margin: 0 auto;
       background: rgba(255,255,255,0.95); border: 1px solid var(--border);
       border-radius: 9999px; padding: 10px 20px;
       display: flex; align-items: center; justify-content: space-between;
@@ -36,234 +35,270 @@
     nav { display: flex; gap: 2px; }
     nav a { color: var(--muted); text-decoration: none; font-size: 13px; font-weight: 500; padding: 5px 12px; border-radius: 9999px; transition: all 0.15s; }
     nav a:hover { background: var(--card); color: var(--dark); }
-    .btn { display: inline-flex; align-items: center; gap: 6px; border: none; border-radius: 9999px; padding: 7px 16px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif; text-decoration: none; transition: all 0.15s; }
-    .btn-dark { background: var(--dark); color: #fff; }
+    .btn-dark { display: inline-flex; align-items: center; gap: 6px; background: var(--dark); color: #fff; border: none; border-radius: 9999px; padding: 7px 16px; font-size: 13px; font-weight: 600; cursor: pointer; text-decoration: none; transition: all 0.15s; }
     .btn-dark:hover { background: #2d2927; }
 
-    /* ── SECTION LABELS ── */
-    .section-label { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
-
-    /* ══════════════════════════════
-       1. HERO — BIG
-    ══════════════════════════════ */
-    .hero { padding: 72px 0 56px; }
-    .hero-eyebrow {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 9999px; padding: 4px 14px;
-      font-size: 12px; font-weight: 600; color: var(--muted);
-      font-family: 'DM Mono', monospace; margin-bottom: 24px;
-    }
-    .hero-eyebrow .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); animation: pulse-dot 2s infinite; }
-    @keyframes pulse-dot { 0%,100%{opacity:1} 50%{opacity:.35} }
-    .hero h1 { font-size: clamp(36px, 5vw, 60px); font-weight: 700; line-height: 1.06; letter-spacing: -1.5px; margin-bottom: 16px; max-width: 780px; }
-    .hero-subtitle { font-size: 17px; color: var(--muted); margin-bottom: 20px; font-weight: 500; }
-    .hero-value {
-      font-size: 17px; color: var(--dark); line-height: 1.65; max-width: 620px;
-      padding: 16px 20px; background: var(--blue-light); border-left: 3px solid var(--blue);
-      border-radius: 0 var(--radius) var(--radius) 0; margin-bottom: 32px;
-    }
+    /* ══════════════════════
+       HERO
+    ══════════════════════ */
+    .hero { padding: 80px 0 60px; }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 6px; background: var(--card); border: 1px solid var(--border); border-radius: 9999px; padding: 4px 14px; font-size: 12px; font-weight: 600; color: var(--muted); font-family: 'DM Mono', monospace; margin-bottom: 24px; }
+    .hero-eyebrow .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.35} }
+    .hero h1 { font-size: clamp(36px, 5vw, 58px); font-weight: 700; line-height: 1.07; letter-spacing: -1.5px; max-width: 760px; margin-bottom: 14px; }
+    .hero-sub { font-size: 16px; color: var(--muted); font-weight: 500; margin-bottom: 20px; }
+    .hero-value { font-size: 16px; color: var(--dark); line-height: 1.65; max-width: 600px; padding: 14px 18px; background: var(--blue-light); border-left: 3px solid var(--blue); border-radius: 0 var(--radius) var(--radius) 0; margin-bottom: 32px; }
     .hero-flow { display: flex; align-items: center; gap: 0; flex-wrap: nowrap; }
-    .hf-step { background: #fff; border: 1px solid var(--border); border-radius: 9px; padding: 10px 16px; font-size: 13px; font-weight: 600; white-space: nowrap; box-shadow: var(--shadow); flex-shrink: 0; }
+    .hf-step { background: #fff; border: 1px solid var(--border); border-radius: 9px; padding: 9px 15px; font-size: 13px; font-weight: 600; white-space: nowrap; box-shadow: var(--shadow); flex-shrink: 0; }
     .hf-arrow { color: var(--muted); font-size: 18px; padding: 0 8px; flex-shrink: 0; }
 
-    /* ══════════════════════════════
-       2. EXAMPLE TRADE — BIG
-    ══════════════════════════════ */
+    /* ══════════════════════
+       EXAMPLE TRADE
+    ══════════════════════ */
     .example-section { background: var(--dark); padding: 64px 0; }
-    .example-section .section-label { color: rgba(255,255,255,0.4); }
-    .example-section h2 { font-size: clamp(28px, 4vw, 42px); font-weight: 700; letter-spacing: -0.8px; color: #fff; margin-bottom: 8px; }
-    .example-section .ex-sub { font-size: 15px; color: rgba(255,255,255,0.45); margin-bottom: 40px; }
+    .example-section .section-label { color: rgba(255,255,255,0.35); }
+    .example-section h2 { font-size: clamp(26px, 4vw, 40px); font-weight: 700; letter-spacing: -0.8px; color: #fff; margin-bottom: 6px; }
+    .example-section .ex-sub { font-size: 14px; color: rgba(255,255,255,0.4); margin-bottom: 36px; }
 
-    .example-main { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+    .ex-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
 
-    /* Card */
-    .ex-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-xl); padding: 28px 32px; }
-    .ex-card-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1.4px; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 20px; }
-    .ex-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.08); font-size: 15px; }
+    .ex-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-xl); padding: 26px 30px; }
+    .ex-card-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1.4px; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 18px; }
+    .ex-row { display: flex; justify-content: space-between; align-items: center; padding: 11px 0; border-bottom: 1px solid rgba(255,255,255,0.07); font-size: 14px; }
     .ex-row:last-child { border-bottom: none; }
-    .ex-key { color: rgba(255,255,255,0.5); font-size: 14px; }
-    .ex-val { font-weight: 600; font-family: 'DM Mono', monospace; font-size: 14px; color: #fff; }
+    .ex-key { color: rgba(255,255,255,0.45); font-size: 13px; }
+    .ex-val { font-weight: 600; font-family: 'DM Mono', monospace; font-size: 13px; color: #fff; }
     .ex-val.green { color: #86efac; }
     .ex-val.amber { color: #fbbf24; }
-    .ex-val.purple { color: #c4b5fd; }
-    .ex-status { display: inline-flex; align-items: center; background: rgba(124,58,237,0.25); border: 1px solid rgba(124,58,237,0.4); border-radius: 9999px; padding: 3px 12px; font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 600; color: #c4b5fd; }
+    .ex-badge { display: inline-flex; align-items: center; background: rgba(124,58,237,0.25); border: 1px solid rgba(124,58,237,0.4); border-radius: 9999px; padding: 2px 10px; font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 600; color: #c4b5fd; }
 
-    /* Example right column */
-    .ex-right { display: flex; flex-direction: column; gap: 24px; }
+    .ex-links { margin-top: 16px; display: flex; flex-direction: column; gap: 7px; }
+    .ex-link { display: flex; align-items: center; gap: 7px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.09); border-radius: 8px; padding: 9px 13px; font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.65); text-decoration: none; transition: all 0.15s; }
+    .ex-link:hover { background: rgba(255,255,255,0.09); color: #fff; }
+    .ex-link svg { opacity: 0.4; flex-shrink: 0; }
+    .ex-link.demo { background: rgba(29,78,216,0.2); border-color: rgba(93,130,240,0.35); color: #93c5fd; }
+    .ex-link.demo:hover { background: rgba(29,78,216,0.3); }
+    .ex-link.demo svg { opacity: 0.7; }
+    .demo-dur { font-family: 'DM Mono', monospace; font-size: 10px; margin-left: auto; color: rgba(147,197,253,0.5); }
 
-    /* Settlement flow visual */
-    .ex-flow { display: flex; flex-direction: column; align-items: center; gap: 0; }
-    .ex-flow-node { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: var(--radius-xl); padding: 20px 28px; text-align: center; width: 100%; }
-    .ex-flow-node.center { background: #fff; color: var(--dark); }
-    .ex-flow-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 4px; }
-    .ex-flow-node.center .ex-flow-label { color: var(--muted); }
-    .ex-flow-name { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 2px; }
-    .ex-flow-node.center .ex-flow-name { color: var(--dark); }
-    .ex-flow-amount { font-family: 'DM Mono', monospace; font-size: 22px; font-weight: 700; color: #fff; margin-top: 4px; }
-    .ex-flow-node.center .ex-flow-amount { color: var(--dark); }
-    .ex-flow-amount.green { color: #86efac; }
-    .ex-flow-sub { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 2px; }
-    .ex-flow-node.center .ex-flow-sub { color: var(--muted); }
-    .ex-flow-rate { display: inline-block; background: rgba(134,239,172,0.15); border: 1px solid rgba(134,239,172,0.3); border-radius: 6px; padding: 3px 10px; font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 600; color: #86efac; margin-top: 8px; }
+    /* flow diagram on right */
+    .ex-flow { display: flex; flex-direction: column; align-items: center; }
+    .ex-node { width: 100%; max-width: 300px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-xl); padding: 18px 22px; text-align: center; }
+    .ex-node.mid { background: #fff; }
+    .ex-node-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 4px; }
+    .ex-node.mid .ex-node-label { color: var(--muted); }
+    .ex-node-name { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 2px; }
+    .ex-node.mid .ex-node-name { color: var(--dark); }
+    .ex-node-amount { font-family: 'DM Mono', monospace; font-size: 20px; font-weight: 700; color: #fff; margin-top: 4px; }
+    .ex-node.mid .ex-node-amount { color: var(--dark); }
+    .ex-node-amount.green { color: #86efac; }
+    .ex-node-sub { font-size: 11px; color: rgba(255,255,255,0.35); margin-top: 2px; }
+    .ex-node.mid .ex-node-sub { color: var(--muted); }
+    .ex-node-rate { display: inline-block; background: rgba(134,239,172,0.15); border: 1px solid rgba(134,239,172,0.3); border-radius: 6px; padding: 3px 10px; font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 600; color: #86efac; margin-top: 6px; }
     .ex-connector { display: flex; flex-direction: column; align-items: center; padding: 2px 0; }
-    .ex-connector-line { width: 2px; height: 20px; background: rgba(255,255,255,0.15); }
-    .ex-connector-arrow { color: rgba(255,255,255,0.3); font-size: 14px; margin-top: -3px; }
+    .ex-line { width: 2px; height: 18px; background: rgba(255,255,255,0.12); }
+    .ex-arrow { color: rgba(255,255,255,0.25); font-size: 13px; margin-top: -3px; }
 
-    /* Example buttons */
-    .ex-buttons { display: flex; flex-direction: column; gap: 8px; }
-    .ex-btn { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 9px; padding: 10px 14px; font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.75); text-decoration: none; transition: all 0.15s; }
-    .ex-btn:hover { background: rgba(255,255,255,0.1); color: #fff; }
-    .ex-btn svg { opacity: 0.5; flex-shrink: 0; }
-    .ex-btn.demo { background: rgba(29,78,216,0.2); border-color: rgba(93,130,240,0.4); color: #93c5fd; }
-    .ex-btn.demo:hover { background: rgba(29,78,216,0.3); }
-    .ex-btn.demo svg { opacity: 0.7; }
-    .demo-badge { font-family: 'DM Mono', monospace; font-size: 10px; margin-left: auto; color: rgba(255,255,255,0.3); }
-    .ex-btn.demo .demo-badge { color: rgba(147,197,253,0.6); }
+    /* ══════════════════════
+       TRADE LIFECYCLE TIMELINE
+    ══════════════════════ */
+    .timeline-section { padding: 64px 0; background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .timeline-section h2 { font-size: clamp(22px, 3vw, 32px); font-weight: 700; letter-spacing: -0.5px; margin-bottom: 36px; }
 
-    /* ══════════════════════════════
-       3. PROBLEM — MEDIUM
-    ══════════════════════════════ */
-    .problem-section { padding: 64px 0; }
-    .problem-section h2 { font-size: clamp(24px, 3.5vw, 36px); font-weight: 700; letter-spacing: -0.5px; margin-bottom: 28px; }
-    .problem-list { list-style: none; display: flex; flex-direction: column; gap: 12px; max-width: 680px; margin-bottom: 24px; }
-    .problem-list li { display: flex; gap: 14px; align-items: flex-start; font-size: 16px; line-height: 1.6; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 18px; }
-    .bullet-dot { flex-shrink: 0; width: 8px; height: 8px; border-radius: 50%; background: var(--amber); margin-top: 9px; }
-    .problem-conclusion { font-size: 17px; font-weight: 600; color: var(--dark); border-left: 3px solid var(--green); padding-left: 18px; max-width: 640px; line-height: 1.5; }
+    .tl-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
 
-    /* ══════════════════════════════
-       4. HOW IT WORKS — MEDIUM
-    ══════════════════════════════ */
-    .howitworks-section { padding: 64px 0; background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .howitworks-section h2 { font-size: clamp(22px, 3vw, 34px); font-weight: 700; letter-spacing: -0.4px; margin-bottom: 28px; }
-    .steps { display: flex; flex-direction: column; gap: 1px; max-width: 640px; }
-    .step { display: flex; gap: 18px; align-items: flex-start; padding: 18px 22px; background: var(--bg); border: 1px solid var(--border); }
-    .step:first-child { border-radius: var(--radius-xl) var(--radius-xl) 0 0; }
-    .step:last-child { border-radius: 0 0 var(--radius-xl) var(--radius-xl); }
-    .step-num { flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%; background: var(--dark); color: #fff; display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 600; margin-top: 2px; }
-    .step-title { font-size: 15px; font-weight: 700; margin-bottom: 2px; }
-    .step-desc { font-size: 14px; color: var(--muted); line-height: 1.55; }
+    .tl-steps { display: flex; flex-direction: column; gap: 0; position: relative; }
+    .tl-step { display: flex; gap: 20px; position: relative; }
+    .tl-left { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; width: 36px; }
+    .tl-dot { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 700; flex-shrink: 0; z-index: 1; }
+    .tl-dot.draft   { background: var(--card); border: 2px solid var(--border); color: var(--muted); }
+    .tl-dot.locked  { background: var(--green-light); border: 2px solid rgba(21,128,61,0.3); color: var(--green); }
+    .tl-dot.pending { background: var(--amber-light); border: 2px solid rgba(180,83,9,0.3); color: var(--amber); }
+    .tl-dot.rolled  { background: var(--purple-light); border: 2px solid rgba(124,58,237,0.3); color: var(--purple); }
+    .tl-spine { width: 2px; flex: 1; min-height: 28px; background: var(--border); margin-top: 2px; }
+    .tl-step:last-child .tl-spine { display: none; }
+    .tl-body { flex: 1; padding-bottom: 32px; }
+    .tl-step:last-child .tl-body { padding-bottom: 0; }
+    .tl-state { font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 4px; }
+    .tl-state.draft   { color: var(--muted); }
+    .tl-state.locked  { color: var(--green); }
+    .tl-state.pending { color: var(--amber); }
+    .tl-state.rolled  { color: var(--purple); }
+    .tl-title { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+    .tl-detail { font-size: 14px; color: var(--muted); line-height: 1.55; margin-bottom: 8px; }
+    .tl-detail strong { color: var(--dark); }
+    .tl-tx { display: inline-flex; align-items: center; gap: 5px; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--blue); text-decoration: none; border: 1px solid var(--border); border-radius: 9999px; padding: 3px 10px; background: var(--bg); }
+    .tl-tx:hover { border-color: var(--blue); }
+    .tl-tx svg { opacity: 0.5; }
 
-    /* What this is not — compact inline in How it Works */
-    .scope-bar { max-width: 640px; margin-top: 28px; padding: 16px 20px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-xl); }
-    .scope-bar-title { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
-    .scope-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
-    .scope-tag { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); background: var(--card); border: 1px solid var(--border); border-radius: 9999px; padding: 4px 12px; }
-    .scope-tag-x { color: var(--red); font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700; }
-    .scope-conclusion { font-size: 14px; font-weight: 600; color: var(--dark); border-left: 3px solid var(--blue); padding-left: 12px; line-height: 1.4; }
+    /* right side: what the timeline proves */
+    .tl-proof { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 24px 26px; }
+    .tl-proof-title { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
+    .proof-row { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid var(--border); }
+    .proof-row:last-child { border-bottom: none; }
+    .proof-check { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+    .proof-text { font-size: 14px; line-height: 1.5; }
+    .proof-text strong { color: var(--dark); }
+    .proof-text span { color: var(--muted); font-size: 13px; }
 
-    /* ══════════════════════════════
-       5. BENCHMARK — SMALL
-    ══════════════════════════════ */
-    .benchmark-section { padding: 56px 0; }
-    .benchmark-section h2 { font-size: clamp(20px, 2.5vw, 28px); font-weight: 700; letter-spacing: -0.3px; margin-bottom: 6px; }
-    .benchmark-section .bsub { font-size: 15px; color: var(--muted); margin-bottom: 24px; }
+    /* ══════════════════════
+       VALUE FLOW DIAGRAM
+    ══════════════════════ */
+    .flow-section { padding: 56px 0; }
+    .flow-section h2 { font-size: clamp(20px, 2.8vw, 30px); font-weight: 700; letter-spacing: -0.4px; margin-bottom: 32px; }
 
-    .bench-cards { display: flex; gap: 12px; max-width: 640px; margin-bottom: 24px; flex-wrap: wrap; }
-    .bench-card { flex: 1; min-width: 200px; padding: 14px 18px; border-radius: var(--radius); border: 1px solid transparent; }
-    .bench-card.live { background: var(--green-light); border-color: rgba(21,128,61,0.2); }
-    .bench-card.audit { background: var(--amber-light); border-color: rgba(180,83,9,0.2); }
-    .bench-card-badge { font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 6px; }
-    .bench-card.live .bench-card-badge { color: var(--green); }
-    .bench-card.audit .bench-card-badge { color: var(--amber); }
-    .bench-card-name { font-size: 14px; font-weight: 700; margin-bottom: 3px; }
-    .bench-card-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+    .flow-diagram { display: flex; align-items: stretch; gap: 0; max-width: 780px; }
+    .flow-party { flex: 1; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 22px 24px; text-align: center; }
+    .flow-party-flag { font-size: 22px; margin-bottom: 6px; }
+    .flow-party-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+    .flow-party-name { font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+    .flow-party-amount { font-family: 'DM Mono', monospace; font-size: 18px; font-weight: 700; color: var(--dark); }
+    .flow-party-amount.green { color: var(--green); }
+    .flow-party-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
 
-    .validator-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; max-width: 640px; }
-    .validator-card { border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 8px; text-align: center; font-family: 'DM Mono', monospace; font-size: 11px; }
-    .validator-card.agree { background: var(--green-light); border-color: rgba(21,128,61,0.2); }
-    .validator-card.disagree { background: var(--card); }
-    .v-addr { font-size: 10px; color: var(--muted); margin-bottom: 3px; }
-    .v-rate { font-size: 14px; font-weight: 600; color: var(--dark); margin-bottom: 3px; }
-    .v-status { font-size: 10px; font-weight: 600; }
-    .v-status.agree { color: var(--green); }
-    .v-status.disagree { color: var(--muted); }
-    .consensus-bar { max-width: 640px; background: var(--green-light); border: 1px solid rgba(21,128,61,0.2); border-radius: var(--radius); padding: 11px 16px; display: flex; align-items: center; gap: 12px; font-family: 'DM Mono', monospace; font-size: 13px; margin-top: 8px; }
-    .consensus-label { font-weight: 700; color: var(--green); }
-    .consensus-rate { font-size: 16px; font-weight: 700; color: var(--dark); }
+    .flow-connector { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 16px; gap: 4px; flex-shrink: 0; }
+    .flow-connector-line { width: 48px; height: 2px; background: var(--border); }
+    .flow-connector-arrow { color: var(--muted); font-size: 14px; }
+    .flow-connector-label { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 0.5px; white-space: nowrap; }
 
-    /* ══════════════════════════════
-       6. ARCHITECTURE — SMALL
-    ══════════════════════════════ */
-    .arch-section { padding: 56px 0; background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .arch-section h2 { font-size: clamp(18px, 2.5vw, 26px); font-weight: 700; letter-spacing: -0.2px; margin-bottom: 24px; color: var(--muted); }
+    .flow-contract { background: var(--dark); border-radius: var(--radius-xl); padding: 22px 24px; text-align: center; flex: 1; }
+    .flow-contract-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 4px; }
+    .flow-contract-name { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+    .flow-contract-detail { font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.6; margin-bottom: 8px; }
+    .flow-contract-rate { display: inline-block; background: rgba(134,239,172,0.15); border: 1px solid rgba(134,239,172,0.25); border-radius: 6px; padding: 3px 10px; font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 600; color: #86efac; }
 
-    .arch-inner { display: grid; grid-template-columns: auto 1fr; gap: 40px; align-items: start; }
-    .arch-flow { display: flex; flex-direction: column; align-items: flex-start; }
-    .af-node { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 9px 16px; font-size: 13px; font-weight: 600; font-family: 'DM Mono', monospace; }
-    .af-node.highlight { background: var(--dark); color: #fff; border-color: var(--dark); }
-    .af-node.optional { background: var(--bg); border-style: dashed; color: var(--muted); font-size: 12px; }
-    .af-line { width: 2px; height: 16px; background: var(--border); margin-left: 16px; }
-    .af-optional-row { display: flex; align-items: center; gap: 8px; }
-    .af-optional-label { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 0.5px; text-transform: uppercase; }
+    /* ══════════════════════
+       PROBLEM
+    ══════════════════════ */
+    .problem-section { padding: 56px 0; background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .problem-section h2 { font-size: clamp(22px, 3vw, 32px); font-weight: 700; letter-spacing: -0.4px; margin-bottom: 24px; }
+    .prob-list { list-style: none; max-width: 640px; display: flex; flex-direction: column; gap: 10px; margin-bottom: 22px; }
+    .prob-list li { display: flex; gap: 14px; align-items: flex-start; font-size: 16px; line-height: 1.6; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 13px 16px; }
+    .prob-dot { flex-shrink: 0; width: 8px; height: 8px; border-radius: 50%; background: var(--amber); margin-top: 9px; }
+    .prob-conclusion { font-size: 17px; font-weight: 600; border-left: 3px solid var(--green); padding-left: 16px; max-width: 600px; line-height: 1.5; }
 
-    .arch-cards { display: flex; flex-direction: column; gap: 10px; }
-    .arch-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 16px 20px; }
-    .arch-card-title { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
-    .arch-addr { font-family: 'DM Mono', monospace; font-size: 12px; word-break: break-all; line-height: 1.6; }
-    .arch-addr a { color: var(--blue); text-decoration: none; }
-    .arch-addr a:hover { text-decoration: underline; }
-    .arch-note { margin-top: 12px; padding: 12px 16px; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); font-size: 13px; color: var(--muted); line-height: 1.6; }
+    /* ══════════════════════
+       HOW IT WORKS
+    ══════════════════════ */
+    .how-section { padding: 56px 0; }
+    .how-section h2 { font-size: clamp(20px, 2.8vw, 30px); font-weight: 700; letter-spacing: -0.4px; margin-bottom: 24px; }
+    .how-steps { display: flex; flex-direction: column; gap: 1px; max-width: 600px; }
+    .how-step { display: flex; gap: 16px; align-items: flex-start; padding: 16px 20px; background: var(--card); border: 1px solid var(--border); }
+    .how-step:first-child { border-radius: var(--radius-xl) var(--radius-xl) 0 0; }
+    .how-step:last-child { border-radius: 0 0 var(--radius-xl) var(--radius-xl); }
+    .how-num { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--dark); color: #fff; display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 600; margin-top: 2px; }
+    .how-title { font-size: 15px; font-weight: 700; margin-bottom: 2px; }
+    .how-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
 
-    /* ══════════════════════════════
-       7. DEVELOPER DETAILS — VERY SMALL
-    ══════════════════════════════ */
-    .dev-section { padding: 48px 0; }
-    .dev-section h2 { font-size: clamp(16px, 2vw, 22px); font-weight: 700; letter-spacing: -0.2px; margin-bottom: 20px; color: var(--muted); }
+    .scope-wrap { max-width: 600px; margin-top: 20px; padding: 14px 18px; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-xl); }
+    .scope-title { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+    .scope-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 10px; }
+    .scope-tag { display: flex; align-items: center; gap: 5px; font-size: 13px; color: var(--muted); background: var(--bg); border: 1px solid var(--border); border-radius: 9999px; padding: 3px 11px; }
+    .scope-x { color: var(--red); font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700; }
+    .scope-conclusion { font-size: 14px; font-weight: 600; border-left: 3px solid var(--blue); padding-left: 12px; }
 
+    /* ══════════════════════
+       CONSOLE / PROOF
+    ══════════════════════ */
+    .console-section { padding: 56px 0; background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .console-section h2 { font-size: clamp(18px, 2.5vw, 26px); font-weight: 700; letter-spacing: -0.3px; margin-bottom: 20px; color: var(--muted); }
     .console { background: var(--dark); border-radius: var(--radius-xl); overflow: hidden; max-width: 680px; }
     .console-bar { background: #242220; padding: 10px 18px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(255,255,255,0.06); }
     .cdot { width: 10px; height: 10px; border-radius: 50%; }
-    .cdot-r { background: #ef4444; } .cdot-y { background: #f59e0b; } .cdot-g { background: #22c55e; }
+    .cdot-r{background:#ef4444} .cdot-y{background:#f59e0b} .cdot-g{background:#22c55e}
     .console-title { font-family: 'DM Mono', monospace; font-size: 11px; color: #5a5755; margin-left: 6px; }
-    .console-body { padding: 18px 24px; }
+    .console-body { padding: 16px 22px; }
     .cl { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-family: 'DM Mono', monospace; font-size: 13px; }
     .cl:last-child { border-bottom: none; }
-    .cl-k { color: #5a5755; }
-    .cl-v { color: #e5e7eb; }
-    .cl-v.green { color: #86efac; }
-    .cl-v.amber { color: #fbbf24; }
-    .cl-v.blue { color: #93c5fd; }
-    .cl-v.purple { color: #c4b5fd; }
-    .console-divider { height: 1px; background: rgba(255,255,255,0.06); margin: 10px 0; }
-
-    /* Advanced toggle */
-    .adv-toggle { margin-top: 0; }
-    .adv-toggle summary {
-      list-style: none; cursor: pointer; padding: 10px 24px;
-      font-family: 'DM Mono', monospace; font-size: 11px; color: #5a5755;
-      border-top: 1px solid rgba(255,255,255,0.06);
-      display: flex; align-items: center; gap: 6px;
-      user-select: none;
-    }
-    .adv-toggle summary:hover { color: #9ca3af; }
-    .adv-toggle summary::-webkit-details-marker { display: none; }
+    .cl-k { color: #5a5755; } .cl-v { color: #e5e7eb; }
+    .cl-v.green{color:#86efac} .cl-v.amber{color:#fbbf24} .cl-v.blue{color:#93c5fd} .cl-v.purple{color:#c4b5fd}
+    .console-divider { height: 1px; background: rgba(255,255,255,0.06); margin: 8px 0; }
+    .adv-toggle summary { list-style:none; cursor:pointer; padding: 9px 22px; font-family:'DM Mono',monospace; font-size:11px; color:#5a5755; border-top:1px solid rgba(255,255,255,0.06); display:flex; align-items:center; gap:6px; user-select:none; }
+    .adv-toggle summary:hover { color:#9ca3af; }
+    .adv-toggle summary::-webkit-details-marker { display:none; }
     .adv-chevron { transition: transform 0.2s; }
     .adv-toggle[open] .adv-chevron { transform: rotate(90deg); }
-    .adv-body { padding: 0 24px 16px; }
+    .adv-body { padding: 0 22px 14px; }
 
-    .dev-links { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
-    .dev-link { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--blue); text-decoration: none; border: 1px solid var(--border); border-radius: 9999px; padding: 5px 12px; }
+    /* ══════════════════════
+       ARCHITECTURE
+    ══════════════════════ */
+    .arch-section { padding: 48px 0; }
+    .arch-section h2 { font-size: clamp(16px, 2.2vw, 24px); font-weight: 700; letter-spacing: -0.2px; margin-bottom: 22px; color: var(--muted); }
+    .arch-inner { display: grid; grid-template-columns: auto 1fr; gap: 36px; align-items: start; }
+    .arch-flow { display: flex; flex-direction: column; }
+    .af-node { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 8px 16px; font-size: 13px; font-weight: 600; font-family: 'DM Mono', monospace; white-space: nowrap; }
+    .af-node.hi { background: var(--dark); color: #fff; border-color: var(--dark); }
+    .af-node.opt { border-style: dashed; color: var(--muted); font-size: 12px; }
+    .af-line { width: 2px; height: 14px; background: var(--border); margin-left: 16px; }
+    .af-opt-row { display: flex; align-items: center; gap: 8px; }
+    .af-opt-lbl { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+    .arch-cards { display: flex; flex-direction: column; gap: 8px; }
+    .arch-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 14px 18px; }
+    .arch-card-lbl { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+    .arch-addr { font-family: 'DM Mono', monospace; font-size: 12px; word-break: break-all; line-height: 1.6; }
+    .arch-addr a { color: var(--blue); text-decoration: none; }
+    .arch-addr a:hover { text-decoration: underline; }
+    .arch-note { margin-top: 8px; padding: 10px 14px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    /* ══════════════════════
+       BENCHMARK
+    ══════════════════════ */
+    .bench-section { padding: 48px 0; background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .bench-section h2 { font-size: clamp(16px, 2.2vw, 24px); font-weight: 700; letter-spacing: -0.2px; margin-bottom: 20px; color: var(--muted); }
+    .bench-cards { display: flex; gap: 10px; max-width: 600px; margin-bottom: 20px; flex-wrap: wrap; }
+    .bench-card { flex: 1; min-width: 190px; padding: 14px 16px; border-radius: var(--radius); border: 1px solid transparent; }
+    .bench-card.live { background: var(--green-light); border-color: rgba(21,128,61,0.2); }
+    .bench-card.audit { background: var(--amber-light); border-color: rgba(180,83,9,0.2); }
+    .bench-card-badge { font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 4px; }
+    .bench-card.live .bench-card-badge { color: var(--green); }
+    .bench-card.audit .bench-card-badge { color: var(--amber); }
+    .bench-card-name { font-size: 14px; font-weight: 700; margin-bottom: 2px; }
+    .bench-card-desc { font-size: 13px; color: var(--muted); }
+    .validator-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 7px; max-width: 600px; }
+    .validator-card { border: 1px solid var(--border); border-radius: var(--radius); padding: 9px 6px; text-align: center; font-family: 'DM Mono', monospace; font-size: 11px; }
+    .validator-card.agree { background: var(--green-light); border-color: rgba(21,128,61,0.2); }
+    .validator-card.disagree { background: var(--bg); }
+    .v-addr { font-size: 10px; color: var(--muted); margin-bottom: 2px; }
+    .v-rate { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+    .v-status { font-size: 10px; font-weight: 600; }
+    .v-status.agree { color: var(--green); }
+    .v-status.disagree { color: var(--muted); }
+    .consensus-bar { max-width: 600px; background: var(--green-light); border: 1px solid rgba(21,128,61,0.2); border-radius: var(--radius); padding: 10px 16px; display: flex; align-items: center; gap: 12px; font-family: 'DM Mono', monospace; font-size: 12px; margin-top: 8px; }
+    .consensus-label { font-weight: 700; color: var(--green); }
+    .consensus-rate { font-size: 15px; font-weight: 700; color: var(--dark); }
+
+    /* ══════════════════════
+       DEVELOPER DETAILS
+    ══════════════════════ */
+    .dev-section { padding: 40px 0; }
+    .dev-section h2 { font-size: clamp(14px, 2vw, 20px); font-weight: 700; color: var(--muted); margin-bottom: 16px; }
+    .dev-links { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+    .dev-link { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--blue); text-decoration: none; border: 1px solid var(--border); border-radius: 9999px; padding: 4px 11px; }
     .dev-link:hover { border-color: var(--blue); }
     .dev-link.muted { color: var(--muted); }
-    .dev-link.muted:hover { border-color: var(--dark); color: var(--dark); }
+    .dev-link.muted:hover { color: var(--dark); border-color: var(--dark); }
 
     /* ── FOOTER ── */
     footer { background: var(--dark); color: #9ca3af; padding: 40px 0 28px; }
-    .footer-inner { display: flex; gap: 48px; justify-content: space-between; flex-wrap: wrap; margin-bottom: 28px; }
-    .footer-logo { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 8px; }
-    .footer-note { font-size: 12px; line-height: 1.7; max-width: 380px; }
+    .footer-inner { display: flex; gap: 40px; justify-content: space-between; flex-wrap: wrap; margin-bottom: 24px; }
+    .footer-logo { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 8px; }
+    .footer-note { font-size: 12px; line-height: 1.7; max-width: 360px; }
     .footer-links { display: flex; flex-direction: column; gap: 8px; }
     .footer-links a { color: #9ca3af; text-decoration: none; font-size: 13px; transition: color 0.15s; }
     .footer-links a:hover { color: #fff; }
-    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 18px; font-family: 'DM Mono', monospace; font-size: 10px; color: #4b5563; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 16px; font-family: 'DM Mono', monospace; font-size: 10px; color: #4b5563; }
 
     /* ── RESPONSIVE ── */
-    @media(max-width: 700px) {
+    @media(max-width: 720px) {
       nav { display: none; }
-      .example-main { grid-template-columns: 1fr; }
+      .ex-grid { grid-template-columns: 1fr; }
+      .tl-wrap { grid-template-columns: 1fr; }
+      .flow-diagram { flex-direction: column; }
+      .flow-connector { flex-direction: column; padding: 10px 0; }
+      .flow-connector-line { width: 2px; height: 24px; }
       .arch-inner { grid-template-columns: 1fr; }
-      .validator-grid { grid-template-columns: repeat(3, 1fr); }
+      .validator-grid { grid-template-columns: repeat(3,1fr); }
       .hero-flow { flex-wrap: wrap; gap: 8px; }
       .hf-arrow { display: none; }
       .footer-inner { flex-direction: column; gap: 20px; }
@@ -272,7 +307,7 @@
 </head>
 <body>
 
-<!-- ── HEADER ── -->
+<!-- HEADER -->
 <header>
   <div class="header-inner">
     <a href="#" class="logo">
@@ -281,11 +316,11 @@
     </a>
     <nav>
       <a href="#example">Example</a>
-      <a href="#how-it-works">How it works</a>
-      <a href="#benchmark">Benchmark</a>
-      <a href="#developers">Developers</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#problem">Problem</a>
+      <a href="#architecture">Architecture</a>
     </nav>
-    <a href="https://sepolia.basescan.org/address/0x5231a9B232abD0d8533D7046994235baEb01696d" target="_blank" class="btn btn-dark">
+    <a href="https://sepolia.basescan.org/address/0x5231a9B232abD0d8533D7046994235baEb01696d" target="_blank" class="btn-dark">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 8 16 12 12 16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
       Basescan
     </a>
@@ -293,23 +328,20 @@
 </header>
 
 
-<!-- ══════════════════════════════════════════════
-     1. HERO — BIG
-══════════════════════════════════════════════ -->
+<!-- ══════════════════════════════════════════
+     HERO
+══════════════════════════════════════════ -->
 <section class="hero">
   <div class="container">
     <div class="hero-eyebrow">
       <span class="dot"></span>
       Live on Base Sepolia · GenLayer Studionet
     </div>
-
     <h1>Lock and coordinate FX settlement for cross-border invoices</h1>
-    <p class="hero-subtitle">Benchmark-based settlement coordination for cross-border invoices.</p>
-
+    <p class="hero-sub">Benchmark-based settlement coordination for cross-border invoices.</p>
     <div class="hero-value">
-      Instead of each party recalculating FX settlement separately, GenLayer produces <strong>one shared settlement result</strong> for the trade.
+      Instead of each party calculating FX settlement separately, GenLayer produces <strong>one shared settlement result</strong> for the trade.
     </div>
-
     <div class="hero-flow">
       <div class="hf-step">Create Invoice</div>
       <div class="hf-arrow">→</div>
@@ -323,27 +355,27 @@
 </section>
 
 
-<!-- ══════════════════════════════════════════════
-     2. EXAMPLE TRADE — BIG (dark section)
-══════════════════════════════════════════════ -->
+<!-- ══════════════════════════════════════════
+     EXAMPLE TRADE
+══════════════════════════════════════════ -->
 <section class="example-section" id="example">
   <div class="container">
     <div class="section-label">Live Example</div>
     <h2>Quinoa export Bolivia → Peru</h2>
     <p class="ex-sub">Example trade executed on-chain. Every step is verifiable.</p>
 
-    <div class="example-main">
+    <div class="ex-grid">
 
-      <!-- Left: card -->
-      <div style="display:flex;flex-direction:column;gap:16px;">
+      <!-- Left: card + links -->
+      <div style="display:flex;flex-direction:column;gap:14px;">
         <div class="ex-card">
-          <div class="ex-card-label">Trade Details</div>
+          <div class="ex-card-label">Example trade executed on-chain</div>
           <div class="ex-row">
             <span class="ex-key">Invoice</span>
             <span class="ex-val">150,000 BOB</span>
           </div>
           <div class="ex-row">
-            <span class="ex-key">Benchmark locked</span>
+            <span class="ex-key">Locked benchmark</span>
             <span class="ex-val green">0.493 PEN / BOB</span>
           </div>
           <div class="ex-row">
@@ -356,67 +388,54 @@
           </div>
           <div class="ex-row">
             <span class="ex-key">Final state</span>
-            <span class="ex-val"><span class="ex-status">ROLLED</span></span>
+            <span class="ex-val"><span class="ex-badge">ROLLED</span></span>
           </div>
         </div>
 
-        <!-- Demo + tx links -->
-        <div class="ex-buttons">
-          <a href="demo.mp4" target="_blank" class="ex-btn demo">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        <div class="ex-links">
+          <a href="demo.mp4" target="_blank" class="ex-link demo">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
             Watch the settlement lifecycle
-            <span class="demo-badge">63s</span>
+            <span class="demo-dur">63s</span>
           </a>
-          <a href="https://sepolia.basescan.org/tx/0x1298bbabfe992f144db5a72c3ba1444f7d13beb868f694a215a6c77c10560b5d" target="_blank" class="ex-btn">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            View Rate Lock Transaction
+          <a href="https://sepolia.basescan.org/tx/0x1298bbabfe992f144db5a72c3ba1444f7d13beb868f694a215a6c77c10560b5d" target="_blank" class="ex-link">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View rate lock transaction
           </a>
-          <a href="https://sepolia.basescan.org/tx/0x4a626e445dc1d1e036aea72833aaeccdc6e73546db4035065131b8a86c951533" target="_blank" class="ex-btn">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            View Roll Transaction
+          <a href="https://sepolia.basescan.org/tx/0x4a626e445dc1d1e036aea72833aaeccdc6e73546db4035065131b8a86c951533" target="_blank" class="ex-link">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View roll transaction
           </a>
-          <a href="https://sepolia.basescan.org/address/0x5231a9B232abD0d8533D7046994235baEb01696d" target="_blank" class="ex-btn">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            View Contract
+          <a href="https://sepolia.basescan.org/address/0x5231a9B232abD0d8533D7046994235baEb01696d" target="_blank" class="ex-link">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View contract
           </a>
         </div>
       </div>
 
-      <!-- Right: settlement flow diagram -->
+      <!-- Right: flow diagram -->
       <div style="display:flex;align-items:center;justify-content:center;">
-        <div class="ex-flow" style="width:100%;max-width:320px;">
-
-          <div class="ex-flow-node">
-            <div class="ex-flow-label">🇧🇴 Exporter</div>
-            <div class="ex-flow-name">Cooperativa Agrícola Andina</div>
-            <div class="ex-flow-amount">150,000 BOB</div>
-            <div class="ex-flow-sub">invoice issued</div>
+        <div class="ex-flow" style="width:100%;max-width:300px;">
+          <div class="ex-node">
+            <div class="ex-node-label">🇧🇴 Exporter</div>
+            <div class="ex-node-name">Cooperativa Agrícola Andina</div>
+            <div class="ex-node-amount">150,000 BOB</div>
+            <div class="ex-node-sub">invoice issued</div>
           </div>
-
-          <div class="ex-connector">
-            <div class="ex-connector-line"></div>
-            <div class="ex-connector-arrow">▼</div>
+          <div class="ex-connector"><div class="ex-line"></div><div class="ex-arrow">▼</div></div>
+          <div class="ex-node mid">
+            <div class="ex-node-label">⚙️ GenLayer Contract</div>
+            <div class="ex-node-name">FX Settlement Engine</div>
+            <div class="ex-node-sub">benchmark lock · date roll</div>
+            <div class="ex-node-rate">0.493 PEN / BOB</div>
           </div>
-
-          <div class="ex-flow-node center">
-            <div class="ex-flow-label">⚙️ GenLayer Contract</div>
-            <div class="ex-flow-name">FX Settlement Engine</div>
-            <div class="ex-flow-sub">benchmark lock · date roll</div>
-            <div class="ex-flow-rate">0.493 PEN / BOB</div>
+          <div class="ex-connector"><div class="ex-line"></div><div class="ex-arrow">▼</div></div>
+          <div class="ex-node">
+            <div class="ex-node-label">🇵🇪 Importer</div>
+            <div class="ex-node-name">Alimentos del Pacífico</div>
+            <div class="ex-node-amount green">73,950 PEN</div>
+            <div class="ex-node-sub">settlement amount</div>
           </div>
-
-          <div class="ex-connector">
-            <div class="ex-connector-line"></div>
-            <div class="ex-connector-arrow">▼</div>
-          </div>
-
-          <div class="ex-flow-node">
-            <div class="ex-flow-label">🇵🇪 Importer</div>
-            <div class="ex-flow-name">Alimentos del Pacífico</div>
-            <div class="ex-flow-amount green">73,950 PEN</div>
-            <div class="ex-flow-sub">settlement amount</div>
-          </div>
-
         </div>
       </div>
 
@@ -425,72 +444,217 @@
 </section>
 
 
-<!-- ══════════════════════════════════════════════
-     3. PROBLEM — MEDIUM
-══════════════════════════════════════════════ -->
+<!-- ══════════════════════════════════════════
+     TRADE LIFECYCLE TIMELINE
+══════════════════════════════════════════ -->
+<section class="timeline-section" id="timeline">
+  <div class="container">
+    <div class="section-label">Trade Lifecycle</div>
+    <h2>State machine, step by step</h2>
+
+    <div class="tl-wrap">
+
+      <!-- Left: vertical steps -->
+      <div class="tl-steps">
+
+        <!-- Step 1 -->
+        <div class="tl-step">
+          <div class="tl-left">
+            <div class="tl-dot draft">1</div>
+            <div class="tl-spine"></div>
+          </div>
+          <div class="tl-body">
+            <div class="tl-state draft">DRAFT</div>
+            <div class="tl-title">Invoice created</div>
+            <div class="tl-detail"><strong>150,000 BOB</strong> · Bolivia → Peru quinoa trade</div>
+            <a href="https://sepolia.basescan.org/address/0x5231a9B232abD0d8533D7046994235baEb01696d" target="_blank" class="tl-tx">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              View contract ↗
+            </a>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="tl-step">
+          <div class="tl-left">
+            <div class="tl-dot locked">2</div>
+            <div class="tl-spine"></div>
+          </div>
+          <div class="tl-body">
+            <div class="tl-state locked">RATE_LOCKED</div>
+            <div class="tl-title">Benchmark locked</div>
+            <div class="tl-detail">Rate: <strong>0.493 PEN / BOB</strong><br>Settlement: <strong>73,950 PEN</strong></div>
+            <a href="https://sepolia.basescan.org/tx/0x1298bbabfe992f144db5a72c3ba1444f7d13beb868f694a215a6c77c10560b5d" target="_blank" class="tl-tx">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              View transaction ↗
+            </a>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="tl-step">
+          <div class="tl-left">
+            <div class="tl-dot pending">3</div>
+            <div class="tl-spine"></div>
+          </div>
+          <div class="tl-body">
+            <div class="tl-state pending">ROLL_PENDING</div>
+            <div class="tl-title">Payment date moved</div>
+            <div class="tl-detail"><strong>2026-04-05 → 2026-05-05</strong><br>Roll requested by importer</div>
+            <a href="https://sepolia.basescan.org/tx/0x4a626e445dc1d1e036aea72833aaeccdc6e73546db4035065131b8a86c951533" target="_blank" class="tl-tx">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              View transaction ↗
+            </a>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="tl-step">
+          <div class="tl-left">
+            <div class="tl-dot rolled">4</div>
+          </div>
+          <div class="tl-body">
+            <div class="tl-state rolled">ROLLED</div>
+            <div class="tl-title">Settlement updated</div>
+            <div class="tl-detail">Roll applied · rate re-locked at <strong>0.493</strong><br>Settlement unchanged: <strong>73,950 PEN</strong></div>
+            <a href="https://sepolia.basescan.org/tx/0x4a626e445dc1d1e036aea72833aaeccdc6e73546db4035065131b8a86c951533" target="_blank" class="tl-tx">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              View transaction ↗
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right: what this proves -->
+      <div class="tl-proof">
+        <div class="tl-proof-title">What this proves</div>
+        <div class="proof-row">
+          <div class="proof-check">✓</div>
+          <div class="proof-text"><strong>Rate lock is on-chain.</strong> <span>Every validator can reproduce the benchmark independently.</span></div>
+        </div>
+        <div class="proof-row">
+          <div class="proof-check">✓</div>
+          <div class="proof-text"><strong>Date changes are handled automatically.</strong> <span>No manual recalculation between parties.</span></div>
+        </div>
+        <div class="proof-row">
+          <div class="proof-check">✓</div>
+          <div class="proof-text"><strong>Settlement amount is canonical.</strong> <span>One result both exporter and importer reference.</span></div>
+        </div>
+        <div class="proof-row">
+          <div class="proof-check">✓</div>
+          <div class="proof-text"><strong>Every state transition has a transaction hash.</strong> <span>Full audit trail on Basescan.</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     VALUE FLOW DIAGRAM
+══════════════════════════════════════════ -->
+<section class="flow-section" id="flow">
+  <div class="container">
+    <div class="section-label">Settlement Flow</div>
+    <h2>Two currencies, one result</h2>
+
+    <div class="flow-diagram">
+
+      <div class="flow-party">
+        <div class="flow-party-flag">🇧🇴</div>
+        <div class="flow-party-label">Exporter</div>
+        <div class="flow-party-name">Cooperativa Agrícola Andina</div>
+        <div class="flow-party-amount">150,000 BOB</div>
+        <div class="flow-party-sub">invoice issued</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="flow-connector-line"></div>
+        <div class="flow-connector-arrow">→</div>
+        <div class="flow-connector-label">benchmark lock</div>
+      </div>
+
+      <div class="flow-contract">
+        <div class="flow-contract-label">⚙️ GenLayer Contract</div>
+        <div class="flow-contract-name">FX Settlement Engine</div>
+        <div class="flow-contract-detail">locks benchmark · applies roll<br>produces canonical result</div>
+        <div class="flow-contract-rate">0.493 PEN / BOB</div>
+      </div>
+
+      <div class="flow-connector">
+        <div class="flow-connector-line"></div>
+        <div class="flow-connector-arrow">→</div>
+        <div class="flow-connector-label">settlement</div>
+      </div>
+
+      <div class="flow-party">
+        <div class="flow-party-flag">🇵🇪</div>
+        <div class="flow-party-label">Importer</div>
+        <div class="flow-party-name">Alimentos del Pacífico</div>
+        <div class="flow-party-amount green">73,950 PEN</div>
+        <div class="flow-party-sub">settlement amount</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     PROBLEM
+══════════════════════════════════════════ -->
 <section class="problem-section" id="problem">
   <div class="container">
     <div class="section-label">The Problem</div>
-    <h2>Why this matters</h2>
+    <h2>Why this exists</h2>
 
-    <ul class="problem-list">
-      <li><span class="bullet-dot"></span><span>Cross-border invoices often involve two currencies.</span></li>
-      <li><span class="bullet-dot"></span><span>Payment dates move. FX rates move.</span></li>
-      <li><span class="bullet-dot"></span><span>Each party often computes the settlement separately, leading to disagreements about which FX rate applies.</span></li>
+    <ul class="prob-list">
+      <li><span class="prob-dot"></span><span>Cross-border invoices involve two currencies.</span></li>
+      <li><span class="prob-dot"></span><span>Payment dates move.</span></li>
+      <li><span class="prob-dot"></span><span>Each party often computes the FX settlement separately, which creates disagreements about which rate applies.</span></li>
     </ul>
 
-    <p class="problem-conclusion">GenLayer produces one shared settlement result everyone can reference.</p>
+    <p class="prob-conclusion">GenLayer produces one shared settlement result for the trade.</p>
   </div>
 </section>
 
 
-<!-- ══════════════════════════════════════════════
-     4. HOW IT WORKS — MEDIUM
-══════════════════════════════════════════════ -->
-<section class="howitworks-section" id="how-it-works">
+<!-- ══════════════════════════════════════════
+     HOW IT WORKS
+══════════════════════════════════════════ -->
+<section class="how-section" id="how-it-works">
   <div class="container">
     <div class="section-label">How It Works</div>
-    <h2>What the system actually does</h2>
+    <h2>What the system does</h2>
 
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div>
-          <div class="step-title">Record the invoice</div>
-          <div class="step-desc">The contract stores the trade obligation.</div>
-        </div>
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="how-num">1</div>
+        <div><div class="how-title">Record the invoice</div><div class="how-desc">The contract stores the trade obligation.</div></div>
       </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div>
-          <div class="step-title">Lock the benchmark</div>
-          <div class="step-desc">Validators agree on a reproducible FX rate.</div>
-        </div>
+      <div class="how-step">
+        <div class="how-num">2</div>
+        <div><div class="how-title">Lock the benchmark</div><div class="how-desc">Validators agree on a reproducible FX rate.</div></div>
       </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div>
-          <div class="step-title">Adjust if the trade changes</div>
-          <div class="step-desc">Partial shipments or payment delays update settlement terms.</div>
-        </div>
+      <div class="how-step">
+        <div class="how-num">3</div>
+        <div><div class="how-title">Adjust if the trade changes</div><div class="how-desc">Partial shipments or payment delays update settlement terms.</div></div>
       </div>
-      <div class="step">
-        <div class="step-num">4</div>
-        <div>
-          <div class="step-title">Final settlement</div>
-          <div class="step-desc">The agreed result becomes the canonical settlement state.</div>
-        </div>
+      <div class="how-step">
+        <div class="how-num">4</div>
+        <div><div class="how-title">Final settlement</div><div class="how-desc">The agreed result becomes the canonical settlement state.</div></div>
       </div>
     </div>
 
-    <!-- Scope — compact inline -->
-    <div class="scope-bar">
-      <div class="scope-bar-title">What this is not</div>
+    <div class="scope-wrap">
+      <div class="scope-title">What this is not</div>
       <div class="scope-tags">
-        <span class="scope-tag"><span class="scope-tag-x">✕</span> Letter of credit</span>
-        <span class="scope-tag"><span class="scope-tag-x">✕</span> Bank payment rail</span>
-        <span class="scope-tag"><span class="scope-tag-x">✕</span> Trade document platform</span>
-        <span class="scope-tag"><span class="scope-tag-x">✕</span> Cargo dispute arbitration</span>
+        <span class="scope-tag"><span class="scope-x">✕</span> Letter of credit</span>
+        <span class="scope-tag"><span class="scope-x">✕</span> Bank payment rail</span>
+        <span class="scope-tag"><span class="scope-x">✕</span> Trade document platform</span>
+        <span class="scope-tag"><span class="scope-x">✕</span> Cargo dispute arbitration</span>
       </div>
       <div class="scope-conclusion">It is a coordination layer for FX settlement of cross-border invoices.</div>
     </div>
@@ -498,125 +662,19 @@
 </section>
 
 
-<!-- ══════════════════════════════════════════════
-     5. BENCHMARK — SMALL
-══════════════════════════════════════════════ -->
-<section class="benchmark-section" id="benchmark">
+<!-- ══════════════════════════════════════════
+     CONSOLE / PROOF
+══════════════════════════════════════════ -->
+<section class="console-section" id="proof">
   <div class="container">
-    <div class="section-label">Benchmark</div>
-    <h2>How the rate is determined</h2>
-    <p class="bsub">Two sources. Validators independently reproduce the result.</p>
-
-    <div class="bench-cards">
-      <div class="bench-card live">
-        <div class="bench-card-badge">Live benchmark</div>
-        <div class="bench-card-name">Market aggregate</div>
-        <div class="bench-card-desc">Rate reproducible by all validators.</div>
-      </div>
-      <div class="bench-card audit">
-        <div class="bench-card-badge">Audit reference</div>
-        <div class="bench-card-name">BCRP × BCB cross rate</div>
-        <div class="bench-card-desc">Central bank cross (BCRP × BCB).</div>
-      </div>
-    </div>
-
-    <div class="validator-grid">
-      <div class="validator-card disagree">
-        <div class="v-addr">0x57De…</div>
-        <div class="v-rate">0.493</div>
-        <div class="v-status disagree">disagree</div>
-      </div>
-      <div class="validator-card agree">
-        <div class="v-addr">0x6528…</div>
-        <div class="v-rate">0.493</div>
-        <div class="v-status agree">✓ agree</div>
-      </div>
-      <div class="validator-card disagree">
-        <div class="v-addr">0x6d55…</div>
-        <div class="v-rate">0.493</div>
-        <div class="v-status disagree">disagree</div>
-      </div>
-      <div class="validator-card agree">
-        <div class="v-addr">0x757F…</div>
-        <div class="v-rate">0.493</div>
-        <div class="v-status agree">✓ agree</div>
-      </div>
-      <div class="validator-card agree">
-        <div class="v-addr">0x8729…</div>
-        <div class="v-rate">0.493</div>
-        <div class="v-status agree">✓ agree</div>
-      </div>
-    </div>
-
-    <div class="consensus-bar">
-      <span class="consensus-label">MAJORITY_AGREE</span>
-      <span style="color:var(--muted)">·</span>
-      <span class="consensus-rate">0.493 BOB/PEN</span>
-      <span style="color:var(--muted);font-size:12px;margin-left:auto;font-family:'DM Mono',monospace;">3/5 agree · benchmark accepted</span>
-    </div>
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════════
-     6. ARCHITECTURE — SMALL
-══════════════════════════════════════════════ -->
-<section class="arch-section" id="architecture">
-  <div class="container">
-    <div class="section-label">Architecture</div>
-    <h2>System components</h2>
-
-    <div class="arch-inner">
-      <div class="arch-flow">
-        <div class="af-node highlight">Trade Contract</div>
-        <div class="af-line"></div>
-        <div class="af-node">Benchmark Oracle</div>
-        <div class="af-line"></div>
-        <div class="af-node">Settlement Engine</div>
-        <div class="af-line"></div>
-        <div class="af-node">Payment Confirmation</div>
-        <div class="af-line"></div>
-        <div class="af-optional-row">
-          <div class="af-node optional">Exception Handler</div>
-          <span class="af-optional-label">optional</span>
-        </div>
-      </div>
-
-      <div class="arch-cards">
-        <div class="arch-card">
-          <div class="arch-card-title">TradeFxSettlement · Base Sepolia 84532</div>
-          <div class="arch-addr"><a href="https://sepolia.basescan.org/address/0x5231a9B232abD0d8533D7046994235baEb01696d" target="_blank">0x5231a9B232abD0d8533D7046994235baEb01696d ↗</a></div>
-        </div>
-        <div class="arch-card">
-          <div class="arch-card-title">FxBenchmarkOracle · GenLayer Studionet</div>
-          <div class="arch-addr"><a href="https://explorer-studio.genlayer.com/transactions/0x8085b03f9fc857785a242e64c7b00051790f04847de1b22e4b163ae5318f71c1" target="_blank">0x3B8501bAcaB70dedbC6f8B8EFCB888ba66cbc73e ↗</a></div>
-        </div>
-        <div class="arch-note">
-          If parties disagree — shipment evidence or fraud — <strong>InternetCourt</strong> can resolve on-chain. It activates only when both parties cannot agree.
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ══════════════════════════════════════════════
-     7. DEVELOPER DETAILS — VERY SMALL
-══════════════════════════════════════════════ -->
-<section class="dev-section" id="developers">
-  <div class="container">
-    <div class="section-label">Developer Details</div>
-    <h2>For engineers</h2>
+    <div class="section-label">Live Settlement State</div>
+    <h2>On-chain explorer proof</h2>
 
     <div class="console">
       <div class="console-bar">
-        <span class="cdot cdot-r"></span>
-        <span class="cdot cdot-y"></span>
-        <span class="cdot cdot-g"></span>
+        <span class="cdot cdot-r"></span><span class="cdot cdot-y"></span><span class="cdot cdot-g"></span>
         <span class="console-title">settlement-state.json</span>
       </div>
-
-      <!-- Core visible fields -->
       <div class="console-body">
         <div class="cl"><span class="cl-k">invoice_amount</span><span class="cl-v green">150000 BOB</span></div>
         <div class="cl"><span class="cl-k">benchmark_rate</span><span class="cl-v green">0.493 BOB/PEN</span></div>
@@ -628,13 +686,8 @@
         <div class="cl"><span class="cl-k">oracle</span><span class="cl-v blue">0x3B8501bAcaB70dedbC6f8B8EFCB888ba66cbc73e</span></div>
         <div class="cl"><span class="cl-k">chain</span><span class="cl-v">Base Sepolia 84532</span></div>
       </div>
-
-      <!-- Advanced toggle -->
       <details class="adv-toggle">
-        <summary>
-          <span class="adv-chevron">›</span>
-          Advanced details
-        </summary>
+        <summary><span class="adv-chevron">›</span> Advanced details</summary>
         <div class="adv-body">
           <div class="console-divider"></div>
           <div class="cl"><span class="cl-k">validator_agreement</span><span class="cl-v green">MAJORITY_AGREE · 3/5</span></div>
@@ -644,16 +697,99 @@
           <div class="console-divider"></div>
           <div class="cl"><span class="cl-k">rate_lock_tx</span><span class="cl-v blue">0x1298…b5d</span></div>
           <div class="cl"><span class="cl-k">roll_tx</span><span class="cl-v purple">0x4a62…533</span></div>
-          <div class="cl"><span class="cl-k">oracle_deploy_tx</span><span class="cl-v">0x8085…c71c (GenLayer)</span></div>
           <div class="cl"><span class="cl-k">comparison_mode</span><span class="cl-v green">strict_eq</span></div>
           <div class="cl"><span class="cl-k">roll_cost</span><span class="cl-v green">0</span></div>
-          <div class="cl"><span class="cl-k">relayer_wallet</span><span class="cl-v">0x7b97…30fa (dedicated · event-driven)</span></div>
           <div class="cl"><span class="cl-k">lifecycle_reconstruction</span><span class="cl-v green">on-chain events only</span></div>
           <div class="cl"><span class="cl-k">exception_handling</span><span class="cl-v amber">InternetCourt (orthogonal · opt-in)</span></div>
         </div>
       </details>
     </div>
+  </div>
+</section>
 
+
+<!-- ══════════════════════════════════════════
+     ARCHITECTURE
+══════════════════════════════════════════ -->
+<section class="arch-section" id="architecture">
+  <div class="container">
+    <div class="section-label">Architecture</div>
+    <h2>System components</h2>
+
+    <div class="arch-inner">
+      <div class="arch-flow">
+        <div class="af-node hi">Trade Contract</div>
+        <div class="af-line"></div>
+        <div class="af-node">Benchmark Oracle</div>
+        <div class="af-line"></div>
+        <div class="af-node">Settlement Engine</div>
+        <div class="af-line"></div>
+        <div class="af-node">Payment Confirmation</div>
+        <div class="af-line"></div>
+        <div class="af-opt-row"><div class="af-node opt">Exception Handler</div><span class="af-opt-lbl">optional</span></div>
+      </div>
+      <div class="arch-cards">
+        <div class="arch-card">
+          <div class="arch-card-lbl">TradeFxSettlement · Base Sepolia 84532</div>
+          <div class="arch-addr"><a href="https://sepolia.basescan.org/address/0x5231a9B232abD0d8533D7046994235baEb01696d" target="_blank">0x5231a9B232abD0d8533D7046994235baEb01696d ↗</a></div>
+        </div>
+        <div class="arch-card">
+          <div class="arch-card-lbl">FxBenchmarkOracle · GenLayer Studionet</div>
+          <div class="arch-addr"><a href="https://explorer-studio.genlayer.com/transactions/0x8085b03f9fc857785a242e64c7b00051790f04847de1b22e4b163ae5318f71c1" target="_blank">0x3B8501bAcaB70dedbC6f8B8EFCB888ba66cbc73e ↗</a></div>
+        </div>
+        <div class="arch-note">If parties disagree — shipment evidence or fraud — <strong>InternetCourt</strong> can resolve on-chain. It activates only when both parties cannot agree.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     BENCHMARK DETAILS
+══════════════════════════════════════════ -->
+<section class="bench-section" id="benchmark">
+  <div class="container">
+    <div class="section-label">Benchmark</div>
+    <h2>How the rate is determined</h2>
+
+    <div class="bench-cards">
+      <div class="bench-card live">
+        <div class="bench-card-badge">Live benchmark</div>
+        <div class="bench-card-name">Market aggregate</div>
+        <div class="bench-card-desc">Market aggregate rate reproducible by validators.</div>
+      </div>
+      <div class="bench-card audit">
+        <div class="bench-card-badge">Audit reference</div>
+        <div class="bench-card-name">BCRP × BCB cross rate</div>
+        <div class="bench-card-desc">Central bank cross.</div>
+      </div>
+    </div>
+
+    <div class="validator-grid">
+      <div class="validator-card disagree"><div class="v-addr">0x57De…</div><div class="v-rate">0.493</div><div class="v-status disagree">disagree</div></div>
+      <div class="validator-card agree"><div class="v-addr">0x6528…</div><div class="v-rate">0.493</div><div class="v-status agree">✓ agree</div></div>
+      <div class="validator-card disagree"><div class="v-addr">0x6d55…</div><div class="v-rate">0.493</div><div class="v-status disagree">disagree</div></div>
+      <div class="validator-card agree"><div class="v-addr">0x757F…</div><div class="v-rate">0.493</div><div class="v-status agree">✓ agree</div></div>
+      <div class="validator-card agree"><div class="v-addr">0x8729…</div><div class="v-rate">0.493</div><div class="v-status agree">✓ agree</div></div>
+    </div>
+
+    <div class="consensus-bar">
+      <span class="consensus-label">MAJORITY_AGREE</span>
+      <span style="color:var(--muted)">·</span>
+      <span class="consensus-rate">0.493 BOB/PEN</span>
+      <span style="margin-left:auto;color:var(--muted);font-family:'DM Mono',monospace;font-size:11px;">3/5 agree · benchmark accepted</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     DEVELOPER DETAILS
+══════════════════════════════════════════ -->
+<section class="dev-section" id="developers">
+  <div class="container">
+    <div class="section-label">Developer Details</div>
+    <h2>For engineers</h2>
     <div class="dev-links">
       <a href="https://sepolia.basescan.org/tx/0x1298bbabfe992f144db5a72c3ba1444f7d13beb868f694a215a6c77c10560b5d" target="_blank" class="dev-link">Rate Lock tx ↗</a>
       <a href="https://sepolia.basescan.org/tx/0x4a626e445dc1d1e036aea72833aaeccdc6e73546db4035065131b8a86c951533" target="_blank" class="dev-link">Roll tx ↗</a>
@@ -664,7 +800,7 @@
 </section>
 
 
-<!-- ── FOOTER ── -->
+<!-- FOOTER -->
 <footer>
   <div class="container">
     <div class="footer-inner">
@@ -673,10 +809,7 @@
           <span style="background:rgba(255,255,255,0.1);border-radius:6px;padding:2px 8px;font-family:'DM Mono',monospace;font-size:11px">FX</span>
           Trade Finance × GenLayer
         </div>
-        <div class="footer-note">
-          A prototype demonstrating GenLayer as a distributed coordination layer for FX-settled cross-border invoices.
-          Deployed on Base Sepolia + GenLayer Studionet. Not production ready.
-        </div>
+        <div class="footer-note">A prototype demonstrating GenLayer as a coordination layer for FX-settled cross-border invoices. Deployed on Base Sepolia + GenLayer Studionet. Not production ready.</div>
       </div>
       <div>
         <div class="footer-links">
