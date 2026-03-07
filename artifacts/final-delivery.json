@@ -1,0 +1,35 @@
+[
+  {
+    "label": "A_TIMELY",
+    "contract": "0xA52842Ef9fF16f0154613158ebb76DB69Ea98a8B",
+    "caseId": "qc-coop-2026-0003",
+    "glTx": "0x2caa2aff47b4fca7e0ee19a8086ca99c2e4b092362ab2681b0ebba07c71c363a",
+    "courtGL": "0xf1C7B4F3dd726d536D586636CdAF18B3442924e8",
+    "verdict": 1,
+    "reason": "ANB customs exit record shows 22:41 on 2026-04-05; SUNAT gate record confirms 23:12 on 2026-04-05. Both timestamps before the 23:59 deadline. Shipment was timely.",
+    "deliveryTx": "0x5262a98c90068f37553932c6fd24f631db28c741ef298c50bb2cf39f90a4cb4e",
+    "finalStatus": 2
+  },
+  {
+    "label": "B_LATE",
+    "contract": "0x78e06F02497dBA92EcF4C27ac0B9c067Defc4538",
+    "caseId": "qc-coop-2026-0004",
+    "glTx": "0x3ce4027b3199489dad46469bd5a52c1b4647eee22cc8b3abcb68aceefa937b0d",
+    "courtGL": "0xca7ba9D9Be3bb04Cb1dCA15fef3eB9eBF94Db591",
+    "verdict": 2,
+    "reason": "ANB customs exit record shows 02:15 on 2026-04-06; SUNAT gate record confirms 02:47 on 2026-04-06. Both timestamps after the 23:59 deadline. Shipment was late.",
+    "deliveryTx": "0x3a33116c326fca9137ac6cfee6605cde28fe9a6d04256d5f2a80ca1688c6ba16",
+    "finalStatus": 2
+  },
+  {
+    "label": "C_UNDETERMINED",
+    "contract": "0xBd1dE5bb3Fc2635aeB08A27287D32C1369708b76",
+    "caseId": "qc-coop-2026-0005",
+    "glTx": "0x5aca97efdffa5ef13066fae5de30baa6ef0c3baecff9e27c6854cf7ef8a12168",
+    "courtGL": "0xc870E337C5bA15aeA88707d3E912AB4aE796768f",
+    "verdict": 3,
+    "reason": "ANB exit record shows 23:52 on 2026-04-05 (8 min before deadline) but SUNAT gate record has illegible timestamp and truck plate mismatch (8834-FMX ≠ 2291-AKL). Evidence insufficient to confirm timely crossing.",
+    "deliveryTx": "0xc3e4cddb76a5a2f8a0b3fb0403ed82cc6dedbfcc29a2b0df5b597af750eb039e",
+    "finalStatus": 2
+  }
+]

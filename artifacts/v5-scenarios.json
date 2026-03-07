@@ -1,0 +1,41 @@
+[
+  {
+    "label": "A_TIMELY",
+    "caseId": "qc-coop-2026-0003",
+    "txs": {
+      "requestRateLock": "0x8cefaad59eafa1ec7d153639bf041dd4e471bfa02bafbd11592b53314478afc8",
+      "receiveRate": "0xe3d2e67f53321f51656557d7b86f902299bfd84f700bc82b194bdecd6963a0ad",
+      "approve": "0xfb569ac11eb59293ba7ee2ef8d9a132b29365b27b3de68bb8e9de70753d719ff",
+      "fundSettlement": "0xd591ea028dbfdf6ccf487c79e21cbc658a0689f32a31b90786d7f857b15c55d6",
+      "contestShipment": "0x17148c984a0a7937166c089a1f053ad09a3b99519935e1567c26309ff6da439a"
+    },
+    "contract": "0x6A1231e490d4ce37c8a47234425e67A3Bac25514",
+    "shipmentStatus": 2
+  },
+  {
+    "label": "B_LATE",
+    "caseId": "qc-coop-2026-0004",
+    "txs": {
+      "requestRateLock": "0xc61b3459920afedf80ef4a2a3c4cc34eb0b70d872005cbc4b792cb222b57e5e0",
+      "receiveRate": "0xacbb438fcf11e04855fd7a2874772190a93cafff1f6d0b9b5a4f4114d5517204",
+      "approve": "0x5569ea99a95cee9a978f279972c63ffaa2c968cbd99b0c37658a053de5e7a0b7",
+      "fundSettlement": "0xa962e7361e1eae8e7be7b2a9adfcc976e9b082fb22c997cd70a4654d02c8d4ba",
+      "contestShipment": "0x5d1fba6718fd54d1621a00c2b37c15551923cb5a1c4d201ac692bb5c1cdaeabf"
+    },
+    "contract": "0xB627dc05e9579c50C1593CCD0DFD5BE38C5c323B",
+    "shipmentStatus": 0
+  },
+  {
+    "label": "C_UNDETERMINED",
+    "caseId": "qc-coop-2026-0005",
+    "txs": {
+      "requestRateLock": "0x74492b5cc3647473db31dcdd825f6e90850b8b3433b290d2461cf6a57585ed32",
+      "receiveRate": "0xe10310e72d1092ad59cd8f8fa959eac45506f5dc187bc41fbc23cd0b2584f671",
+      "approve": "0x326da7567a7b4a7f8cd254a2d2de4804371d456477441e847757f049aef5e009",
+      "fundSettlement": "0xdeb5b5129cbd34502db63646764ec6b7898e426dd37939de45f8ac11995f6170",
+      "contestShipment": "0xa204dc6ed5665c11c36e3d2b089d21b627e2c92a9a48317239acf9f44d8dcb6b"
+    },
+    "contract": "0x4cf051eCAcE62a44AEa4de2cCeCcb472e30577AD",
+    "shipmentStatus": 0
+  }
+]

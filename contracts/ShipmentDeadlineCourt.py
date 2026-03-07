@@ -1,30 +1,33 @@
-# { "Depends": "py-genlayer:test" }
+# v0.1.0
+# { "Depends": "py-genlayer:latest" }
 """ShipmentDeadlineCourt — Single-question shipment deadline court for GenLayer.
 
 Evaluates ONE factual statement:
     "Shipment under Contract [REF] crossed Bolivian export customs at
      Desaguadero on or before [DEADLINE]."
 
-Returns: TRUE | FALSE | UNDETERMINED
-
-Verdict mapping (enforced by TradeFxSettlement on Base Sepolia):
-    TRUE        → shipmentStatus = TIMELY   → settlement proceeds
-    FALSE       → shipmentStatus = LATE     → settlement cancelled, importer refunded
-    UNDETERMINED → shipmentStatus = UNDETERMINED → MANUAL_REVIEW
+Returns verdict to Base Sepolia via the InternetCourt bridge:
+    TIMELY      (uint8=1) → shipmentStatus = TIMELY   → settlement proceeds
+    LATE        (uint8=2) → shipmentStatus = LATE     → settlement cancelled, importer refunded
+    UNDETERMINED (uint8=0) → shipmentStatus = UNDETERMINED → MANUAL_REVIEW
 
 Evidence: exactly two composite court sheet images (IPFS CIDs).
-    court_sheet_a: contract summary snippet + exporter evidence
-    court_sheet_b: contract summary snippet + importer evidence
+    court_sheet_a: contract summary snippet + exporter evidence (ANB customs exit)
+    court_sheet_b: contract summary snippet + importer evidence (SUNAT border gate)
 
-Guideline is frozen and versioned. Do not allow ad hoc prompts per case.
+Guideline is frozen and versioned.
 Current version: shipment-deadline-v1
 
-Lifecycle:
-    CREATED → EVIDENCE_SUBMITTED → EVALUATED
+On construction:
+    1. Fetches both court sheet images from IPFS
+    2. AI jury evaluates the statement against the images
+    3. Encodes verdict and calls BridgeSender.send_message() → bridge → Base Sepolia
 """
 
 from genlayer import *
 import json
+
+genvm_eth = gl.evm
 
 # ─── Frozen guideline versions ────────────────────────────────────────────────
 
@@ -35,162 +38,204 @@ GUIDELINES = {
         "Determine whether the evidence shows that the shipment crossed Bolivian export "
         "customs at Desaguadero on or before the stated deadline. "
         "Prefer explicit timestamps tied to customs-crossing events over generic issue dates. "
-        "If the evidence clearly shows a qualifying timestamp on or before the deadline, return TRUE. "
-        "If the evidence clearly shows the earliest reliable customs-crossing timestamp is after "
-        "the deadline, return FALSE. "
-        "If the images are unreadable, references do not match, or the evidence conflicts "
-        "without a clearly more reliable timestamp, return UNDETERMINED."
+        "If the evidence clearly shows a qualifying timestamp on or before the deadline on BOTH documents, return TIMELY. "
+        "If the evidence clearly shows timestamps after the deadline on both documents, return LATE. "
+        "If the images are unreadable, references do not match, the truck plate does not match "
+        "between documents, or the evidence conflicts without a clearly more reliable timestamp, "
+        "return UNDETERMINED. "
+        "The importer bears the burden of proof: if the importer's evidence is missing or "
+        "cannot be verified, and the exporter's customs exit record is clear and timely, "
+        "return UNDETERMINED rather than TIMELY."
     )
 }
 
+IPFS_GATEWAY = "https://ipfs.io/ipfs/"
+
+# Verdict uint8 codes — must match TradeFxSettlement.sol resolveShipmentVerdict()
+# 1=TIMELY, 2=LATE, 3=UNDETERMINED
+VERDICT_TIMELY       = 1
+VERDICT_LATE         = 2
+VERDICT_UNDETERMINED = 3
+
 
 class ShipmentDeadlineCourt(gl.Contract):
-    """Single-question shipment deadline court. Accepts exactly two court sheet images."""
+    """Single-question shipment deadline court.
+    Evaluates on construction; sends result via bridge to Base Sepolia."""
 
-    # --- Identity ---
-    case_id: str
-    trade_contract: str          # Base Sepolia trade contract address (cross-chain ref)
-    manifest_cid: str            # IPFS CID of the full evidence manifest
-
-    # --- Parties ---
-    exporter: Address
-    importer: Address
-
-    # --- Case definition ---
-    statement: str               # Exact factual statement to evaluate
-    guideline_version: str       # Must be a key in GUIDELINES
-
-    # --- Evidence (two court sheet CIDs) ---
-    court_sheet_a_cid: str       # contract snippet + exporter evidence
-    court_sheet_b_cid: str       # contract snippet + importer evidence
-
-    # --- Status ---
-    status: str                  # created | evaluated
-
-    # --- Result ---
-    verdict: str                 # TRUE | FALSE | UNDETERMINED | ""
-    verdict_reason_summary: str
-    verdict_timestamp: int       # Unix timestamp of evaluation
+    case_id:               str
+    settlement_contract:   str   # TradeFxSettlement address on Base Sepolia
+    guideline_version:     str
+    court_sheet_a_cid:     str
+    court_sheet_b_cid:     str
+    bridge_sender:         str   # BridgeSender.py address on GenLayer
+    target_chain_eid:      u256  # LayerZero EID for Base Sepolia (40245)
+    verdict:               str
+    verdict_reason:        str
 
     def __init__(
         self,
-        importer: Address,
         case_id: str,
-        trade_contract: str,
-        manifest_cid: str,
+        settlement_contract: str,
         statement: str,
         guideline_version: str,
         court_sheet_a_cid: str,
         court_sheet_b_cid: str,
+        bridge_sender: str,
+        target_chain_eid: int,
     ):
-        self.exporter = gl.message.sender_address
-
-        if isinstance(importer, str):
-            importer = Address(importer)
-        self.importer = importer
-
         if guideline_version not in GUIDELINES:
-            raise Exception(f"ShipmentCourt: unknown guideline version '{guideline_version}'")
+            raise Exception(f"ShipmentCourt: unknown guideline '{guideline_version}'")
 
-        self.case_id           = case_id
-        self.trade_contract    = trade_contract
-        self.manifest_cid      = manifest_cid
-        self.statement         = statement
-        self.guideline_version = guideline_version
-        self.court_sheet_a_cid = court_sheet_a_cid
-        self.court_sheet_b_cid = court_sheet_b_cid
+        self.case_id             = case_id
+        self.settlement_contract = settlement_contract
+        self.guideline_version   = guideline_version
+        self.court_sheet_a_cid   = court_sheet_a_cid
+        self.court_sheet_b_cid   = court_sheet_b_cid
+        self.bridge_sender       = bridge_sender
+        self.target_chain_eid    = u256(target_chain_eid)
 
-        self.status                = "created"
-        self.verdict               = ""
-        self.verdict_reason_summary = ""
-        self.verdict_timestamp     = 0
+        guideline = GUIDELINES[guideline_version]
 
-    # ─── Evaluation ──────────────────────────────────────────────────────────
+        # Copy to locals for non-det block
+        cid_a = court_sheet_a_cid.lstrip("ipfs://")
+        cid_b = court_sheet_b_cid.lstrip("ipfs://")
+        url_a = IPFS_GATEWAY + cid_a
+        url_b = IPFS_GATEWAY + cid_b
+        stmt  = statement
 
-    @gl.public.write
-    def evaluate(self) -> None:
-        """Trigger AI evaluation. Callable by either party.
-        Fetches the two court sheet images and evaluates the statement.
-        Uses the frozen guideline for this case's guideline_version.
-        """
-        if self.status == "evaluated":
-            raise Exception("ShipmentCourt: already evaluated")
-        if gl.message.sender_address not in (self.exporter, self.importer):
-            raise Exception("ShipmentCourt: not a party")
+        def nondet():
+            # Fetch court sheet images from IPFS
+            images = []
+            fetch_notes = []
 
-        guideline = GUIDELINES[self.guideline_version]
+            resp_a = gl.nondet.web.get(url_a)
+            if resp_a and resp_a.status == 200 and resp_a.body:
+                images.append(resp_a.body)
+                fetch_notes.append("Court sheet A (exporter/ANB): fetched OK")
+            else:
+                fetch_notes.append("Court sheet A (exporter/ANB): NOT RETRIEVABLE")
 
-        # Fetch court sheets from IPFS gateway
-        gateway = "https://ipfs.io/ipfs/"
-        sheet_a_url = gateway + self.court_sheet_a_cid.lstrip("ipfs://")
-        sheet_b_url = gateway + self.court_sheet_b_cid.lstrip("ipfs://")
+            resp_b = gl.nondet.web.get(url_b)
+            if resp_b and resp_b.status == 200 and resp_b.body:
+                images.append(resp_b.body)
+                fetch_notes.append("Court sheet B (importer/SUNAT): fetched OK")
+            else:
+                fetch_notes.append("Court sheet B (importer/SUNAT): NOT RETRIEVABLE")
 
-        sheet_a = gl.get_webpage(sheet_a_url, mode="image")
-        sheet_b = gl.get_webpage(sheet_b_url, mode="image")
+            fetch_summary = "\n".join(fetch_notes)
 
-        if not sheet_a:
-            sheet_a = "[Court sheet A not retrievable]"
-        if not sheet_b:
-            sheet_b = "[Court sheet B not retrievable]"
-
-        prompt = f"""You are an AI juror evaluating a single disputed shipment fact.
+            prompt = f"""You are an AI juror in the InternetCourt dispute resolution system.
+You are evaluating a single disputed shipment timing fact.
 
 STATEMENT TO EVALUATE:
-{self.statement}
+{stmt}
 
 GUIDELINE:
 {guideline}
 
-COURT SHEET A (contract summary + exporter evidence):
-{sheet_a}
+DOCUMENT FETCH STATUS:
+{fetch_summary}
 
-COURT SHEET B (contract summary + importer evidence):
-{sheet_b}
+You have been provided the court sheet images showing:
+- Court Sheet A: contract summary + exporter evidence (ANB customs exit record from Bolivia)
+- Court Sheet B: contract summary + importer evidence (SUNAT border gate event record from Peru)
 
-You must return exactly one of: TRUE, FALSE, or UNDETERMINED.
-- TRUE: the statement is supported by the evidence
-- FALSE: the evidence clearly contradicts the statement
-- UNDETERMINED: evidence is conflicting, unreadable, or insufficient
+Examine the images carefully. Look for:
+1. The stated deadline in the contract summary panel
+2. The timestamp on the ANB customs exit record (exporter document)
+3. The timestamp on the SUNAT border gate record (importer document)
+4. Whether the truck plate and container references match between documents
 
-Output ONLY valid JSON:
+Based ONLY on the evidence in the images, return exactly one of:
+- TIMELY: both documents show the crossing occurred before the deadline
+- LATE: both documents show the crossing occurred after the deadline
+- UNDETERMINED: timestamps conflict, are unreadable, references don't match, or evidence is insufficient
+
+Output ONLY valid JSON, no other text:
 {{
-  "verdict": "TRUE" | "FALSE" | "UNDETERMINED",
-  "reason": "One sentence explaining the verdict based on the documents."
-}}
-"""
+  "verdict": "TIMELY" | "LATE" | "UNDETERMINED",
+  "reason": "One concise sentence explaining the verdict referencing the specific timestamps or issues found."
+}}"""
 
-        result_json = gl.eq_principle_strict_eq(
-            lambda: gl.exec_prompt(prompt)
+            if images:
+                result = gl.nondet.exec_prompt(prompt, images=images)
+            else:
+                result = gl.nondet.exec_prompt(prompt)
+
+            if isinstance(result, str):
+                return result.strip()
+            return str(result).strip()
+
+        result_str = gl.eq_principle.prompt_non_comparative(
+            nondet,
+            task="Evaluate a shipment customs crossing dispute using court sheet document images",
+            criteria=(
+                "The verdict must be exactly one of TIMELY, LATE, or UNDETERMINED. "
+                "The reason must reference specific timestamps or document issues found in the images. "
+                "TIMELY requires both documents to show crossing before the deadline. "
+                "LATE requires both documents to show crossing after the deadline. "
+                "UNDETERMINED covers all ambiguous cases."
+            ),
         )
 
+        # Parse result
         try:
-            parsed = json.loads(result_json)
-            v = parsed.get("verdict", "UNDETERMINED").strip().upper()
-            if v not in ("TRUE", "FALSE", "UNDETERMINED"):
-                v = "UNDETERMINED"
-            self.verdict               = v
-            self.verdict_reason_summary = parsed.get("reason", "")
-        except Exception:
-            self.verdict               = "UNDETERMINED"
-            self.verdict_reason_summary = "Failed to parse AI evaluation response."
+            if isinstance(result_str, str):
+                clean = result_str.replace("```json", "").replace("```", "").strip()
+                parsed = json.loads(clean)
+            elif isinstance(result_str, dict):
+                parsed = result_str
+            else:
+                parsed = json.loads(str(result_str))
 
-        self.verdict_timestamp = int(gl.message.timestamp)
-        self.status = "evaluated"
+            v = parsed.get("verdict", "UNDETERMINED").strip().upper()
+            r = parsed.get("reason", "").strip()
+        except Exception as e:
+            v = "UNDETERMINED"
+            r = f"Failed to parse evaluation response: {str(e)}"
+
+        if v not in ("TIMELY", "LATE", "UNDETERMINED"):
+            v = "UNDETERMINED"
+            r = f"Unexpected verdict value, defaulting to UNDETERMINED. Original: {r}"
+
+        self.verdict       = v
+        self.verdict_reason = r
+
+        # Map verdict to uint8 — matches TradeFxSettlement.sol: 1=TIMELY, 2=LATE, 3=UNDETERMINED
+        verdict_uint8 = {"TIMELY": 1, "LATE": 2, "UNDETERMINED": 3}.get(v, 3)
+
+        # ABI-encode the resolution payload:
+        # Inner: (address settlementContract, uint8 verdict, string reason)
+        resolution_encoder = genvm_eth.MethodEncoder("", [Address, u8, str], bool)
+        resolution_data = resolution_encoder.encode_call(
+            [Address(settlement_contract), verdict_uint8, r]
+        )[4:]  # strip selector
+
+        # Outer: (address agreementAddress, bytes resolutionData)
+        wrapper_encoder = genvm_eth.MethodEncoder("", [Address, bytes], bool)
+        message_bytes = wrapper_encoder.encode_call(
+            [Address(settlement_contract), resolution_data]
+        )[4:]  # strip selector
+
+        # Send via bridge → zkSync Sepolia → LayerZero → Base Sepolia
+        bridge = gl.get_contract_at(Address(bridge_sender))
+        bridge.emit().send_message(
+            int(self.target_chain_eid),
+            settlement_contract,
+            message_bytes
+        )
 
     # ─── Views ───────────────────────────────────────────────────────────────
 
     @gl.public.view
     def get_verdict(self) -> dict:
         return {
-            "case_id":               self.case_id,
-            "status":                self.status,
-            "verdict":               self.verdict,
-            "verdict_reason_summary": self.verdict_reason_summary,
-            "verdict_timestamp":     self.verdict_timestamp,
-            "statement":             self.statement,
-            "guideline_version":     self.guideline_version,
+            "case_id":       self.case_id,
+            "verdict":       self.verdict,
+            "verdict_reason": self.verdict_reason,
+            "guideline":     self.guideline_version,
         }
 
     @gl.public.view
     def get_status(self) -> str:
-        return self.status
+        return self.verdict

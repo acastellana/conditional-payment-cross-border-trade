@@ -1,0 +1,17 @@
+{
+  "A_TIMELY": {
+    "txHash": "0x2caa2aff47b4fca7e0ee19a8086ca99c2e4b092362ab2681b0ebba07c71c363a",
+    "courtAddr": "0xf1C7B4F3dd726d536D586636CdAF18B3442924e8",
+    "verdict": "TIMELY"
+  },
+  "B_LATE": {
+    "txHash": "0x3ce4027b3199489dad46469bd5a52c1b4647eee22cc8b3abcb68aceefa937b0d",
+    "courtAddr": "0xca7ba9D9Be3bb04Cb1dCA15fef3eB9eBF94Db591",
+    "verdict": "LATE"
+  },
+  "C_UNDETERMINED": {
+    "txHash": "0x5aca97efdffa5ef13066fae5de30baa6ef0c3baecff9e27c6854cf7ef8a12168",
+    "courtAddr": "0xc870E337C5bA15aeA88707d3E912AB4aE796768f",
+    "verdict": "UNDETERMINED"
+  }
+}

@@ -87,6 +87,11 @@ contract TradeFxSettlement {
     ///         accepts calls from this address. The relayer remains a fallback for testnet.
     address public courtContract;
 
+    /// @notice InternetCourt BridgeReceiver address on Base Sepolia.
+    ///         Authorised to call processBridgeMessage() with LayerZero-delivered verdicts.
+    ///         Set once at construction; immutable after that.
+    address public bridgeReceiver;
+
     /// @notice Designated human arbitrator for UNDETERMINED verdicts.
     ///         Defaults to admin. Can be updated via setArbitrator().
     address public arbitrator;
@@ -250,7 +255,8 @@ contract TradeFxSettlement {
         bytes32 _sourceCurrency,
         bytes32 _settlementCurrency,
         uint256 _dueDate,
-        string memory _invoiceRef
+        string memory _invoiceRef,
+        address _bridgeReceiver
     ) {
         require(_exporter != address(0),        "TFX: zero exporter");
         require(_importer != address(0),        "TFX: zero importer");
@@ -278,6 +284,8 @@ contract TradeFxSettlement {
         // Contest window is anchored to shipment check (funding time) + 7 days.
         // Set to max-uint initially; updated to block.timestamp + 7 days when importer funds.
         contestDeadline    = type(uint256).max;
+
+        bridgeReceiver     = _bridgeReceiver; // may be address(0) for relayer-only mode
 
         emit TradeCreated(_exporter, _importer, _invoiceAmount, _dueDate, _invoiceRef);
     }
@@ -522,12 +530,45 @@ contract TradeFxSettlement {
      * @param caseId        Court case identifier
      * @param reasonSummary One-sentence reasoning summary
      */
+    /**
+     * @notice Callback for LayerZero-delivered verdicts from GenLayer InternetCourt bridge.
+     *         Decodes the nested message and dispatches to resolveShipmentVerdict().
+     */
+    function processBridgeMessage(
+        uint32 /* _srcChainId */,
+        address /* _srcSender */,
+        bytes calldata _message
+    ) external {
+        require(msg.sender == bridgeReceiver, "TFX: only bridge");
+
+        // Decode outer wrapper (matches CaseResolution.py/ShipmentDeadlineCourt.py)
+        (address agreementAddress, bytes memory resolutionData) = abi.decode(_message, (address, bytes));
+        require(agreementAddress == address(this), "TFX: wrong agreement");
+
+        // Decode inner payload: (address target, uint8 verdict, string reasoning)
+        (address target, uint8 verdict, string memory reasoning) = abi.decode(resolutionData, (address, uint8, string));
+        require(target == address(this), "TFX: wrong target");
+
+        // Execute resolution logic
+        _resolveShipmentVerdict(verdict, "LZ-GENLAYER", reasoning);
+    }
+
     function resolveShipmentVerdict(
         uint8 verdict,
         string calldata caseId,
         string calldata reasonSummary
     )
         external onlyVerdictSource
+    {
+        _resolveShipmentVerdict(verdict, caseId, reasonSummary);
+    }
+
+    function _resolveShipmentVerdict(
+        uint8 verdict,
+        string memory caseId,
+        string memory reasonSummary
+    )
+        internal
     {
         require(
             shipmentStatus == ShipmentStatus.CONTESTED,

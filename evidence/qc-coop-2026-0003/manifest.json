@@ -1,48 +1,24 @@
 {
   "case_id": "qc-coop-2026-0003",
-  "statement": "Shipment under Contract QC-COOP-2026-0003 crossed Bolivian export customs at Desaguadero on or before 2026-04-05 23:59 America/La_Paz.",
+  "statement": "Shipment under Contract ISPA-2025-BOL-PER-0047 crossed Bolivian export customs at Desaguadero on or before 2026-04-05T23:59:59-04:00.",
   "guideline_version": "shipment-deadline-v1",
   "contract": {
-    "shipment_reference": "QC-COOP-2026-0003",
+    "shipment_reference": "ISPA-2025-BOL-PER-0047",
     "deadline_iso": "2026-04-05T23:59:59-04:00",
     "location": "Desaguadero",
     "operative_event": "crossed Bolivian export customs"
   },
-  "audit_originals": {
-    "contract_summary": {
-      "cid": "ipfs://QmCONTRACT_SUMMARY_PLACEHOLDER",
-      "sha256": "d07f5708a1660a735a831258786e61a8932add1015e23e669cd6f289e74acd0e"
-    },
-    "exporter_record": {
-      "cid": "ipfs://QmEXPORTER_RECORD_PLACEHOLDER",
-      "sha256": "0d38e62f2ef511a01f3dabac4349ce27dd3b3f7a1f09ab2b02ea045ea146882d"
-    },
-    "importer_record": {
-      "cid": "ipfs://QmIMPORTER_RECORD_PLACEHOLDER",
-      "sha256": "0d38e62f2ef511a01f3dabac4349ce27dd3b3f7a1f09ab2b02ea045ea146882d"
-    }
-  },
   "court_inputs": {
     "court_sheet_a": {
-      "cid": "ipfs://QmZXhAcnKXTF1a1qptL1h6vdNFmt539AyPkZVtZLsr79uj",
-      "sha256": "a6cfedfc365466a16c5e5ab026cb9c0f69b84bb911bd4029ccbf921ca0553e4d"
+      "cid": "ipfs://Qmep7FBDs6EHfbhCL6JVXn9T9gbbghhW21c8sisXvFaoUm",
+      "sha256": "afc76377c481c971b513b93cf700b9f658fb5bab843000c9347fa8538e322674"
     },
     "court_sheet_b": {
-      "cid": "ipfs://QmQVwEC7N3j1tNBjPqRrkGgiEHBcD9hU9aojooQ6yG1zqW",
-      "sha256": "c718c4310c94101db305a31d5336f4000001ef51a2c270d50b60702db159f954"
+      "cid": "ipfs://Qmf5Tb2v6zEpKAZrppHofs9VuNUk3BG5eEMYQq6GGU7AVx",
+      "sha256": "b9fa710ae9c389162b387b3be4484e3b0b655b865381a50a52317d875aa2f77c"
     }
   },
-  "extracted_fields": {
-    "exporter_claimed_timestamp": "2026-04-05T22:41:00-04:00",
-    "importer_claimed_timestamp": "2026-04-06T00:18:00-04:00",
-    "exporter_doc_type": "customs exit receipt",
-    "importer_doc_type": "border gate event record",
-    "exporter_location": "Desaguadero",
-    "importer_location": "Desaguadero",
-    "exporter_reference": "QC-COOP-2026-0003",
-    "importer_reference": "QC-COOP-2026-0003"
-  },
-  "expected_verdict": "TRUE",
+  "expected_verdict": "TIMELY",
   "expected_consequence": "settlement_proceeds",
-  "prepared_at": "2026-03-07T12:22:08.911173Z"
+  "prepared_at": "2026-03-07T18:46:10.236720+00:00"
 }

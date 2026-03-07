@@ -1,48 +1,24 @@
 {
   "case_id": "qc-coop-2026-0005",
-  "statement": "Shipment under Contract QC-COOP-2026-0005 crossed Bolivian export customs at Desaguadero on or before 2026-04-05 23:59 America/La_Paz.",
+  "statement": "Shipment under Contract ISPA-2025-BOL-PER-0047 crossed Bolivian export customs at Desaguadero on or before 2026-04-05T23:59:59-04:00.",
   "guideline_version": "shipment-deadline-v1",
   "contract": {
-    "shipment_reference": "QC-COOP-2026-0005",
+    "shipment_reference": "ISPA-2025-BOL-PER-0047",
     "deadline_iso": "2026-04-05T23:59:59-04:00",
     "location": "Desaguadero",
     "operative_event": "crossed Bolivian export customs"
   },
-  "audit_originals": {
-    "contract_summary": {
-      "cid": "ipfs://QmCONTRACT_SUMMARY_PLACEHOLDER",
-      "sha256": "d07f5708a1660a735a831258786e61a8932add1015e23e669cd6f289e74acd0e"
-    },
-    "exporter_record": {
-      "cid": "ipfs://QmEXPORTER_RECORD_C_PLACEHOLDER",
-      "sha256": "0d38e62f2ef511a01f3dabac4349ce27dd3b3f7a1f09ab2b02ea045ea146882d"
-    },
-    "importer_record": {
-      "cid": "ipfs://QmIMPORTER_RECORD_C_PLACEHOLDER",
-      "sha256": "0d38e62f2ef511a01f3dabac4349ce27dd3b3f7a1f09ab2b02ea045ea146882d"
-    }
-  },
   "court_inputs": {
     "court_sheet_a": {
-      "cid": "ipfs://QmPFLuuPaJ2XDLnTfBv54K3FHU2uPCRCV7eYTDW22gUx8B",
-      "sha256": "e95269e231884b3de569329241c2182b1a1e267488da27ad726786610a060ec3"
+      "cid": "ipfs://Qmdvs61Q2RqhFwaTqzhY5cezkPnsYqtv9hdavQ86dzk23b",
+      "sha256": "274d8fc4229b46e96fe18b267dce1dd8390536eb7c9ebfee4c200196863d8b02"
     },
     "court_sheet_b": {
-      "cid": "ipfs://Qmf2h7M5om5d2xeNAxigW2mHd5n2QxTMeb9mc5zTFuPcdb",
-      "sha256": "8d955ca21e1aa49090f139e4ebd5151506a112dade1bd07839901dc07dcc8f3f"
+      "cid": "ipfs://QmeytYgfc9NzdxJqF4S8Vbe4gM4DYyoJj6bAJZVve6UfP4",
+      "sha256": "f80dc15c02d96a38dfe2545631885089bfafd70b08ac89f7e66bb06c3d7b3dfe"
     }
-  },
-  "extracted_fields": {
-    "exporter_claimed_timestamp": null,
-    "importer_claimed_timestamp": null,
-    "exporter_doc_type": "lab analysis report",
-    "importer_doc_type": "arrival inspection report (date illegible)",
-    "exporter_location": "unknown",
-    "importer_location": "unknown",
-    "exporter_reference": "QC-COOP-2026-0005",
-    "importer_reference": "QC-COOP-2026-0005"
   },
   "expected_verdict": "UNDETERMINED",
   "expected_consequence": "manual_review",
-  "prepared_at": "2026-03-07T12:22:13.557897Z"
+  "prepared_at": "2026-03-07T18:46:14.843181+00:00"
 }

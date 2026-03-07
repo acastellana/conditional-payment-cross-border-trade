@@ -1,0 +1,47 @@
+{
+  "bridge_receiver_base": "0xc3e6aE892A704c875bF74Df46eD873308db15d82",
+  "bridge_sender_gl": "0xC94bE65Baf99590B1523db557D157fabaD2DA729",
+  "bridge_forwarder_zksync": "0x95c4E5b042d75528f7df355742e48B298028b3f2",
+  "oracle_gl": "0x3B8501bAcaB70dedbC6f8B8EFCB888ba66cbc73e",
+  "scenarios": {
+    "A": {
+      "label": "Scenario A \u2014 TIMELY",
+      "contract_base": "0xA52842Ef9fF16f0154613158ebb76DB69Ea98a8B",
+      "court_gl": "0xf1C7B4F3dd726d536D586636CdAF18B3442924e8",
+      "gl_tx": "0x2caa2aff47b4fca7e0ee19a8086ca99c2e4b092362ab2681b0ebba07c71c363a",
+      "contest_tx": "0x33e9c47672e3f652c194615efb05bdacb8faddee554bb24b052d7484389593f4",
+      "verdict_tx": "0x5262a98c90068f37553932c6fd24f631db28c741ef298c50bb2cf39f90a4cb4e",
+      "verdict": "TIMELY",
+      "case_id": "qc-coop-2026-0003",
+      "manifest_cid": "QmSwKZ4hT4ZvzBbrA2KWMbqccuUTBpxd4vFehwPkrN8eVV",
+      "sheet_a_cid": "Qmep7FBDs6EHfbhCL6JVXn9T9gbbghhW21c8sisXvFaoUm",
+      "sheet_b_cid": "Qmf5Tb2v6zEpKAZrppHofs9VuNUk3BG5eEMYQq6GGU7AVx"
+    },
+    "B": {
+      "label": "Scenario B \u2014 LATE",
+      "contract_base": "0x78e06F02497dBA92EcF4C27ac0B9c067Defc4538",
+      "court_gl": "0xca7ba9D9Be3bb04Cb1dCA15fef3eB9eBF94Db591",
+      "gl_tx": "0x3ce4027b3199489dad46469bd5a52c1b4647eee22cc8b3abcb68aceefa937b0d",
+      "contest_tx": "0xa643b7e683b06556b4216472888685a84a4143fe54bf67d16b0a7251a714ca38",
+      "verdict_tx": "0x3a33116c326fca9137ac6cfee6605cde28fe9a6d04256d5f2a80ca1688c6ba16",
+      "verdict": "LATE",
+      "case_id": "qc-coop-2026-0004",
+      "manifest_cid": "QmfE3v3PMVzE8UyYya2195fZY78k5siMW8iPBQXuydfrt4",
+      "sheet_a_cid": "QmfZPxv2EtgTmEv5cKMiwLQUzWx6nRfyzHDdJmsMaAgXC9",
+      "sheet_b_cid": "QmcRqcrgvss7joxQwZqqXF2FbE2yxTG2sPqunAR77bZuq7"
+    },
+    "C": {
+      "label": "Scenario C \u2014 UNDETERMINED",
+      "contract_base": "0xBd1dE5bb3Fc2635aeB08A27287D32C1369708b76",
+      "court_gl": "0xc870E337C5bA15aeA88707d3E912AB4aE796768f",
+      "gl_tx": "0x5aca97efdffa5ef13066fae5de30baa6ef0c3baecff9e27c6854cf7ef8a12168",
+      "contest_tx": "0xb8ef83ed49a07bf800dbb13074cfb9186347a9dce7a0f03b84b160c5365045f7",
+      "verdict_tx": "0xc3e4cddb76a5a2f8a0b3fb0403ed82cc6dedbfcc29a2b0df5b597af750eb039e",
+      "verdict": "UNDETERMINED",
+      "case_id": "qc-coop-2026-0005",
+      "manifest_cid": "QmfF948KcsGo6NvPev97LFZjGPDxADhAftcBz3YVy9U8Nu",
+      "sheet_a_cid": "Qmdvs61Q2RqhFwaTqzhY5cezkPnsYqtv9hdavQ86dzk23b",
+      "sheet_b_cid": "QmeytYgfc9NzdxJqF4S8Vbe4gM4DYyoJj6bAJZVve6UfP4"
+    }
+  }
+}
