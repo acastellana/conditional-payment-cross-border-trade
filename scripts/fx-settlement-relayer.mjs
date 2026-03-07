@@ -599,6 +599,60 @@ async function cmdStatus(tradeAddress) {
   console.log("└─────────────────────────────────────────────┘\n");
 }
 
+// ─── Shipment verdict delivery ────────────────────────────────────────────────
+
+/**
+ * Deliver a shipment dispute verdict to TradeFxSettlement on Base Sepolia.
+ *
+ * @param {string} tradeAddress  - Base Sepolia trade contract address
+ * @param {number} verdictCode   - 1=TIMELY, 2=LATE, 3=MANUAL_REVIEW
+ *
+ * Requires RELAYER_KEY env var (Base Sepolia relayer wallet).
+ *
+ * TradeFxSettlement must implement:
+ *   function resolveShipmentVerdict(uint8 verdictCode) external onlyRelayer
+ */
+export async function deliverShipmentVerdict(tradeAddress, verdictCode) {
+  if (![1, 2, 3].includes(verdictCode)) {
+    throw new Error(`Invalid verdictCode: ${verdictCode}. Must be 1 (TIMELY), 2 (LATE), or 3 (MANUAL_REVIEW).`);
+  }
+
+  const VERDICT_LABELS = { 1: "TIMELY", 2: "LATE", 3: "MANUAL_REVIEW" };
+  log("verdict", `Delivering verdict ${verdictCode} (${VERDICT_LABELS[verdictCode]}) to ${tradeAddress}`);
+
+  const iface = new ethers.Interface([
+    "function resolveShipmentVerdict(uint8 verdictCode) external",
+  ]);
+  const data = iface.encodeFunctionData("resolveShipmentVerdict", [verdictCode]);
+
+  const relayerKey = process.env.RELAYER_KEY;
+  if (!relayerKey) throw new Error("RELAYER_KEY env var not set");
+
+  const provider = new ethers.JsonRpcProvider(
+    process.env.BASE_SEPOLIA_RPC || "https://sepolia.base.org"
+  );
+  const wallet = new ethers.Wallet(relayerKey, provider);
+
+  const tx = await wallet.sendTransaction({ to: tradeAddress, data });
+  log("verdict", `Tx sent: ${tx.hash}`);
+  const receipt = await tx.wait();
+  log("verdict", `Confirmed in block ${receipt.blockNumber}`);
+
+  console.log(JSON.stringify({
+    verdict_code: verdictCode,
+    verdict_label: VERDICT_LABELS[verdictCode],
+    trade_address: tradeAddress,
+    tx_hash: tx.hash,
+    block: receipt.blockNumber,
+  }, null, 2));
+
+  return { txHash: tx.hash, block: receipt.blockNumber };
+}
+
+async function cmdDeliverVerdict(tradeAddress, verdictCode) {
+  await deliverShipmentVerdict(tradeAddress, verdictCode);
+}
+
 // ─── Entrypoint ───────────────────────────────────────────────────────────────
 
 const [,, command, arg1, arg2] = process.argv;
@@ -636,15 +690,24 @@ function requireConfig(...keys) {
         await cmdStatus(tradeArg);
         break;
 
+      case "verdict":
+        // Deliver a shipment verdict to the trade contract.
+        // verdictCode: 1=TIMELY (proceed), 2=LATE (cancel+refund), 3=MANUAL_REVIEW (pause)
+        requireConfig("RELAYER_KEY");
+        if (!tradeArg || !arg2) throw new Error("Usage: verdict <tradeAddress> <code:1|2|3>");
+        await cmdDeliverVerdict(tradeArg, Number(arg2));
+        break;
+
       default:
         console.log(`
 fx-settlement-relayer.mjs — TradeFxSettlement ↔ FxBenchmarkOracle bridge
 
 Commands:
-  watch  <tradeAddress>                   Poll for events and auto-deliver rates
-  lock   <tradeAddress>                   Manually trigger a rate lock
-  roll   <tradeAddress> <YYYY-MM-DD>      Manually trigger a hedge roll
-  status <tradeAddress>                   Show current trade state
+  watch   <tradeAddress>                  Poll for events and auto-deliver rates
+  lock    <tradeAddress>                  Manually trigger a rate lock
+  roll    <tradeAddress> <YYYY-MM-DD>     Manually trigger a hedge roll
+  status  <tradeAddress>                  Show current trade state
+  verdict <tradeAddress> <code>           Deliver shipment verdict (1=TIMELY, 2=LATE, 3=MANUAL_REVIEW)
 
 Required env vars:
   GL_PRIVATE_KEY       GenLayer relayer key
@@ -656,6 +719,11 @@ Optional:
   BASE_SEPOLIA_RPC     Default: https://sepolia.base.org
   POLL_INTERVAL_MS     Default: 30000
   FROM_BLOCK           Default: 0
+
+Shipment verdict codes:
+  1 = TIMELY       → settlement proceeds
+  2 = LATE         → settlement cancelled, importer refunded
+  3 = MANUAL_REVIEW → settlement paused, human arbitration required
 `);
     }
   } catch (e) {
