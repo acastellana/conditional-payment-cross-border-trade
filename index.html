@@ -151,9 +151,9 @@
     .verdict-pill.red .vd    { background: var(--red); }
     .verdict-pill.amber .vd  { background: var(--amber); }
 
-    .sc-links { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 12px; font-family: 'DM Mono', monospace; font-size: 12px; }
-    .sc-links a { color: var(--blue); text-decoration: none; }
-    .sc-links a:hover { text-decoration: underline; }
+    .sc-docket { margin-top: 10px; font-family: 'DM Mono', monospace; font-size: 13px; }
+    .sc-docket a { color: var(--blue); text-decoration: none; }
+    .sc-docket a:hover { text-decoration: underline; }
     .sc-schedule-note { font-size: 13px; color: var(--muted); margin-top: 16px; line-height: 1.55; }
     .sc-schedule-note a { color: var(--blue); text-decoration: none; }
     .sc-schedule-note a:hover { text-decoration: underline; }
@@ -344,13 +344,8 @@
           </div>
 
           <div id="sc-ontime" class="sc-panel show">
-            <div class="sc-accepted">Shipment classified on time. 100% of escrow released to exporter.</div>
-            <div class="sc-links">
-              <a href="https://internetcourt.org/cases/0xb4700D67d6cBeF18011021A2A20389ea88753234" target="_blank">Internet Court Docket ↗</a>
-              <a href="https://sepolia.basescan.org/address/0xb4700D67d6cBeF18011021A2A20389ea88753234" target="_blank">Contract ↗</a>
-              <a href="https://sepolia.basescan.org/tx/0x7c02ae194c6a29a1b63fddcad70ebbad5d962faaa32dfa2725df7df14f93ac52" target="_blank">Contest tx ↗</a>
-              <a href="https://sepolia.basescan.org/tx/0x95f8f27ed0af49a35300568796e0cfc28943a6a483018689dc0ec67fa0b7cc88" target="_blank">Verdict tx ↗</a>
-            </div>
+            <div class="sc-accepted">Shipment classified on time.</div>
+            <div class="sc-docket"><a href="https://internetcourt.org/cases/0xb4700D67d6cBeF18011021A2A20389ea88753234" target="_blank">Internet Court Docket ↗</a></div>
           </div>
 
           <div id="sc-late14" class="sc-panel">
@@ -358,12 +353,7 @@
               <div class="desc">Shipment contested. GenLayer classified the shipment as 1–4 days late.</div>
               <div class="verdict-pill" style="background:var(--amber-light);color:var(--amber);"><span class="vd" style="background:var(--amber);"></span> LATE_1_4</div>
             </div>
-            <div class="sc-links">
-              <a href="https://internetcourt.org/cases/0xbd0dB046A913817522B595CFEb922D5E2aad4268" target="_blank">Internet Court Docket ↗</a>
-              <a href="https://sepolia.basescan.org/address/0xbd0dB046A913817522B595CFEb922D5E2aad4268" target="_blank">Contract ↗</a>
-              <a href="https://sepolia.basescan.org/tx/0x57cb5fa07a798e8faf0c73ce183c02c4ff97a4a0ba329c3a194c475a66c6b879" target="_blank">Contest tx ↗</a>
-              <a href="https://sepolia.basescan.org/tx/0x6dbf8870c8dfb02a6f4c5664913f138dfe93a4286c43c348c764caa2738b94c3" target="_blank">Verdict tx ↗</a>
-            </div>
+            <div class="sc-docket"><a href="https://internetcourt.org/cases/0xbd0dB046A913817522B595CFEb922D5E2aad4268" target="_blank">Internet Court Docket ↗</a></div>
           </div>
 
           <div id="sc-undetermined" class="sc-panel">
@@ -371,15 +361,10 @@
               <div class="desc">Shipment contested. GenLayer could not determine the crossing date from the evidence.</div>
               <div class="verdict-pill amber"><span class="vd"></span> UNDETERMINED</div>
             </div>
-            <div class="sc-links">
-              <a href="https://internetcourt.org/cases/0xe50A8F382B3B751dBd7053963EbaBB59916f3788" target="_blank">Internet Court Docket ↗</a>
-              <a href="https://sepolia.basescan.org/address/0xe50A8F382B3B751dBd7053963EbaBB59916f3788" target="_blank">Contract ↗</a>
-              <a href="https://sepolia.basescan.org/tx/0xc9d93c813a336e24e7e484503ec1e02c64038ecb4dc6f1d953e476d0702ba68e" target="_blank">Contest tx ↗</a>
-              <a href="https://sepolia.basescan.org/tx/0x5b70ac102e29e15e22337fea6506cccfaf22c7fc85b853e094fedaecba3e5053" target="_blank">Verdict tx ↗</a>
-            </div>
+            <div class="sc-docket"><a href="https://internetcourt.org/cases/0xe50A8F382B3B751dBd7053963EbaBB59916f3788" target="_blank">Internet Court Docket ↗</a></div>
           </div>
 
-          <div class="sc-schedule-note">Each outcome above is a separate contract deployment with distinct evidence — not branches of one trade. The full remedy schedule (including LATE_5_6, LATE_7_8, and VERY_LATE cancellation) is defined in the contract and shown <a href="proof.html#economics">under the hood</a>.</div>
+          <div class="sc-schedule-note">Each outcome above is a parallel example deployment with distinct evidence. The full remedy schedule is shown <a href="proof.html#economics">under the hood</a>.</div>
         </div>
       </div>
 
