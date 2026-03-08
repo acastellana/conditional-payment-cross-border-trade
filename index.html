@@ -496,7 +496,7 @@
           <div class="tl-body">
             <div class="tl-tag blue">SETTLEMENT COMPUTED</div>
             <div class="tl-title">Settlement Amount Computed</div>
-            <div class="tl-detail">150,000 BOB × 0.493 = <strong>73,950 PEN</strong>. Amount computed and locked in contract. Importer funds (73,950 MockPEN) escrowed.</div>
+            <div class="tl-detail">150,000 BOB × 0.493 = <strong>73,950 PEN</strong>. Settlement amount computed on-chain. Awaiting shipment check before final release.</div>
             <a href="https://sepolia.basescan.org/address/0xD7929535b7Fe825cbb51B5CE70a3356aCc64E2Fa" target="_blank" class="tl-tx">
               <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
               Contract ↗
@@ -538,8 +538,16 @@
                 <div class="sc-court-disputed">
                   <div class="sc-court-disputed-dot"></div>
                   <div class="sc-court-disputed-text">
-                    Importer filed <strong>ShipmentContested</strong> on scenario contract <a href="https://sepolia.basescan.org/address/0xb4700D67d6cBeF18011021A2A20389ea88753234" target="_blank" style="color:rgba(252,165,165,0.7);font-family:'DM Mono',monospace;font-size:11px;">0xb470…3234</a> · IC case #3 · GenLayer case <code style="font-family:'DM Mono',monospace;font-size:11px;">qc-coop-2026-0003</code> · <a href="https://explorer-studio.genlayer.com/transactions/0x96fd014f7d806ce228525524987575cb8b136ccf323c79d15bd5c1e23ba3be2b" target="_blank" style="color:rgba(167,139,250,0.8);font-family:'DM Mono',monospace;font-size:11px;">AI jury tx ↗</a> · court <a href="https://explorer-studio.genlayer.com/contracts/0x2293B52CdA2940CBD9EFB60d29B88C5Da53FbedE" target="_blank" style="color:rgba(167,139,250,0.7);font-family:'DM Mono',monospace;font-size:11px;">0x2293…bedE ↗</a> · verdict via LayerZero → InternetCourtFactory → settlement (<a href="https://sepolia.basescan.org/tx/0x7c02ae194c6a29a1b63fddcad70ebbad5d962faaa32dfa2725df7df14f93ac52" target="_blank" style="color:rgba(252,165,165,0.6);font-family:'DM Mono',monospace;font-size:11px;">contest tx ↗</a> · <a href="https://sepolia.basescan.org/tx/0x95f8f27ed0af49a35300568796e0cfc28943a6a483018689dc0ec67fa0b7cc88" target="_blank" style="color:rgba(134,239,172,0.7);font-family:'DM Mono',monospace;font-size:11px;">verdict tx ↗</a> · <a href="https://sepolia.basescan.org/tx/0x35ab0764fc3edd0ed5d42558f6dab6dcecefaf3c2eb51ffa843c843be68fb1e0" target="_blank" style="color:rgba(134,239,172,0.9);font-family:'DM Mono',monospace;font-size:11px;">settle tx ↗</a>)
+                    Importer filed <strong>ShipmentContested</strong> · IC case #3 · GenLayer case <code style="font-family:'DM Mono',monospace;font-size:11px;">qc-coop-2026-0003</code>
                   </div>
+                </div>
+                <div style="display:flex;flex-wrap:wrap;gap:6px 12px;margin:10px 0;font-family:'DM Mono',monospace;font-size:11px;">
+                  <a href="https://sepolia.basescan.org/address/0xb4700D67d6cBeF18011021A2A20389ea88753234" target="_blank" style="color:rgba(252,165,165,0.7);text-decoration:none;">contract ↗</a>
+                  <a href="https://internetcourt.org/cases/0xb4700D67d6cBeF18011021A2A20389ea88753234" target="_blank" style="color:rgba(167,139,250,0.8);text-decoration:none;">IC docket ↗</a>
+                  <a href="https://sepolia.basescan.org/tx/0x7c02ae194c6a29a1b63fddcad70ebbad5d962faaa32dfa2725df7df14f93ac52" target="_blank" style="color:rgba(252,165,165,0.6);text-decoration:none;">contest tx ↗</a>
+                  <a href="https://sepolia.basescan.org/tx/0x95f8f27ed0af49a35300568796e0cfc28943a6a483018689dc0ec67fa0b7cc88" target="_blank" style="color:rgba(134,239,172,0.7);text-decoration:none;">verdict tx ↗</a>
+                  <a href="https://sepolia.basescan.org/tx/0x35ab0764fc3edd0ed5d42558f6dab6dcecefaf3c2eb51ffa843c843be68fb1e0" target="_blank" style="color:rgba(134,239,172,0.9);text-decoration:none;">settle tx ↗</a>
+                  <a href="https://explorer-studio.genlayer.com/transactions/0x96fd014f7d806ce228525524987575cb8b136ccf323c79d15bd5c1e23ba3be2b" target="_blank" style="color:rgba(167,139,250,0.7);text-decoration:none;">AI jury tx ↗</a>
                 </div>
                 <div class="sc-court-statement">"Shipment under Contract QC-COOP-2026-0003 crossed Bolivian export customs at Desaguadero on or before 2026-04-05 23:59 America/La_Paz."</div>
               </div>
@@ -582,7 +590,6 @@
                 <div class="sc-outcome-links">
                   <a href="https://sepolia.basescan.org/tx/0x95f8f27ed0af49a35300568796e0cfc28943a6a483018689dc0ec67fa0b7cc88" target="_blank" class="sc-outcome-link green">verdict via LayerZero → InternetCourtFactory → settlement ↗</a>
                   <a href="https://sepolia.basescan.org/tx/0x35ab0764fc3edd0ed5d42558f6dab6dcecefaf3c2eb51ffa843c843be68fb1e0" target="_blank" class="sc-outcome-link green">finalizeAfterShipment tx ↗</a>
-                  <a href="https://internetcourt.org/cases/0xb4700D67d6cBeF18011021A2A20389ea88753234" target="_blank" class="sc-outcome-link" style="color:var(--purple);">InternetCourt case page + docket ↗</a>
                 </div>
               </div>
             </div>
@@ -594,8 +601,15 @@
                 <div class="sc-court-disputed">
                   <div class="sc-court-disputed-dot"></div>
                   <div class="sc-court-disputed-text">
-                    Importer filed <strong>ShipmentContested</strong> on scenario contract <a href="https://sepolia.basescan.org/address/0xbd0dB046A913817522B595CFEb922D5E2aad4268" target="_blank" style="color:rgba(252,165,165,0.7);font-family:'DM Mono',monospace;font-size:11px;">0xbd0d…4268</a> · IC case #4 · GenLayer case <code style="font-family:'DM Mono',monospace;font-size:11px;">qc-coop-2026-0004</code> · <a href="https://explorer-studio.genlayer.com/transactions/0xc7302e49a80e1997e43fffa7fb2d8b3c2ca9d93e1a8e61d5b73da25d63e5d3aa" target="_blank" style="color:rgba(167,139,250,0.8);font-family:'DM Mono',monospace;font-size:11px;">AI jury tx ↗</a> · court <a href="https://explorer-studio.genlayer.com/contracts/0x435b82AE459Cae242B1C2097034D9d98d3bB5E29" target="_blank" style="color:rgba(167,139,250,0.7);font-family:'DM Mono',monospace;font-size:11px;">0x435b…5E29 ↗</a> · verdict via LayerZero → InternetCourtFactory → settlement (<a href="https://sepolia.basescan.org/tx/0x57cb5fa07a798e8faf0c73ce183c02c4ff97a4a0ba329c3a194c475a66c6b879" target="_blank" style="color:rgba(252,165,165,0.6);font-family:'DM Mono',monospace;font-size:11px;">contest tx ↗</a> · <a href="https://sepolia.basescan.org/tx/0x6dbf8870c8dfb02a6f4c5664913f138dfe93a4286c43c348c764caa2738b94c3" target="_blank" style="color:rgba(252,165,165,0.6);font-family:'DM Mono',monospace;font-size:11px;">verdict+refund tx ↗</a>)
+                    Importer filed <strong>ShipmentContested</strong> · IC case #4 · GenLayer case <code style="font-family:'DM Mono',monospace;font-size:11px;">qc-coop-2026-0004</code>
                   </div>
+                </div>
+                <div style="display:flex;flex-wrap:wrap;gap:6px 12px;margin:10px 0;font-family:'DM Mono',monospace;font-size:11px;">
+                  <a href="https://sepolia.basescan.org/address/0xbd0dB046A913817522B595CFEb922D5E2aad4268" target="_blank" style="color:rgba(252,165,165,0.7);text-decoration:none;">contract ↗</a>
+                  <a href="https://internetcourt.org/cases/0xbd0dB046A913817522B595CFEb922D5E2aad4268" target="_blank" style="color:rgba(167,139,250,0.8);text-decoration:none;">IC docket ↗</a>
+                  <a href="https://sepolia.basescan.org/tx/0x57cb5fa07a798e8faf0c73ce183c02c4ff97a4a0ba329c3a194c475a66c6b879" target="_blank" style="color:rgba(252,165,165,0.6);text-decoration:none;">contest tx ↗</a>
+                  <a href="https://sepolia.basescan.org/tx/0x6dbf8870c8dfb02a6f4c5664913f138dfe93a4286c43c348c764caa2738b94c3" target="_blank" style="color:rgba(252,165,165,0.6);text-decoration:none;">verdict + refund tx ↗</a>
+                  <a href="https://explorer-studio.genlayer.com/transactions/0xc7302e49a80e1997e43fffa7fb2d8b3c2ca9d93e1a8e61d5b73da25d63e5d3aa" target="_blank" style="color:rgba(167,139,250,0.7);text-decoration:none;">AI jury tx ↗</a>
                 </div>
                 <div class="sc-court-statement">"Shipment under Contract QC-COOP-2026-0004 crossed Bolivian export customs at Desaguadero on or before 2026-04-05 23:59 America/La_Paz."</div>
               </div>
@@ -638,7 +652,6 @@
                 <div class="sc-outcome-links">
                   <a href="https://sepolia.basescan.org/tx/0x6dbf8870c8dfb02a6f4c5664913f138dfe93a4286c43c348c764caa2738b94c3" target="_blank" class="sc-outcome-link red">verdict + auto-refund via LayerZero → factory → settlement ↗</a>
                   <a href="https://sepolia.basescan.org/address/0xbd0dB046A913817522B595CFEb922D5E2aad4268" target="_blank" class="sc-outcome-link red">Contract: 0xbd0d…4268 ↗</a>
-                  <a href="https://internetcourt.org/cases/0xbd0dB046A913817522B595CFEb922D5E2aad4268" target="_blank" class="sc-outcome-link" style="color:var(--purple);">InternetCourt case page + docket ↗</a>
                 </div>
               </div>
             </div>
@@ -650,8 +663,15 @@
                 <div class="sc-court-disputed">
                   <div class="sc-court-disputed-dot"></div>
                   <div class="sc-court-disputed-text">
-                    Importer filed <strong>ShipmentContested</strong> on scenario contract <a href="https://sepolia.basescan.org/address/0xe50A8F382B3B751dBd7053963EbaBB59916f3788" target="_blank" style="color:rgba(252,165,165,0.7);font-family:'DM Mono',monospace;font-size:11px;">0xe50A…3788</a> · IC case #5 · GenLayer case <code style="font-family:'DM Mono',monospace;font-size:11px;">qc-coop-2026-0005</code> · <a href="https://explorer-studio.genlayer.com/transactions/0x9bcb2b9855eaf90d34175796c0a18569fb9e4bf81869dce98044d27f35846aab" target="_blank" style="color:rgba(167,139,250,0.8);font-family:'DM Mono',monospace;font-size:11px;">AI jury tx ↗</a> · court <a href="https://explorer-studio.genlayer.com/contracts/0xb7CC51a5A0D931B04eB07285224e7D52Ee295E48" target="_blank" style="color:rgba(167,139,250,0.7);font-family:'DM Mono',monospace;font-size:11px;">0xb7CC…5E48 ↗</a> · verdict via LayerZero → InternetCourtFactory → settlement (<a href="https://sepolia.basescan.org/tx/0xc9d93c813a336e24e7e484503ec1e02c64038ecb4dc6f1d953e476d0702ba68e" target="_blank" style="color:rgba(252,165,165,0.6);font-family:'DM Mono',monospace;font-size:11px;">contest tx ↗</a> · <a href="https://sepolia.basescan.org/tx/0x5b70ac102e29e15e22337fea6506cccfaf22c7fc85b853e094fedaecba3e5053" target="_blank" style="color:rgba(252,205,86,0.7);font-family:'DM Mono',monospace;font-size:11px;">verdict tx ↗</a>)
+                    Importer filed <strong>ShipmentContested</strong> · IC case #5 · GenLayer case <code style="font-family:'DM Mono',monospace;font-size:11px;">qc-coop-2026-0005</code>
                   </div>
+                </div>
+                <div style="display:flex;flex-wrap:wrap;gap:6px 12px;margin:10px 0;font-family:'DM Mono',monospace;font-size:11px;">
+                  <a href="https://sepolia.basescan.org/address/0xe50A8F382B3B751dBd7053963EbaBB59916f3788" target="_blank" style="color:rgba(252,165,165,0.7);text-decoration:none;">contract ↗</a>
+                  <a href="https://internetcourt.org/cases/0xe50A8F382B3B751dBd7053963EbaBB59916f3788" target="_blank" style="color:rgba(167,139,250,0.8);text-decoration:none;">IC docket ↗</a>
+                  <a href="https://sepolia.basescan.org/tx/0xc9d93c813a336e24e7e484503ec1e02c64038ecb4dc6f1d953e476d0702ba68e" target="_blank" style="color:rgba(252,165,165,0.6);text-decoration:none;">contest tx ↗</a>
+                  <a href="https://sepolia.basescan.org/tx/0x5b70ac102e29e15e22337fea6506cccfaf22c7fc85b853e094fedaecba3e5053" target="_blank" style="color:rgba(252,205,86,0.7);text-decoration:none;">verdict tx ↗</a>
+                  <a href="https://explorer-studio.genlayer.com/transactions/0x9bcb2b9855eaf90d34175796c0a18569fb9e4bf81869dce98044d27f35846aab" target="_blank" style="color:rgba(167,139,250,0.7);text-decoration:none;">AI jury tx ↗</a>
                 </div>
                 <div class="sc-court-statement">"Shipment under Contract QC-COOP-2026-0005 crossed Bolivian export customs at Desaguadero on or before 2026-04-05 23:59 America/La_Paz."</div>
               </div>
@@ -694,7 +714,6 @@
                 <div class="sc-outcome-links">
                   <a href="https://sepolia.basescan.org/tx/0x5b70ac102e29e15e22337fea6506cccfaf22c7fc85b853e094fedaecba3e5053" target="_blank" class="sc-outcome-link amber">verdict via LayerZero → factory → settlement · manual review open ↗</a>
                   <a href="https://sepolia.basescan.org/address/0xe50A8F382B3B751dBd7053963EbaBB59916f3788" target="_blank" class="sc-outcome-link amber">Contract: 0xe50A…3788 ↗</a>
-                  <a href="https://internetcourt.org/cases/0xe50A8F382B3B751dBd7053963EbaBB59916f3788" target="_blank" class="sc-outcome-link" style="color:var(--purple);">InternetCourt case page + docket ↗</a>
                 </div>
               </div>
             </div>
