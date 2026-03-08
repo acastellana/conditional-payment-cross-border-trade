@@ -13,21 +13,21 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg: #ffffff; --card: #f7f7f5; --dark: #1a1817; --muted: #74706c;
-      --border: #e5e3e0; --green: #15803d; --green-light: #dcfce7;
+      --bg: #ffffff; --card: #f8f8f6; --dark: #1a1817; --muted: #74706c;
+      --border: #e8e6e3; --green: #15803d; --green-light: #dcfce7;
       --blue: #1d4ed8; --blue-light: #dbeafe; --amber: #b45309; --amber-light: #fef3c7;
-      --red: #dc2626; --red-light: #fee2e2; --purple: #7c3aed; --purple-light: #ede9fe;
+      --red: #dc2626; --red-light: #fee2e2; --purple: #7c3aed;
       --radius: 10px; --radius-xl: 16px;
-      --shadow: 0 1px 3px rgba(0,0,0,0.07); --shadow-md: 0 4px 12px rgba(0,0,0,0.07);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
     }
-    body { font-family: 'DM Sans', system-ui, sans-serif; background: var(--bg); color: var(--dark); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
-    .container { max-width: 1060px; margin: 0 auto; padding: 0 24px; }
-    .section-label { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+    body { font-family: 'DM Sans', system-ui, sans-serif; background: var(--bg); color: var(--dark); font-size: 17px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+    .container { max-width: 880px; margin: 0 auto; padding: 0 28px; }
+    .section-label { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
 
     /* ── HEADER ── */
-    header { position: sticky; top: 12px; z-index: 100; padding: 0 24px; }
+    header { position: sticky; top: 12px; z-index: 100; padding: 0 28px; }
     .header-inner {
-      max-width: 1060px; margin: 0 auto;
+      max-width: 880px; margin: 0 auto;
       background: rgba(255,255,255,0.95); border: 1px solid var(--border);
       border-radius: 9999px; padding: 10px 20px;
       display: flex; align-items: center; justify-content: space-between;
@@ -38,70 +38,65 @@
     nav { display: flex; gap: 2px; }
     nav a { color: var(--muted); text-decoration: none; font-size: 13px; font-weight: 500; padding: 5px 12px; border-radius: 9999px; transition: all 0.15s; }
     nav a:hover { background: var(--card); color: var(--dark); }
-    .btn-outline { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: var(--muted); border: 1px solid var(--border); border-radius: 9999px; padding: 7px 16px; font-size: 13px; font-weight: 600; cursor: pointer; text-decoration: none; transition: all 0.15s; font-family: 'DM Sans', system-ui, sans-serif; }
+    .btn-outline { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: var(--muted); border: 1px solid var(--border); border-radius: 9999px; padding: 7px 16px; font-size: 13px; font-weight: 600; text-decoration: none; transition: all 0.15s; }
     .btn-outline:hover { border-color: var(--dark); color: var(--dark); }
 
     /* ── HERO ── */
-    .hero { padding: 80px 0 56px; }
-    .hero-eyebrow { display: inline-flex; align-items: center; gap: 6px; background: var(--card); border: 1px solid var(--border); border-radius: 9999px; padding: 4px 14px; font-size: 12px; font-weight: 600; color: var(--muted); font-family: 'DM Mono', monospace; margin-bottom: 24px; }
+    .hero { padding: 100px 0 80px; }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 6px; background: var(--card); border: 1px solid var(--border); border-radius: 9999px; padding: 4px 14px; font-size: 12px; font-weight: 600; color: var(--muted); font-family: 'DM Mono', monospace; margin-bottom: 28px; }
     .hero-eyebrow .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
     @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.35} }
-    .hero h1 { font-size: clamp(32px, 4.5vw, 50px); font-weight: 700; line-height: 1.08; letter-spacing: -1.3px; max-width: 680px; margin-bottom: 24px; }
-    .hero-narrative { font-size: 16px; color: var(--muted); line-height: 1.7; max-width: 540px; margin-bottom: 28px; }
+    .hero h1 { font-size: clamp(34px, 5vw, 52px); font-weight: 700; line-height: 1.08; letter-spacing: -1.5px; max-width: 680px; margin-bottom: 28px; }
+    .hero-narrative { font-size: 18px; color: var(--muted); line-height: 1.75; max-width: 540px; margin-bottom: 36px; }
     .hero-narrative strong { color: var(--dark); }
     .hero-distinction {
-      max-width: 540px; padding: 18px 22px;
+      max-width: 540px; padding: 22px 26px;
       background: var(--card); border-left: 3px solid var(--dark);
       border-radius: 0 var(--radius) var(--radius) 0;
-      font-size: 15px; line-height: 1.7;
+      font-size: 17px; line-height: 1.7; color: var(--muted);
     }
     .hero-distinction strong { color: var(--dark); }
 
-    /* ── EXAMPLE TRADE (dark) ── */
-    .example-section { background: var(--dark); padding: 64px 0; }
-    .example-section .section-label { color: rgba(255,255,255,0.35); }
-    .example-section h2 { font-size: clamp(22px, 3.5vw, 36px); font-weight: 700; letter-spacing: -0.7px; color: #fff; margin-bottom: 6px; }
-    .ex-sub { font-size: 14px; color: rgba(255,255,255,0.4); margin-bottom: 36px; }
-    .ex-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
-    .ex-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-xl); padding: 26px 30px; }
-    .ex-card-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1.4px; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 18px; }
-    .ex-row { display: flex; justify-content: space-between; align-items: center; padding: 11px 0; border-bottom: 1px solid rgba(255,255,255,0.07); font-size: 14px; }
-    .ex-row:last-child { border-bottom: none; }
-    .ex-key { color: rgba(255,255,255,0.45); font-size: 13px; }
-    .ex-val { font-weight: 600; font-family: 'DM Mono', monospace; font-size: 13px; color: #fff; }
-    .ex-val.green { color: #86efac; }
-    .ex-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(21,128,61,0.2); border: 1px solid rgba(21,128,61,0.3); border-radius: 9999px; padding: 2px 10px; font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 600; color: #86efac; }
-    .ex-badge .bdot { width: 6px; height: 6px; border-radius: 50%; background: #86efac; }
-    .ex-link { display: flex; align-items: center; gap: 7px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.09); border-radius: 8px; padding: 9px 13px; font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.65); text-decoration: none; transition: all 0.15s; margin-top: 14px; }
-    .ex-link:hover { background: rgba(255,255,255,0.09); color: #fff; }
-    .ex-link svg { opacity: 0.4; flex-shrink: 0; }
+    /* ── TRADE (dark) ── */
+    .trade-section { background: var(--dark); padding: 80px 0; }
+    .trade-section .section-label { color: rgba(255,255,255,0.3); }
+    .trade-section h2 { font-size: clamp(24px, 3.5vw, 36px); font-weight: 700; letter-spacing: -0.7px; color: #fff; margin-bottom: 6px; }
+    .trade-sub { font-size: 15px; color: rgba(255,255,255,0.35); margin-bottom: 40px; }
+    .trade-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+    .trade-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-xl); padding: 28px 32px; }
+    .trade-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 15px; }
+    .trade-row:last-child { border-bottom: none; }
+    .trade-key { color: rgba(255,255,255,0.4); }
+    .trade-val { font-weight: 600; font-family: 'DM Mono', monospace; font-size: 14px; color: #fff; }
+    .trade-val.green { color: #86efac; }
+    .trade-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(21,128,61,0.2); border: 1px solid rgba(21,128,61,0.3); border-radius: 9999px; padding: 2px 10px; font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 600; color: #86efac; }
+    .trade-badge .bdot { width: 6px; height: 6px; border-radius: 50%; background: #86efac; }
+    .trade-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: rgba(255,255,255,0.5); text-decoration: none; margin-top: 16px; transition: color 0.15s; }
+    .trade-link:hover { color: rgba(255,255,255,0.8); }
     /* flow */
-    .ex-flow { display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 300px; }
-    .ex-node { width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-xl); padding: 18px 22px; text-align: center; }
-    .ex-node.mid { background: #fff; }
-    .ex-node-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 4px; }
-    .ex-node.mid .ex-node-label { color: var(--muted); }
-    .ex-node-name { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 2px; }
-    .ex-node.mid .ex-node-name { color: var(--dark); }
-    .ex-node-amount { font-family: 'DM Mono', monospace; font-size: 20px; font-weight: 700; color: #fff; margin-top: 4px; }
-    .ex-node.mid .ex-node-amount { color: var(--dark); }
-    .ex-node-amount.green { color: #86efac; }
-    .ex-node-sub { font-size: 11px; color: rgba(255,255,255,0.35); margin-top: 2px; }
-    .ex-node.mid .ex-node-sub { color: var(--muted); }
-    .ex-node-rate { display: inline-block; background: rgba(134,239,172,0.15); border: 1px solid rgba(134,239,172,0.3); border-radius: 6px; padding: 3px 10px; font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 600; color: #86efac; margin-top: 6px; }
-    .ex-connector { display: flex; flex-direction: column; align-items: center; padding: 2px 0; }
-    .ex-line { width: 2px; height: 18px; background: rgba(255,255,255,0.12); }
-    .ex-arrow { color: rgba(255,255,255,0.25); font-size: 13px; margin-top: -3px; }
+    .flow { display: flex; flex-direction: column; align-items: center; }
+    .flow-node { width: 100%; max-width: 280px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-xl); padding: 18px 22px; text-align: center; }
+    .flow-node.mid { background: #fff; }
+    .flow-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 3px; }
+    .flow-node.mid .flow-label { color: var(--muted); }
+    .flow-name { font-size: 14px; font-weight: 700; color: #fff; }
+    .flow-node.mid .flow-name { color: var(--dark); }
+    .flow-amount { font-family: 'DM Mono', monospace; font-size: 20px; font-weight: 700; color: #fff; margin-top: 4px; }
+    .flow-node.mid .flow-amount { color: var(--dark); }
+    .flow-amount.green { color: #86efac; }
+    .flow-sub { font-size: 11px; color: rgba(255,255,255,0.3); margin-top: 2px; }
+    .flow-node.mid .flow-sub { color: var(--muted); }
+    .flow-rate { display: inline-block; background: rgba(134,239,172,0.15); border: 1px solid rgba(134,239,172,0.3); border-radius: 6px; padding: 3px 10px; font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 600; color: #86efac; margin-top: 6px; }
+    .flow-conn { display: flex; flex-direction: column; align-items: center; padding: 2px 0; }
+    .flow-line { width: 2px; height: 16px; background: rgba(255,255,255,0.1); }
+    .flow-arrow { color: rgba(255,255,255,0.2); font-size: 12px; margin-top: -2px; }
 
-    /* ══════════════════════════════════════
-       LIFECYCLE TIMELINE
-    ══════════════════════════════════════ */
-    .lifecycle-section { padding: 72px 0; }
-    .lifecycle-section h2 { font-size: clamp(22px, 3vw, 34px); font-weight: 700; letter-spacing: -0.6px; margin-bottom: 8px; }
-    .lifecycle-sub { font-size: 15px; color: var(--muted); max-width: 540px; margin-bottom: 48px; }
-    .tl-outer { display: grid; grid-template-columns: 1fr 300px; gap: 48px; align-items: start; }
-    .tl-steps { display: flex; flex-direction: column; }
-    .tl-step { display: flex; gap: 20px; position: relative; }
+    /* ── LIFECYCLE ── */
+    .lifecycle-section { padding: 96px 0; }
+    .lifecycle-section h2 { font-size: clamp(24px, 3.2vw, 36px); font-weight: 700; letter-spacing: -0.6px; margin-bottom: 10px; }
+    .lifecycle-sub { font-size: 17px; color: var(--muted); max-width: 540px; margin-bottom: 56px; }
+    .tl-steps { display: flex; flex-direction: column; max-width: 620px; }
+    .tl-step { display: flex; gap: 22px; }
     .tl-left { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; width: 36px; }
     .tl-dot { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 700; flex-shrink: 0; z-index: 1; }
     .tl-dot.s1 { background: var(--card); border: 2px solid var(--border); color: var(--muted); }
@@ -112,129 +107,97 @@
     .tl-dot.s5.timely  { background: var(--green); border-color: var(--green); }
     .tl-dot.s5.late    { background: var(--red); border-color: var(--red); }
     .tl-dot.s5.manual  { background: var(--amber); border-color: var(--amber); }
-    .tl-spine { width: 2px; flex: 1; min-height: 24px; background: var(--border); margin-top: 2px; }
+    .tl-spine { width: 2px; flex: 1; min-height: 20px; background: var(--border); margin-top: 2px; }
     .tl-step:last-child .tl-spine { display: none; }
-    .tl-body { flex: 1; padding-bottom: 36px; }
+    .tl-body { flex: 1; padding-bottom: 40px; }
     .tl-step:last-child .tl-body { padding-bottom: 0; }
-    .tl-tag { font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 4px; color: var(--muted); }
-    .tl-tag.green { color: var(--green); } .tl-tag.blue { color: var(--blue); } .tl-tag.amber { color: var(--amber); }
-    .tl-title { font-size: 17px; font-weight: 700; margin-bottom: 6px; }
-    .tl-detail { font-size: 14px; color: var(--muted); line-height: 1.55; margin-bottom: 8px; }
+    .tl-title { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+    .tl-detail { font-size: 15px; color: var(--muted); line-height: 1.6; }
     .tl-detail strong { color: var(--dark); }
 
-    /* Shipment check */
-    .sc-selector { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
-    .sc-btn { border: 1px solid var(--border); background: var(--card); border-radius: 9999px; padding: 6px 14px; font-size: 13px; font-weight: 600; cursor: pointer; color: var(--muted); transition: all 0.15s; font-family: 'DM Sans', system-ui, sans-serif; white-space: nowrap; }
+    /* Shipment selector */
+    .sc-selector { display: flex; gap: 6px; flex-wrap: wrap; margin: 18px 0 16px; }
+    .sc-btn { border: 1px solid var(--border); background: var(--card); border-radius: 9999px; padding: 7px 16px; font-size: 14px; font-weight: 600; cursor: pointer; color: var(--muted); transition: all 0.15s; font-family: 'DM Sans', system-ui, sans-serif; }
     .sc-btn:hover { border-color: #aaa; color: var(--dark); }
     .sc-btn.accepted.active  { background: var(--green-light); border-color: rgba(21,128,61,0.4); color: var(--green); }
     .sc-btn.contested.active { background: var(--red-light);   border-color: rgba(220,38,38,0.3);  color: var(--red); }
     .sc-btn.late.active      { background: var(--red-light);   border-color: rgba(220,38,38,0.3);  color: var(--red); }
     .sc-btn.manual.active    { background: var(--amber-light); border-color: rgba(180,83,9,0.3);   color: var(--amber); }
-    .sc-accepted-msg { display: none; align-items: center; gap: 10px; padding: 12px 16px; background: var(--green-light); border: 1px solid rgba(21,128,61,0.2); border-radius: var(--radius); font-size: 14px; color: var(--green); font-weight: 500; }
-    .sc-accepted-msg.show { display: flex; }
 
-    /* Court panel — compact */
-    .sc-court { display: none; background: var(--dark); border-radius: var(--radius-xl); padding: 22px 26px; margin-top: 4px; }
-    .sc-court.show { display: block; }
-    .sc-court-tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 12px; }
-    .sc-row { margin-bottom: 14px; }
-    .sc-row:last-child { margin-bottom: 0; }
-    .sc-row-label { font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 5px; }
-    .sc-row-text { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.55; }
-    .sc-row-text strong { color: #fff; }
-    .sc-verdict-badge { display: inline-flex; align-items: center; gap: 7px; border-radius: 9999px; padding: 5px 13px; font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 700; }
-    .sc-verdict-badge.vtrue  { background: rgba(134,239,172,0.15); border: 1px solid rgba(134,239,172,0.3); color: #86efac; }
-    .sc-verdict-badge.vfalse { background: rgba(252,165,165,0.15); border: 1px solid rgba(252,165,165,0.3); color: #fca5a5; }
-    .sc-verdict-badge.vund   { background: rgba(251,191,36,0.12);  border: 1px solid rgba(251,191,36,0.25);  color: #fbbf24; }
-    .sc-verdict-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-    .sc-verdict-badge.vtrue .sc-verdict-dot  { background: #86efac; }
-    .sc-verdict-badge.vfalse .sc-verdict-dot { background: #fca5a5; }
-    .sc-verdict-badge.vund .sc-verdict-dot   { background: #fbbf24; }
-    /* Step 5 outcomes */
-    .outcome-panel { display: none; }
-    .outcome-panel.show { display: block; }
-    .outcome-badge { display: inline-flex; align-items: center; gap: 8px; border-radius: 9999px; padding: 7px 16px; font-size: 14px; font-weight: 700; margin-bottom: 8px; font-family: 'DM Mono', monospace; }
-    .outcome-badge.release { background: var(--green-light); border: 1px solid rgba(21,128,61,0.3); color: var(--green); }
-    .outcome-badge.refund  { background: var(--red-light);   border: 1px solid rgba(220,38,38,0.2);  color: var(--red); }
-    .outcome-badge.manual  { background: var(--amber-light); border: 1px solid rgba(180,83,9,0.2);   color: var(--amber); }
-    .outcome-dot { width: 8px; height: 8px; border-radius: 50%; }
-    .outcome-badge.release .outcome-dot { background: var(--green); }
-    .outcome-badge.refund  .outcome-dot { background: var(--red); }
-    .outcome-badge.manual  .outcome-dot { background: var(--amber); }
-    .outcome-desc { font-size: 14px; color: var(--muted); line-height: 1.55; }
-    .outcome-desc strong { color: var(--dark); }
+    /* Accepted msg */
+    .sc-accepted { display: none; padding: 14px 18px; background: var(--green-light); border-radius: var(--radius); font-size: 15px; color: var(--green); font-weight: 500; }
+    .sc-accepted.show { display: block; }
 
-    /* Proof sidebar */
-    .tl-proof { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 22px 24px; position: sticky; top: 80px; }
-    .tl-proof-title { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
-    .proof-state { display: none; }
-    .proof-state.show { display: block; }
-    .proof-block { padding: 12px 14px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); font-family: 'DM Mono', monospace; font-size: 11px; line-height: 1.8; }
-    .proof-k { color: var(--muted); margin-bottom: 2px; }
-    .proof-v { font-weight: 600; }
-    .proof-v a { text-decoration: none; word-break: break-all; }
+    /* Court result — light, not dark */
+    .sc-result { display: none; padding: 24px 0; }
+    .sc-result.show { display: block; }
+    .sc-result p { font-size: 15px; color: var(--muted); line-height: 1.65; margin-bottom: 16px; }
+    .sc-result p strong { color: var(--dark); }
+    .sc-verdict { display: inline-flex; align-items: center; gap: 8px; border-radius: 9999px; padding: 7px 16px; font-family: 'DM Mono', monospace; font-size: 15px; font-weight: 700; margin-bottom: 12px; }
+    .sc-verdict.green  { background: var(--green-light); border: 1px solid rgba(21,128,61,0.25); color: var(--green); }
+    .sc-verdict.red    { background: var(--red-light);   border: 1px solid rgba(220,38,38,0.25); color: var(--red); }
+    .sc-verdict.amber  { background: var(--amber-light); border: 1px solid rgba(180,83,9,0.25);  color: var(--amber); }
+    .sc-verdict .vdot { width: 8px; height: 8px; border-radius: 50%; }
+    .sc-verdict.green .vdot  { background: var(--green); }
+    .sc-verdict.red .vdot    { background: var(--red); }
+    .sc-verdict.amber .vdot  { background: var(--amber); }
+    .sc-action { font-size: 16px; font-weight: 600; }
+
+    /* Step 5 outcome */
+    .outcome { display: none; }
+    .outcome.show { display: block; }
 
     /* ── WHY GENLAYER ── */
-    .why-section { padding: 64px 0; background: var(--dark); }
-    .why-section .section-label { color: rgba(255,255,255,0.3); }
-    .why-section h2 { font-size: clamp(22px, 3vw, 32px); font-weight: 700; letter-spacing: -0.5px; color: #fff; margin-bottom: 36px; }
-    .why-cards { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
-    .why-card { border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-xl); padding: 22px 24px; }
-    .why-card-label { font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 10px; }
-    .why-card-label.can { color: rgba(134,239,172,0.7); }
-    .why-card-label.cannot { color: rgba(252,165,165,0.7); }
-    .why-card-label.does { color: rgba(196,181,253,0.8); }
-    .why-card-text { font-size: 15px; color: rgba(255,255,255,0.7); line-height: 1.55; }
+    .why-section { padding: 96px 0; background: var(--dark); }
+    .why-section .section-label { color: rgba(255,255,255,0.25); }
+    .why-section h2 { font-size: clamp(26px, 3.5vw, 40px); font-weight: 700; letter-spacing: -0.8px; color: #fff; margin-bottom: 16px; }
+    .why-sub { font-size: 18px; color: rgba(255,255,255,0.4); max-width: 520px; margin-bottom: 48px; line-height: 1.6; }
+    .why-cards { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+    .why-card { border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-xl); padding: 28px 26px; }
+    .why-card-label { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 14px; }
+    .why-card-label.can { color: rgba(134,239,172,0.6); }
+    .why-card-label.cannot { color: rgba(252,165,165,0.6); }
+    .why-card-label.does { color: rgba(196,181,253,0.7); }
+    .why-card-text { font-size: 17px; color: rgba(255,255,255,0.65); line-height: 1.55; }
     .why-card-text strong { color: #fff; }
-    .why-card.highlight { background: rgba(124,58,237,0.1); border-color: rgba(124,58,237,0.3); }
+    .why-card.highlight { background: rgba(124,58,237,0.08); border-color: rgba(124,58,237,0.25); }
+    .why-coda { margin-top: 48px; font-size: 18px; color: rgba(255,255,255,0.4); line-height: 1.7; max-width: 520px; }
+    .why-coda strong { color: rgba(255,255,255,0.85); }
 
-    /* ── COMPACT PROOF ── */
-    .compact-proof { padding: 48px 0; background: var(--card); border-top: 1px solid var(--border); }
-    .compact-proof h2 { font-size: clamp(16px, 2.2vw, 22px); font-weight: 700; letter-spacing: -0.2px; color: var(--muted); margin-bottom: 20px; }
-    .cp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; max-width: 720px; margin-bottom: 20px; }
-    .cp-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; }
-    .cp-card-label { font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
-    .cp-card-value { font-family: 'DM Mono', monospace; font-size: 12px; word-break: break-all; }
-    .cp-card-value a { color: var(--blue); text-decoration: none; }
-    .cp-card-value a:hover { text-decoration: underline; }
-    .cp-card-value.green { color: var(--green); font-weight: 600; }
-    .cp-deep { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: var(--dark); text-decoration: none; border-bottom: 1px solid var(--border); padding-bottom: 2px; transition: border-color 0.15s; }
-    .cp-deep:hover { border-color: var(--dark); }
+    /* ── PROOF STRIP ── */
+    .proof-strip { padding: 36px 0; border-top: 1px solid var(--border); }
+    .proof-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    .proof-left { display: flex; align-items: center; gap: 20px; font-family: 'DM Mono', monospace; font-size: 13px; color: var(--muted); }
+    .proof-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .proof-item { display: flex; align-items: center; gap: 8px; }
+    .proof-item a { color: var(--blue); text-decoration: none; }
+    .proof-item a:hover { text-decoration: underline; }
+    .proof-link { font-size: 14px; font-weight: 600; color: var(--dark); text-decoration: none; }
+    .proof-link:hover { text-decoration: underline; }
 
     /* ── FOOTER ── */
-    footer { padding: 40px 0 28px; border-top: 1px solid var(--border); }
+    footer { padding: 48px 0 28px; }
     .footer-inner { display: flex; gap: 40px; justify-content: space-between; flex-wrap: wrap; margin-bottom: 24px; }
+    .footer-left { max-width: 400px; }
     .footer-logo { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: var(--dark); margin-bottom: 8px; }
-    .footer-note { font-size: 12px; line-height: 1.7; color: var(--muted); max-width: 400px; }
+    .footer-note { font-size: 13px; line-height: 1.65; color: var(--muted); }
     .footer-links { display: flex; flex-direction: column; gap: 8px; }
-    .footer-links a { color: var(--muted); text-decoration: none; font-size: 13px; transition: color 0.15s; }
+    .footer-links a { color: var(--muted); text-decoration: none; font-size: 13px; }
     .footer-links a:hover { color: var(--dark); }
-    .footer-bottom { border-top: 1px solid var(--border); padding-top: 16px; font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); opacity: 0.5; }
+    .footer-bottom { border-top: 1px solid var(--border); padding-top: 16px; font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); opacity: 0.4; }
 
-    /* ── RESPONSIVE ── */
     @media(max-width: 860px) {
       nav { display: none; }
-      .tl-outer { grid-template-columns: 1fr; }
-      .tl-proof { position: static; }
+      .trade-grid { grid-template-columns: 1fr; }
       .why-cards { grid-template-columns: 1fr; }
-    }
-    @media(max-width: 640px) {
-      .ex-grid { grid-template-columns: 1fr; }
-      .cp-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════
-     HEADER
-═══════════════════════════════════════ -->
 <header>
   <div class="header-inner">
-    <a href="#" class="logo">
-      <span class="logo-chip">FX</span>
-      Trade Finance × GenLayer
-    </a>
+    <a href="#" class="logo"><span class="logo-chip">FX</span> Trade Finance × GenLayer</a>
     <nav>
       <a href="#trade">Trade</a>
       <a href="#lifecycle">Lifecycle</a>
@@ -245,25 +208,17 @@
 </header>
 
 
-<!-- ═══════════════════════════════════════
-     HERO
-═══════════════════════════════════════ -->
+<!-- ═══════ HERO ═══════ -->
 <section class="hero">
   <div class="container">
-    <div class="hero-eyebrow">
-      <span class="dot"></span>
-      Live on Base Sepolia · GenLayer Studionet
-    </div>
-
+    <div class="hero-eyebrow"><span class="dot"></span> Live on Base Sepolia · GenLayer Studionet</div>
     <h1>Cross-border settlement that continues even when the facts are disputed</h1>
-
     <div class="hero-narrative">
       A Bolivian exporter invoices in BOB.
       A Peruvian importer pays in PEN.
       The benchmark is locked deterministically.
       If shipment timing is contested, <strong>GenLayer evaluates the evidence and returns the fact needed for settlement to continue.</strong>
     </div>
-
     <div class="hero-distinction">
       Benchmark locking is deterministic.<br/>
       Shipment disputes are not.<br/>
@@ -273,51 +228,41 @@
 </section>
 
 
-<!-- ═══════════════════════════════════════
-     EXAMPLE TRADE (dark)
-═══════════════════════════════════════ -->
-<section class="example-section" id="trade">
+<!-- ═══════ TRADE ═══════ -->
+<section class="trade-section" id="trade">
   <div class="container">
     <div class="section-label">The Trade</div>
     <h2>Quinoa export — Bolivia → Peru</h2>
-    <p class="ex-sub">A real trade, executed on-chain. Every step verifiable.</p>
+    <p class="trade-sub">A real trade, executed on-chain. Every step verifiable.</p>
 
-    <div class="ex-grid">
+    <div class="trade-grid">
       <div>
-        <div class="ex-card">
-          <div class="ex-card-label">Trade — executed on-chain</div>
-          <div class="ex-row"><span class="ex-key">Invoice</span><span class="ex-val">150,000 BOB</span></div>
-          <div class="ex-row"><span class="ex-key">Locked benchmark</span><span class="ex-val green">0.493 PEN / BOB</span></div>
-          <div class="ex-row"><span class="ex-key">Settlement amount</span><span class="ex-val">73,950 PEN</span></div>
-          <div class="ex-row"><span class="ex-key">Payment date</span><span class="ex-val green">2026-04-05</span></div>
-          <div class="ex-row"><span class="ex-key">State</span><span class="ex-val"><span class="ex-badge"><span class="bdot"></span> SETTLED</span></span></div>
+        <div class="trade-card">
+          <div class="trade-row"><span class="trade-key">Invoice</span><span class="trade-val">150,000 BOB</span></div>
+          <div class="trade-row"><span class="trade-key">Locked benchmark</span><span class="trade-val green">0.493 PEN / BOB</span></div>
+          <div class="trade-row"><span class="trade-key">Settlement</span><span class="trade-val">73,950 PEN</span></div>
+          <div class="trade-row"><span class="trade-key">State</span><span class="trade-val"><span class="trade-badge"><span class="bdot"></span> SETTLED</span></span></div>
         </div>
-        <a href="https://sepolia.basescan.org/address/0xD7929535b7Fe825cbb51B5CE70a3356aCc64E2Fa" target="_blank" class="ex-link">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          View contract on Basescan ↗
-        </a>
+        <a href="https://sepolia.basescan.org/address/0xD7929535b7Fe825cbb51B5CE70a3356aCc64E2Fa" target="_blank" class="trade-link">View contract on Basescan ↗</a>
       </div>
       <div style="display:flex;align-items:center;justify-content:center;">
-        <div class="ex-flow">
-          <div class="ex-node">
-            <div class="ex-node-label">🇧🇴 Exporter</div>
-            <div class="ex-node-name">Cooperativa Agrícola Andina</div>
-            <div class="ex-node-amount">150,000 BOB</div>
-            <div class="ex-node-sub">invoice issued</div>
+        <div class="flow">
+          <div class="flow-node">
+            <div class="flow-label">🇧🇴 Exporter</div>
+            <div class="flow-name">Cooperativa Agrícola Andina</div>
+            <div class="flow-amount">150,000 BOB</div>
           </div>
-          <div class="ex-connector"><div class="ex-line"></div><div class="ex-arrow">▼</div></div>
-          <div class="ex-node mid">
-            <div class="ex-node-label">⚙️ GenLayer Contract</div>
-            <div class="ex-node-name">FX Settlement Engine</div>
-            <div class="ex-node-sub">benchmark lock · shipment check · verdict</div>
-            <div class="ex-node-rate">0.493 PEN / BOB</div>
+          <div class="flow-conn"><div class="flow-line"></div><div class="flow-arrow">▼</div></div>
+          <div class="flow-node mid">
+            <div class="flow-label">⚙️ Settlement Engine</div>
+            <div class="flow-name">GenLayer Contract</div>
+            <div class="flow-rate">0.493 PEN / BOB</div>
           </div>
-          <div class="ex-connector"><div class="ex-line"></div><div class="ex-arrow">▼</div></div>
-          <div class="ex-node">
-            <div class="ex-node-label">🇵🇪 Importer</div>
-            <div class="ex-node-name">Alimentos del Pacífico</div>
-            <div class="ex-node-amount green">73,950 PEN</div>
-            <div class="ex-node-sub">settlement amount</div>
+          <div class="flow-conn"><div class="flow-line"></div><div class="flow-arrow">▼</div></div>
+          <div class="flow-node">
+            <div class="flow-label">🇵🇪 Importer</div>
+            <div class="flow-name">Alimentos del Pacífico</div>
+            <div class="flow-amount green">73,950 PEN</div>
           </div>
         </div>
       </div>
@@ -326,209 +271,96 @@
 </section>
 
 
-<!-- ═══════════════════════════════════════
-     LIFECYCLE TIMELINE
-═══════════════════════════════════════ -->
+<!-- ═══════ LIFECYCLE ═══════ -->
 <section class="lifecycle-section" id="lifecycle">
   <div class="container">
     <div class="section-label">Trade Lifecycle</div>
     <h2>From invoice to settlement</h2>
     <p class="lifecycle-sub">Five steps. One contract. If shipment timing is contested, GenLayer resolves the disputed fact — and the same settlement engine continues.</p>
 
-    <div class="tl-outer">
-      <div class="tl-steps">
+    <div class="tl-steps">
 
-        <!-- STEP 1 -->
-        <div class="tl-step">
-          <div class="tl-left"><div class="tl-dot s1">1</div><div class="tl-spine"></div></div>
-          <div class="tl-body">
-            <div class="tl-tag">DRAFT</div>
-            <div class="tl-title">Invoice Created</div>
-            <div class="tl-detail"><strong>150,000 BOB</strong> trade registered on-chain. Terms agreed between exporter and importer.</div>
-          </div>
+      <!-- 1 -->
+      <div class="tl-step">
+        <div class="tl-left"><div class="tl-dot s1">1</div><div class="tl-spine"></div></div>
+        <div class="tl-body">
+          <div class="tl-title">Invoice Created</div>
+          <div class="tl-detail"><strong>150,000 BOB</strong> trade registered on-chain.</div>
         </div>
-
-        <!-- STEP 2 -->
-        <div class="tl-step">
-          <div class="tl-left"><div class="tl-dot s2">2</div><div class="tl-spine"></div></div>
-          <div class="tl-body">
-            <div class="tl-tag green">RATE LOCKED</div>
-            <div class="tl-title">Benchmark Locked</div>
-            <div class="tl-detail">GenLayer validators agree on <strong>0.493 PEN/BOB</strong>. Rate delivered to Base and recorded on-chain.</div>
-          </div>
-        </div>
-
-        <!-- STEP 3 -->
-        <div class="tl-step">
-          <div class="tl-left"><div class="tl-dot s3">3</div><div class="tl-spine"></div></div>
-          <div class="tl-body">
-            <div class="tl-tag blue">SETTLEMENT COMPUTED</div>
-            <div class="tl-title">Settlement Amount Computed</div>
-            <div class="tl-detail">150,000 × 0.493 = <strong>73,950 PEN</strong>. Awaiting shipment check before final release.</div>
-          </div>
-        </div>
-
-        <!-- STEP 4 — SHIPMENT CHECK -->
-        <div class="tl-step">
-          <div class="tl-left"><div class="tl-dot s4">4</div><div class="tl-spine"></div></div>
-          <div class="tl-body">
-            <div class="tl-tag amber">SHIPMENT CHECK</div>
-            <div class="tl-title">Shipment Checked</div>
-            <div class="tl-detail" style="margin-bottom:14px;">
-              If uncontested, settlement proceeds. If the importer contests timing within the <strong>7-day window</strong>, GenLayer evaluates the evidence and returns a verdict. The contract maps that verdict to release, refund, or manual review.
-            </div>
-
-            <div class="sc-selector">
-              <button class="sc-btn accepted active" onclick="selectState('accepted', this)">✓ Accepted</button>
-              <button class="sc-btn contested" onclick="selectState('timely', this)">Contested — Timely</button>
-              <button class="sc-btn late" onclick="selectState('late', this)">Contested — Late</button>
-              <button class="sc-btn manual" onclick="selectState('undetermined', this)">Contested — Undetermined</button>
-            </div>
-
-            <!-- ACCEPTED -->
-            <div id="sc-accepted" class="sc-accepted-msg show">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-              Shipment accepted. Settlement proceeds to final release.
-            </div>
-
-            <!-- TIMELY -->
-            <div id="sc-timely" class="sc-court">
-              <div class="sc-row">
-                <div class="sc-row-label">What happened</div>
-                <div class="sc-row-text">Importer contested shipment timing. Both sides submitted customs documents with conflicting timestamps.</div>
-              </div>
-              <div class="sc-row">
-                <div class="sc-row-label">Evidence considered</div>
-                <div class="sc-row-text">Exporter's customs exit receipt (22:41, 78 min before deadline) vs. importer's border gate record (00:18, 18 min after).</div>
-              </div>
-              <div class="sc-row">
-                <div class="sc-row-label">What GenLayer found</div>
-                <div><span class="sc-verdict-badge vtrue"><span class="sc-verdict-dot"></span> TIMELY SHIPMENT</span></div>
-              </div>
-              <div class="sc-row">
-                <div class="sc-row-label">What the contract did</div>
-                <div class="sc-row-text"><strong>Released 73,950 PEN</strong> to the exporter.</div>
-              </div>
-            </div>
-
-            <!-- LATE -->
-            <div id="sc-late" class="sc-court">
-              <div class="sc-row">
-                <div class="sc-row-label">What happened</div>
-                <div class="sc-row-text">Importer contested shipment timing. Exporter presented a pre-clearance stamp; importer presented a gate record.</div>
-              </div>
-              <div class="sc-row">
-                <div class="sc-row-label">Evidence considered</div>
-                <div class="sc-row-text">Exporter's pre-departure clearance stamp (Apr 5) vs. importer's border gate record showing physical crossing on Apr 9 — four days after deadline.</div>
-              </div>
-              <div class="sc-row">
-                <div class="sc-row-label">What GenLayer found</div>
-                <div><span class="sc-verdict-badge vfalse"><span class="sc-verdict-dot"></span> LATE SHIPMENT</span></div>
-              </div>
-              <div class="sc-row">
-                <div class="sc-row-label">What the contract did</div>
-                <div class="sc-row-text"><strong>Refunded 73,950 PEN</strong> to the importer.</div>
-              </div>
-            </div>
-
-            <!-- UNDETERMINED -->
-            <div id="sc-undetermined" class="sc-court">
-              <div class="sc-row">
-                <div class="sc-row-label">What happened</div>
-                <div class="sc-row-text">Importer contested shipment timing. Both documents had illegible fields.</div>
-              </div>
-              <div class="sc-row">
-                <div class="sc-row-label">Evidence considered</div>
-                <div class="sc-row-text">Exporter's customs receipt (shipment ref illegible, can't match to this trade) vs. importer's gate record (date ambiguous — could read Apr 4 or Apr 14).</div>
-              </div>
-              <div class="sc-row">
-                <div class="sc-row-label">What GenLayer found</div>
-                <div><span class="sc-verdict-badge vund"><span class="sc-verdict-dot"></span> UNDETERMINED</span></div>
-              </div>
-              <div class="sc-row">
-                <div class="sc-row-label">What the contract did</div>
-                <div class="sc-row-text"><strong>Froze 73,950 PEN.</strong> 14-day review window; if no ruling, defaults to refund.</div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- STEP 5 -->
-        <div class="tl-step">
-          <div class="tl-left"><div class="tl-dot s5" id="step5-dot">5</div></div>
-          <div class="tl-body">
-            <div class="tl-tag" id="step5-tag">FINAL OUTCOME</div>
-            <div class="tl-title">Final Outcome</div>
-
-            <div id="outcome-accepted" class="outcome-panel show">
-              <div class="outcome-badge release"><span class="outcome-dot"></span> SETTLED — 73,950 PEN RELEASED</div>
-              <div class="outcome-desc">Shipment accepted. <strong>73,950 PEN transferred to exporter.</strong></div>
-            </div>
-            <div id="outcome-timely" class="outcome-panel">
-              <div class="outcome-badge release"><span class="outcome-dot"></span> SETTLED — 73,950 PEN RELEASED</div>
-              <div class="outcome-desc">GenLayer found shipment timely. <strong>73,950 PEN transferred to exporter.</strong> Same engine, same result as the standard path.</div>
-            </div>
-            <div id="outcome-late" class="outcome-panel">
-              <div class="outcome-badge refund"><span class="outcome-dot"></span> CANCELLED — 73,950 PEN REFUNDED</div>
-              <div class="outcome-desc">GenLayer found shipment late. <strong>73,950 PEN returned to importer.</strong></div>
-            </div>
-            <div id="outcome-undetermined" class="outcome-panel">
-              <div class="outcome-badge manual"><span class="outcome-dot"></span> UNDETERMINED — FROZEN</div>
-              <div class="outcome-desc">Evidence insufficient. 73,950 PEN locked. 14-day review window; if no ruling, defaults to <strong>refund</strong>.</div>
-            </div>
-          </div>
-        </div>
-
       </div>
 
-      <!-- PROOF SIDEBAR -->
-      <div class="tl-proof">
-        <div class="tl-proof-title" id="proof-title">On-chain proof</div>
+      <!-- 2 -->
+      <div class="tl-step">
+        <div class="tl-left"><div class="tl-dot s2">2</div><div class="tl-spine"></div></div>
+        <div class="tl-body">
+          <div class="tl-title">Benchmark Locked</div>
+          <div class="tl-detail">GenLayer validators agree on <strong>0.493 PEN/BOB</strong>.</div>
+        </div>
+      </div>
 
-        <div id="proof-accepted" class="proof-state show">
-          <div class="proof-block">
-            <div class="proof-k">contract</div>
-            <div class="proof-v"><a href="https://sepolia.basescan.org/address/0xD7929535b7Fe825cbb51B5CE70a3356aCc64E2Fa" target="_blank" style="color:var(--blue);">0xD792…CE2Fa ↗</a></div>
-            <div class="proof-k" style="margin-top:8px;">state</div>
-            <div class="proof-v" style="color:var(--green);">SETTLED · 73,950 PEN → exporter</div>
+      <!-- 3 -->
+      <div class="tl-step">
+        <div class="tl-left"><div class="tl-dot s3">3</div><div class="tl-spine"></div></div>
+        <div class="tl-body">
+          <div class="tl-title">Settlement Computed</div>
+          <div class="tl-detail">150,000 × 0.493 = <strong>73,950 PEN</strong>. Awaiting shipment check.</div>
+        </div>
+      </div>
+
+      <!-- 4 — SHIPMENT -->
+      <div class="tl-step">
+        <div class="tl-left"><div class="tl-dot s4">4</div><div class="tl-spine"></div></div>
+        <div class="tl-body">
+          <div class="tl-title">Shipment Checked</div>
+          <div class="tl-detail">If uncontested, settlement proceeds. If the importer contests timing, GenLayer evaluates the evidence and returns a verdict.</div>
+
+          <div class="sc-selector">
+            <button class="sc-btn accepted active" onclick="pick('accepted',this)">✓ Accepted</button>
+            <button class="sc-btn contested" onclick="pick('timely',this)">Timely</button>
+            <button class="sc-btn late" onclick="pick('late',this)">Late</button>
+            <button class="sc-btn manual" onclick="pick('undetermined',this)">Undetermined</button>
+          </div>
+
+          <div id="sc-accepted" class="sc-accepted show">Shipment accepted. Settlement proceeds to final release.</div>
+
+          <div id="sc-timely" class="sc-result">
+            <p>Importer contested timing. Exporter's customs receipt showed crossing 78 minutes before deadline. Importer's gate record showed 18 minutes after.</p>
+            <div class="sc-verdict green"><span class="vdot"></span> TIMELY SHIPMENT</div>
+            <div class="sc-action" style="color:var(--green);">→ Released 73,950 PEN to the exporter.</div>
+          </div>
+
+          <div id="sc-late" class="sc-result">
+            <p>Importer contested timing. Exporter presented a pre-clearance stamp. Importer's gate record showed physical crossing on April 9 — four days after deadline.</p>
+            <div class="sc-verdict red"><span class="vdot"></span> LATE SHIPMENT</div>
+            <div class="sc-action" style="color:var(--red);">→ Refunded 73,950 PEN to the importer.</div>
+          </div>
+
+          <div id="sc-undetermined" class="sc-result">
+            <p>Importer contested timing. Both documents had illegible fields — one couldn't be matched to this shipment, the other had an ambiguous date.</p>
+            <div class="sc-verdict amber"><span class="vdot"></span> UNDETERMINED</div>
+            <div class="sc-action" style="color:var(--amber);">→ Froze 73,950 PEN. 14-day review window; defaults to refund.</div>
           </div>
         </div>
+      </div>
 
-        <div id="proof-timely" class="proof-state">
-          <div class="proof-block">
-            <div class="proof-k">contract</div>
-            <div class="proof-v"><a href="https://sepolia.basescan.org/address/0xb4700D67d6cBeF18011021A2A20389ea88753234" target="_blank" style="color:var(--green);">0xb470…3234 ↗</a></div>
-            <div class="proof-k" style="margin-top:8px;">state</div>
-            <div class="proof-v" style="color:var(--green);">TIMELY → 73,950 PEN released</div>
-            <div class="proof-k" style="margin-top:8px;">verdict tx</div>
-            <div class="proof-v"><a href="https://sepolia.basescan.org/tx/0x95f8f27ed0af49a35300568796e0cfc28943a6a483018689dc0ec67fa0b7cc88" target="_blank" style="color:var(--blue);">0x95f8…cc88 ↗</a></div>
+      <!-- 5 — OUTCOME -->
+      <div class="tl-step">
+        <div class="tl-left"><div class="tl-dot s5" id="dot5">5</div></div>
+        <div class="tl-body">
+          <div class="tl-title">Final Outcome</div>
+          <div id="out-accepted" class="outcome show">
+            <div class="tl-detail"><strong style="color:var(--green);">Settled.</strong> 73,950 PEN transferred to exporter.</div>
+          </div>
+          <div id="out-timely" class="outcome">
+            <div class="tl-detail"><strong style="color:var(--green);">Settled.</strong> GenLayer found shipment timely. 73,950 PEN transferred to exporter.</div>
+          </div>
+          <div id="out-late" class="outcome">
+            <div class="tl-detail"><strong style="color:var(--red);">Cancelled.</strong> GenLayer found shipment late. 73,950 PEN returned to importer.</div>
+          </div>
+          <div id="out-undetermined" class="outcome">
+            <div class="tl-detail"><strong style="color:var(--amber);">Frozen.</strong> Evidence insufficient. 73,950 PEN locked. Defaults to refund after 14 days.</div>
           </div>
         </div>
-
-        <div id="proof-late" class="proof-state">
-          <div class="proof-block">
-            <div class="proof-k">contract</div>
-            <div class="proof-v"><a href="https://sepolia.basescan.org/address/0xbd0dB046A913817522B595CFEb922D5E2aad4268" target="_blank" style="color:var(--red);">0xbd0d…4268 ↗</a></div>
-            <div class="proof-k" style="margin-top:8px;">state</div>
-            <div class="proof-v" style="color:var(--red);">LATE → 73,950 PEN refunded</div>
-            <div class="proof-k" style="margin-top:8px;">verdict tx</div>
-            <div class="proof-v"><a href="https://sepolia.basescan.org/tx/0x6dbf8870c8dfb02a6f4c5664913f138dfe93a4286c43c348c764caa2738b94c3" target="_blank" style="color:var(--blue);">0x6dbf…94c3 ↗</a></div>
-          </div>
-        </div>
-
-        <div id="proof-undetermined" class="proof-state">
-          <div class="proof-block">
-            <div class="proof-k">contract</div>
-            <div class="proof-v"><a href="https://sepolia.basescan.org/address/0xe50A8F382B3B751dBd7053963EbaBB59916f3788" target="_blank" style="color:var(--amber);">0xe50A…3788 ↗</a></div>
-            <div class="proof-k" style="margin-top:8px;">state</div>
-            <div class="proof-v" style="color:var(--amber);">UNDETERMINED → 73,950 PEN frozen</div>
-            <div class="proof-k" style="margin-top:8px;">verdict tx</div>
-            <div class="proof-v"><a href="https://sepolia.basescan.org/tx/0x5b70ac102e29e15e22337fea6506cccfaf22c7fc85b853e094fedaecba3e5053" target="_blank" style="color:var(--blue);">0x5b70…5053 ↗</a></div>
-          </div>
-        </div>
-
-        <a href="proof.html" style="display:block;margin-top:16px;font-size:12px;font-weight:600;color:var(--dark);text-decoration:none;border-bottom:1px solid var(--border);padding-bottom:2px;width:fit-content;">Full verification →</a>
       </div>
 
     </div>
@@ -536,13 +368,12 @@
 </section>
 
 
-<!-- ═══════════════════════════════════════
-     WHY GENLAYER MATTERS
-═══════════════════════════════════════ -->
+<!-- ═══════ WHY GENLAYER ═══════ -->
 <section class="why-section" id="why">
   <div class="container">
     <div class="section-label">Why GenLayer Matters Here</div>
     <h2>The distinction that matters</h2>
+    <p class="why-sub">Locking the rate is not the hard part. The hard part is when the trade cannot proceed because evidence is contested.</p>
 
     <div class="why-cards">
       <div class="why-card">
@@ -558,95 +389,78 @@
         <div class="why-card-text"><strong>Evaluates the evidence, returns a machine-usable verdict, and lets the same contract continue automatically.</strong></div>
       </div>
     </div>
-  </div>
-</section>
 
-
-<!-- ═══════════════════════════════════════
-     COMPACT PROOF
-═══════════════════════════════════════ -->
-<section class="compact-proof">
-  <div class="container">
-    <div class="section-label">Verification</div>
-    <h2>Settled on-chain. Verdict on GenLayer.</h2>
-
-    <div class="cp-grid">
-      <div class="cp-card">
-        <div class="cp-card-label">Settlement contract</div>
-        <div class="cp-card-value"><a href="https://sepolia.basescan.org/address/0xD7929535b7Fe825cbb51B5CE70a3356aCc64E2Fa" target="_blank">0xD792…CE2Fa ↗</a></div>
-      </div>
-      <div class="cp-card">
-        <div class="cp-card-label">State</div>
-        <div class="cp-card-value green">SETTLED · 73,950 PEN</div>
-      </div>
-      <div class="cp-card">
-        <div class="cp-card-label">GenLayer oracle</div>
-        <div class="cp-card-value"><a href="https://explorer-studio.genlayer.com/contracts/0x3B8501bAcaB70dedbC6f8B8EFCB888ba66cbc73e" target="_blank">0x3B85…c73e ↗</a></div>
-      </div>
+    <div class="why-coda">
+      The benchmark path is deterministic.<br/>
+      The verdict path is not.<br/>
+      <strong>That is why GenLayer is necessary.</strong>
     </div>
-
-    <a href="proof.html" class="cp-deep">Inspect everything under the hood →</a>
   </div>
 </section>
 
 
-<!-- ═══════════════════════════════════════
-     FOOTER
-═══════════════════════════════════════ -->
+<!-- ═══════ PROOF STRIP ═══════ -->
+<section class="proof-strip">
+  <div class="container">
+    <div class="proof-inner">
+      <div class="proof-left">
+        <div class="proof-item">
+          <div class="proof-dot" style="background:var(--green);"></div>
+          Settled on-chain ·
+          <a href="https://sepolia.basescan.org/address/0xD7929535b7Fe825cbb51B5CE70a3356aCc64E2Fa" target="_blank">0xD792…CE2Fa ↗</a>
+        </div>
+        <div class="proof-item">
+          <div class="proof-dot" style="background:var(--purple);"></div>
+          Verdict on GenLayer
+        </div>
+      </div>
+      <a href="proof.html" class="proof-link">Inspect everything under the hood →</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════ FOOTER ═══════ -->
 <footer>
   <div class="container">
     <div class="footer-inner">
-      <div>
-        <div class="footer-logo">
-          <span style="background:var(--card);border-radius:6px;padding:2px 8px;font-family:'DM Mono',monospace;font-size:11px;">FX</span>
-          Trade Finance × GenLayer
-        </div>
-        <div class="footer-note">A prototype demonstrating GenLayer as a coordination layer for FX-settled cross-border invoices, with an inline InternetCourt exception path for contested shipment timing. Deployed on Base Sepolia + GenLayer Studionet.</div>
+      <div class="footer-left">
+        <div class="footer-logo"><span style="background:var(--card);border-radius:6px;padding:2px 8px;font-family:'DM Mono',monospace;font-size:11px;">FX</span> Trade Finance × GenLayer</div>
+        <div class="footer-note">A prototype demonstrating GenLayer as a coordination layer for FX-settled cross-border invoices. Deployed on Base Sepolia + GenLayer Studionet.</div>
       </div>
       <div class="footer-links">
         <a href="https://genlayer.com" target="_blank">GenLayer</a>
-        <a href="https://docs.genlayer.com" target="_blank">GenLayer Docs</a>
         <a href="https://github.com/acastellana/trade-finance-genlayer" target="_blank">GitHub ↗</a>
         <a href="proof.html">Technical details</a>
       </div>
     </div>
-    <div class="footer-bottom">Build: a3d8afb4 · 2026-03-08T16:16:45Z</div>
+    <div class="footer-bottom">Build: c19ba7cf · 2026-03-08T16:25:00Z</div>
   </div>
 </footer>
 
 
 <script>
-  const STATES = ['accepted', 'timely', 'late', 'undetermined'];
+function pick(state, btn) {
+  document.querySelectorAll('.sc-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
 
-  function selectState(state, btn) {
-    document.querySelectorAll('.sc-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
+  // Step 4
+  document.getElementById('sc-accepted').classList.remove('show');
+  document.querySelectorAll('.sc-result').forEach(p => p.classList.remove('show'));
+  if (state === 'accepted') document.getElementById('sc-accepted').classList.add('show');
+  else document.getElementById('sc-' + state).classList.add('show');
 
-    document.getElementById('sc-accepted').classList.remove('show');
-    document.querySelectorAll('.sc-court').forEach(p => p.classList.remove('show'));
-    if (state === 'accepted') {
-      document.getElementById('sc-accepted').classList.add('show');
-    } else {
-      document.getElementById('sc-' + state).classList.add('show');
-    }
+  // Step 5
+  ['accepted','timely','late','undetermined'].forEach(s => document.getElementById('out-' + s).classList.remove('show'));
+  document.getElementById('out-' + state).classList.add('show');
 
-    STATES.forEach(s => document.getElementById('outcome-' + s).classList.remove('show'));
-    document.getElementById('outcome-' + state).classList.add('show');
-
-    const dot = document.getElementById('step5-dot');
-    dot.className = 'tl-dot s5';
-    if (state === 'timely' || state === 'accepted') dot.classList.add('timely');
-    else if (state === 'late') dot.classList.add('late');
-    else if (state === 'undetermined') dot.classList.add('manual');
-
-    document.querySelectorAll('.proof-state').forEach(p => { p.classList.remove('show'); p.style.display = 'none'; });
-    const el = document.getElementById('proof-' + state);
-    el.style.display = 'block';
-    el.classList.add('show');
-
-    const titles = { accepted:'On-chain proof', timely:'Proof — TIMELY', late:'Proof — LATE', undetermined:'Proof — UNDETERMINED' };
-    document.getElementById('proof-title').textContent = titles[state];
-  }
+  // Dot color
+  const d = document.getElementById('dot5');
+  d.className = 'tl-dot s5';
+  if (state === 'timely' || state === 'accepted') d.classList.add('timely');
+  else if (state === 'late') d.classList.add('late');
+  else d.classList.add('manual');
+}
 </script>
 
 </body>
