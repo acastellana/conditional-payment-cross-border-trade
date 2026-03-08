@@ -151,9 +151,19 @@
     .verdict-pill.red .vd    { background: var(--red); }
     .verdict-pill.amber .vd  { background: var(--amber); }
 
-    .sc-docket { margin-top: 10px; font-family: 'DM Mono', monospace; font-size: 13px; }
-    .sc-docket a { color: var(--blue); text-decoration: none; }
-    .sc-docket a:hover { text-decoration: underline; }
+    .sc-footer { margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--border); }
+    .sc-docket-card {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 12px 20px;
+      text-decoration: none; color: var(--dark);
+      transition: all 0.2s; margin-bottom: 14px;
+    }
+    .sc-docket-card:hover { border-color: var(--dark); box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    .sc-docket-icon { width: 28px; height: 28px; border-radius: 6px; background: var(--dark); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .sc-docket-icon svg { width: 14px; height: 14px; }
+    .sc-docket-label { font-size: 14px; font-weight: 600; }
+    .sc-docket-sub { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
     .sc-schedule-note { font-size: 13px; color: var(--muted); margin-top: 16px; line-height: 1.55; }
     .sc-schedule-note a { color: var(--blue); text-decoration: none; }
     .sc-schedule-note a:hover { text-decoration: underline; }
@@ -382,10 +392,16 @@
 
     </div>
 
-    <div class="sc-docket" id="docket-link">
-      <a href="https://internetcourt.org/cases/0xb4700D67d6cBeF18011021A2A20389ea88753234" target="_blank" id="docket-anchor">Internet Court Docket ↗</a>
+    <div class="sc-footer">
+      <a href="https://internetcourt.org/cases/0xb4700D67d6cBeF18011021A2A20389ea88753234" target="_blank" id="docket-anchor" class="sc-docket-card">
+        <div class="sc-docket-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+        <div>
+          <div class="sc-docket-label">Internet Court Docket ↗</div>
+          <div class="sc-docket-sub">Full case timeline, evidence, and verdict provenance</div>
+        </div>
+      </a>
+      <div class="sc-schedule-note">Each outcome above is a parallel example deployment with distinct evidence. The full remedy schedule is shown <a href="proof.html#economics">under the hood</a>.</div>
     </div>
-    <div class="sc-schedule-note">Each outcome above is a parallel example deployment with distinct evidence. The full remedy schedule is shown <a href="proof.html#economics">under the hood</a>.</div>
 
   </div>
 </section>
