@@ -137,7 +137,6 @@
     .sc-court { display: none; background: var(--dark); border-radius: var(--radius-xl); padding: 22px 26px; margin-top: 4px; }
     .sc-court.show { display: block; }
     .sc-court-tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 12px; }
-    .sc-court-statement { font-size: 13px; font-style: italic; color: rgba(255,255,255,0.5); line-height: 1.6; padding: 10px 14px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); border-radius: var(--radius); margin-bottom: 16px; }
     .sc-row { margin-bottom: 14px; }
     .sc-row:last-child { margin-bottom: 0; }
     .sc-row-label { font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 5px; }
@@ -151,10 +150,6 @@
     .sc-verdict-badge.vtrue .sc-verdict-dot  { background: #86efac; }
     .sc-verdict-badge.vfalse .sc-verdict-dot { background: #fca5a5; }
     .sc-verdict-badge.vund .sc-verdict-dot   { background: #fbbf24; }
-    .sc-links { display: flex; flex-wrap: wrap; gap: 6px 12px; margin-top: 12px; font-family: 'DM Mono', monospace; font-size: 11px; }
-    .sc-links a { text-decoration: none; opacity: 0.6; transition: opacity 0.15s; }
-    .sc-links a:hover { opacity: 0.9; }
-
     /* Step 5 outcomes */
     .outcome-panel { display: none; }
     .outcome-panel.show { display: block; }
@@ -398,71 +393,61 @@
 
             <!-- TIMELY -->
             <div id="sc-timely" class="sc-court">
-              <div class="sc-court-tag">InternetCourt · shipment-deadline-v1</div>
-              <div class="sc-court-statement">"Shipment under Contract QC-COOP-2026-0003 crossed Bolivian export customs at Desaguadero on or before 2026-04-05 23:59 America/La_Paz."</div>
               <div class="sc-row">
                 <div class="sc-row-label">What happened</div>
-                <div class="sc-row-text">Importer contested shipment timing. Both sides submitted customs evidence with conflicting timestamps.</div>
+                <div class="sc-row-text">Importer contested shipment timing. Both sides submitted customs documents with conflicting timestamps.</div>
+              </div>
+              <div class="sc-row">
+                <div class="sc-row-label">Evidence considered</div>
+                <div class="sc-row-text">Exporter's customs exit receipt (22:41, 78 min before deadline) vs. importer's border gate record (00:18, 18 min after).</div>
               </div>
               <div class="sc-row">
                 <div class="sc-row-label">What GenLayer found</div>
-                <div style="margin-bottom:6px;"><span class="sc-verdict-badge vtrue"><span class="sc-verdict-dot"></span> TIMELY SHIPMENT</span></div>
-                <div class="sc-row-text">Customs exit receipt confirmed crossing 78 minutes before deadline. Border gate record is a secondary system event.</div>
+                <div><span class="sc-verdict-badge vtrue"><span class="sc-verdict-dot"></span> TIMELY SHIPMENT</span></div>
               </div>
               <div class="sc-row">
                 <div class="sc-row-label">What the contract did</div>
-                <div class="sc-row-text"><strong>Settlement proceeds.</strong> 73,950 PEN released to exporter.</div>
-              </div>
-              <div class="sc-links">
-                <a href="https://internetcourt.org/cases/0xb4700D67d6cBeF18011021A2A20389ea88753234" target="_blank" style="color:rgba(167,139,250,0.8);">IC docket ↗</a>
-                <a href="https://sepolia.basescan.org/tx/0x95f8f27ed0af49a35300568796e0cfc28943a6a483018689dc0ec67fa0b7cc88" target="_blank" style="color:rgba(134,239,172,0.7);">verdict tx ↗</a>
-                <a href="https://sepolia.basescan.org/tx/0x35ab0764fc3edd0ed5d42558f6dab6dcecefaf3c2eb51ffa843c843be68fb1e0" target="_blank" style="color:rgba(134,239,172,0.9);">settle tx ↗</a>
+                <div class="sc-row-text"><strong>Released 73,950 PEN</strong> to the exporter.</div>
               </div>
             </div>
 
             <!-- LATE -->
             <div id="sc-late" class="sc-court">
-              <div class="sc-court-tag">InternetCourt · shipment-deadline-v1</div>
-              <div class="sc-court-statement">"Shipment under Contract QC-COOP-2026-0004 crossed Bolivian export customs at Desaguadero on or before 2026-04-05 23:59 America/La_Paz."</div>
               <div class="sc-row">
                 <div class="sc-row-label">What happened</div>
-                <div class="sc-row-text">Importer contested timing. Exporter presented a pre-clearance stamp. Importer presented a gate record showing physical crossing four days after deadline.</div>
+                <div class="sc-row-text">Importer contested shipment timing. Exporter presented a pre-clearance stamp; importer presented a gate record.</div>
+              </div>
+              <div class="sc-row">
+                <div class="sc-row-label">Evidence considered</div>
+                <div class="sc-row-text">Exporter's pre-departure clearance stamp (Apr 5) vs. importer's border gate record showing physical crossing on Apr 9 — four days after deadline.</div>
               </div>
               <div class="sc-row">
                 <div class="sc-row-label">What GenLayer found</div>
-                <div style="margin-bottom:6px;"><span class="sc-verdict-badge vfalse"><span class="sc-verdict-dot"></span> LATE SHIPMENT</span></div>
-                <div class="sc-row-text">Pre-clearance stamp is not a crossing event. Gate record shows crossing on April 9 — four days late.</div>
+                <div><span class="sc-verdict-badge vfalse"><span class="sc-verdict-dot"></span> LATE SHIPMENT</span></div>
               </div>
               <div class="sc-row">
                 <div class="sc-row-label">What the contract did</div>
-                <div class="sc-row-text"><strong>Settlement cancelled.</strong> 73,950 PEN refunded to importer.</div>
-              </div>
-              <div class="sc-links">
-                <a href="https://internetcourt.org/cases/0xbd0dB046A913817522B595CFEb922D5E2aad4268" target="_blank" style="color:rgba(167,139,250,0.8);">IC docket ↗</a>
-                <a href="https://sepolia.basescan.org/tx/0x6dbf8870c8dfb02a6f4c5664913f138dfe93a4286c43c348c764caa2738b94c3" target="_blank" style="color:rgba(252,165,165,0.7);">verdict + refund tx ↗</a>
+                <div class="sc-row-text"><strong>Refunded 73,950 PEN</strong> to the importer.</div>
               </div>
             </div>
 
             <!-- UNDETERMINED -->
             <div id="sc-undetermined" class="sc-court">
-              <div class="sc-court-tag">InternetCourt · shipment-deadline-v1</div>
-              <div class="sc-court-statement">"Shipment under Contract QC-COOP-2026-0005 crossed Bolivian export customs at Desaguadero on or before 2026-04-05 23:59 America/La_Paz."</div>
               <div class="sc-row">
                 <div class="sc-row-label">What happened</div>
-                <div class="sc-row-text">Importer contested timing. Both documents had illegible fields — one couldn't be matched to this shipment, the other had an ambiguous date.</div>
+                <div class="sc-row-text">Importer contested shipment timing. Both documents had illegible fields.</div>
+              </div>
+              <div class="sc-row">
+                <div class="sc-row-label">Evidence considered</div>
+                <div class="sc-row-text">Exporter's customs receipt (shipment ref illegible, can't match to this trade) vs. importer's gate record (date ambiguous — could read Apr 4 or Apr 14).</div>
               </div>
               <div class="sc-row">
                 <div class="sc-row-label">What GenLayer found</div>
-                <div style="margin-bottom:6px;"><span class="sc-verdict-badge vund"><span class="sc-verdict-dot"></span> UNDETERMINED</span></div>
-                <div class="sc-row-text">Neither document yielded a verifiable crossing timestamp. Evidence insufficient.</div>
+                <div><span class="sc-verdict-badge vund"><span class="sc-verdict-dot"></span> UNDETERMINED</span></div>
               </div>
               <div class="sc-row">
                 <div class="sc-row-label">What the contract did</div>
-                <div class="sc-row-text"><strong>Settlement frozen.</strong> 14-day manual review window opened. If no ruling, defaults to refund.</div>
-              </div>
-              <div class="sc-links">
-                <a href="https://internetcourt.org/cases/0xe50A8F382B3B751dBd7053963EbaBB59916f3788" target="_blank" style="color:rgba(167,139,250,0.8);">IC docket ↗</a>
-                <a href="https://sepolia.basescan.org/tx/0x5b70ac102e29e15e22337fea6506cccfaf22c7fc85b853e094fedaecba3e5053" target="_blank" style="color:rgba(252,205,86,0.7);">verdict tx ↗</a>
+                <div class="sc-row-text"><strong>Froze 73,950 PEN.</strong> 14-day review window; if no ruling, defaults to refund.</div>
               </div>
             </div>
 
@@ -506,9 +491,7 @@
             <div class="proof-k">contract</div>
             <div class="proof-v"><a href="https://sepolia.basescan.org/address/0xD7929535b7Fe825cbb51B5CE70a3356aCc64E2Fa" target="_blank" style="color:var(--blue);">0xD792…CE2Fa ↗</a></div>
             <div class="proof-k" style="margin-top:8px;">state</div>
-            <div class="proof-v" style="color:var(--green);">SETTLED</div>
-            <div class="proof-k" style="margin-top:8px;">settlement</div>
-            <div class="proof-v" style="color:var(--green);">73,950 PEN → exporter</div>
+            <div class="proof-v" style="color:var(--green);">SETTLED · 73,950 PEN → exporter</div>
           </div>
         </div>
 
@@ -516,12 +499,10 @@
           <div class="proof-block">
             <div class="proof-k">contract</div>
             <div class="proof-v"><a href="https://sepolia.basescan.org/address/0xb4700D67d6cBeF18011021A2A20389ea88753234" target="_blank" style="color:var(--green);">0xb470…3234 ↗</a></div>
-            <div class="proof-k" style="margin-top:8px;">verdict</div>
-            <div class="proof-v" style="color:var(--green);">TIMELY → SETTLED</div>
-            <div class="proof-k" style="margin-top:8px;">settlement</div>
-            <div class="proof-v" style="color:var(--green);">73,950 PEN → exporter</div>
-            <div class="proof-k" style="margin-top:8px;">IC case</div>
-            <div class="proof-v"><a href="https://internetcourt.org/cases/0xb4700D67d6cBeF18011021A2A20389ea88753234" target="_blank" style="color:var(--purple);">#3 — docket ↗</a></div>
+            <div class="proof-k" style="margin-top:8px;">state</div>
+            <div class="proof-v" style="color:var(--green);">TIMELY → 73,950 PEN released</div>
+            <div class="proof-k" style="margin-top:8px;">verdict tx</div>
+            <div class="proof-v"><a href="https://sepolia.basescan.org/tx/0x95f8f27ed0af49a35300568796e0cfc28943a6a483018689dc0ec67fa0b7cc88" target="_blank" style="color:var(--blue);">0x95f8…cc88 ↗</a></div>
           </div>
         </div>
 
@@ -529,12 +510,10 @@
           <div class="proof-block">
             <div class="proof-k">contract</div>
             <div class="proof-v"><a href="https://sepolia.basescan.org/address/0xbd0dB046A913817522B595CFEb922D5E2aad4268" target="_blank" style="color:var(--red);">0xbd0d…4268 ↗</a></div>
-            <div class="proof-k" style="margin-top:8px;">verdict</div>
-            <div class="proof-v" style="color:var(--red);">LATE → CANCELLED</div>
-            <div class="proof-k" style="margin-top:8px;">settlement</div>
-            <div class="proof-v" style="color:var(--red);">73,950 PEN → refunded</div>
-            <div class="proof-k" style="margin-top:8px;">IC case</div>
-            <div class="proof-v"><a href="https://internetcourt.org/cases/0xbd0dB046A913817522B595CFEb922D5E2aad4268" target="_blank" style="color:var(--purple);">#4 — docket ↗</a></div>
+            <div class="proof-k" style="margin-top:8px;">state</div>
+            <div class="proof-v" style="color:var(--red);">LATE → 73,950 PEN refunded</div>
+            <div class="proof-k" style="margin-top:8px;">verdict tx</div>
+            <div class="proof-v"><a href="https://sepolia.basescan.org/tx/0x6dbf8870c8dfb02a6f4c5664913f138dfe93a4286c43c348c764caa2738b94c3" target="_blank" style="color:var(--blue);">0x6dbf…94c3 ↗</a></div>
           </div>
         </div>
 
@@ -542,18 +521,14 @@
           <div class="proof-block">
             <div class="proof-k">contract</div>
             <div class="proof-v"><a href="https://sepolia.basescan.org/address/0xe50A8F382B3B751dBd7053963EbaBB59916f3788" target="_blank" style="color:var(--amber);">0xe50A…3788 ↗</a></div>
-            <div class="proof-k" style="margin-top:8px;">verdict</div>
-            <div class="proof-v" style="color:var(--amber);">UNDETERMINED → FROZEN</div>
-            <div class="proof-k" style="margin-top:8px;">settlement</div>
-            <div class="proof-v" style="color:var(--amber);">73,950 PEN locked · 14-day window</div>
-            <div class="proof-k" style="margin-top:8px;">IC case</div>
-            <div class="proof-v"><a href="https://internetcourt.org/cases/0xe50A8F382B3B751dBd7053963EbaBB59916f3788" target="_blank" style="color:var(--purple);">#5 — docket ↗</a></div>
+            <div class="proof-k" style="margin-top:8px;">state</div>
+            <div class="proof-v" style="color:var(--amber);">UNDETERMINED → 73,950 PEN frozen</div>
+            <div class="proof-k" style="margin-top:8px;">verdict tx</div>
+            <div class="proof-v"><a href="https://sepolia.basescan.org/tx/0x5b70ac102e29e15e22337fea6506cccfaf22c7fc85b853e094fedaecba3e5053" target="_blank" style="color:var(--blue);">0x5b70…5053 ↗</a></div>
           </div>
         </div>
 
-        <div style="margin-top:14px;font-size:12px;color:var(--muted);line-height:1.6;">
-          These are parallel deployments of the same lifecycle — each with different evidence to produce a different verdict path.
-        </div>
+        <a href="proof.html" style="display:block;margin-top:16px;font-size:12px;font-weight:600;color:var(--dark);text-decoration:none;border-bottom:1px solid var(--border);padding-bottom:2px;width:fit-content;">Full verification →</a>
       </div>
 
     </div>
