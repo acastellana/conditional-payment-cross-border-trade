@@ -141,6 +141,63 @@
 </section>
 
 
+<!-- ═══════ ECONOMIC MODEL ═══════ -->
+<section class="proof-section" id="economics">
+  <div class="container">
+    <div class="section-label">Economic Model</div>
+    <h2>Conditional escrow with pre-agreed remedy schedule</h2>
+
+    <p style="font-size:15px;color:var(--muted);margin-bottom:8px;max-width:600px;">Importer pre-funds 73,950 PEN into escrow. Release depends on shipment timing. The court classifies the delay; the contract applies the remedy.</p>
+    <p style="font-size:14px;color:var(--muted);margin-bottom:24px;max-width:600px;font-style:italic;">GenLayer decides the fact. The contract decides the money.</p>
+
+    <table class="p-table">
+      <thead>
+        <tr><th>Court classification</th><th>Exporter receives</th><th>Importer receives</th><th>Logic</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong style="color:var(--green);">ON_TIME</strong></td>
+          <td>73,950.00 PEN (100%)</td>
+          <td>—</td>
+          <td>Full release</td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--amber);">LATE_1_4</strong></td>
+          <td>73,580.25 PEN (99.5%)</td>
+          <td>369.75 PEN (0.5%)</td>
+          <td>Late-shipment adjustment</td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--amber);">LATE_5_6</strong></td>
+          <td>73,210.50 PEN (99.0%)</td>
+          <td>739.50 PEN (1.0%)</td>
+          <td>Late-shipment adjustment</td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--amber);">LATE_7_8</strong></td>
+          <td>72,840.75 PEN (98.5%)</td>
+          <td>1,109.25 PEN (1.5%)</td>
+          <td>Late-shipment adjustment</td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--red);">VERY_LATE</strong> (>8 days)</td>
+          <td>—</td>
+          <td>73,950.00 PEN (100%)</td>
+          <td>Buyer cancellation</td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--amber);">UNDETERMINED</strong></td>
+          <td colspan="2" style="color:var(--muted);font-style:italic;">Held in escrow — 14-day arbitrator window. If no ruling, defaults to refund.</td>
+          <td>Manual review</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p style="font-size:13px;color:var(--muted);margin-top:20px;">The court question asks GenLayer to classify the shipment crossing into one of these buckets based on the evidence. The settlement contract maps the classification to the payout split deterministically. GenLayer never decides the price or the payment amount.</p>
+  </div>
+</section>
+
+
 <!-- ═══════ CONTRACT REGISTRY ═══════ -->
 <section class="proof-section" id="contracts">
   <div class="container">
@@ -235,26 +292,26 @@
 <section class="proof-section" id="scenarios">
   <div class="container">
     <div class="section-label">Disputed Scenarios</div>
-    <h2>Three parallel deployments — one per verdict path</h2>
-    <p style="font-size:15px;color:var(--muted);margin-bottom:28px;max-width:580px;">Each scenario contract was deployed with different evidence to produce a different GenLayer verdict. They are not branches of one live trade.</p>
+    <h2>Three parallel deployments — one per classification path</h2>
+    <p style="font-size:15px;color:var(--muted);margin-bottom:28px;max-width:580px;">Each scenario contract was deployed with different evidence to produce a different GenLayer classification. They are not branches of one live trade. The contract maps each classification to a deterministic payout split.</p>
 
     <div class="scenario-grid">
 
-      <!-- A — TIMELY -->
+      <!-- A — ON TIME -->
       <div class="scenario-card">
-        <h3>Scenario A — Timely</h3>
-        <div class="verdict-tag green"><span class="vd"></span> TIMELY → SETTLED</div>
+        <h3>Scenario A — On Time</h3>
+        <div class="verdict-tag green"><span class="vd"></span> ON_TIME → 100% RELEASED</div>
         <div class="sc-detail">
           <span class="label">Evidence</span>
           Exporter's customs exit receipt showed crossing at 22:41, 78 minutes before deadline. Importer's border gate record showed 00:18, 18 minutes after.
         </div>
         <div class="sc-detail">
-          <span class="label">GenLayer reasoning</span>
-          Customs exit receipt is the authoritative crossing document. Border gate record is a secondary system event.
+          <span class="label">GenLayer classification</span>
+          ON_TIME — customs exit receipt is the authoritative crossing document.
         </div>
         <div class="sc-detail">
-          <span class="label">Outcome</span>
-          <strong>73,950 PEN released to exporter.</strong>
+          <span class="label">Contract outcome</span>
+          <strong>73,950 PEN (100%) released to exporter.</strong>
         </div>
         <div class="sc-detail">
           <span class="label">IC Case</span>
@@ -268,21 +325,21 @@
         </div>
       </div>
 
-      <!-- B — LATE -->
+      <!-- B — LATE 1-4 DAYS -->
       <div class="scenario-card">
-        <h3>Scenario B — Late</h3>
-        <div class="verdict-tag red"><span class="vd"></span> LATE → CANCELLED</div>
+        <h3>Scenario B — 1–4 Days Late</h3>
+        <div class="verdict-tag" style="background:var(--amber-light);color:var(--amber);"><span class="vd" style="background:var(--amber);"></span> LATE_1_4 → 99.5% RELEASED</div>
         <div class="sc-detail">
           <span class="label">Evidence</span>
           Exporter's pre-departure clearance stamp dated April 5. Importer's border gate record shows physical crossing on April 9 — four days after deadline.
         </div>
         <div class="sc-detail">
-          <span class="label">GenLayer reasoning</span>
-          Pre-clearance stamp is not a crossing event. Gate record shows actual crossing four days late.
+          <span class="label">GenLayer classification</span>
+          LATE_1_4 — pre-clearance stamp is not a crossing event. Gate record shows crossing four days late.
         </div>
         <div class="sc-detail">
-          <span class="label">Outcome</span>
-          <strong>73,950 PEN refunded to importer.</strong>
+          <span class="label">Contract outcome</span>
+          <strong>73,580.25 PEN (99.5%) to exporter. 369.75 PEN (0.5%) adjustment returned to importer.</strong>
         </div>
         <div class="sc-detail">
           <span class="label">IC Case</span>
@@ -298,18 +355,18 @@
       <!-- C — UNDETERMINED -->
       <div class="scenario-card">
         <h3>Scenario C — Undetermined</h3>
-        <div class="verdict-tag amber"><span class="vd"></span> UNDETERMINED → FROZEN</div>
+        <div class="verdict-tag amber"><span class="vd"></span> UNDETERMINED → MANUAL REVIEW</div>
         <div class="sc-detail">
           <span class="label">Evidence</span>
           Exporter's customs receipt had illegible shipment ref. Importer's gate record had an ambiguous date (could read Apr 4 or Apr 14).
         </div>
         <div class="sc-detail">
-          <span class="label">GenLayer reasoning</span>
-          Neither document yields a verifiable crossing timestamp. Evidence insufficient to determine TRUE or FALSE.
+          <span class="label">GenLayer classification</span>
+          UNDETERMINED — neither document yields a verifiable crossing timestamp.
         </div>
         <div class="sc-detail">
-          <span class="label">Outcome</span>
-          <strong>73,950 PEN frozen.</strong> 14-day manual review window. If no ruling, defaults to refund.
+          <span class="label">Contract outcome</span>
+          <strong>73,950 PEN held in escrow.</strong> 14-day arbitrator window. If no ruling, defaults to refund.
         </div>
         <div class="sc-detail">
           <span class="label">IC Case</span>
@@ -339,15 +396,15 @@
       </thead>
       <tbody>
         <tr>
-          <td>A — Timely</td>
+          <td>A — On Time</td>
           <td class="addr"><a href="https://explorer-studio.genlayer.com/contracts/0x2293B52CdA2940CBD9EFB60d29B88C5Da53FbedE" target="_blank">0x2293…FbedE ↗</a></td>
-          <td><strong style="color:var(--green);">TIMELY</strong></td>
+          <td><strong style="color:var(--green);">ON_TIME</strong></td>
           <td>4 agree · 1 disagree</td>
         </tr>
         <tr>
-          <td>B — Late</td>
+          <td>B — 1–4 Days Late</td>
           <td class="addr"><a href="https://explorer-studio.genlayer.com/contracts/0x435b82AE459Cae242B1C2097034D9d98d3bB5E29" target="_blank">0x435b…5E29 ↗</a></td>
-          <td><strong style="color:var(--red);">LATE</strong></td>
+          <td><strong style="color:var(--amber);">LATE_1_4</strong></td>
           <td>4 agree · 1 disagree</td>
         </tr>
         <tr>
@@ -383,7 +440,7 @@
       </div>
     </div>
 
-    <p style="font-size:14px;color:var(--muted);margin-top:24px;">Rate is relayer-mediated (no LayerZero). Verdicts are bridge-mediated (through LayerZero). The asymmetry is intentional: wrong rate is publicly catchable; wrong verdict moves money irreversibly.</p>
+    <p style="font-size:14px;color:var(--muted);margin-top:24px;">Rate is relayer-mediated (no LayerZero). Classifications are bridge-mediated (through LayerZero). The asymmetry is intentional: wrong rate is publicly catchable; wrong classification triggers the wrong remedy. GenLayer classifies the fact; the contract applies the pre-agreed economic consequence.</p>
   </div>
 </section>
 
