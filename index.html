@@ -151,6 +151,9 @@
     .verdict-pill.red .vd    { background: var(--red); }
     .verdict-pill.amber .vd  { background: var(--amber); }
 
+    .sc-links { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 12px; font-family: 'DM Mono', monospace; font-size: 12px; }
+    .sc-links a { color: var(--blue); text-decoration: none; }
+    .sc-links a:hover { text-decoration: underline; }
     .sc-schedule-note { font-size: 13px; color: var(--muted); margin-top: 16px; line-height: 1.55; }
     .sc-schedule-note a { color: var(--blue); text-decoration: none; }
     .sc-schedule-note a:hover { text-decoration: underline; }
@@ -211,7 +214,7 @@
       A Bolivian exporter invoices in BOB.
       A Peruvian importer pre-funds conditional settlement in PEN.
       The benchmark is locked deterministically.
-      If shipment timing is contested, <strong>GenLayer classifies the delay and the contract applies the pre-agreed remedy automatically.</strong>
+      If shipment timing is contested, <strong>GenLayer classifies the shipment outcome and the contract applies the pre-agreed remedy automatically.</strong>
     </div>
     <div class="hero-core">
       A normal oracle can lock the benchmark.<br/>
@@ -299,7 +302,7 @@
   <div class="container">
     <div class="section-label">Trade Lifecycle</div>
     <h2>From invoice to settlement</h2>
-    <p class="lifecycle-sub">Five steps. One contract. If shipment timing is contested, GenLayer classifies the delay. The contract applies the pre-agreed remedy — from full release to proportional adjustment to cancellation.</p>
+    <p class="lifecycle-sub">Five steps. One contract. If shipment timing is contested, GenLayer classifies the shipment outcome. The contract applies the pre-agreed remedy — from full release to proportional adjustment to cancellation.</p>
 
     <div class="tl-steps">
 
@@ -332,7 +335,7 @@
         <div class="tl-left"><div class="tl-dot s4">4</div><div class="tl-spine"></div></div>
         <div class="tl-body">
           <div class="tl-title">Shipment Checked</div>
-          <div class="tl-desc">If uncontested, full settlement is released. If contested, GenLayer classifies the delay. The contract applies the pre-agreed remedy.</div>
+          <div class="tl-desc">If uncontested, full settlement is released. If contested, GenLayer classifies the shipment outcome. The contract applies the pre-agreed remedy.</div>
 
           <div class="sc-selector">
             <button class="sc-btn accepted active" onclick="pick('ontime',this)">ON_TIME</button>
@@ -341,20 +344,38 @@
           </div>
 
           <div id="sc-ontime" class="sc-panel show">
-            <div class="sc-accepted">Shipment classified on time. 100% of escrow released to exporter. <a href="https://internetcourt.org/cases/0xb4700D67d6cBeF18011021A2A20389ea88753234" target="_blank" style="font-size:13px;">IC Docket ↗</a></div>
+            <div class="sc-accepted">Shipment classified on time. 100% of escrow released to exporter.</div>
+            <div class="sc-links">
+              <a href="https://internetcourt.org/cases/0xb4700D67d6cBeF18011021A2A20389ea88753234" target="_blank">Internet Court Docket ↗</a>
+              <a href="https://sepolia.basescan.org/address/0xb4700D67d6cBeF18011021A2A20389ea88753234" target="_blank">Contract ↗</a>
+              <a href="https://sepolia.basescan.org/tx/0x7c02ae194c6a29a1b63fddcad70ebbad5d962faaa32dfa2725df7df14f93ac52" target="_blank">Contest tx ↗</a>
+              <a href="https://sepolia.basescan.org/tx/0x95f8f27ed0af49a35300568796e0cfc28943a6a483018689dc0ec67fa0b7cc88" target="_blank">Verdict tx ↗</a>
+            </div>
           </div>
 
           <div id="sc-late14" class="sc-panel">
             <div class="sc-contested">
-              <div class="desc">Shipment contested. GenLayer classified the delay as 1–4 days late. <a href="https://internetcourt.org/cases/0xbd0dB046A913817522B595CFEb922D5E2aad4268" target="_blank" style="font-size:13px;">IC Docket ↗</a></div>
+              <div class="desc">Shipment contested. GenLayer classified the shipment as 1–4 days late.</div>
               <div class="verdict-pill" style="background:var(--amber-light);color:var(--amber);"><span class="vd" style="background:var(--amber);"></span> LATE_1_4</div>
+            </div>
+            <div class="sc-links">
+              <a href="https://internetcourt.org/cases/0xbd0dB046A913817522B595CFEb922D5E2aad4268" target="_blank">Internet Court Docket ↗</a>
+              <a href="https://sepolia.basescan.org/address/0xbd0dB046A913817522B595CFEb922D5E2aad4268" target="_blank">Contract ↗</a>
+              <a href="https://sepolia.basescan.org/tx/0x57cb5fa07a798e8faf0c73ce183c02c4ff97a4a0ba329c3a194c475a66c6b879" target="_blank">Contest tx ↗</a>
+              <a href="https://sepolia.basescan.org/tx/0x6dbf8870c8dfb02a6f4c5664913f138dfe93a4286c43c348c764caa2738b94c3" target="_blank">Verdict tx ↗</a>
             </div>
           </div>
 
           <div id="sc-undetermined" class="sc-panel">
             <div class="sc-contested">
-              <div class="desc">Shipment contested. GenLayer could not determine crossing date from the evidence. <a href="https://internetcourt.org/cases/0xe50A8F382B3B751dBd7053963EbaBB59916f3788" target="_blank" style="font-size:13px;">IC Docket ↗</a></div>
+              <div class="desc">Shipment contested. GenLayer could not determine the crossing date from the evidence.</div>
               <div class="verdict-pill amber"><span class="vd"></span> UNDETERMINED</div>
+            </div>
+            <div class="sc-links">
+              <a href="https://internetcourt.org/cases/0xe50A8F382B3B751dBd7053963EbaBB59916f3788" target="_blank">Internet Court Docket ↗</a>
+              <a href="https://sepolia.basescan.org/address/0xe50A8F382B3B751dBd7053963EbaBB59916f3788" target="_blank">Contract ↗</a>
+              <a href="https://sepolia.basescan.org/tx/0xc9d93c813a336e24e7e484503ec1e02c64038ecb4dc6f1d953e476d0702ba68e" target="_blank">Contest tx ↗</a>
+              <a href="https://sepolia.basescan.org/tx/0x5b70ac102e29e15e22337fea6506cccfaf22c7fc85b853e094fedaecba3e5053" target="_blank">Verdict tx ↗</a>
             </div>
           </div>
 
@@ -366,7 +387,7 @@
       <div class="tl-step">
         <div class="tl-left"><div class="tl-dot s5" id="dot5">5</div></div>
         <div class="tl-body">
-          <div class="tl-title">Settlement Released</div>
+          <div class="tl-title" id="step5-title">Settlement Released</div>
           <div id="out-ontime" class="outcome show">
             <div class="tl-desc"><strong style="color:var(--green);">100% released.</strong> 73,950 PEN transferred to exporter.</div>
           </div>
@@ -434,9 +455,10 @@ function pick(state, btn) {
   document.getElementById('out-' + state).classList.add('show');
   const d = document.getElementById('dot5');
   d.className = 'tl-dot s5';
-  if (state === 'ontime') d.classList.add('timely');
-  else if (state === 'late14') d.classList.add('manual');
-  else d.classList.add('manual');
+  const t = document.getElementById('step5-title');
+  if (state === 'ontime') { d.classList.add('timely'); t.textContent = 'Settlement Released'; }
+  else if (state === 'late14') { d.classList.add('manual'); t.textContent = 'Settlement Adjusted'; }
+  else { d.classList.add('manual'); t.textContent = 'Pending Manual Review'; }
 }
 </script>
 
