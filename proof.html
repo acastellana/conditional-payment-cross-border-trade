@@ -235,11 +235,6 @@
           <td class="addr"><a href="https://sepolia.basescan.org/address/0xd533cB0B52E85b3F506b6f0c28b8f6bc4E449Dda" target="_blank">0xd533cB0B52E85b3F506b6f0c28b8f6bc4E449Dda ↗</a></td>
         </tr>
         <tr>
-          <td>BridgeReceiver</td>
-          <td>Base Sepolia</td>
-          <td class="addr"><a href="https://sepolia.basescan.org/address/0xc3e6aE892A704c875bF74Df46eD873308db15d82" target="_blank">0xc3e6aE892A704c875bF74Df46eD873308db15d82 ↗</a></td>
-        </tr>
-        <tr>
           <td>FxBenchmarkOracle</td>
           <td>GenLayer</td>
           <td class="addr"><a href="https://explorer-studio.genlayer.com/contracts/0x3B8501bAcaB70dedbC6f8B8EFCB888ba66cbc73e" target="_blank">0x3B8501bAcaB70dedbC6f8B8EFCB888ba66cbc73e ↗</a></td>
@@ -248,6 +243,32 @@
           <td>MockUSDC <span style="font-weight:400;color:var(--muted);font-size:12px;">(settlement token representing PEN in this demo)</span></td>
           <td>Base Sepolia</td>
           <td class="addr"><a href="https://sepolia.basescan.org/address/0x58C27C7C1Ff5DBF480c956acf6b119508b6FBa4f" target="_blank">0x58C27C7C1Ff5DBF480c956acf6b119508b6FBa4f ↗</a></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 style="font-size:18px;font-weight:700;margin-top:40px;margin-bottom:16px;">Bridge infrastructure</h3>
+    <p style="font-size:14px;color:var(--muted);margin-bottom:16px;">The verdict path traverses GenLayer → zkSync Sepolia → LayerZero V2 → Base Sepolia. These contracts make that path inspectable.</p>
+
+    <table class="p-table">
+      <thead>
+        <tr><th>Contract</th><th>Chain</th><th>Address</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>BridgeSender</td>
+          <td>GenLayer</td>
+          <td class="addr"><a href="https://explorer-studio.genlayer.com/contracts/0xC94bE65Baf99590B1523db557D157fabaD2DA729" target="_blank">0xC94bE65Baf99590B1523db557D157fabaD2DA729 ↗</a></td>
+        </tr>
+        <tr>
+          <td>BridgeForwarder</td>
+          <td>zkSync Sepolia</td>
+          <td class="addr"><a href="https://sepolia.explorer.zksync.io/address/0x95c4E5b042d75528f7df355742e48B298028b3f2" target="_blank">0x95c4E5b042d75528f7df355742e48B298028b3f2 ↗</a></td>
+        </tr>
+        <tr>
+          <td>BridgeReceiver</td>
+          <td>Base Sepolia</td>
+          <td class="addr"><a href="https://sepolia.basescan.org/address/0xc3e6aE892A704c875bF74Df46eD873308db15d82" target="_blank">0xc3e6aE892A704c875bF74Df46eD873308db15d82 ↗</a></td>
         </tr>
       </tbody>
     </table>
