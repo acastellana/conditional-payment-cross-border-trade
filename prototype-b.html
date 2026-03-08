@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FX Settlement — Pick Your Path</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #1a1817;
+      --muted: #74706c;
+      --border: #e8e6e3;
+      --card: #f8f8f6;
+      
+      --theme-primary: var(--text);
+      --theme-bg: var(--card);
+      --theme-border: var(--border);
+      --theme-text: var(--text);
+      --theme-glow: transparent;
+
+      /* Scenarios */
+      --green: #15803d; --green-light: #f0fdf4; --green-border: #bcf0da;
+      --red: #dc2626; --red-light: #fef2f2; --red-border: #fecaca;
+      --amber: #b45309; --amber-light: #fffbeb; --amber-border: #fde68a;
+
+      --radius: 12px;
+      --radius-lg: 20px;
+      --shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+
+    body.theme-ontime {
+      --theme-primary: var(--green);
+      --theme-bg: var(--green-light);
+      --theme-border: var(--green-border);
+      --theme-glow: rgba(21, 128, 61, 0.05);
+    }
+    body.theme-late {
+      --theme-primary: var(--red);
+      --theme-bg: var(--red-light);
+      --theme-border: var(--red-border);
+      --theme-glow: rgba(220, 38, 38, 0.05);
+    }
+    body.theme-undetermined {
+      --theme-primary: var(--amber);
+      --theme-bg: var(--amber-light);
+      --theme-border: var(--amber-border);
+      --theme-glow: rgba(180, 83, 9, 0.05);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      font-family: 'DM Sans', sans-serif; 
+      background: var(--bg); 
+      color: var(--text); 
+      line-height: 1.6; 
+      transition: background 0.3s ease;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── HEADER ── */
+    header { padding: 32px 0; display: flex; align-items: center; justify-content: space-between; }
+    .logo { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 15px; text-decoration: none; color: var(--text); }
+    .logo-chip { background: var(--text); color: #fff; border-radius: 6px; padding: 2px 8px; font-size: 11px; font-family: 'DM Mono', monospace; }
+    .btn-meta { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); text-decoration: none; border: 1px solid var(--border); padding: 6px 14px; border-radius: 99px; transition: all 0.2s; }
+    .btn-meta:hover { border-color: var(--text); color: var(--text); }
+
+    /* ── HERO ── */
+    .hero { padding: 40px 0 60px; text-align: center; }
+    h1 { font-size: clamp(32px, 5vw, 48px); font-weight: 700; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 24px; max-width: 800px; margin-left: auto; margin-right: auto; }
+    .hero-sub { font-size: 18px; color: var(--muted); max-width: 640px; margin: 0 auto; }
+
+    /* ── SELECTOR ── */
+    .selector-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 80px; }
+    .select-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px 24px;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .select-card:hover { transform: translateY(-4px); border-color: #cbd5e1; box-shadow: 0 12px 24px rgba(0,0,0,0.05); }
+    .select-card.active { border-color: var(--theme-primary); border-width: 2px; box-shadow: 0 12px 32px var(--theme-glow); }
+    .select-card .label { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 8px; display: block; }
+    .select-card .title { font-size: 20px; font-weight: 700; color: var(--text); }
+    .select-card .desc { font-size: 14px; color: var(--muted); margin-top: 8px; }
+    
+    .select-card.ontime.active { background: var(--green-light); }
+    .select-card.late.active { background: var(--red-light); }
+    .select-card.undetermined.active { background: var(--amber-light); }
+
+    /* ── UNIFIED FLOW ── */
+    .flow-section { 
+      background: var(--theme-bg); 
+      border-radius: 32px; 
+      padding: 64px 0; 
+      margin-bottom: 80px; 
+      transition: background 0.4s ease;
+      border: 1px solid var(--theme-border);
+    }
+    .flow-title { font-family: 'DM Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; color: var(--theme-primary); text-align: center; margin-bottom: 48px; opacity: 0.8; }
+    
+    .flow-steps { max-width: 600px; margin: 0 auto; position: relative; }
+    .step { display: flex; gap: 32px; margin-bottom: 48px; position: relative; }
+    .step:last-child { margin-bottom: 0; }
+    
+    .step-indicator { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+    .step-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--border); transition: background 0.3s; z-index: 2; margin-top: 8px; }
+    .step-line { width: 2px; flex: 1; background: var(--border); margin: 4px 0; transition: background 0.3s; }
+    .step.active .step-dot { background: var(--theme-primary); box-shadow: 0 0 0 4px var(--bg); }
+    .step.completed .step-dot { background: var(--theme-primary); }
+    .step.completed .step-line { background: var(--theme-primary); }
+
+    .step-content { flex: 1; }
+    .step-label { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 600; color: var(--muted); margin-bottom: 4px; }
+    .step-header { font-size: 20px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+    .step-body { font-size: 16px; color: var(--muted); }
+    .step-body strong { color: var(--text); }
+
+    .data-pill { display: inline-flex; align-items: center; gap: 8px; background: #fff; border: 1px solid var(--border); padding: 8px 16px; border-radius: 12px; margin-top: 12px; font-family: 'DM Mono', monospace; font-size: 14px; font-weight: 500; }
+    .data-pill.highlight { border-color: var(--theme-primary); color: var(--theme-primary); }
+
+    .verdict-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--text); color: #fff; padding: 6px 14px; border-radius: 8px; font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 600; margin-top: 12px; }
+    .theme-ontime .verdict-badge { background: var(--green); }
+    .theme-late .verdict-badge { background: var(--red); }
+    .theme-undetermined .verdict-badge { background: var(--amber); }
+
+    .docket-link { 
+      display: inline-flex; align-items: center; gap: 10px; 
+      background: #fff; border: 1px solid var(--theme-border); 
+      padding: 16px 24px; border-radius: var(--radius); 
+      text-decoration: none; color: var(--text); 
+      margin-top: 24px; transition: all 0.2s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .docket-link:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-color: var(--theme-primary); }
+    .docket-icon { width: 32px; height: 32px; background: var(--theme-primary); border-radius: 8px; display: flex; align-items: center; justify-content: center; transition: background 0.3s; }
+
+    /* ── WHY GENLAYER ── */
+    .why-section { padding: 100px 0; border-top: 1px solid var(--border); }
+    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+    .why-item h3 { font-size: 22px; font-weight: 700; margin-bottom: 16px; letter-spacing: -0.5px; }
+    .why-item p { font-size: 16px; color: var(--muted); margin-bottom: 24px; }
+    .why-card { background: var(--card); border-radius: var(--radius); padding: 24px; border-left: 4px solid var(--text); }
+    .why-card strong { display: block; margin-bottom: 4px; }
+
+    /* ── PROOF STRIP ── */
+    .proof-strip { background: var(--text); color: #fff; padding: 24px 0; }
+    .proof-inner { display: flex; align-items: center; justify-content: space-between; font-size: 14px; }
+    .proof-meta { display: flex; gap: 24px; font-family: 'DM Mono', monospace; opacity: 0.8; }
+    .proof-meta a { color: #fff; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.3); }
+
+    /* ── FOOTER ── */
+    footer { padding: 60px 0; border-top: 1px solid var(--border); font-size: 14px; color: var(--muted); }
+    .footer-inner { display: flex; justify-content: space-between; align-items: flex-start; }
+    .footer-col { max-width: 300px; }
+
+    @media (max-width: 768px) {
+      .selector-grid { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr; gap: 40px; }
+      .footer-inner { flex-direction: column; gap: 32px; }
+    }
+  </style>
+</head>
+<body class="theme-ontime">
+
+<div class="container">
+  <header>
+    <a href="index.html" class="logo"><span class="logo-chip">FX</span> Trade Finance × GenLayer</a>
+    <a href="proof.html" class="btn-meta">Under the hood →</a>
+  </header>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <h1>Cross-border settlement that continues even when the facts are disputed</h1>
+    <p class="hero-sub">
+      A Bolivian exporter invoices in BOB. A Peruvian importer pre-funds PEN settlement. 
+      GenLayer automates the outcome even when evidence is contested.
+    </p>
+  </div>
+</section>
+
+<!-- SELECTOR -->
+<section class="container">
+  <div class="selector-grid">
+    <div class="select-card ontime active" onclick="setScenario('ontime')">
+      <span class="label">Scenario A</span>
+      <div class="title">On time</div>
+      <p class="desc">The shipment arrives as scheduled. No dispute occurs.</p>
+    </div>
+    <div class="select-card late" onclick="setScenario('late')">
+      <span class="label">Scenario B</span>
+      <div class="title">1–4 days late</div>
+      <p class="desc">A minor delay is detected. Contract adjusts the release.</p>
+    </div>
+    <div class="select-card undetermined" onclick="setScenario('undetermined')">
+      <span class="label">Scenario C</span>
+      <div class="title">Undetermined</div>
+      <p class="desc">Evidence is conflicting. The system flags for review.</p>
+    </div>
+  </div>
+</section>
+
+<!-- UNIFIED FLOW -->
+<section class="flow-section">
+  <div class="container">
+    <div class="flow-title">Unified Trade Flow</div>
+    
+    <div class="flow-steps">
+      
+      <!-- STEP 1 -->
+      <div class="step completed">
+        <div class="step-indicator"><div class="step-dot"></div><div class="step-line"></div></div>
+        <div class="step-content">
+          <div class="step-label">Step 1 · Trade Setup</div>
+          <div class="step-header">Invoice Created</div>
+          <div class="step-body">Export contract registered for <strong>150,000 BOB</strong> quinoa trade.</div>
+          <div class="data-pill">BOLIVIAN_BOLIVIANO: 150,000.00</div>
+        </div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="step completed">
+        <div class="step-indicator"><div class="step-dot"></div><div class="step-line"></div></div>
+        <div class="step-content">
+          <div class="step-label">Step 2 · Oracle Hook</div>
+          <div class="step-header">Benchmark Locked</div>
+          <div class="step-body">GenLayer validators lock the FX rate at <strong>0.493 PEN/BOB</strong>.</div>
+          <div class="data-pill highlight">LOCKED_RATE: 0.493</div>
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="step completed">
+        <div class="step-indicator"><div class="step-dot"></div><div class="step-line"></div></div>
+        <div class="step-content">
+          <div class="step-label">Step 3 · Escrow</div>
+          <div class="step-header">Settlement Funded</div>
+          <div class="step-body">Importer pre-funds <strong>73,950 PEN</strong> into the Base Sepolia contract.</div>
+          <div class="data-pill">ESCROW_BALANCE: 73,950.00 PEN</div>
+        </div>
+      </div>
+
+      <!-- STEP 4 (THE CONTESTED MOMENT) -->
+      <div class="step active">
+        <div class="step-indicator"><div class="step-dot"></div><div class="step-line"></div></div>
+        <div class="step-content">
+          <div class="step-label">Step 4 · GenLayer Verdict</div>
+          <div class="step-header" id="step4-header">Shipment Verified</div>
+          <div class="step-body" id="step4-body">Shipment arrived on time. No dispute — settlement proceeds.</div>
+          <div class="verdict-badge" id="step4-badge">ON_TIME</div>
+        </div>
+      </div>
+
+      <!-- STEP 5 -->
+      <div class="step active">
+        <div class="step-indicator"><div class="step-dot"></div></div>
+        <div class="step-content">
+          <div class="step-label">Step 5 · Settlement</div>
+          <div class="step-header" id="step5-header">100% Released</div>
+          <div class="step-body" id="step5-body">73,950 PEN transferred to exporter.</div>
+          
+          <a href="#" id="docket-link" target="_blank" class="docket-link">
+            <div class="docket-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            </div>
+            <div>
+              <div style="font-weight:700; font-size:15px;" id="docket-title">Internet Court Docket ↗</div>
+              <div style="font-family:'DM Mono', monospace; font-size:11px; opacity:0.6;" id="docket-sub">Case: On-time shipment</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHY GENLAYER -->
+<section class="why-section container">
+  <div class="why-grid">
+    <div class="why-item">
+      <h3>Why GenLayer?</h3>
+      <p>Standard oracles handle deterministic data (like price feeds) well. But trade finance depends on real-world events that are often messy or contested.</p>
+      <div class="why-card">
+        <strong>The "Oracle Gap"</strong>
+        If a shipment arrives late, a normal smart contract pauses or breaks. It needs a human to manually resolve the dispute.
+      </div>
+    </div>
+    <div class="why-item">
+      <h3>The Intelligent Contract</h3>
+      <p>GenLayer allows the contract to "read" the evidence using LLM-based validators. It classifies the outcome so the code can continue execution automatically.</p>
+      <div class="why-card">
+        <strong>Autonomous Resolution</strong>
+        The remedy (penalties, refunds, or escrow holds) is pre-programmed. GenLayer provides the missing fact.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF STRIP -->
+<section class="proof-strip">
+  <div class="container proof-inner">
+    <div>Live on Base Sepolia · <strong>0xD792…CE2Fa</strong></div>
+    <div class="proof-meta">
+      <a href="https://sepolia.basescan.org/address/0xD7929535b7Fe825cbb51B5CE70a3356aCc64E2Fa" target="_blank">View Contract ↗</a>
+      <span>GenLayer Studionet</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="container">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div style="font-weight:700; color:var(--text); margin-bottom:12px;">FX Trade Finance</div>
+      <p>A prototype for cross-border invoicing and settlement using GenLayer as an intelligent coordination layer.</p>
+    </div>
+    <div class="footer-col" style="text-align:right;">
+      <p>Build: 2026-03-08 · v2.0-beta</p>
+      <a href="https://genlayer.com" style="color:var(--text); text-decoration:none; font-weight:600;">GenLayer.com</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const data = {
+  ontime: {
+    theme: 'theme-ontime',
+    header4: 'Shipment Verified',
+    body4: 'Shipment arrived on time. No dispute — settlement proceeds.',
+    badge4: 'ON_TIME',
+    header5: '100% Released',
+    body5: '73,950 PEN transferred to exporter.',
+    docketUrl: 'https://internetcourt.org/cases/0xb4700D67d6cBeF18011021A2A20389ea88753234',
+    docketSub: 'Case: On-time shipment — no dispute'
+  },
+  late: {
+    theme: 'theme-late',
+    header4: 'Shipment Contested',
+    body4: 'GenLayer classified the shipment as 1–4 days late based on border logs.',
+    badge4: 'LATE_1_4',
+    header5: '99.5% Released',
+    body5: '73,580.25 PEN to exporter. 369.75 PEN late-adjustment returned to importer.',
+    docketUrl: 'https://internetcourt.org/cases/0xbd0dB046A913817522B595CFEb922D5E2aad4268',
+    docketSub: 'Case: Late shipment — settlement adjusted'
+  },
+  undetermined: {
+    theme: 'theme-undetermined',
+    header4: 'Evidence Insufficient',
+    body4: 'GenLayer could not determine the crossing date from the conflicting evidence.',
+    badge4: 'UNDETERMINED',
+    header5: 'Manual Review',
+    body5: '73,950 PEN held in escrow. 14-day arbitrator window triggered.',
+    docketUrl: 'https://internetcourt.org/cases/0xe50A8F382B3B751dBd7053963EbaBB59916f3788',
+    docketSub: 'Case: Undetermined — pending manual review'
+  }
+};
+
+function setScenario(key) {
+  const s = data[key];
+  
+  // Update theme
+  document.body.className = s.theme;
+  
+  // Update cards
+  document.querySelectorAll('.select-card').forEach(c => c.classList.remove('active'));
+  document.querySelector('.select-card.' + key).classList.add('active');
+  
+  // Update step 4
+  document.getElementById('step4-header').textContent = s.header4;
+  document.getElementById('step4-body').textContent = s.body4;
+  document.getElementById('step4-badge').textContent = s.badge4;
+  
+  // Update step 5
+  document.getElementById('step5-header').textContent = s.header5;
+  document.getElementById('step5-body').innerHTML = s.body5;
+  document.getElementById('docket-link').href = s.docketUrl;
+  document.getElementById('docket-sub').textContent = s.docketSub;
+}
+
+// Init
+setScenario('ontime');
+</script>
+
+</body>
+</html>
