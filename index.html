@@ -15,7 +15,7 @@
     :root {
       --bg: #ffffff; --card: #f8f8f6; --dark: #1a1817; --muted: #74706c;
       --border: #e8e6e3; --green: #15803d; --green-light: #dcfce7;
-      --blue: #1d4ed8; --blue-light: #dbeafe; --amber: #b45309; --amber-light: #fef3c7;
+      --blue: #1d4ed8; --amber: #b45309; --amber-light: #fef3c7;
       --red: #dc2626; --red-light: #fee2e2; --purple: #7c3aed;
       --radius: 10px; --radius-xl: 16px;
       --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
@@ -47,15 +47,15 @@
     .hero-eyebrow .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
     @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.35} }
     .hero h1 { font-size: clamp(34px, 5vw, 52px); font-weight: 700; line-height: 1.08; letter-spacing: -1.5px; max-width: 680px; margin-bottom: 28px; }
-    .hero-narrative { font-size: 18px; color: var(--muted); line-height: 1.75; max-width: 540px; margin-bottom: 36px; }
-    .hero-narrative strong { color: var(--dark); }
-    .hero-distinction {
+    .hero-sub { font-size: 18px; color: var(--muted); line-height: 1.75; max-width: 540px; margin-bottom: 36px; }
+    .hero-sub strong { color: var(--dark); }
+    .hero-core {
       max-width: 540px; padding: 22px 26px;
       background: var(--card); border-left: 3px solid var(--dark);
       border-radius: 0 var(--radius) var(--radius) 0;
-      font-size: 17px; line-height: 1.7; color: var(--muted);
+      font-size: 17px; line-height: 1.75; color: var(--muted);
     }
-    .hero-distinction strong { color: var(--dark); }
+    .hero-core strong { color: var(--dark); }
 
     /* ── TRADE (dark) ── */
     .trade-section { background: var(--dark); padding: 80px 0; }
@@ -73,7 +73,6 @@
     .trade-badge .bdot { width: 6px; height: 6px; border-radius: 50%; background: #86efac; }
     .trade-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: rgba(255,255,255,0.5); text-decoration: none; margin-top: 16px; transition: color 0.15s; }
     .trade-link:hover { color: rgba(255,255,255,0.8); }
-    /* flow */
     .flow { display: flex; flex-direction: column; align-items: center; }
     .flow-node { width: 100%; max-width: 280px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-xl); padding: 18px 22px; text-align: center; }
     .flow-node.mid { background: #fff; }
@@ -82,26 +81,41 @@
     .flow-name { font-size: 14px; font-weight: 700; color: #fff; }
     .flow-node.mid .flow-name { color: var(--dark); }
     .flow-amount { font-family: 'DM Mono', monospace; font-size: 20px; font-weight: 700; color: #fff; margin-top: 4px; }
-    .flow-node.mid .flow-amount { color: var(--dark); }
     .flow-amount.green { color: #86efac; }
-    .flow-sub { font-size: 11px; color: rgba(255,255,255,0.3); margin-top: 2px; }
-    .flow-node.mid .flow-sub { color: var(--muted); }
     .flow-rate { display: inline-block; background: rgba(134,239,172,0.15); border: 1px solid rgba(134,239,172,0.3); border-radius: 6px; padding: 3px 10px; font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 600; color: #86efac; margin-top: 6px; }
     .flow-conn { display: flex; flex-direction: column; align-items: center; padding: 2px 0; }
     .flow-line { width: 2px; height: 16px; background: rgba(255,255,255,0.1); }
     .flow-arrow { color: rgba(255,255,255,0.2); font-size: 12px; margin-top: -2px; }
 
+    /* ── THE BOUNDARY ── */
+    .boundary-section { padding: 80px 0; }
+    .boundary-cards { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-bottom: 40px; }
+    .b-card { padding: 24px; border-radius: var(--radius-xl); }
+    .b-card.can { background: var(--green-light); }
+    .b-card.cannot { background: var(--red-light); }
+    .b-card.does { background: var(--card); border: 2px solid var(--dark); }
+    .b-card-label { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
+    .b-card.can .b-card-label { color: var(--green); }
+    .b-card.cannot .b-card-label { color: var(--red); }
+    .b-card.does .b-card-label { color: var(--dark); }
+    .b-card-text { font-size: 17px; line-height: 1.5; }
+    .b-card.can .b-card-text { color: var(--green); }
+    .b-card.cannot .b-card-text { color: var(--red); }
+    .b-card.does .b-card-text { color: var(--dark); font-weight: 600; }
+    .boundary-coda { font-size: 17px; color: var(--muted); line-height: 1.75; max-width: 520px; }
+    .boundary-coda strong { color: var(--dark); }
+
     /* ── LIFECYCLE ── */
-    .lifecycle-section { padding: 96px 0; }
+    .lifecycle-section { padding: 96px 0; border-top: 1px solid var(--border); }
     .lifecycle-section h2 { font-size: clamp(24px, 3.2vw, 36px); font-weight: 700; letter-spacing: -0.6px; margin-bottom: 10px; }
     .lifecycle-sub { font-size: 17px; color: var(--muted); max-width: 540px; margin-bottom: 56px; }
-    .tl-steps { display: flex; flex-direction: column; max-width: 620px; }
+    .tl-steps { display: flex; flex-direction: column; max-width: 580px; }
     .tl-step { display: flex; gap: 22px; }
     .tl-left { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; width: 36px; }
     .tl-dot { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 700; flex-shrink: 0; z-index: 1; }
     .tl-dot.s1 { background: var(--card); border: 2px solid var(--border); color: var(--muted); }
     .tl-dot.s2 { background: var(--green-light); border: 2px solid rgba(21,128,61,0.3); color: var(--green); }
-    .tl-dot.s3 { background: var(--blue-light); border: 2px solid rgba(29,78,216,0.3); color: var(--blue); }
+    .tl-dot.s3 { background: #dbeafe; border: 2px solid rgba(29,78,216,0.3); color: var(--blue); }
     .tl-dot.s4 { background: var(--amber-light); border: 2px solid rgba(180,83,9,0.3); color: var(--amber); }
     .tl-dot.s5 { background: var(--dark); border: 2px solid var(--dark); color: #fff; }
     .tl-dot.s5.timely  { background: var(--green); border-color: var(--green); }
@@ -112,10 +126,10 @@
     .tl-body { flex: 1; padding-bottom: 40px; }
     .tl-step:last-child .tl-body { padding-bottom: 0; }
     .tl-title { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
-    .tl-detail { font-size: 15px; color: var(--muted); line-height: 1.6; }
-    .tl-detail strong { color: var(--dark); }
+    .tl-desc { font-size: 16px; color: var(--muted); line-height: 1.6; }
+    .tl-desc strong { color: var(--dark); }
 
-    /* Shipment selector */
+    /* Step 4 selector + results */
     .sc-selector { display: flex; gap: 6px; flex-wrap: wrap; margin: 18px 0 16px; }
     .sc-btn { border: 1px solid var(--border); background: var(--card); border-radius: 9999px; padding: 7px 16px; font-size: 14px; font-weight: 600; cursor: pointer; color: var(--muted); transition: all 0.15s; font-family: 'DM Sans', system-ui, sans-serif; }
     .sc-btn:hover { border-color: #aaa; color: var(--dark); }
@@ -123,46 +137,23 @@
     .sc-btn.contested.active { background: var(--red-light);   border-color: rgba(220,38,38,0.3);  color: var(--red); }
     .sc-btn.late.active      { background: var(--red-light);   border-color: rgba(220,38,38,0.3);  color: var(--red); }
     .sc-btn.manual.active    { background: var(--amber-light); border-color: rgba(180,83,9,0.3);   color: var(--amber); }
+    .sc-panel { display: none; margin-top: 4px; }
+    .sc-panel.show { display: block; }
+    .sc-accepted { padding: 14px 0; font-size: 16px; color: var(--green); font-weight: 500; }
+    .sc-contested { padding: 14px 0; }
+    .sc-contested .desc { font-size: 15px; color: var(--muted); margin-bottom: 14px; }
+    .verdict-pill { display: inline-flex; align-items: center; gap: 8px; border-radius: 9999px; padding: 7px 16px; font-family: 'DM Mono', monospace; font-size: 15px; font-weight: 700; }
+    .verdict-pill.green  { background: var(--green-light); color: var(--green); }
+    .verdict-pill.red    { background: var(--red-light);   color: var(--red); }
+    .verdict-pill.amber  { background: var(--amber-light); color: var(--amber); }
+    .verdict-pill .vd { width: 8px; height: 8px; border-radius: 50%; }
+    .verdict-pill.green .vd  { background: var(--green); }
+    .verdict-pill.red .vd    { background: var(--red); }
+    .verdict-pill.amber .vd  { background: var(--amber); }
 
-    /* Accepted msg */
-    .sc-accepted { display: none; padding: 14px 18px; background: var(--green-light); border-radius: var(--radius); font-size: 15px; color: var(--green); font-weight: 500; }
-    .sc-accepted.show { display: block; }
-
-    /* Court result — light, not dark */
-    .sc-result { display: none; padding: 24px 0; }
-    .sc-result.show { display: block; }
-    .sc-result p { font-size: 15px; color: var(--muted); line-height: 1.65; margin-bottom: 16px; }
-    .sc-result p strong { color: var(--dark); }
-    .sc-verdict { display: inline-flex; align-items: center; gap: 8px; border-radius: 9999px; padding: 7px 16px; font-family: 'DM Mono', monospace; font-size: 15px; font-weight: 700; margin-bottom: 12px; }
-    .sc-verdict.green  { background: var(--green-light); border: 1px solid rgba(21,128,61,0.25); color: var(--green); }
-    .sc-verdict.red    { background: var(--red-light);   border: 1px solid rgba(220,38,38,0.25); color: var(--red); }
-    .sc-verdict.amber  { background: var(--amber-light); border: 1px solid rgba(180,83,9,0.25);  color: var(--amber); }
-    .sc-verdict .vdot { width: 8px; height: 8px; border-radius: 50%; }
-    .sc-verdict.green .vdot  { background: var(--green); }
-    .sc-verdict.red .vdot    { background: var(--red); }
-    .sc-verdict.amber .vdot  { background: var(--amber); }
-    .sc-action { font-size: 16px; font-weight: 600; }
-
-    /* Step 5 outcome */
+    /* Step 5 */
     .outcome { display: none; }
     .outcome.show { display: block; }
-
-    /* ── WHY GENLAYER ── */
-    .why-section { padding: 96px 0; background: var(--dark); }
-    .why-section .section-label { color: rgba(255,255,255,0.25); }
-    .why-section h2 { font-size: clamp(26px, 3.5vw, 40px); font-weight: 700; letter-spacing: -0.8px; color: #fff; margin-bottom: 16px; }
-    .why-sub { font-size: 18px; color: rgba(255,255,255,0.4); max-width: 520px; margin-bottom: 48px; line-height: 1.6; }
-    .why-cards { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
-    .why-card { border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-xl); padding: 28px 26px; }
-    .why-card-label { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 14px; }
-    .why-card-label.can { color: rgba(134,239,172,0.6); }
-    .why-card-label.cannot { color: rgba(252,165,165,0.6); }
-    .why-card-label.does { color: rgba(196,181,253,0.7); }
-    .why-card-text { font-size: 17px; color: rgba(255,255,255,0.65); line-height: 1.55; }
-    .why-card-text strong { color: #fff; }
-    .why-card.highlight { background: rgba(124,58,237,0.08); border-color: rgba(124,58,237,0.25); }
-    .why-coda { margin-top: 48px; font-size: 18px; color: rgba(255,255,255,0.4); line-height: 1.7; max-width: 520px; }
-    .why-coda strong { color: rgba(255,255,255,0.85); }
 
     /* ── PROOF STRIP ── */
     .proof-strip { padding: 36px 0; border-top: 1px solid var(--border); }
@@ -189,7 +180,7 @@
     @media(max-width: 860px) {
       nav { display: none; }
       .trade-grid { grid-template-columns: 1fr; }
-      .why-cards { grid-template-columns: 1fr; }
+      .boundary-cards { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -201,7 +192,6 @@
     <nav>
       <a href="#trade">Trade</a>
       <a href="#lifecycle">Lifecycle</a>
-      <a href="#why">Why GenLayer</a>
     </nav>
     <a href="proof.html" class="btn-outline">Under the hood →</a>
   </div>
@@ -213,16 +203,16 @@
   <div class="container">
     <div class="hero-eyebrow"><span class="dot"></span> Live on Base Sepolia · GenLayer Studionet</div>
     <h1>Cross-border settlement that continues even when the facts are disputed</h1>
-    <div class="hero-narrative">
+    <div class="hero-sub">
       A Bolivian exporter invoices in BOB.
       A Peruvian importer pays in PEN.
       The benchmark is locked deterministically.
       If shipment timing is contested, <strong>GenLayer evaluates the evidence and returns the fact needed for settlement to continue.</strong>
     </div>
-    <div class="hero-distinction">
-      Benchmark locking is deterministic.<br/>
-      Shipment disputes are not.<br/>
-      <strong>GenLayer is the layer that lets the same trade handle both.</strong>
+    <div class="hero-core">
+      A normal oracle can lock the benchmark.<br/>
+      It cannot resolve conflicting real-world evidence.<br/>
+      <strong>GenLayer is what lets the contract continue when that happens.</strong>
     </div>
   </div>
 </section>
@@ -233,7 +223,7 @@
   <div class="container">
     <div class="section-label">The Trade</div>
     <h2>Quinoa export — Bolivia → Peru</h2>
-    <p class="trade-sub">A real trade, executed on-chain. Every step verifiable.</p>
+    <p class="trade-sub">A real trade, executed on-chain.</p>
 
     <div class="trade-grid">
       <div>
@@ -271,48 +261,74 @@
 </section>
 
 
+<!-- ═══════ THE BOUNDARY ═══════ -->
+<section class="boundary-section" id="boundary">
+  <div class="container">
+    <div class="section-label">The Boundary</div>
+
+    <div class="boundary-cards">
+      <div class="b-card can">
+        <div class="b-card-label">A normal oracle can</div>
+        <div class="b-card-text">Lock a benchmark rate and return a number.</div>
+      </div>
+      <div class="b-card cannot">
+        <div class="b-card-label">A normal oracle cannot</div>
+        <div class="b-card-text">Resolve which shipment record controls when evidence conflicts.</div>
+      </div>
+      <div class="b-card does">
+        <div class="b-card-label">GenLayer</div>
+        <div class="b-card-text">Evaluates the evidence, returns a machine-usable verdict, and lets the same contract continue.</div>
+      </div>
+    </div>
+
+    <div class="boundary-coda">
+      The benchmark path is deterministic.<br/>
+      The verdict path is not.<br/>
+      <strong>That is why GenLayer is necessary.</strong>
+    </div>
+  </div>
+</section>
+
+
 <!-- ═══════ LIFECYCLE ═══════ -->
 <section class="lifecycle-section" id="lifecycle">
   <div class="container">
     <div class="section-label">Trade Lifecycle</div>
     <h2>From invoice to settlement</h2>
-    <p class="lifecycle-sub">Five steps. One contract. If shipment timing is contested, GenLayer resolves the disputed fact — and the same settlement engine continues.</p>
+    <p class="lifecycle-sub">Five steps. One contract. If shipment timing is contested, GenLayer resolves the disputed fact and the same settlement engine continues.</p>
 
     <div class="tl-steps">
 
-      <!-- 1 -->
       <div class="tl-step">
         <div class="tl-left"><div class="tl-dot s1">1</div><div class="tl-spine"></div></div>
         <div class="tl-body">
           <div class="tl-title">Invoice Created</div>
-          <div class="tl-detail"><strong>150,000 BOB</strong> trade registered on-chain.</div>
+          <div class="tl-desc"><strong>150,000 BOB</strong> trade registered on-chain.</div>
         </div>
       </div>
 
-      <!-- 2 -->
       <div class="tl-step">
         <div class="tl-left"><div class="tl-dot s2">2</div><div class="tl-spine"></div></div>
         <div class="tl-body">
           <div class="tl-title">Benchmark Locked</div>
-          <div class="tl-detail">GenLayer validators agree on <strong>0.493 PEN/BOB</strong>.</div>
+          <div class="tl-desc">GenLayer validators agree on <strong>0.493 PEN/BOB</strong>.</div>
         </div>
       </div>
 
-      <!-- 3 -->
       <div class="tl-step">
         <div class="tl-left"><div class="tl-dot s3">3</div><div class="tl-spine"></div></div>
         <div class="tl-body">
           <div class="tl-title">Settlement Computed</div>
-          <div class="tl-detail">150,000 × 0.493 = <strong>73,950 PEN</strong>. Awaiting shipment check.</div>
+          <div class="tl-desc">150,000 × 0.493 = <strong>73,950 PEN</strong>.</div>
         </div>
       </div>
 
-      <!-- 4 — SHIPMENT -->
+      <!-- STEP 4 -->
       <div class="tl-step">
         <div class="tl-left"><div class="tl-dot s4">4</div><div class="tl-spine"></div></div>
         <div class="tl-body">
           <div class="tl-title">Shipment Checked</div>
-          <div class="tl-detail">If uncontested, settlement proceeds. If the importer contests timing, GenLayer evaluates the evidence and returns a verdict.</div>
+          <div class="tl-desc">If uncontested, settlement proceeds. If contested, GenLayer evaluates the evidence and returns a verdict.</div>
 
           <div class="sc-selector">
             <button class="sc-btn accepted active" onclick="pick('accepted',this)">✓ Accepted</button>
@@ -321,79 +337,53 @@
             <button class="sc-btn manual" onclick="pick('undetermined',this)">Undetermined</button>
           </div>
 
-          <div id="sc-accepted" class="sc-accepted show">Shipment accepted. Settlement proceeds to final release.</div>
-
-          <div id="sc-timely" class="sc-result">
-            <p>Importer contested timing. Exporter's customs receipt showed crossing 78 minutes before deadline. Importer's gate record showed 18 minutes after.</p>
-            <div class="sc-verdict green"><span class="vdot"></span> TIMELY SHIPMENT</div>
-            <div class="sc-action" style="color:var(--green);">→ Released 73,950 PEN to the exporter.</div>
+          <div id="sc-accepted" class="sc-panel show">
+            <div class="sc-accepted">Shipment accepted. Settlement proceeds.</div>
           </div>
 
-          <div id="sc-late" class="sc-result">
-            <p>Importer contested timing. Exporter presented a pre-clearance stamp. Importer's gate record showed physical crossing on April 9 — four days after deadline.</p>
-            <div class="sc-verdict red"><span class="vdot"></span> LATE SHIPMENT</div>
-            <div class="sc-action" style="color:var(--red);">→ Refunded 73,950 PEN to the importer.</div>
+          <div id="sc-timely" class="sc-panel">
+            <div class="sc-contested">
+              <div class="desc">Shipment contested. GenLayer evaluated conflicting customs documents.</div>
+              <div class="verdict-pill green"><span class="vd"></span> TIMELY</div>
+            </div>
           </div>
 
-          <div id="sc-undetermined" class="sc-result">
-            <p>Importer contested timing. Both documents had illegible fields — one couldn't be matched to this shipment, the other had an ambiguous date.</p>
-            <div class="sc-verdict amber"><span class="vdot"></span> UNDETERMINED</div>
-            <div class="sc-action" style="color:var(--amber);">→ Froze 73,950 PEN. 14-day review window; defaults to refund.</div>
+          <div id="sc-late" class="sc-panel">
+            <div class="sc-contested">
+              <div class="desc">Shipment contested. GenLayer evaluated conflicting customs documents.</div>
+              <div class="verdict-pill red"><span class="vd"></span> LATE</div>
+            </div>
+          </div>
+
+          <div id="sc-undetermined" class="sc-panel">
+            <div class="sc-contested">
+              <div class="desc">Shipment contested. GenLayer evaluated the evidence but both documents were illegible.</div>
+              <div class="verdict-pill amber"><span class="vd"></span> UNDETERMINED</div>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- 5 — OUTCOME -->
+      <!-- STEP 5 -->
       <div class="tl-step">
         <div class="tl-left"><div class="tl-dot s5" id="dot5">5</div></div>
         <div class="tl-body">
           <div class="tl-title">Final Outcome</div>
           <div id="out-accepted" class="outcome show">
-            <div class="tl-detail"><strong style="color:var(--green);">Settled.</strong> 73,950 PEN transferred to exporter.</div>
+            <div class="tl-desc"><strong style="color:var(--green);">Settled.</strong> 73,950 PEN transferred to exporter.</div>
           </div>
           <div id="out-timely" class="outcome">
-            <div class="tl-detail"><strong style="color:var(--green);">Settled.</strong> GenLayer found shipment timely. 73,950 PEN transferred to exporter.</div>
+            <div class="tl-desc"><strong style="color:var(--green);">Settled.</strong> GenLayer found shipment timely. 73,950 PEN transferred to exporter.</div>
           </div>
           <div id="out-late" class="outcome">
-            <div class="tl-detail"><strong style="color:var(--red);">Cancelled.</strong> GenLayer found shipment late. 73,950 PEN returned to importer.</div>
+            <div class="tl-desc"><strong style="color:var(--red);">Cancelled.</strong> GenLayer found shipment late. 73,950 PEN returned to importer.</div>
           </div>
           <div id="out-undetermined" class="outcome">
-            <div class="tl-detail"><strong style="color:var(--amber);">Frozen.</strong> Evidence insufficient. 73,950 PEN locked. Defaults to refund after 14 days.</div>
+            <div class="tl-desc"><strong style="color:var(--amber);">Frozen.</strong> Evidence insufficient. 73,950 PEN locked. Defaults to refund after 14 days.</div>
           </div>
         </div>
       </div>
 
-    </div>
-  </div>
-</section>
-
-
-<!-- ═══════ WHY GENLAYER ═══════ -->
-<section class="why-section" id="why">
-  <div class="container">
-    <div class="section-label">Why GenLayer Matters Here</div>
-    <h2>The distinction that matters</h2>
-    <p class="why-sub">Locking the rate is not the hard part. The hard part is when the trade cannot proceed because evidence is contested.</p>
-
-    <div class="why-cards">
-      <div class="why-card">
-        <div class="why-card-label can">What a normal oracle can do</div>
-        <div class="why-card-text">Lock a benchmark rate and return a number.</div>
-      </div>
-      <div class="why-card">
-        <div class="why-card-label cannot">What a normal oracle cannot do</div>
-        <div class="why-card-text">Resolve which shipment record controls when real-world evidence conflicts.</div>
-      </div>
-      <div class="why-card highlight">
-        <div class="why-card-label does">What GenLayer does</div>
-        <div class="why-card-text"><strong>Evaluates the evidence, returns a machine-usable verdict, and lets the same contract continue automatically.</strong></div>
-      </div>
-    </div>
-
-    <div class="why-coda">
-      The benchmark path is deterministic.<br/>
-      The verdict path is not.<br/>
-      <strong>That is why GenLayer is necessary.</strong>
     </div>
   </div>
 </section>
@@ -434,7 +424,7 @@
         <a href="proof.html">Technical details</a>
       </div>
     </div>
-    <div class="footer-bottom">Build: c19ba7cf · 2026-03-08T16:25:00Z</div>
+    <div class="footer-bottom">Build: b8816a78 · 2026-03-08T16:30:00Z</div>
   </div>
 </footer>
 
@@ -443,18 +433,10 @@
 function pick(state, btn) {
   document.querySelectorAll('.sc-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-
-  // Step 4
-  document.getElementById('sc-accepted').classList.remove('show');
-  document.querySelectorAll('.sc-result').forEach(p => p.classList.remove('show'));
-  if (state === 'accepted') document.getElementById('sc-accepted').classList.add('show');
-  else document.getElementById('sc-' + state).classList.add('show');
-
-  // Step 5
+  document.querySelectorAll('.sc-panel').forEach(p => p.classList.remove('show'));
+  document.getElementById('sc-' + state).classList.add('show');
   ['accepted','timely','late','undetermined'].forEach(s => document.getElementById('out-' + s).classList.remove('show'));
   document.getElementById('out-' + state).classList.add('show');
-
-  // Dot color
   const d = document.getElementById('dot5');
   d.className = 'tl-dot s5';
   if (state === 'timely' || state === 'accepted') d.classList.add('timely');
