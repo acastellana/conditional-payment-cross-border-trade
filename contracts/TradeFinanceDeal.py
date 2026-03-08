@@ -1,3 +1,8 @@
+# LEGACY — NOT USED IN DEMO
+# This contract is the original prototype using open.er-api.com for FX rate fetching
+# and a generic lithium carbonate trade scenario. It is superseded by the
+# FxBenchmarkOracle + TradeFxSettlement.sol architecture.
+# Retained for reference only. Do not deploy or reference from the demo page.
 # { "Depends": "py-genlayer:test" }
 from genlayer import *
 import json

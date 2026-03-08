@@ -276,12 +276,12 @@
     .validator-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 7px; max-width: 600px; }
     .validator-card { border: 1px solid var(--border); border-radius: var(--radius); padding: 9px 6px; text-align: center; font-family: 'DM Mono', monospace; font-size: 11px; }
     .validator-card.agree { background: var(--green-light); border-color: rgba(21,128,61,0.2); }
-    .validator-card.disagree { background: var(--bg); }
+    .validator-card.excluded { background: var(--bg); opacity: 0.5; }
     .v-addr { font-size: 10px; color: var(--muted); margin-bottom: 2px; }
     .v-rate { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
     .v-status { font-size: 10px; font-weight: 600; }
     .v-status.agree { color: var(--green); }
-    .v-status.disagree { color: var(--muted); }
+    .v-status.excluded { color: var(--muted); font-style: italic; }
     .consensus-bar { max-width: 600px; background: var(--green-light); border: 1px solid rgba(21,128,61,0.2); border-radius: var(--radius); padding: 10px 16px; display: flex; align-items: center; gap: 12px; font-family: 'DM Mono', monospace; font-size: 12px; margin-top: 8px; }
     .consensus-label { font-weight: 700; color: var(--green); }
     .consensus-rate { font-size: 15px; font-weight: 700; color: var(--dark); }
@@ -479,7 +479,7 @@
             <div class="tl-tag green">RATE_LOCKED</div>
             <div class="tl-title">Benchmark Locked</div>
             <div class="tl-detail">GenLayer validators reach consensus on <strong>0.493 PEN/BOB</strong>. Rate is delivered to Base Sepolia by the relayer and recorded on-chain.</div>
-            <a href="https://sepolia.basescan.org/tx/0xb244396c2ead58fe8225849070d71be68d42cbc7d8e0a86012400811f3bf9d33" target="_blank" class="tl-tx">
+            <a href="https://sepolia.basescan.org/tx/0xe7dbd7f99e7997ee5ade170c51d9d051fc9814acb45b4202f682db339ac4160a" target="_blank" class="tl-tx">
               <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
               Rate lock tx ↗
             </a>
@@ -857,7 +857,7 @@
           <div class="cl"><span class="cl-k">benchmark_as_of</span><span class="cl-v">2026-03-06T19:12:35Z</span></div>
           <div class="cl"><span class="cl-k">rate_18</span><span class="cl-v">493000000000000000</span></div>
           <div class="console-divider"></div>
-          <div class="cl"><span class="cl-k">rate_lock_tx</span><span class="cl-v blue"><a href="https://sepolia.basescan.org/tx/0xb244396c2ead58fe8225849070d71be68d42cbc7d8e0a86012400811f3bf9d33" target="_blank" style="color:inherit;">0xb244…d33 ↗</a></span></div>
+          <div class="cl"><span class="cl-k">rate_lock_tx</span><span class="cl-v blue"><a href="https://sepolia.basescan.org/tx/0xe7dbd7f99e7997ee5ade170c51d9d051fc9814acb45b4202f682db339ac4160a" target="_blank" style="color:inherit;">0xe7db…60a ↗</a></span></div>
           <div class="cl"><span class="cl-k">settle_tx</span><span class="cl-v green"><a href="https://sepolia.basescan.org/tx/0xb244396c2ead58fe8225849070d71be68d42cbc7d8e0a86012400811f3bf9d33" target="_blank" style="color:inherit;">0xb244…d33 ↗</a></span></div>
           <div class="cl"><span class="cl-k">comparison_mode</span><span class="cl-v green">strict_eq</span></div>
           <div class="cl"><span class="cl-k">roll_cost</span><span class="cl-v green">0</span></div>
@@ -997,9 +997,9 @@
       </div>
     </div>
     <div class="validator-grid">
-      <div class="validator-card disagree"><div class="v-addr">0x57De…</div><div class="v-rate">0.493</div><div class="v-status disagree">disagree</div></div>
+      <div class="validator-card excluded"><div class="v-addr">0x57De…</div><div class="v-rate" style="color:var(--muted);font-size:11px;">—</div><div class="v-status excluded">timeout</div></div>
       <div class="validator-card agree"><div class="v-addr">0x6528…</div><div class="v-rate">0.493</div><div class="v-status agree">✓ agree</div></div>
-      <div class="validator-card disagree"><div class="v-addr">0x6d55…</div><div class="v-rate">0.493</div><div class="v-status disagree">disagree</div></div>
+      <div class="validator-card excluded"><div class="v-addr">0x6d55…</div><div class="v-rate" style="color:var(--muted);font-size:11px;">—</div><div class="v-status excluded">timeout</div></div>
       <div class="validator-card agree"><div class="v-addr">0x757F…</div><div class="v-rate">0.493</div><div class="v-status agree">✓ agree</div></div>
       <div class="validator-card agree"><div class="v-addr">0x8729…</div><div class="v-rate">0.493</div><div class="v-status agree">✓ agree</div></div>
     </div>
@@ -1021,7 +1021,8 @@
     <div class="section-label">Developer Details</div>
     <h2>For engineers</h2>
     <div class="dev-links">
-      <a href="https://sepolia.basescan.org/tx/0xb244396c2ead58fe8225849070d71be68d42cbc7d8e0a86012400811f3bf9d33" target="_blank" class="dev-link">Rate Lock tx ↗</a>
+      <a href="https://sepolia.basescan.org/tx/0xe7dbd7f99e7997ee5ade170c51d9d051fc9814acb45b4202f682db339ac4160a" target="_blank" class="dev-link">Rate Lock tx (receiveRate) ↗</a>
+      <a href="https://sepolia.basescan.org/tx/0xb244396c2ead58fe8225849070d71be68d42cbc7d8e0a86012400811f3bf9d33" target="_blank" class="dev-link">Settle tx ↗</a>
       <a href="https://explorer-studio.genlayer.com/transactions/0x8085b03f9fc857785a242e64c7b00051790f04847de1b22e4b163ae5318f71c1" target="_blank" class="dev-link">Oracle deploy tx ↗</a>
       <a href="https://sepolia.basescan.org/tx/0x7c02ae194c6a29a1b63fddcad70ebbad5d962faaa32dfa2725df7df14f93ac52" target="_blank" class="dev-link">contestShipment (TIMELY scenario) ↗</a>
       <a href="https://sepolia.basescan.org/tx/0x95f8f27ed0af49a35300568796e0cfc28943a6a483018689dc0ec67fa0b7cc88" target="_blank" class="dev-link">verdict delivery via LayerZero (TIMELY) ↗</a>

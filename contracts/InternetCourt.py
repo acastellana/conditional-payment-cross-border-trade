@@ -1,3 +1,9 @@
+# LEGACY — NOT USED IN DEMO
+# This is a generic two-party AI court contract originally built for quality dispute
+# resolution (lithium carbonate purity, CIF terms). It is NOT part of the current
+# demo flow. Shipment deadline disputes are handled by ShipmentDeadlineCourt.py,
+# which is a single-question oracle deployed per dispute via the InternetCourtFactory.
+# Retained for reference only.
 # { "Depends": "py-genlayer:test" }
 from genlayer import *
 import json
