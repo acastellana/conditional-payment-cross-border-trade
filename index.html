@@ -107,7 +107,7 @@
     .boundary-note strong { color: var(--dark); }
 
     /* ── LIFECYCLE ── */
-    .lifecycle-section { padding: 96px 0; border-top: 1px solid var(--border); }
+    .lifecycle-section { padding: 96px 0; }
     .lifecycle-section h2 { font-size: clamp(24px, 3.2vw, 36px); font-weight: 700; letter-spacing: -0.6px; margin-bottom: 10px; }
     .lifecycle-sub { font-size: 17px; color: var(--muted); max-width: 540px; margin-bottom: 56px; }
     .tl-steps { display: flex; flex-direction: column; max-width: 580px; }
@@ -209,6 +209,7 @@
     <nav>
       <a href="#trade">Trade</a>
       <a href="#lifecycle">Lifecycle</a>
+      <a href="#why-genlayer">Why GenLayer</a>
     </nav>
     <a href="proof.html" class="btn-outline">Under the hood →</a>
   </div>
@@ -227,8 +228,7 @@
       If shipment timing is contested, <strong>GenLayer classifies the shipment outcome and the contract applies the pre-agreed remedy automatically.</strong>
     </div>
     <div class="hero-core">
-      A normal oracle can lock the benchmark.<br/>
-      It cannot resolve conflicting real-world evidence.<br/>
+      A normal oracle can lock the benchmark. It cannot resolve conflicting real-world evidence.<br/>
       <strong>GenLayer is what lets the contract continue when that happens.</strong>
     </div>
   </div>
@@ -253,45 +253,29 @@
         <a href="https://sepolia.basescan.org/address/0xD7929535b7Fe825cbb51B5CE70a3356aCc64E2Fa" target="_blank" class="trade-link">View contract on Basescan ↗</a>
       </div>
       <div style="display:flex;align-items:center;">
-        <div class="trade-card" style="width:100%;">
-          <div class="trade-row" style="border-bottom:none;flex-direction:column;align-items:flex-start;gap:14px;padding:6px 0;">
-            <div style="font-size:15px;color:rgba(255,255,255,0.7);line-height:1.7;">
-              <span style="color:#fff;font-weight:600;">🇧🇴 Exporter</span> invoices in BOB<br/>
-              <span style="color:#fff;font-weight:600;">🇵🇪 Importer</span> pre-funds in PEN<br/>
-              <span style="color:#86efac;font-weight:600;">Contract</span> releases based on GenLayer's benchmark and verdict
+        <div style="width:100%;display:flex;flex-direction:column;gap:12px;">
+          <div class="trade-card" style="padding:16px 22px;">
+            <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:4px;">Base Sepolia</div>
+            <div style="font-size:15px;font-weight:600;color:#fff;">Settlement Contract</div>
+            <div style="font-size:13px;color:rgba(255,255,255,0.5);margin-top:4px;">Escrow, release logic, penalty schedule</div>
+          </div>
+          <div class="trade-card" style="padding:16px 22px;border-color:rgba(134,239,172,0.3);">
+            <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:rgba(134,239,172,0.5);margin-bottom:4px;">GenLayer Studionet</div>
+            <div style="font-size:15px;font-weight:600;color:#86efac;">Benchmark + Verdict Layer</div>
+            <div style="font-size:13px;color:rgba(255,255,255,0.5);margin-top:4px;">FX rate oracle · shipment classification jury</div>
+          </div>
+          <div style="display:flex;gap:12px;">
+            <div class="trade-card" style="padding:14px 18px;flex:1;text-align:center;">
+              <div style="font-size:13px;color:rgba(255,255,255,0.4);">🇧🇴 Exporter</div>
+              <div style="font-family:'DM Mono',monospace;font-size:13px;font-weight:600;color:#fff;margin-top:2px;">invoices BOB</div>
+            </div>
+            <div class="trade-card" style="padding:14px 18px;flex:1;text-align:center;">
+              <div style="font-size:13px;color:rgba(255,255,255,0.4);">🇵🇪 Importer</div>
+              <div style="font-family:'DM Mono',monospace;font-size:13px;font-weight:600;color:#fff;margin-top:2px;">pre-funds PEN</div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ═══════ THE BOUNDARY ═══════ -->
-<section class="boundary-section" id="boundary">
-  <div class="container">
-    <div class="section-label">The Boundary</div>
-
-    <div class="boundary-cards">
-      <div class="b-card can">
-        <div class="b-card-label">Deterministic</div>
-        <div class="b-card-text">Locking a benchmark rate. Any oracle can return a number.</div>
-      </div>
-      <div class="b-card cannot">
-        <div class="b-card-label">Non-deterministic</div>
-        <div class="b-card-text">Classifying a disputed shipment when both parties submit conflicting evidence.</div>
-      </div>
-      <div class="b-card does">
-        <div class="b-card-label">GenLayer handles both</div>
-        <div class="b-card-text">Same contract, same settlement engine. GenLayer decides the disputed fact; the contract applies the consequence.</div>
-      </div>
-    </div>
-
-    <div class="boundary-note">
-      Late payment changes settlement timing — roll cost, FX exposure, interest.<br/>
-      Late shipment changes whether and how much of the escrowed funds should be released.<br/>
-      <strong>This demo covers the shipment condition.</strong>
     </div>
   </div>
 </section>
@@ -410,6 +394,35 @@
       <div class="sc-schedule-note">Each outcome above is a parallel example deployment with distinct evidence. The full remedy schedule is shown <a href="proof.html#economics">under the hood</a>.</div>
     </div>
 
+  </div>
+</section>
+
+
+<!-- ═══════ WHY GENLAYER ═══════ -->
+<section class="boundary-section" id="why-genlayer">
+  <div class="container">
+    <div class="section-label">Why GenLayer is needed here</div>
+
+    <div class="boundary-cards">
+      <div class="b-card can">
+        <div class="b-card-label">Deterministic</div>
+        <div class="b-card-text">Locking a benchmark rate. Any oracle can return a number.</div>
+      </div>
+      <div class="b-card cannot">
+        <div class="b-card-label">Non-deterministic</div>
+        <div class="b-card-text">Classifying a disputed shipment when both parties submit conflicting evidence.</div>
+      </div>
+      <div class="b-card does">
+        <div class="b-card-label">GenLayer handles both</div>
+        <div class="b-card-text">Same contract, same settlement engine. GenLayer decides the disputed fact; the contract applies the consequence.</div>
+      </div>
+    </div>
+
+    <div class="boundary-note">
+      Late payment changes settlement timing — roll cost, FX exposure, interest.<br/>
+      Late shipment changes whether and how much of the escrowed funds should be released.<br/>
+      <strong>This demo covers the shipment condition.</strong>
+    </div>
   </div>
 </section>
 
