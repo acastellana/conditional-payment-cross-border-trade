@@ -140,6 +140,7 @@
       <a href="#contracts">Contracts</a>
       <a href="#txs">Transactions</a>
       <a href="#scenarios">Scenarios</a>
+      <a href="#evidence">Evidence</a>
       <a href="#trust">Trust Model</a>
     </nav>
   </div>
@@ -211,9 +212,8 @@
         <tr>
           <td><strong style="color:var(--red);">Very late</strong> (&gt;8 days)</td>
           <td class="mono" style="font-size:12px;color:var(--muted);">VERY_LATE</td>
-          <td>—</td>
-          <td>73,950.00 PEN (100%)</td>
-          <td>Buyer cancellation</td>
+          <td colspan="2" style="color:var(--muted);font-style:italic;">RETURN_REQUIRED — funds held in escrow. The buyer must submit proof that the goods were actually returned or formally rejected in accordance with the contract before a full refund can be released. If no return proof within 14 days, defaults to 98.5% release (150 bps penalty).</td>
+          <td>Return required</td>
         </tr>
         <tr>
           <td><strong style="color:var(--amber);">Evidence unclear</strong></td>
@@ -479,6 +479,98 @@
         </div>
       </div>
 
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════ EVIDENCE & EVALUATION ═══════ -->
+<section class="proof-section" id="evidence">
+  <div class="container">
+    <div class="section-label">Evidence & Evaluation</div>
+    <h2>What the AI jury evaluated</h2>
+    <p style="font-size:15px;color:var(--muted);margin-bottom:12px;max-width:620px;">Each disputed scenario was evaluated by GenLayer validators examining real customs documents stored on IPFS. This section shows the exact evidence and jury question for the currently deployed scenarios.</p>
+    <p style="font-size:14px;color:var(--muted);margin-bottom:32px;max-width:620px;font-style:italic;">Additional delay buckets (moderate delay, significant delay, very late / return-required) are defined in the contract but not yet deployed as live scenarios.</p>
+
+    <h3 style="font-size:16px;font-weight:700;margin-bottom:20px;">Jury question</h3>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 22px;margin-bottom:32px;max-width:660px;">
+      <p style="font-size:14px;color:var(--dark);line-height:1.6;font-style:italic;">"Shipment under Contract ISPA-2025-BOL-PER-0047 crossed Bolivian export customs at Desaguadero on or before 2026-04-05T23:59:59-04:00."</p>
+      <p style="font-size:13px;color:var(--muted);margin-top:8px;">Guideline: <span class="mono" style="font-size:12px;">shipment-deadline-v1</span> — validators determine the crossing date from two court sheet images, then classify the delay bucket.</p>
+    </div>
+
+    <!-- Scenario A evidence -->
+    <div style="margin-bottom:36px;">
+      <h3 style="font-size:15px;font-weight:700;margin-bottom:12px;">Scenario A — On time</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:12px;">
+        <div>
+          <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.8px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Court Sheet A — Exporter evidence (ANB customs exit)</div>
+          <a href="https://ipfs.io/ipfs/QmX5ydh3egjapwcwA2uePBsozBZAr3JZi7rGgdKC1N5MQG" target="_blank">
+            <img src="https://ipfs.io/ipfs/QmX5ydh3egjapwcwA2uePBsozBZAr3JZi7rGgdKC1N5MQG" alt="Court Sheet A — On time" style="width:100%;border-radius:var(--radius);border:1px solid var(--border);" loading="lazy" />
+          </a>
+          <div class="mono" style="font-size:11px;color:var(--muted);margin-top:4px;">QmX5ydh3egjapwcwA2uePBsozBZAr3JZi7rGgdKC1N5MQG</div>
+        </div>
+        <div>
+          <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.8px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Court Sheet B — Importer evidence (SUNAT border gate)</div>
+          <a href="https://ipfs.io/ipfs/Qmex77PpZJaqMfjugbanC316drLcN9BjzGzErf6WgSSeGM" target="_blank">
+            <img src="https://ipfs.io/ipfs/Qmex77PpZJaqMfjugbanC316drLcN9BjzGzErf6WgSSeGM" alt="Court Sheet B — On time" style="width:100%;border-radius:var(--radius);border:1px solid var(--border);" loading="lazy" />
+          </a>
+          <div class="mono" style="font-size:11px;color:var(--muted);margin-top:4px;">Qmex77PpZJaqMfjugbanC316drLcN9BjzGzErf6WgSSeGM</div>
+        </div>
+      </div>
+      <div style="font-size:14px;color:var(--muted);line-height:1.55;">
+        <strong style="color:var(--green);">Verdict: ON_TIME</strong> — Customs exit receipt is the authoritative crossing document. Crossing at 22:41, 78 minutes before deadline.<br/>
+        <span class="mono" style="font-size:12px;">AI jury tx: <a href="https://explorer-studio.genlayer.com/transactions/0x96fd014f7d806ce228525524987575cb8b136ccf323c79d15bd5c1e23ba3be2b" target="_blank">0x96fd…be2b ↗</a></span>
+      </div>
+    </div>
+
+    <!-- Scenario B evidence -->
+    <div style="margin-bottom:36px;">
+      <h3 style="font-size:15px;font-weight:700;margin-bottom:12px;">Scenario B — Minor delay</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:12px;">
+        <div>
+          <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.8px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Court Sheet A — Exporter evidence (ANB customs exit)</div>
+          <a href="https://ipfs.io/ipfs/QmeJdpMNJnx62T2PwCgKhgtaj9e3PPvVRhboF5HLzynSBB" target="_blank">
+            <img src="https://ipfs.io/ipfs/QmeJdpMNJnx62T2PwCgKhgtaj9e3PPvVRhboF5HLzynSBB" alt="Court Sheet A — Minor delay" style="width:100%;border-radius:var(--radius);border:1px solid var(--border);" loading="lazy" />
+          </a>
+          <div class="mono" style="font-size:11px;color:var(--muted);margin-top:4px;">QmeJdpMNJnx62T2PwCgKhgtaj9e3PPvVRhboF5HLzynSBB</div>
+        </div>
+        <div>
+          <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.8px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Court Sheet B — Importer evidence (SUNAT border gate)</div>
+          <a href="https://ipfs.io/ipfs/QmX6VTDAaV8uQLVDjgG99HnELDpyo74RfAEv3zP3Y6XPz8" target="_blank">
+            <img src="https://ipfs.io/ipfs/QmX6VTDAaV8uQLVDjgG99HnELDpyo74RfAEv3zP3Y6XPz8" alt="Court Sheet B — Minor delay" style="width:100%;border-radius:var(--radius);border:1px solid var(--border);" loading="lazy" />
+          </a>
+          <div class="mono" style="font-size:11px;color:var(--muted);margin-top:4px;">QmX6VTDAaV8uQLVDjgG99HnELDpyo74RfAEv3zP3Y6XPz8</div>
+        </div>
+      </div>
+      <div style="font-size:14px;color:var(--muted);line-height:1.55;">
+        <strong style="color:var(--red);">Verdict: LATE_1_4</strong> — Pre-clearance stamp is not a crossing event. Gate record shows crossing four days late.<br/>
+        <span class="mono" style="font-size:12px;">AI jury tx: <a href="https://explorer-studio.genlayer.com/transactions/0xc7302e49a80e1997e43fffa7fb2d8b3c2ca9d93e1a8e61d5b73da25d63e5d3aa" target="_blank">0xc730…d3aa ↗</a></span>
+      </div>
+    </div>
+
+    <!-- Scenario C evidence -->
+    <div style="margin-bottom:0;">
+      <h3 style="font-size:15px;font-weight:700;margin-bottom:12px;">Scenario C — Evidence unclear</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:12px;">
+        <div>
+          <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.8px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Court Sheet A — Exporter evidence (ANB customs exit)</div>
+          <a href="https://ipfs.io/ipfs/QmYSCLZAc1ziEJhCvPjAhLeaC2Hhi1rCwsVsAFMwysMMvf" target="_blank">
+            <img src="https://ipfs.io/ipfs/QmYSCLZAc1ziEJhCvPjAhLeaC2Hhi1rCwsVsAFMwysMMvf" alt="Court Sheet A — Evidence unclear" style="width:100%;border-radius:var(--radius);border:1px solid var(--border);" loading="lazy" />
+          </a>
+          <div class="mono" style="font-size:11px;color:var(--muted);margin-top:4px;">QmYSCLZAc1ziEJhCvPjAhLeaC2Hhi1rCwsVsAFMwysMMvf</div>
+        </div>
+        <div>
+          <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.8px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Court Sheet B — Importer evidence (SUNAT border gate)</div>
+          <a href="https://ipfs.io/ipfs/QmZa1Vmt3KWJxo9MtY9pitf3L9iHLL2WoKGpJgS4Tb6eHX" target="_blank">
+            <img src="https://ipfs.io/ipfs/QmZa1Vmt3KWJxo9MtY9pitf3L9iHLL2WoKGpJgS4Tb6eHX" alt="Court Sheet B — Evidence unclear" style="width:100%;border-radius:var(--radius);border:1px solid var(--border);" loading="lazy" />
+          </a>
+          <div class="mono" style="font-size:11px;color:var(--muted);margin-top:4px;">QmZa1Vmt3KWJxo9MtY9pitf3L9iHLL2WoKGpJgS4Tb6eHX</div>
+        </div>
+      </div>
+      <div style="font-size:14px;color:var(--muted);line-height:1.55;">
+        <strong style="color:var(--amber);">Verdict: UNDETERMINED</strong> — Neither document yields a verifiable crossing timestamp. Illegible shipment ref, ambiguous date.<br/>
+        <span class="mono" style="font-size:12px;">AI jury tx: <a href="https://explorer-studio.genlayer.com/transactions/0x9bcb2b9855eaf90d34175796c0a18569fb9e4bf81869dce98044d27f35846aab" target="_blank">0x9bcb…6aab ↗</a></span>
+      </div>
     </div>
   </div>
 </section>

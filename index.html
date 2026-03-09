@@ -280,7 +280,7 @@
         <div class="tl-left"><div class="tl-dot s5" id="dot5">5</div></div>
         <div class="tl-body">
           <div class="tl-title" id="step5-title">Outcome applied</div>
-          <div class="tl-desc">The contract applies the pre-agreed economic consequence: full release, partial adjustment, cancellation, or manual review.</div>
+          <div class="tl-desc">The contract applies the pre-agreed economic consequence: full release, partial adjustment, return-required, or manual review.</div>
         </div>
       </div>
     </div>
@@ -355,7 +355,8 @@
       <a href="https://internetcourt.org/cases/0xe50A8F382B3B751dBd7053963EbaBB59916f3788" target="_blank" class="docket-link">Internet Court Docket ↗</a>
     </div>
 
-    <div class="outcomes-note">The overview shows representative outcomes only. The full remedy schedule is shown <a href="proof.html">under the hood</a>.</div>
+    <div class="outcomes-note">Additional delay buckets, including return-required for very late shipment, are defined in the contract and shown <a href="proof.html#economics">under the hood</a>.</div>
+    <div class="outcomes-note" style="margin-top:16px;">These outcomes were decided by GenLayer validators evaluating real shipment documents stored on IPFS. <a href="proof.html#evidence">See the evidence →</a></div>
   </div>
 </section>
 
@@ -373,13 +374,14 @@
       </div>
       <div class="behavior-card">
         <div class="behavior-card-label">Disputed case</div>
-        <div class="behavior-card-text">GenLayer evaluates the shipment evidence and returns the fact the contract needs in order to release, adjust, cancel, or freeze the settlement.</div>
+        <div class="behavior-card-text">GenLayer evaluates the shipment evidence and returns the fact the contract needs in order to release, adjust, or freeze the settlement. A very late shipment creates a return-required state — full refund only happens after the buyer proves the goods were actually returned or formally rejected in accordance with the contract.</div>
       </div>
     </div>
 
     <div class="behavior-closing">
       The benchmark path is easier.<br/>
       The disputed-evidence path is the real boundary.<br/>
+      Very late shipment may create a rejection right, but full refund requires proven return.<br/>
       <strong>That is why GenLayer is necessary here.</strong>
     </div>
   </div>
