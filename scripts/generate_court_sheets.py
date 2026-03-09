@@ -437,6 +437,58 @@ CASE_META = {
         "statement": ("Shipment under Contract ISPA-2025-BOL-PER-0047 crossed "
                       "Bolivian export customs at Desaguadero on or before 2026-04-05T23:59:59-04:00."),
     },
+    "qc-coop-2026-0006": {
+        "case_id": "qc-coop-2026-0006",
+        "contract_no": "ISPA-2025-BOL-PER-0047",
+        "exporter": "Minera Andina SRL — Potosí, Bolivia",
+        "importer": "Electroquímica del Perú S.A. — Lima, Peru",
+        "goods": "50 MT battery-grade lithium carbonate (Li₂CO₃), ISO 6206",
+        "deadline": "2026-04-05T23:59:59-04:00",
+        "deadline_short": "2026-04-05 23:59 -04:00",
+        "clause": ("Art. 7.2 — Goods shall cross Bolivian export customs "
+                   "at Desaguadero no later than 2026-04-05 23:59:59 BOT (UTC-4)."),
+        "statement": ("Shipment under Contract ISPA-2025-BOL-PER-0047 crossed "
+                      "Bolivian export customs at Desaguadero on or before 2026-04-05T23:59:59-04:00."),
+    },
+    "qc-coop-2026-0007": {
+        "case_id": "qc-coop-2026-0007",
+        "contract_no": "ISPA-2025-BOL-PER-0047",
+        "exporter": "Minera Andina SRL — Potosí, Bolivia",
+        "importer": "Electroquímica del Perú S.A. — Lima, Peru",
+        "goods": "50 MT battery-grade lithium carbonate (Li₂CO₃), ISO 6206",
+        "deadline": "2026-04-05T23:59:59-04:00",
+        "deadline_short": "2026-04-05 23:59 -04:00",
+        "clause": ("Art. 7.2 — Goods shall cross Bolivian export customs "
+                   "at Desaguadero no later than 2026-04-05 23:59:59 BOT (UTC-4)."),
+        "statement": ("Shipment under Contract ISPA-2025-BOL-PER-0047 crossed "
+                      "Bolivian export customs at Desaguadero on or before 2026-04-05T23:59:59-04:00."),
+    },
+    "qc-coop-2026-0008": {
+        "case_id": "qc-coop-2026-0008",
+        "contract_no": "ISPA-2025-BOL-PER-0047",
+        "exporter": "Minera Andina SRL — Potosí, Bolivia",
+        "importer": "Electroquímica del Perú S.A. — Lima, Peru",
+        "goods": "50 MT battery-grade lithium carbonate (Li₂CO₃), ISO 6206",
+        "deadline": "2026-04-05T23:59:59-04:00",
+        "deadline_short": "2026-04-05 23:59 -04:00",
+        "clause": ("Art. 7.2 — Goods shall cross Bolivian export customs "
+                   "at Desaguadero no later than 2026-04-05 23:59:59 BOT (UTC-4)."),
+        "statement": ("Shipment under Contract ISPA-2025-BOL-PER-0047 crossed "
+                      "Bolivian export customs at Desaguadero on or before 2026-04-05T23:59:59-04:00."),
+    },
+    "qc-coop-2026-0009": {
+        "case_id": "qc-coop-2026-0009",
+        "contract_no": "ISPA-2025-BOL-PER-0047",
+        "exporter": "Minera Andina SRL — Potosí, Bolivia",
+        "importer": "Electroquímica del Perú S.A. — Lima, Peru",
+        "goods": "50 MT battery-grade lithium carbonate (Li₂CO₃), ISO 6206",
+        "deadline": "2026-04-05T23:59:59-04:00",
+        "deadline_short": "2026-04-05 23:59 -04:00",
+        "clause": ("Art. 7.2 — Goods shall cross Bolivian export customs "
+                   "at Desaguadero no later than 2026-04-05 23:59:59 BOT (UTC-4)."),
+        "statement": ("Shipment under Contract ISPA-2025-BOL-PER-0047 crossed "
+                      "Bolivian export customs at Desaguadero on or before 2026-04-05T23:59:59-04:00."),
+    },
 }
 
 SCENARIOS = {
@@ -514,6 +566,102 @@ SCENARIOS = {
             "timestamp_note": None,
         },
     },
+    # ── Scenario D: LATE_1_4 ────────────────────────────────────────────────
+    "qc-coop-2026-0006": {
+        "a": {
+            "doc": "anb",
+            "due_no": "DUE-2026-DES-0049201",
+            "timestamp": "2026-04-07  14:30:00  -04:00",
+            "exporter": "Minera Andina SRL — Tax ID: 1029384756",
+            "containers": "COSCU-423456-3 / COSCU-423457-1 / COSCU-423458-9 / COSCU-423459-7",
+            "officer": "Lic. Ramiro Chávez Apaza — Funcionario ANB 4420",
+            "truck": "Placa: 4521-DRN | Tractocamión Scania P410",
+            "status": "DESPACHO ACEPTADO — FUERA DE PLAZO",
+            "status_color": LATE_R,
+        },
+        "b": {
+            "doc": "sunat",
+            "event_id": "PCF-PUN-2026-04-07-0156",
+            "timestamp": "2026-04-07  15:12:00  -04:00",
+            "consignee": "Electroquímica del Perú S.A. — RUC: 20512345678",
+            "containers": "COSCU-423456-3 / COSCU-423457-1 / COSCU-423458-9 / COSCU-423459-7",
+            "officer": "Insp. Luis Calle Huanca — SUNAT PCF-001",
+            "truck": "Placa: 4521-DRN | Verificado en puesto",
+            "timestamp_note": None,
+        },
+    },
+    # ── Scenario E: LATE_5_6 ────────────────────────────────────────────────
+    "qc-coop-2026-0007": {
+        "a": {
+            "doc": "anb",
+            "due_no": "DUE-2026-DES-0049455",
+            "timestamp": "2026-04-10  09:15:00  -04:00",
+            "exporter": "Minera Andina SRL — Tax ID: 1029384756",
+            "containers": "COSCU-523456-8 / COSCU-523457-6 / COSCU-523458-4 / COSCU-523459-2",
+            "officer": "Lic. Juan Carlos Mamani — Funcionario ANB 4418",
+            "truck": "Placa: 6103-EMQ | Tractocamión Mercedes Actros",
+            "status": "DESPACHO ACEPTADO — FUERA DE PLAZO",
+            "status_color": LATE_R,
+        },
+        "b": {
+            "doc": "sunat",
+            "event_id": "PCF-PUN-2026-04-10-0089",
+            "timestamp": "2026-04-10  10:03:00  -04:00",
+            "consignee": "Electroquímica del Perú S.A. — RUC: 20512345678",
+            "containers": "COSCU-523456-8 / COSCU-523457-6 / COSCU-523458-4 / COSCU-523459-2",
+            "officer": "Insp. Carmen Quispe Flores — SUNAT PCF-001",
+            "truck": "Placa: 6103-EMQ | Verificado en puesto",
+            "timestamp_note": None,
+        },
+    },
+    # ── Scenario F: LATE_7_8 ────────────────────────────────────────────────
+    "qc-coop-2026-0008": {
+        "a": {
+            "doc": "anb",
+            "due_no": "DUE-2026-DES-0049702",
+            "timestamp": "2026-04-13  16:40:00  -04:00",
+            "exporter": "Minera Andina SRL — Tax ID: 1029384756",
+            "containers": "COSCU-623456-4 / COSCU-623457-2 / COSCU-623458-0 / COSCU-623459-8",
+            "officer": "Lic. Ramiro Chávez Apaza — Funcionario ANB 4420",
+            "truck": "Placa: 8877-FXK | Tractocamión Volvo FH",
+            "status": "DESPACHO ACEPTADO — FUERA DE PLAZO",
+            "status_color": LATE_R,
+        },
+        "b": {
+            "doc": "sunat",
+            "event_id": "PCF-PUN-2026-04-13-0211",
+            "timestamp": "2026-04-13  17:28:00  -04:00",
+            "consignee": "Electroquímica del Perú S.A. — RUC: 20512345678",
+            "containers": "COSCU-623456-4 / COSCU-623457-2 / COSCU-623458-0 / COSCU-623459-8",
+            "officer": "Insp. Marco Ticona Ramos — SUNAT PCF-001",
+            "truck": "Placa: 8877-FXK | Verificado en puesto",
+            "timestamp_note": None,
+        },
+    },
+    # ── Scenario G: VERY_LATE ───────────────────────────────────────────────
+    "qc-coop-2026-0009": {
+        "a": {
+            "doc": "anb",
+            "due_no": "DUE-2026-DES-0050011",
+            "timestamp": "2026-04-17  11:20:00  -04:00",
+            "exporter": "Minera Andina SRL — Tax ID: 1029384756",
+            "containers": "COSCU-723456-0 / COSCU-723457-8 / COSCU-723458-6 / COSCU-723459-4",
+            "officer": "Lic. Juan Carlos Mamani — Funcionario ANB 4418",
+            "truck": "Placa: 1234-GHJ | Tractocamión DAF XF",
+            "status": "DESPACHO ACEPTADO — FUERA DE PLAZO",
+            "status_color": LATE_R,
+        },
+        "b": {
+            "doc": "sunat",
+            "event_id": "PCF-PUN-2026-04-17-0043",
+            "timestamp": "2026-04-17  12:05:00  -04:00",
+            "consignee": "Electroquímica del Perú S.A. — RUC: 20512345678",
+            "containers": "COSCU-723456-0 / COSCU-723457-8 / COSCU-723458-6 / COSCU-723459-4",
+            "officer": "Insp. Rosa Mamani Condori — SUNAT PCF-001",
+            "truck": "Placa: 1234-GHJ | Verificado en puesto",
+            "timestamp_note": None,
+        },
+    },
 }
 
 # ── MAIN GENERATOR ───────────────────────────────────────────────────────────
@@ -571,8 +719,15 @@ def generate_sheet(case_id, side):
 if __name__ == "__main__":
     print("Generating court sheet images...")
     generated = []
-    for case_id in ["qc-coop-2026-0003", "qc-coop-2026-0004", "qc-coop-2026-0005"]:
+    case_ids = [
+        "qc-coop-2026-0003", "qc-coop-2026-0004", "qc-coop-2026-0005",
+        "qc-coop-2026-0006", "qc-coop-2026-0007", "qc-coop-2026-0008",
+        "qc-coop-2026-0009"
+    ]
+    for case_id in case_ids:
         print(f"\n  Case {case_id}:")
+        # Ensure directory exists
+        (EVIDENCE / case_id).mkdir(parents=True, exist_ok=True)
         generated.append(generate_sheet(case_id, "a"))
         generated.append(generate_sheet(case_id, "b"))
     print(f"\n✅ {len(generated)} court sheets generated.")
