@@ -812,6 +812,7 @@ contract TradeFxSettlement {
 
         fundedAmount = 0;
         status = Status.SETTLED;
+        shipmentStatus = ShipmentStatus.LATE; // Mark shipment as LATE for IC compatibility
 
         if (exporterAmount > 0) {
             settlementToken.safeTransfer(exporter, exporterAmount);
