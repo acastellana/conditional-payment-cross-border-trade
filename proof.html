@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Under the Hood — Conditional Payment × GenLayer</title>
+  <title>Verification — Conditional Payment × GenLayer</title>
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
@@ -43,18 +43,13 @@
     nav a:hover { background: var(--card); color: var(--dark); }
 
     /* ── TOP ── */
-    .top-section { padding: 80px 0 48px; }
+    .top-section { padding: 80px 0 40px; }
     .top-section h1 { font-size: clamp(28px, 4vw, 40px); font-weight: 700; letter-spacing: -1px; margin-bottom: 8px; }
-    .top-sub { font-size: 16px; color: var(--muted); margin-bottom: 16px; max-width: 640px; }
+    .top-sub { font-size: 15px; color: var(--muted); margin-bottom: 16px; max-width: 580px; }
     .build-stamp { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 6px 12px; display: inline-block; }
-    .proven-block { margin-top: 24px; padding: 18px 22px; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); max-width: 480px; }
-    .proven-block h3 { font-size: 13px; font-weight: 700; margin-bottom: 10px; }
-    .proven-block ul { list-style: none; padding: 0; }
-    .proven-block li { position: relative; padding-left: 18px; font-size: 14px; color: var(--muted); margin-bottom: 6px; line-height: 1.5; }
-    .proven-block li::before { content: "✓"; position: absolute; left: 0; color: var(--green); font-weight: 700; }
 
     /* ── SECTIONS ── */
-    .proof-section { padding: 48px 0; border-top: 1px solid var(--border); }
+    .proof-section { padding: 40px 0; border-top: 1px solid var(--border); }
 
     /* Tables */
     .p-table { width: 100%; border-collapse: collapse; font-size: 14px; }
@@ -65,35 +60,34 @@
     .p-table a { text-decoration: none; }
     .p-table a:hover { text-decoration: underline; }
 
-    /* Tx chain */
-    .tx-row { display: grid; grid-template-columns: 200px 1fr 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); font-size: 14px; align-items: center; }
-    .tx-row:last-child { border-bottom: none; }
-    .tx-step { font-weight: 600; }
-    .tx-method { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
-    .tx-hash { font-family: 'DM Mono', monospace; font-size: 12px; }
-    .tx-hash a { text-decoration: none; }
-    .tx-hash a:hover { text-decoration: underline; }
-    .tx-note { color: var(--muted); font-size: 13px; }
+    /* Verdict pills */
+    .v-pill { display: inline-block; border-radius: 9999px; padding: 2px 10px; font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 700; }
+    .v-pill.green  { background: var(--green-light); color: var(--green); }
+    .v-pill.red    { background: var(--red-light);   color: var(--red); }
+    .v-pill.amber  { background: var(--amber-light); color: var(--amber); }
 
-    /* Scenario cards */
-    .scenario-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
-    .scenario-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 20px; }
-    .scenario-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
-    .scenario-card .plain-label { font-size: 13px; color: var(--muted); margin-bottom: 12px; }
-    .sc-detail { font-size: 13px; color: var(--muted); margin-bottom: 6px; line-height: 1.5; }
-    .sc-detail strong { color: var(--dark); }
-    .sc-detail .label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.8px; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 2px; margin-top: 10px; }
-    .verdict-tag { display: inline-flex; align-items: center; gap: 6px; border-radius: 9999px; padding: 4px 12px; font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 700; margin: 8px 0; }
-    .verdict-tag.green  { background: var(--green-light); color: var(--green); }
-    .verdict-tag.red    { background: var(--red-light);   color: var(--red); }
-    .verdict-tag.amber  { background: var(--amber-light); color: var(--amber); }
-    .verdict-tag .vd { width: 6px; height: 6px; border-radius: 50%; }
-    .verdict-tag.green .vd  { background: var(--green); }
-    .verdict-tag.red .vd    { background: var(--red); }
-    .verdict-tag.amber .vd  { background: var(--amber); }
-    .sc-links { display: flex; flex-direction: column; gap: 4px; margin-top: 10px; font-size: 12px; font-family: 'DM Mono', monospace; }
-    .sc-links a { text-decoration: none; }
-    .sc-links a:hover { text-decoration: underline; }
+    /* Expandable rows */
+    .expand-row { cursor: pointer; }
+    .expand-row:hover { background: var(--card); }
+    .expand-row td:first-child::before { content: "▸ "; color: var(--muted); font-size: 11px; }
+    .expand-row.open td:first-child::before { content: "▾ "; }
+    .expand-detail { display: none; }
+    .expand-detail.open { display: table-row; }
+    .expand-detail td { padding: 16px 0 24px; border-bottom: 2px solid var(--border); }
+    .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 12px 0; }
+    .evidence-grid img { width: 100%; border-radius: var(--radius); border: 1px solid var(--border); }
+    .ev-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.8px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+    .ev-cid { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); margin-top: 4px; }
+    .detail-links { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 12px; font-size: 12px; font-family: 'DM Mono', monospace; }
+    .detail-links a { text-decoration: none; }
+    .detail-links a:hover { text-decoration: underline; }
+
+    /* Collapsible sections */
+    .collapsible-toggle { cursor: pointer; user-select: none; display: flex; align-items: center; gap: 8px; }
+    .collapsible-toggle::after { content: "▸"; font-size: 12px; color: var(--muted); transition: transform 0.15s; }
+    .collapsible-toggle.open::after { transform: rotate(90deg); }
+    .collapsible-body { display: none; }
+    .collapsible-body.open { display: block; }
 
     /* Trust model */
     .trust-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
@@ -103,15 +97,15 @@
     .trust-card code { font-family: 'DM Mono', monospace; font-size: 12px; background: rgba(0,0,0,0.05); padding: 1px 5px; border-radius: 3px; }
 
     /* Bridge chain */
-    .bridge-chain { display: flex; flex-direction: column; gap: 0; margin-top: 24px; max-width: 600px; }
-    .bridge-step { display: flex; gap: 16px; align-items: flex-start; padding: 12px 0; border-bottom: 1px solid var(--border); }
+    .bridge-chain { display: flex; flex-direction: column; gap: 0; margin-top: 16px; max-width: 600px; }
+    .bridge-step { display: flex; gap: 16px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid var(--border); }
     .bridge-step:last-child { border-bottom: none; }
     .bridge-num { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 700; color: var(--muted); min-width: 20px; padding-top: 2px; }
     .bridge-label { font-size: 14px; font-weight: 600; }
     .bridge-detail { font-size: 13px; color: var(--muted); }
 
-    /* Contract group headers */
-    .group-header { font-size: 14px; font-weight: 700; margin-top: 32px; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+    /* Group headers */
+    .group-header { font-size: 14px; font-weight: 700; margin-top: 24px; margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
     .group-header:first-of-type { margin-top: 0; }
 
     /* Footer */
@@ -123,9 +117,9 @@
     .footer-links a:hover { color: var(--dark); }
 
     @media(max-width: 700px) {
-      .scenario-grid { grid-template-columns: 1fr; }
+      .evidence-grid { grid-template-columns: 1fr; }
       .trust-grid { grid-template-columns: 1fr; }
-      .tx-row { grid-template-columns: 1fr; gap: 4px; }
+      .detail-links { flex-direction: column; }
     }
   </style>
 </head>
@@ -136,11 +130,9 @@
     <a href="index.html" class="logo"><span class="logo-chip">CP</span> Conditional Payment × GenLayer</a>
     <nav>
       <a href="index.html">← Overview</a>
-      <a href="#economics">Economics</a>
-      <a href="#contracts">Contracts</a>
-      <a href="#txs">Transactions</a>
       <a href="#scenarios">Scenarios</a>
-      <a href="#trust">Trust Model</a>
+      <a href="#registry">Registry</a>
+      <a href="#trust">Trust</a>
     </nav>
   </div>
 </header>
@@ -149,548 +141,338 @@
 <!-- ═══════ TOP ═══════ -->
 <section class="top-section">
   <div class="container">
-    <h1>Under the Hood</h1>
-    <p class="top-sub">Full technical verification for the cross-border settlement prototype. This page shows the contracts, transactions, evidence, verdicts, and trust model behind the <a href="index.html">overview page</a>.</p>
+    <h1>Verification</h1>
+    <p class="top-sub">On-chain evidence for every scenario in the <a href="index.html">conditional payment prototype</a>. Click any row to inspect court sheet images, verdict reasoning, and transaction links.</p>
     <div class="build-stamp">Conditional Payment × GenLayer · 2026-03-09</div>
-
-    <div class="proven-block">
-      <h3>What is proven here</h3>
-      <ul>
-        <li>The happy-path trade settled on-chain</li>
-        <li>Three disputed-shipment outcomes were executed end-to-end</li>
-        <li>GenLayer verdicts were delivered back into the settlement contracts</li>
-      </ul>
-    </div>
   </div>
 </section>
 
 
-<!-- ═══════ ECONOMIC MODEL ═══════ -->
+<!-- ═══════ PAYOUT MATRIX ═══════ -->
 <section class="proof-section" id="economics">
   <div class="container">
-    <div class="section-label">Economic Model</div>
-    <h2>Conditional escrow with pre-agreed remedy schedule</h2>
-
-    <p style="font-size:15px;color:var(--muted);margin-bottom:8px;max-width:600px;">Importer pre-funds 73,950 PEN into conditional escrow. Release depends on shipment timing. GenLayer evaluates the disputed shipment evidence and returns the fact the contract needs in order to continue.</p>
-    <p style="font-size:14px;color:var(--muted);margin-bottom:8px;max-width:600px;font-style:italic;">GenLayer decides the fact. The contract applies the consequence.</p>
-    <p style="font-size:14px;color:var(--muted);margin-bottom:24px;max-width:600px;">Late payment changes settlement timing. Late shipment changes whether and how much escrowed funds should be released.</p>
-
+    <div class="section-label">Payout Matrix</div>
+    <h2>Escrow: 73,950 PEN</h2>
     <table class="p-table">
       <thead>
-        <tr><th>Outcome</th><th>Technical classification</th><th>Exporter receives</th><th>Importer receives</th><th>Logic</th></tr>
+        <tr><th>Classification</th><th>Exporter</th><th>Importer</th></tr>
       </thead>
       <tbody>
-        <tr>
-          <td><strong style="color:var(--green);">On time</strong></td>
-          <td class="mono" style="font-size:12px;color:var(--muted);">ON_TIME</td>
-          <td>73,950.00 PEN (100%)</td>
-          <td>—</td>
-          <td>Full release</td>
-        </tr>
-        <tr>
-          <td><strong style="color:var(--amber);">Minor delay</strong></td>
-          <td class="mono" style="font-size:12px;color:var(--muted);">LATE_1_4</td>
-          <td>73,580.25 PEN (99.5%)</td>
-          <td>369.75 PEN (0.5%)</td>
-          <td>Late-shipment adjustment</td>
-        </tr>
-        <tr>
-          <td><strong style="color:var(--amber);">Moderate delay</strong></td>
-          <td class="mono" style="font-size:12px;color:var(--muted);">LATE_5_6</td>
-          <td>73,210.50 PEN (99.0%)</td>
-          <td>739.50 PEN (1.0%)</td>
-          <td>Late-shipment adjustment</td>
-        </tr>
-        <tr>
-          <td><strong style="color:var(--amber);">Significant delay</strong></td>
-          <td class="mono" style="font-size:12px;color:var(--muted);">LATE_7_8</td>
-          <td>72,840.75 PEN (98.5%)</td>
-          <td>1,109.25 PEN (1.5%)</td>
-          <td>Late-shipment adjustment</td>
-        </tr>
-        <tr>
-          <td><strong style="color:var(--red);">Very late</strong> (&gt;8 days)</td>
-          <td class="mono" style="font-size:12px;color:var(--muted);">VERY_LATE</td>
-          <td colspan="2" style="color:var(--muted);font-style:italic;">RETURN_REQUIRED — funds held in escrow. The buyer must submit proof that the goods were actually returned or formally rejected in accordance with the contract before a full refund can be released. If no return proof within 14 days, defaults to 98.5% release (150 bps penalty).</td>
-          <td>Return required</td>
-        </tr>
-        <tr>
-          <td><strong style="color:var(--amber);">Evidence unclear</strong></td>
-          <td class="mono" style="font-size:12px;color:var(--muted);">UNDETERMINED</td>
-          <td colspan="2" style="color:var(--muted);font-style:italic;">Held in escrow — 14-day arbitrator window. If no ruling, defaults to refund.</td>
-          <td>Manual review</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <p style="font-size:13px;color:var(--muted);margin-top:20px;">GenLayer evaluates the shipment evidence and classifies the crossing into one of these buckets. The settlement contract maps each classification to a payout split. GenLayer never decides the price or the payment amount.</p>
-  </div>
-</section>
-
-
-<!-- ═══════ CONTRACT REGISTRY ═══════ -->
-<section class="proof-section" id="contracts">
-  <div class="container">
-    <div class="section-label">Contract Registry</div>
-    <h2>Deployed contracts</h2>
-
-    <div class="group-header">Settlement contracts</div>
-    <table class="p-table">
-      <thead>
-        <tr><th>Contract</th><th>Chain</th><th>Address</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Scenario A — On time</td>
-          <td>Base Sepolia</td>
-          <td class="addr"><a href="https://sepolia.basescan.org/address/0xb4700D67d6cBeF18011021A2A20389ea88753234" target="_blank">0xb4700D67d6cBeF18011021A2A20389ea88753234 ↗</a></td>
-        </tr>
-        <tr>
-          <td>Scenario B — Minor delay (v0.1)</td>
-          <td>Base Sepolia</td>
-          <td class="addr"><a href="https://sepolia.basescan.org/address/0xbd0dB046A913817522B595CFEb922D5E2aad4268" target="_blank">0xbd0dB046A913817522B595CFEb922D5E2aad4268 ↗</a></td>
-        </tr>
-        <tr>
-          <td>Scenario C — Evidence unclear</td>
-          <td>Base Sepolia</td>
-          <td class="addr"><a href="https://sepolia.basescan.org/address/0xe50A8F382B3B751dBd7053963EbaBB59916f3788" target="_blank">0xe50A8F382B3B751dBd7053963EbaBB59916f3788 ↗</a></td>
-        </tr>
-        <tr>
-          <td>Scenario D — Minor delay</td>
-          <td>Base Sepolia</td>
-          <td class="addr"><a href="https://sepolia.basescan.org/address/0x08FB300E1290Fa3e12cdeD8B2Bf050Edd46fFf73" target="_blank">0x08FB300E1290Fa3e12cdeD8B2Bf050Edd46fFf73 ↗</a></td>
-        </tr>
-
-        <tr>
-          <td>Scenario F — Significant delay</td>
-          <td>Base Sepolia</td>
-          <td class="addr"><a href="https://sepolia.basescan.org/address/0x8edE7afc449CcA494fF3066aB020be143d784F91" target="_blank">0x8edE7afc449CcA494fF3066aB020be143d784F91 ↗</a></td>
-        </tr>
-        <tr>
-          <td>Scenario G — Very late (timeout settled)</td>
-          <td>Base Sepolia</td>
-          <td class="addr"><a href="https://sepolia.basescan.org/address/0x2d14F1Ad43D90e8db1209A6cE3c1959c85b4D9e1" target="_blank">0x2d14F1Ad43D90e8db1209A6cE3c1959c85b4D9e1 ↗</a></td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="group-header">GenLayer contracts</div>
-    <table class="p-table">
-      <thead>
-        <tr><th>Contract</th><th>Chain</th><th>Address</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>FxBenchmarkOracle</td>
-          <td>GenLayer</td>
-          <td class="addr"><a href="https://explorer-studio.genlayer.com/transactions/0x8085b03f9fc857785a242e64c7b00051790f04847de1b22e4b163ae5318f71c1" target="_blank">0x3B8501bAcaB70dedbC6f8B8EFCB888ba66cbc73e ↗</a></td>
-        </tr>
-        <tr>
-          <td>InternetCourtFactory v2</td>
-          <td>Base Sepolia</td>
-          <td class="addr"><a href="https://sepolia.basescan.org/address/0xd533cB0B52E85b3F506b6f0c28b8f6bc4E449Dda" target="_blank">0xd533cB0B52E85b3F506b6f0c28b8f6bc4E449Dda ↗</a></td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="group-header">Bridge contracts</div>
-    <p style="font-size:14px;color:var(--muted);margin-bottom:16px;">The verdict path traverses GenLayer → zkSync Sepolia → LayerZero V2 → Base Sepolia.</p>
-    <table class="p-table">
-      <thead>
-        <tr><th>Contract</th><th>Chain</th><th>Address</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>BridgeSender</td>
-          <td>GenLayer</td>
-          <td class="addr"><a href="https://explorer-studio.genlayer.com/transactions/0x80f82a1021ea681a81023699b1822c8698052d8b041e9adb5439360536191907" target="_blank">0xC94bE65Baf99590B1523db557D157fabaD2DA729 ↗</a></td>
-        </tr>
-        <tr>
-          <td>BridgeForwarder</td>
-          <td>zkSync Sepolia</td>
-          <td class="addr"><a href="https://sepolia.explorer.zksync.io/address/0x95c4E5b042d75528f7df355742e48B298028b3f2" target="_blank">0x95c4E5b042d75528f7df355742e48B298028b3f2 ↗</a></td>
-        </tr>
-        <tr>
-          <td>BridgeReceiver</td>
-          <td>Base Sepolia</td>
-          <td class="addr"><a href="https://sepolia.basescan.org/address/0xc3e6aE892A704c875bF74Df46eD873308db15d82" target="_blank">0xc3e6aE892A704c875bF74Df46eD873308db15d82 ↗</a></td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="group-header">Tokens / support contracts</div>
-    <table class="p-table">
-      <thead>
-        <tr><th>Contract</th><th>Chain</th><th>Address</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>MockUSDC <span style="font-weight:400;color:var(--muted);font-size:12px;">(settlement token representing PEN)</span></td>
-          <td>Base Sepolia</td>
-          <td class="addr"><a href="https://sepolia.basescan.org/address/0x58C27C7C1Ff5DBF480c956acf6b119508b6FBa4f" target="_blank">0x58C27C7C1Ff5DBF480c956acf6b119508b6FBa4f ↗</a></td>
-        </tr>
+        <tr><td><strong style="color:var(--green);">ON_TIME</strong></td><td>73,950.00 (100%)</td><td>—</td></tr>
+        <tr><td><strong style="color:var(--amber);">LATE_1_4</strong></td><td>73,580.25 (99.5%)</td><td>369.75 (0.5%)</td></tr>
+        <tr><td><strong style="color:var(--amber);">LATE_5_6</strong></td><td>73,210.50 (99.0%)</td><td>739.50 (1.0%)</td></tr>
+        <tr><td><strong style="color:var(--amber);">LATE_7_8</strong></td><td>72,840.75 (98.5%)</td><td>1,109.25 (1.5%)</td></tr>
+        <tr><td><strong style="color:var(--red);">VERY_LATE</strong></td><td colspan="2" style="color:var(--muted);font-size:13px;">RETURN_REQUIRED → 14-day proof window → defaults to 98.5% / 1.5%</td></tr>
+        <tr><td><strong style="color:var(--amber);">UNDETERMINED</strong></td><td colspan="2" style="color:var(--muted);font-size:13px;">Held in escrow → 14-day arbitrator window → defaults to refund</td></tr>
       </tbody>
     </table>
   </div>
 </section>
 
 
-<!-- ═══════ TX CHAIN ═══════ -->
-<section class="proof-section" id="txs">
-  <div class="container">
-    <div class="section-label">Transaction Chain</div>
-    <h2>Main trade — lifecycle transactions</h2>
-
-    <div class="tx-row" style="border-bottom:2px solid var(--border);font-weight:600;font-size:12px;font-family:'DM Mono',monospace;color:var(--muted);letter-spacing:0.5px;text-transform:uppercase;">
-      <div>Step</div><div>Transaction</div><div>Note</div>
-    </div>
-    <div class="tx-row">
-      <div><div class="tx-step">Invoice / benchmark request</div><div class="tx-method">requestRateLock()</div></div>
-      <div class="tx-hash"><a href="https://sepolia.basescan.org/tx/0x899d907aee0a141aacd28615a544a176b3bea6f415b86547022d96daae4eeea6" target="_blank">0x899d…eeea6 ↗</a></div>
-      <div class="tx-note">Exporter requests benchmark lock</div>
-    </div>
-    <div class="tx-row">
-      <div><div class="tx-step">Benchmark locked</div><div class="tx-method">receiveRate(0.493)</div></div>
-      <div class="tx-hash"><a href="https://sepolia.basescan.org/tx/0xe7dbd7f99e7997ee5ade170c51d9d051fc9814acb45b4202f682db339ac4160a" target="_blank">0xe7db…c4160a ↗</a></div>
-      <div class="tx-note">Relayer delivers benchmark from GenLayer</div>
-    </div>
-    <div class="tx-row">
-      <div><div class="tx-step">Conditional settlement funded</div><div class="tx-method">fundSettlement()</div></div>
-      <div class="tx-hash"><a href="https://sepolia.basescan.org/tx/0x9415659a4271b22882dfd81d5d85ba7e4bd716b532c0eab5ee394c7e13518e3d" target="_blank">0x9415…518e3d ↗</a></div>
-      <div class="tx-note">Importer pre-funds 73,950 PEN into escrow</div>
-    </div>
-    <div class="tx-row">
-      <div><div class="tx-step">Settlement finalized</div><div class="tx-method">finalizeAfterShipment()</div></div>
-      <div class="tx-hash"><a href="https://sepolia.basescan.org/tx/0xb244396c2ead58fe8225849070d71be68d42cbc7d8e0a86012400811f3bf9d33" target="_blank">0xb244…f9d33 ↗</a></div>
-      <div class="tx-note">73,950 PEN released to exporter</div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ═══════ SCENARIOS & EVIDENCE ═══════ -->
+<!-- ═══════ SCENARIOS ═══════ -->
 <section class="proof-section" id="scenarios">
   <div class="container">
-    <div class="section-label">Scenarios & Evidence</div>
-    <h2>Five scenarios — five verdicts</h2>
-    <p style="font-size:15px;color:var(--muted);margin-bottom:8px;max-width:620px;">Each scenario uses the same contract ref <span class="mono" style="font-size:13px;">ISPA-2025-BOL-PER-0047</span> with a different shipment timeline. GenLayer validators examined real customs documents stored on IPFS. All verdicts are final and economic outcomes are executed on-chain.</p>
+    <div class="section-label">Scenario Evidence</div>
+    <h2>Click to verify</h2>
 
-    <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 22px;margin-bottom:32px;max-width:660px;">
-      <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.8px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Jury question</div>
-      <p style="font-size:14px;color:var(--dark);line-height:1.6;font-style:italic;">"Shipment under Contract ISPA-2025-BOL-PER-0047 crossed Bolivian export customs at Desaguadero on or before 2026-04-05T23:59:59-04:00."</p>
-      <p style="font-size:13px;color:var(--muted);margin-top:8px;">Guideline: <span class="mono" style="font-size:12px;">shipment-deadline-v1</span> — validators determine the crossing date from two court sheet images, then classify the delay bucket.</p>
-    </div>
-
-    <!-- ── A — ON TIME ── -->
-    <div style="margin-bottom:48px;" id="evidence">
-      <h3 style="font-size:17px;font-weight:700;margin-bottom:4px;">Scenario A — On time</h3>
-      <div class="verdict-tag green"><span class="vd"></span> ON_TIME → 100% RELEASED</div>
-      <p style="font-size:14px;color:var(--muted);margin-bottom:16px;">73,950 PEN (100%) released to exporter. Customs exit receipt showed crossing at 22:41, 78 minutes before deadline.</p>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:12px;">
-        <div>
-          <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.8px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Court Sheet A — Exporter evidence (ANB customs exit)</div>
-          <a href="https://ipfs.io/ipfs/QmX5ydh3egjapwcwA2uePBsozBZAr3JZi7rGgdKC1N5MQG" target="_blank">
-            <img src="https://ipfs.io/ipfs/QmX5ydh3egjapwcwA2uePBsozBZAr3JZi7rGgdKC1N5MQG" alt="Court Sheet A — On time" style="width:100%;border-radius:var(--radius);border:1px solid var(--border);" loading="lazy" />
-          </a>
-          <div class="mono" style="font-size:11px;color:var(--muted);margin-top:4px;">QmX5ydh3egjapwcwA2uePBsozBZAr3JZi7rGgdKC1N5MQG</div>
-        </div>
-        <div>
-          <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.8px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Court Sheet B — Importer evidence (SUNAT border gate)</div>
-          <a href="https://ipfs.io/ipfs/Qmex77PpZJaqMfjugbanC316drLcN9BjzGzErf6WgSSeGM" target="_blank">
-            <img src="https://ipfs.io/ipfs/Qmex77PpZJaqMfjugbanC316drLcN9BjzGzErf6WgSSeGM" alt="Court Sheet B — On time" style="width:100%;border-radius:var(--radius);border:1px solid var(--border);" loading="lazy" />
-          </a>
-          <div class="mono" style="font-size:11px;color:var(--muted);margin-top:4px;">Qmex77PpZJaqMfjugbanC316drLcN9BjzGzErf6WgSSeGM</div>
-        </div>
-      </div>
-      <div style="font-size:14px;color:var(--muted);line-height:1.55;margin-bottom:8px;">
-        <strong style="color:var(--green);">Verdict: ON_TIME</strong> — Customs exit receipt is the authoritative crossing document. Importer's border gate record showed 00:18, 18 minutes after deadline, but exit receipt takes precedence.
-      </div>
-      <div class="sc-links">
-        <a href="https://internetcourt.org/cases/0xb4700D67d6cBeF18011021A2A20389ea88753234" target="_blank">IC docket ↗</a>
-        <a href="https://sepolia.basescan.org/address/0xb4700D67d6cBeF18011021A2A20389ea88753234" target="_blank">contract ↗</a>
-        <a href="https://sepolia.basescan.org/tx/0x7c02ae194c6a29a1b63fddcad70ebbad5d962faaa32dfa2725df7df14f93ac52" target="_blank">contest tx ↗</a>
-        <a href="https://sepolia.basescan.org/tx/0x95f8f27ed0af49a35300568796e0cfc28943a6a483018689dc0ec67fa0b7cc88" target="_blank">verdict tx ↗</a>
-        <a href="https://sepolia.basescan.org/tx/0x35ab0764fc3edd0ed5d42558f6dab6dcecefaf3c2eb51ffa843c843be68fb1e0" target="_blank">settle tx ↗</a>
-        <a href="https://explorer-studio.genlayer.com/transactions/0x96fd014f7d806ce228525524987575cb8b136ccf323c79d15bd5c1e23ba3be2b" target="_blank">AI jury tx ↗</a>
-      </div>
-    </div>
-
-    <!-- ── C — EVIDENCE UNCLEAR ── -->
-    <div style="margin-bottom:48px;">
-      <h3 style="font-size:17px;font-weight:700;margin-bottom:4px;">Scenario C — Evidence unclear</h3>
-      <div class="verdict-tag amber"><span class="vd"></span> UNDETERMINED → MANUAL REVIEW</div>
-      <p style="font-size:14px;color:var(--muted);margin-bottom:16px;">73,950 PEN held in escrow. 14-day arbitrator window — if no ruling, defaults to refund.</p>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:12px;">
-        <div>
-          <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.8px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Court Sheet A — Exporter evidence (ANB customs exit)</div>
-          <a href="https://ipfs.io/ipfs/QmYSCLZAc1ziEJhCvPjAhLeaC2Hhi1rCwsVsAFMwysMMvf" target="_blank">
-            <img src="https://ipfs.io/ipfs/QmYSCLZAc1ziEJhCvPjAhLeaC2Hhi1rCwsVsAFMwysMMvf" alt="Court Sheet A — Evidence unclear" style="width:100%;border-radius:var(--radius);border:1px solid var(--border);" loading="lazy" />
-          </a>
-          <div class="mono" style="font-size:11px;color:var(--muted);margin-top:4px;">QmYSCLZAc1ziEJhCvPjAhLeaC2Hhi1rCwsVsAFMwysMMvf</div>
-        </div>
-        <div>
-          <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.8px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Court Sheet B — Importer evidence (SUNAT border gate)</div>
-          <a href="https://ipfs.io/ipfs/QmZa1Vmt3KWJxo9MtY9pitf3L9iHLL2WoKGpJgS4Tb6eHX" target="_blank">
-            <img src="https://ipfs.io/ipfs/QmZa1Vmt3KWJxo9MtY9pitf3L9iHLL2WoKGpJgS4Tb6eHX" alt="Court Sheet B — Evidence unclear" style="width:100%;border-radius:var(--radius);border:1px solid var(--border);" loading="lazy" />
-          </a>
-          <div class="mono" style="font-size:11px;color:var(--muted);margin-top:4px;">QmZa1Vmt3KWJxo9MtY9pitf3L9iHLL2WoKGpJgS4Tb6eHX</div>
-        </div>
-      </div>
-      <div style="font-size:14px;color:var(--muted);line-height:1.55;margin-bottom:8px;">
-        <strong style="color:var(--amber);">Verdict: UNDETERMINED</strong> — Exporter's customs receipt had illegible shipment ref. Importer's gate record had an ambiguous date (could read Apr 4 or Apr 14). Neither document yields a verifiable crossing timestamp.
-      </div>
-      <div class="sc-links">
-        <a href="https://internetcourt.org/cases/0xe50A8F382B3B751dBd7053963EbaBB59916f3788" target="_blank">IC docket ↗</a>
-        <a href="https://sepolia.basescan.org/address/0xe50A8F382B3B751dBd7053963EbaBB59916f3788" target="_blank">contract ↗</a>
-        <a href="https://sepolia.basescan.org/tx/0xc9d93c813a336e24e7e484503ec1e02c64038ecb4dc6f1d953e476d0702ba68e" target="_blank">contest tx ↗</a>
-        <a href="https://sepolia.basescan.org/tx/0x5b70ac102e29e15e22337fea6506cccfaf22c7fc85b853e094fedaecba3e5053" target="_blank">verdict tx ↗</a>
-        <a href="https://explorer-studio.genlayer.com/transactions/0x9bcb2b9855eaf90d34175796c0a18569fb9e4bf81869dce98044d27f35846aab" target="_blank">AI jury tx ↗</a>
-      </div>
-    </div>
-
-    <!-- ── D — MINOR DELAY (graduated) ── -->
-    <div style="margin-bottom:48px;">
-      <h3 style="font-size:17px;font-weight:700;margin-bottom:4px;">Scenario D — Minor delay (2 days late)</h3>
-      <div class="verdict-tag amber"><span class="vd"></span> LATE_1_4 → 99.5% RELEASED</div>
-      <p style="font-size:14px;color:var(--muted);margin-bottom:16px;">73,580.25 PEN (99.5%) released to exporter · 369.75 PEN (0.5%) returned to importer.</p>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:12px;">
-        <div>
-          <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.8px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Court Sheet A — Exporter evidence</div>
-          <a href="https://ipfs.io/ipfs/QmPJgqAuk9EWHGgE58hv6WmeBpvrYRokUEqXi3fs9tgFq7" target="_blank">
-            <img src="https://ipfs.io/ipfs/QmPJgqAuk9EWHGgE58hv6WmeBpvrYRokUEqXi3fs9tgFq7" alt="Court Sheet A — Minor delay" style="width:100%;border-radius:var(--radius);border:1px solid var(--border);" loading="lazy" />
-          </a>
-          <div class="mono" style="font-size:11px;color:var(--muted);margin-top:4px;">QmPJgqAuk9EWHGgE58hv6WmeBpvrYRokUEqXi3fs9tgFq7</div>
-        </div>
-        <div>
-          <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.8px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Court Sheet B — Importer evidence</div>
-          <a href="https://ipfs.io/ipfs/QmZJVetdVoK59msaerPaucc3paRDrypgUdiKZ2x3rAu6Xh" target="_blank">
-            <img src="https://ipfs.io/ipfs/QmZJVetdVoK59msaerPaucc3paRDrypgUdiKZ2x3rAu6Xh" alt="Court Sheet B — Minor delay" style="width:100%;border-radius:var(--radius);border:1px solid var(--border);" loading="lazy" />
-          </a>
-          <div class="mono" style="font-size:11px;color:var(--muted);margin-top:4px;">QmZJVetdVoK59msaerPaucc3paRDrypgUdiKZ2x3rAu6Xh</div>
-        </div>
-      </div>
-      <div style="font-size:14px;color:var(--muted);line-height:1.55;margin-bottom:8px;">
-        <strong style="color:var(--amber);">Verdict: LATE_1_4</strong> — Exporter's receipt showed departure Apr 5. Importer's gate record showed arrival Apr 7 — 2 days late. 50 bps penalty applied.
-      </div>
-      <div class="sc-links">
-        <a href="https://internetcourt.org/cases/0x08FB300E1290Fa3e12cdeD8B2Bf050Edd46fFf73" target="_blank">IC docket ↗</a>
-        <a href="https://sepolia.basescan.org/address/0x08FB300E1290Fa3e12cdeD8B2Bf050Edd46fFf73" target="_blank">contract ↗</a>
-        <a href="https://sepolia.basescan.org/tx/0x3d3b0f365c7db6b1b060b985f1ed7c25d71dcc4ac1b2624fb95d8fa1254421b5" target="_blank">bridge tx ↗</a>
-        <a href="https://explorer-studio.genlayer.com/transactions/0xdf87c6c4611f8f12eaec576708aa2aef918379bf51790adc6102c05385fd3812" target="_blank">AI jury tx ↗</a>
-      </div>
-    </div>
-
-    <!-- ── F — SIGNIFICANT DELAY ── -->
-    <div style="margin-bottom:48px;">
-      <h3 style="font-size:17px;font-weight:700;margin-bottom:4px;">Scenario F — Significant delay (8 days late)</h3>
-      <div class="verdict-tag amber"><span class="vd"></span> LATE_7_8 → 98.5% RELEASED</div>
-      <p style="font-size:14px;color:var(--muted);margin-bottom:16px;">72,840.75 PEN (98.5%) released to exporter · 1,109.25 PEN (1.5%) returned to importer.</p>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:12px;">
-        <div>
-          <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.8px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Court Sheet A — Exporter evidence</div>
-          <a href="https://ipfs.io/ipfs/QmQhnQx3XJ9ktrRE92Xy7QjM9BT1PUAaorjcZ97AKHzXRs" target="_blank">
-            <img src="https://ipfs.io/ipfs/QmQhnQx3XJ9ktrRE92Xy7QjM9BT1PUAaorjcZ97AKHzXRs" alt="Court Sheet A — Significant delay" style="width:100%;border-radius:var(--radius);border:1px solid var(--border);" loading="lazy" />
-          </a>
-          <div class="mono" style="font-size:11px;color:var(--muted);margin-top:4px;">QmQhnQx3XJ9ktrRE92Xy7QjM9BT1PUAaorjcZ97AKHzXRs</div>
-        </div>
-        <div>
-          <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.8px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Court Sheet B — Importer evidence</div>
-          <a href="https://ipfs.io/ipfs/QmfJ3UWX72icpCobUxDssViaLsiJGk6qq4mZEddSuZVoNL" target="_blank">
-            <img src="https://ipfs.io/ipfs/QmfJ3UWX72icpCobUxDssViaLsiJGk6qq4mZEddSuZVoNL" alt="Court Sheet B — Significant delay" style="width:100%;border-radius:var(--radius);border:1px solid var(--border);" loading="lazy" />
-          </a>
-          <div class="mono" style="font-size:11px;color:var(--muted);margin-top:4px;">QmfJ3UWX72icpCobUxDssViaLsiJGk6qq4mZEddSuZVoNL</div>
-        </div>
-      </div>
-      <div style="font-size:14px;color:var(--muted);line-height:1.55;margin-bottom:8px;">
-        <strong style="color:var(--amber);">Verdict: LATE_7_8</strong> — Shipment crossed the border on Apr 13 — 8 days late. 150 bps penalty applied.
-      </div>
-      <div class="sc-links">
-        <a href="https://internetcourt.org/cases/0x8edE7afc449CcA494fF3066aB020be143d784F91" target="_blank">IC docket ↗</a>
-        <a href="https://sepolia.basescan.org/address/0x8edE7afc449CcA494fF3066aB020be143d784F91" target="_blank">contract ↗</a>
-        <a href="https://sepolia.basescan.org/tx/0xf9dcbc0ac3e5bd0263204cae573a303ceb4d9034bb4875d196141f5a33375780" target="_blank">bridge tx ↗</a>
-        <a href="https://explorer-studio.genlayer.com/transactions/0xc10b7c597681345e9ab364c940aa5199a110df0d7c9e8790b62f4d63a6b6bb5f" target="_blank">AI jury tx ↗</a>
-      </div>
-    </div>
-
-    <!-- ── G — VERY LATE ── -->
-    <div style="margin-bottom:32px;">
-      <h3 style="font-size:17px;font-weight:700;margin-bottom:4px;">Scenario G — Very late (12 days late)</h3>
-      <div class="verdict-tag red"><span class="vd"></span> VERY_LATE → RETURN_REQUIRED → SETTLED (98.5%)</div>
-      <p style="font-size:14px;color:var(--muted);margin-bottom:16px;">72,840.75 PEN (98.5%) to exporter · 1,109.25 PEN (1.5%) to importer. Return proof window expired → <code style="font-size:12px;">timeoutReturnProof()</code> settled at highest penalty tier.</p>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:12px;">
-        <div>
-          <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.8px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Court Sheet A — Exporter evidence</div>
-          <a href="https://ipfs.io/ipfs/QmbkgbCx3qQASGmFufJk1TMY76hJFgUrd6CjcZbxp7eVCu" target="_blank">
-            <img src="https://ipfs.io/ipfs/QmbkgbCx3qQASGmFufJk1TMY76hJFgUrd6CjcZbxp7eVCu" alt="Court Sheet A — Very late" style="width:100%;border-radius:var(--radius);border:1px solid var(--border);" loading="lazy" />
-          </a>
-          <div class="mono" style="font-size:11px;color:var(--muted);margin-top:4px;">QmbkgbCx3qQASGmFufJk1TMY76hJFgUrd6CjcZbxp7eVCu</div>
-        </div>
-        <div>
-          <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.8px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Court Sheet B — Importer evidence</div>
-          <a href="https://ipfs.io/ipfs/QmQH94aKszWKkEqyWzu7411Ke6yQN9aKgQNbeCqYzhfmsu" target="_blank">
-            <img src="https://ipfs.io/ipfs/QmQH94aKszWKkEqyWzu7411Ke6yQN9aKgQNbeCqYzhfmsu" alt="Court Sheet B — Very late" style="width:100%;border-radius:var(--radius);border:1px solid var(--border);" loading="lazy" />
-          </a>
-          <div class="mono" style="font-size:11px;color:var(--muted);margin-top:4px;">QmQH94aKszWKkEqyWzu7411Ke6yQN9aKgQNbeCqYzhfmsu</div>
-        </div>
-      </div>
-      <div style="font-size:14px;color:var(--muted);line-height:1.55;margin-bottom:8px;">
-        <strong style="color:var(--red);">Verdict: VERY_LATE</strong> — Shipment crossed the border on Apr 17 — 12 days late. RETURN_REQUIRED state triggered, return proof window expired, settled at highest penalty tier.
-      </div>
-      <div class="sc-links">
-        <a href="https://internetcourt.org/cases/0x2d14F1Ad43D90e8db1209A6cE3c1959c85b4D9e1" target="_blank">IC docket ↗</a>
-        <a href="https://sepolia.basescan.org/address/0x2d14F1Ad43D90e8db1209A6cE3c1959c85b4D9e1" target="_blank">contract ↗</a>
-        <a href="https://sepolia.basescan.org/tx/0x73369ee4eb6682b3cc0301f415a5f0b46b29260f735ae488cbd16a7fdfd1fa66" target="_blank">contest tx ↗</a>
-        <a href="https://sepolia.basescan.org/tx/0x882e53ff477912edd62889cf14a4f412dbc9e65e1855c603bd046d900f4c40eb" target="_blank">timeoutReturnProof tx ↗</a>
-        <a href="https://explorer-studio.genlayer.com/transactions/0x68be2c64356a15dc4e223ed9e48dd61b9f2183ce5adbacbf10bb1e7db979071d" target="_blank">AI jury tx ↗</a>
-      </div>
-    </div>
-
-    <!-- B footnote -->
-    <div style="margin-top:32px;padding:16px 20px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);max-width:660px;font-size:13px;color:var(--muted);">
-      <strong style="color:var(--dark);">Historical note — Scenario B (v0.1 binary contract)</strong><br/>
-      An earlier version used binary on-time/late logic — any delay triggered full refund. Scenario B (4 days late) resulted in 73,950 PEN refunded to importer. Under the current graduated model, this would be a LATE_1_4 classification with 99.5% release. Contract: <a href="https://sepolia.basescan.org/address/0xbd0dB046A913817522B595CFEb922D5E2aad4268" target="_blank" class="mono" style="font-size:11px;">0xbd0d…4268 ↗</a> · <a href="https://internetcourt.org/cases/0xbd0dB046A913817522B595CFEb922D5E2aad4268" target="_blank">IC docket ↗</a> · <a href="https://explorer-studio.genlayer.com/transactions/0xc7302e49a80e1997e43fffa7fb2d8b3c2ca9d93e1a8e61d5b73da25d63e5d3aa" target="_blank">AI jury tx ↗</a>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════ GENLAYER VERDICTS ═══════ -->
-<section class="proof-section" id="verdicts">
-  <div class="container">
-    <div class="section-label">GenLayer Verdict Provenance</div>
-    <h2>Oracle contracts on GenLayer</h2>
-
-    <table class="p-table">
+    <table class="p-table" style="table-layout:fixed;">
       <thead>
-        <tr><th>Scenario</th><th>Oracle address</th><th>Verdict</th><th>Consensus</th></tr>
+        <tr><th style="width:28%;">Scenario</th><th style="width:20%;">Verdict</th><th style="width:28%;">Payout</th><th style="width:24%;">IC Docket</th></tr>
       </thead>
       <tbody>
-        <tr>
+
+        <!-- A — ON TIME -->
+        <tr class="expand-row" onclick="toggle(this)">
           <td>A — On time</td>
-          <td class="addr"><a href="https://explorer-studio.genlayer.com/transactions/0x96fd014f7d806ce228525524987575cb8b136ccf323c79d15bd5c1e23ba3be2b" target="_blank">0x2293…FbedE ↗</a></td>
-          <td><strong style="color:var(--green);">ON_TIME</strong></td>
-          <td>4 agree · 1 disagree</td>
+          <td><span class="v-pill green">ON_TIME</span></td>
+          <td>100% → exporter</td>
+          <td><a href="https://internetcourt.org/cases/0xb4700D67d6cBeF18011021A2A20389ea88753234" target="_blank" onclick="event.stopPropagation()">docket ↗</a></td>
         </tr>
-        <tr>
-          <td>B — Minor delay</td>
-          <td class="addr"><a href="https://explorer-studio.genlayer.com/transactions/0xc7302e49a80e1997e43fffa7fb2d8b3c2ca9d93e1a8e61d5b73da25d63e5d3aa" target="_blank">0x435b…5E29 ↗</a></td>
-          <td><strong style="color:var(--amber);">LATE_1_4</strong></td>
-          <td>4 agree · 1 disagree</td>
+        <tr class="expand-detail" id="evidence">
+          <td colspan="4">
+            <div style="font-size:14px;color:var(--muted);margin-bottom:8px;">
+              <strong style="color:var(--green);">ON_TIME</strong> — Customs exit receipt showed crossing at 22:41, 78 minutes before deadline. Exit receipt is the authoritative crossing document; importer's border gate record (00:18, 18 min after) does not take precedence.
+            </div>
+            <div class="evidence-grid">
+              <div>
+                <div class="ev-label">Court Sheet A — Exporter (ANB customs exit)</div>
+                <a href="https://ipfs.io/ipfs/QmX5ydh3egjapwcwA2uePBsozBZAr3JZi7rGgdKC1N5MQG" target="_blank"><img src="https://ipfs.io/ipfs/QmX5ydh3egjapwcwA2uePBsozBZAr3JZi7rGgdKC1N5MQG" alt="Court Sheet A — On time" loading="lazy" /></a>
+                <div class="ev-cid">QmX5ydh3egjapwcwA2uePBsozBZAr3JZi7rGgdKC1N5MQG</div>
+              </div>
+              <div>
+                <div class="ev-label">Court Sheet B — Importer (SUNAT border gate)</div>
+                <a href="https://ipfs.io/ipfs/Qmex77PpZJaqMfjugbanC316drLcN9BjzGzErf6WgSSeGM" target="_blank"><img src="https://ipfs.io/ipfs/Qmex77PpZJaqMfjugbanC316drLcN9BjzGzErf6WgSSeGM" alt="Court Sheet B — On time" loading="lazy" /></a>
+                <div class="ev-cid">Qmex77PpZJaqMfjugbanC316drLcN9BjzGzErf6WgSSeGM</div>
+              </div>
+            </div>
+            <div class="detail-links">
+              <a href="https://sepolia.basescan.org/address/0xb4700D67d6cBeF18011021A2A20389ea88753234" target="_blank">contract ↗</a>
+              <a href="https://sepolia.basescan.org/tx/0x7c02ae194c6a29a1b63fddcad70ebbad5d962faaa32dfa2725df7df14f93ac52" target="_blank">contest tx ↗</a>
+              <a href="https://sepolia.basescan.org/tx/0x95f8f27ed0af49a35300568796e0cfc28943a6a483018689dc0ec67fa0b7cc88" target="_blank">verdict tx ↗</a>
+              <a href="https://sepolia.basescan.org/tx/0x35ab0764fc3edd0ed5d42558f6dab6dcecefaf3c2eb51ffa843c843be68fb1e0" target="_blank">settle tx ↗</a>
+              <a href="https://explorer-studio.genlayer.com/transactions/0x96fd014f7d806ce228525524987575cb8b136ccf323c79d15bd5c1e23ba3be2b" target="_blank">AI jury tx ↗</a>
+            </div>
+          </td>
         </tr>
-        <tr>
+
+        <!-- C — EVIDENCE UNCLEAR -->
+        <tr class="expand-row" onclick="toggle(this)">
           <td>C — Evidence unclear</td>
-          <td class="addr"><a href="https://explorer-studio.genlayer.com/transactions/0x9bcb2b9855eaf90d34175796c0a18569fb9e4bf81869dce98044d27f35846aab" target="_blank">0xb7CC…5E48 ↗</a></td>
-          <td><strong style="color:var(--amber);">UNDETERMINED</strong></td>
-          <td>4 agree · 1 disagree</td>
+          <td><span class="v-pill amber">UNDETERMINED</span></td>
+          <td>Held in escrow</td>
+          <td><a href="https://internetcourt.org/cases/0xe50A8F382B3B751dBd7053963EbaBB59916f3788" target="_blank" onclick="event.stopPropagation()">docket ↗</a></td>
         </tr>
-        <tr>
-          <td>D — Minor delay</td>
-          <td class="addr"><a href="https://explorer-studio.genlayer.com/transactions/0xdf87c6c4611f8f12eaec576708aa2aef918379bf51790adc6102c05385fd3812" target="_blank">0x7cce…9Ce5 ↗</a></td>
-          <td><strong style="color:var(--amber);">LATE_1_4</strong></td>
-          <td>5 agree · 0 disagree</td>
+        <tr class="expand-detail">
+          <td colspan="4">
+            <div style="font-size:14px;color:var(--muted);margin-bottom:8px;">
+              <strong style="color:var(--amber);">UNDETERMINED</strong> — Exporter's customs receipt had illegible shipment ref. Importer's gate record had an ambiguous date (could read Apr 4 or Apr 14). Neither document yields a verifiable crossing timestamp.
+            </div>
+            <div class="evidence-grid">
+              <div>
+                <div class="ev-label">Court Sheet A — Exporter (ANB customs exit)</div>
+                <a href="https://ipfs.io/ipfs/QmYSCLZAc1ziEJhCvPjAhLeaC2Hhi1rCwsVsAFMwysMMvf" target="_blank"><img src="https://ipfs.io/ipfs/QmYSCLZAc1ziEJhCvPjAhLeaC2Hhi1rCwsVsAFMwysMMvf" alt="Court Sheet A — Evidence unclear" loading="lazy" /></a>
+                <div class="ev-cid">QmYSCLZAc1ziEJhCvPjAhLeaC2Hhi1rCwsVsAFMwysMMvf</div>
+              </div>
+              <div>
+                <div class="ev-label">Court Sheet B — Importer (SUNAT border gate)</div>
+                <a href="https://ipfs.io/ipfs/QmZa1Vmt3KWJxo9MtY9pitf3L9iHLL2WoKGpJgS4Tb6eHX" target="_blank"><img src="https://ipfs.io/ipfs/QmZa1Vmt3KWJxo9MtY9pitf3L9iHLL2WoKGpJgS4Tb6eHX" alt="Court Sheet B — Evidence unclear" loading="lazy" /></a>
+                <div class="ev-cid">QmZa1Vmt3KWJxo9MtY9pitf3L9iHLL2WoKGpJgS4Tb6eHX</div>
+              </div>
+            </div>
+            <div class="detail-links">
+              <a href="https://sepolia.basescan.org/address/0xe50A8F382B3B751dBd7053963EbaBB59916f3788" target="_blank">contract ↗</a>
+              <a href="https://sepolia.basescan.org/tx/0xc9d93c813a336e24e7e484503ec1e02c64038ecb4dc6f1d953e476d0702ba68e" target="_blank">contest tx ↗</a>
+              <a href="https://sepolia.basescan.org/tx/0x5b70ac102e29e15e22337fea6506cccfaf22c7fc85b853e094fedaecba3e5053" target="_blank">verdict tx ↗</a>
+              <a href="https://explorer-studio.genlayer.com/transactions/0x9bcb2b9855eaf90d34175796c0a18569fb9e4bf81869dce98044d27f35846aab" target="_blank">AI jury tx ↗</a>
+            </div>
+          </td>
         </tr>
 
-        <tr>
-          <td>F — Significant delay</td>
-          <td class="addr"><a href="https://explorer-studio.genlayer.com/transactions/0xc10b7c597681345e9ab364c940aa5199a110df0d7c9e8790b62f4d63a6b6bb5f" target="_blank">0x7E23…7D62 ↗</a></td>
-          <td><strong style="color:var(--amber);">LATE_7_8</strong></td>
-          <td>5 agree · 0 disagree</td>
+        <!-- D — MINOR DELAY -->
+        <tr class="expand-row" onclick="toggle(this)">
+          <td>D — Minor delay (2 days)</td>
+          <td><span class="v-pill amber">LATE_1_4</span></td>
+          <td>99.5% → exporter</td>
+          <td><a href="https://internetcourt.org/cases/0x08FB300E1290Fa3e12cdeD8B2Bf050Edd46fFf73" target="_blank" onclick="event.stopPropagation()">docket ↗</a></td>
         </tr>
-        <tr>
-          <td>G — Very late</td>
-          <td class="addr"><a href="https://explorer-studio.genlayer.com/transactions/0x68be2c64356a15dc4e223ed9e48dd61b9f2183ce5adbacbf10bb1e7db979071d" target="_blank">0x2539…A1C9 ↗</a></td>
-          <td><strong style="color:var(--red);">VERY_LATE</strong></td>
-          <td>5 agree · 0 disagree</td>
+        <tr class="expand-detail">
+          <td colspan="4">
+            <div style="font-size:14px;color:var(--muted);margin-bottom:8px;">
+              <strong style="color:var(--amber);">LATE_1_4</strong> — Exporter's receipt showed departure Apr 5. Importer's gate record showed arrival Apr 7 — 2 days late. 50 bps penalty applied. 73,580.25 PEN to exporter, 369.75 PEN to importer.
+            </div>
+            <div class="evidence-grid">
+              <div>
+                <div class="ev-label">Court Sheet A — Exporter</div>
+                <a href="https://ipfs.io/ipfs/QmPJgqAuk9EWHGgE58hv6WmeBpvrYRokUEqXi3fs9tgFq7" target="_blank"><img src="https://ipfs.io/ipfs/QmPJgqAuk9EWHGgE58hv6WmeBpvrYRokUEqXi3fs9tgFq7" alt="Court Sheet A — Minor delay" loading="lazy" /></a>
+                <div class="ev-cid">QmPJgqAuk9EWHGgE58hv6WmeBpvrYRokUEqXi3fs9tgFq7</div>
+              </div>
+              <div>
+                <div class="ev-label">Court Sheet B — Importer</div>
+                <a href="https://ipfs.io/ipfs/QmZJVetdVoK59msaerPaucc3paRDrypgUdiKZ2x3rAu6Xh" target="_blank"><img src="https://ipfs.io/ipfs/QmZJVetdVoK59msaerPaucc3paRDrypgUdiKZ2x3rAu6Xh" alt="Court Sheet B — Minor delay" loading="lazy" /></a>
+                <div class="ev-cid">QmZJVetdVoK59msaerPaucc3paRDrypgUdiKZ2x3rAu6Xh</div>
+              </div>
+            </div>
+            <div class="detail-links">
+              <a href="https://sepolia.basescan.org/address/0x08FB300E1290Fa3e12cdeD8B2Bf050Edd46fFf73" target="_blank">contract ↗</a>
+              <a href="https://sepolia.basescan.org/tx/0x3d3b0f365c7db6b1b060b985f1ed7c25d71dcc4ac1b2624fb95d8fa1254421b5" target="_blank">bridge tx ↗</a>
+              <a href="https://explorer-studio.genlayer.com/transactions/0xdf87c6c4611f8f12eaec576708aa2aef918379bf51790adc6102c05385fd3812" target="_blank">AI jury tx ↗</a>
+            </div>
+          </td>
         </tr>
+
+        <!-- F — SIGNIFICANT DELAY -->
+        <tr class="expand-row" onclick="toggle(this)">
+          <td>F — Significant delay (8 days)</td>
+          <td><span class="v-pill amber">LATE_7_8</span></td>
+          <td>98.5% → exporter</td>
+          <td><a href="https://internetcourt.org/cases/0x8edE7afc449CcA494fF3066aB020be143d784F91" target="_blank" onclick="event.stopPropagation()">docket ↗</a></td>
+        </tr>
+        <tr class="expand-detail">
+          <td colspan="4">
+            <div style="font-size:14px;color:var(--muted);margin-bottom:8px;">
+              <strong style="color:var(--amber);">LATE_7_8</strong> — Shipment crossed the border on Apr 13 — 8 days late. 150 bps penalty applied. 72,840.75 PEN to exporter, 1,109.25 PEN to importer.
+            </div>
+            <div class="evidence-grid">
+              <div>
+                <div class="ev-label">Court Sheet A — Exporter</div>
+                <a href="https://ipfs.io/ipfs/QmQhnQx3XJ9ktrRE92Xy7QjM9BT1PUAaorjcZ97AKHzXRs" target="_blank"><img src="https://ipfs.io/ipfs/QmQhnQx3XJ9ktrRE92Xy7QjM9BT1PUAaorjcZ97AKHzXRs" alt="Court Sheet A — Significant delay" loading="lazy" /></a>
+                <div class="ev-cid">QmQhnQx3XJ9ktrRE92Xy7QjM9BT1PUAaorjcZ97AKHzXRs</div>
+              </div>
+              <div>
+                <div class="ev-label">Court Sheet B — Importer</div>
+                <a href="https://ipfs.io/ipfs/QmfJ3UWX72icpCobUxDssViaLsiJGk6qq4mZEddSuZVoNL" target="_blank"><img src="https://ipfs.io/ipfs/QmfJ3UWX72icpCobUxDssViaLsiJGk6qq4mZEddSuZVoNL" alt="Court Sheet B — Significant delay" loading="lazy" /></a>
+                <div class="ev-cid">QmfJ3UWX72icpCobUxDssViaLsiJGk6qq4mZEddSuZVoNL</div>
+              </div>
+            </div>
+            <div class="detail-links">
+              <a href="https://sepolia.basescan.org/address/0x8edE7afc449CcA494fF3066aB020be143d784F91" target="_blank">contract ↗</a>
+              <a href="https://sepolia.basescan.org/tx/0xf9dcbc0ac3e5bd0263204cae573a303ceb4d9034bb4875d196141f5a33375780" target="_blank">bridge tx ↗</a>
+              <a href="https://explorer-studio.genlayer.com/transactions/0xc10b7c597681345e9ab364c940aa5199a110df0d7c9e8790b62f4d63a6b6bb5f" target="_blank">AI jury tx ↗</a>
+            </div>
+          </td>
+        </tr>
+
+        <!-- G — VERY LATE -->
+        <tr class="expand-row" onclick="toggle(this)">
+          <td>G — Very late (12 days)</td>
+          <td><span class="v-pill red">VERY_LATE</span></td>
+          <td>98.5% → exporter (timeout)</td>
+          <td><a href="https://internetcourt.org/cases/0x2d14F1Ad43D90e8db1209A6cE3c1959c85b4D9e1" target="_blank" onclick="event.stopPropagation()">docket ↗</a></td>
+        </tr>
+        <tr class="expand-detail">
+          <td colspan="4">
+            <div style="font-size:14px;color:var(--muted);margin-bottom:8px;">
+              <strong style="color:var(--red);">VERY_LATE</strong> — Shipment crossed Apr 17 — 12 days late. RETURN_REQUIRED state triggered. Return proof window expired → <code style="font-size:12px;">timeoutReturnProof()</code> settled at highest penalty tier. 72,840.75 PEN to exporter, 1,109.25 PEN to importer.
+            </div>
+            <div class="evidence-grid">
+              <div>
+                <div class="ev-label">Court Sheet A — Exporter</div>
+                <a href="https://ipfs.io/ipfs/QmbkgbCx3qQASGmFufJk1TMY76hJFgUrd6CjcZbxp7eVCu" target="_blank"><img src="https://ipfs.io/ipfs/QmbkgbCx3qQASGmFufJk1TMY76hJFgUrd6CjcZbxp7eVCu" alt="Court Sheet A — Very late" loading="lazy" /></a>
+                <div class="ev-cid">QmbkgbCx3qQASGmFufJk1TMY76hJFgUrd6CjcZbxp7eVCu</div>
+              </div>
+              <div>
+                <div class="ev-label">Court Sheet B — Importer</div>
+                <a href="https://ipfs.io/ipfs/QmQH94aKszWKkEqyWzu7411Ke6yQN9aKgQNbeCqYzhfmsu" target="_blank"><img src="https://ipfs.io/ipfs/QmQH94aKszWKkEqyWzu7411Ke6yQN9aKgQNbeCqYzhfmsu" alt="Court Sheet B — Very late" loading="lazy" /></a>
+                <div class="ev-cid">QmQH94aKszWKkEqyWzu7411Ke6yQN9aKgQNbeCqYzhfmsu</div>
+              </div>
+            </div>
+            <div class="detail-links">
+              <a href="https://sepolia.basescan.org/address/0x2d14F1Ad43D90e8db1209A6cE3c1959c85b4D9e1" target="_blank">contract ↗</a>
+              <a href="https://sepolia.basescan.org/tx/0x73369ee4eb6682b3cc0301f415a5f0b46b29260f735ae488cbd16a7fdfd1fa66" target="_blank">contest tx ↗</a>
+              <a href="https://sepolia.basescan.org/tx/0x882e53ff477912edd62889cf14a4f412dbc9e65e1855c603bd046d900f4c40eb" target="_blank">timeoutReturnProof tx ↗</a>
+              <a href="https://explorer-studio.genlayer.com/transactions/0x68be2c64356a15dc4e223ed9e48dd61b9f2183ce5adbacbf10bb1e7db979071d" target="_blank">AI jury tx ↗</a>
+            </div>
+          </td>
+        </tr>
+
       </tbody>
     </table>
 
-    <p style="font-size:14px;color:var(--muted);margin-top:20px;">Oracle deploy tx: <a href="https://explorer-studio.genlayer.com/transactions/0x8085b03f9fc857785a242e64c7b00051790f04847de1b22e4b163ae5318f71c1" target="_blank" class="mono" style="font-size:12px;">0x8085…71c1 ↗</a></p>
+    <div style="margin-top:20px;padding:12px 16px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);font-size:13px;color:var(--muted);max-width:660px;">
+      <strong style="color:var(--dark);">Scenario B (v0.1)</strong> — Earlier binary contract: any delay → full refund. 4 days late, 73,950 PEN refunded.
+      <a href="https://sepolia.basescan.org/address/0xbd0dB046A913817522B595CFEb922D5E2aad4268" target="_blank" class="mono" style="font-size:11px;">contract ↗</a> ·
+      <a href="https://internetcourt.org/cases/0xbd0dB046A913817522B595CFEb922D5E2aad4268" target="_blank">docket ↗</a> ·
+      <a href="https://explorer-studio.genlayer.com/transactions/0xc7302e49a80e1997e43fffa7fb2d8b3c2ca9d93e1a8e61d5b73da25d63e5d3aa" target="_blank">AI jury tx ↗</a>
+    </div>
   </div>
 </section>
 
 
-<!-- ═══════ TRUST MODEL ═══════ -->
-<section class="proof-section" id="trust">
+<!-- ═══════ TRADE LIFECYCLE ═══════ -->
+<section class="proof-section" id="txs">
   <div class="container">
-    <div class="section-label">Trust Model</div>
-    <h2>Two delivery paths, two trust levels</h2>
-
-    <div class="trust-grid">
-      <div class="trust-card">
-        <h3>Benchmark path</h3>
-        <p>GenLayer validators agree on the benchmark; delivery back to Base is relayer-mediated.</p>
-        <p style="margin-top:8px;">Relayer calls <code>receiveRate()</code> directly on Base. Protected by <code>onlyRelayer</code> modifier. The rate is a public market number — verifiable by anyone. No cryptographic bridge needed.</p>
-      </div>
-      <div class="trust-card">
-        <h3>Verdict path</h3>
-        <p>GenLayer evaluates the disputed shipment evidence; delivery back to Base is bridge-mediated.</p>
-        <p style="margin-top:8px;">Protected by <code>onlyVerdictSource</code>: only accepts from <code>courtContract</code> (Factory, called only by BridgeReceiver). Relayer cannot forge a verdict.</p>
-      </div>
-    </div>
-
-    <h3 style="font-size:16px;font-weight:700;margin-top:32px;margin-bottom:16px;">Verdict chain of custody</h3>
-    <div class="bridge-chain">
-      <div class="bridge-step">
-        <div class="bridge-num">1</div>
-        <div><div class="bridge-label">GenLayer contract / verdict source</div><div class="bridge-detail">Oracle evaluates disputed shipment evidence, returns classification</div></div>
-      </div>
-      <div class="bridge-step">
-        <div class="bridge-num">2</div>
-        <div><div class="bridge-label">Bridge path</div><div class="bridge-detail">BridgeSender (GenLayer) → BridgeForwarder (zkSync Sepolia) → LayerZero V2</div></div>
-      </div>
-      <div class="bridge-step">
-        <div class="bridge-num">3</div>
-        <div><div class="bridge-label">Base receiver / factory</div><div class="bridge-detail">BridgeReceiver (Base Sepolia) → InternetCourtFactory</div></div>
-      </div>
-      <div class="bridge-step">
-        <div class="bridge-num">4</div>
-        <div><div class="bridge-label">Settlement contract action</div><div class="bridge-detail">Factory calls settlement contract with verdict → escrow releases or holds</div></div>
-      </div>
-    </div>
-
-    <p style="font-size:14px;color:var(--muted);margin-top:24px;">The benchmark path is relayer-mediated (no LayerZero). The verdict path is bridge-mediated (through LayerZero). The asymmetry is intentional: wrong rate is publicly catchable; wrong classification triggers the wrong remedy. GenLayer decides the fact; the contract applies the pre-agreed economic consequence.</p>
-  </div>
-</section>
-
-
-<!-- ═══════ PARTICIPANTS ═══════ -->
-<section class="proof-section" id="participants">
-  <div class="container">
-    <div class="section-label">Participants</div>
-    <h2>Wallets and roles</h2>
-
+    <div class="section-label">Trade Lifecycle</div>
+    <h2>Happy-path transactions</h2>
     <table class="p-table">
       <thead>
-        <tr><th>Role</th><th>Address</th></tr>
+        <tr><th>Step</th><th>Method</th><th>Tx</th></tr>
       </thead>
       <tbody>
-        <tr><td>Exporter</td><td class="addr"><a href="https://sepolia.basescan.org/address/0xe9630ba0e3cc2d3BFC58fbE1Bbde478f06E4CE87" target="_blank">0xe9630ba0e3cc2d3BFC58fbE1Bbde478f06E4CE87 ↗</a></td></tr>
-        <tr><td>Importer</td><td class="addr"><a href="https://sepolia.basescan.org/address/0x942C20d078f7417aD67E96714310DA8068850B77" target="_blank">0x942C20d078f7417aD67E96714310DA8068850B77 ↗</a></td></tr>
-        <tr><td>Relayer</td><td class="addr"><a href="https://sepolia.basescan.org/address/0x7b9797c4c2DA625b120A27AD2c07bECB7A0E30fa" target="_blank">0x7b9797c4c2DA625b120A27AD2c07bECB7A0E30fa ↗</a></td></tr>
+        <tr>
+          <td>Benchmark request</td>
+          <td class="mono" style="font-size:12px;color:var(--muted);">requestRateLock()</td>
+          <td class="addr"><a href="https://sepolia.basescan.org/tx/0x899d907aee0a141aacd28615a544a176b3bea6f415b86547022d96daae4eeea6" target="_blank">0x899d…eea6 ↗</a></td>
+        </tr>
+        <tr>
+          <td>Rate locked</td>
+          <td class="mono" style="font-size:12px;color:var(--muted);">receiveRate(0.493)</td>
+          <td class="addr"><a href="https://sepolia.basescan.org/tx/0xe7dbd7f99e7997ee5ade170c51d9d051fc9814acb45b4202f682db339ac4160a" target="_blank">0xe7db…60a ↗</a></td>
+        </tr>
+        <tr>
+          <td>Escrow funded</td>
+          <td class="mono" style="font-size:12px;color:var(--muted);">fundSettlement()</td>
+          <td class="addr"><a href="https://sepolia.basescan.org/tx/0x9415659a4271b22882dfd81d5d85ba7e4bd716b532c0eab5ee394c7e13518e3d" target="_blank">0x9415…8e3d ↗</a></td>
+        </tr>
+        <tr>
+          <td>Settled</td>
+          <td class="mono" style="font-size:12px;color:var(--muted);">finalizeAfterShipment()</td>
+          <td class="addr"><a href="https://sepolia.basescan.org/tx/0xb244396c2ead58fe8225849070d71be68d42cbc7d8e0a86012400811f3bf9d33" target="_blank">0xb244…9d33 ↗</a></td>
+        </tr>
       </tbody>
     </table>
   </div>
 </section>
 
 
-<!-- ═══════ LINKS ═══════ -->
-<section class="proof-section" id="links">
+<!-- ═══════ CONTRACT REGISTRY (collapsible) ═══════ -->
+<section class="proof-section" id="registry">
   <div class="container">
-    <div class="section-label">External Links</div>
-    <h2>Explore further</h2>
+    <div class="section-label">Reference</div>
 
-    <table class="p-table">
-      <thead>
-        <tr><th>Resource</th><th>URL</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>InternetCourt</td><td><a href="https://internetcourt.org" target="_blank">internetcourt.org ↗</a></td></tr>
-        <tr><td>GenLayer Explorer</td><td><a href="https://explorer-studio.genlayer.com" target="_blank">explorer-studio.genlayer.com ↗</a></td></tr>
-        <tr><td>GitHub Repo</td><td><a href="https://github.com/acastellana/conditional-payment-cross-border-trade" target="_blank">acastellana/conditional-payment-cross-border-trade ↗</a></td></tr>
-        <tr><td>Base Sepolia Explorer</td><td><a href="https://sepolia.basescan.org" target="_blank">sepolia.basescan.org ↗</a></td></tr>
-        <tr><td>Contract reference</td><td class="mono" style="font-size:13px;">ISPA-2025-BOL-PER-0047</td></tr>
-      </tbody>
-    </table>
+    <!-- Settlement contracts -->
+    <h2 class="collapsible-toggle" onclick="toggleCollapse(this)">Contract registry</h2>
+    <div class="collapsible-body">
+      <div class="group-header">Settlement contracts</div>
+      <table class="p-table">
+        <thead><tr><th>Scenario</th><th>Address</th></tr></thead>
+        <tbody>
+          <tr><td>A — On time</td><td class="addr"><a href="https://sepolia.basescan.org/address/0xb4700D67d6cBeF18011021A2A20389ea88753234" target="_blank">0xb4700D67d6cBeF18011021A2A20389ea88753234 ↗</a></td></tr>
+          <tr><td>B — v0.1</td><td class="addr"><a href="https://sepolia.basescan.org/address/0xbd0dB046A913817522B595CFEb922D5E2aad4268" target="_blank">0xbd0dB046A913817522B595CFEb922D5E2aad4268 ↗</a></td></tr>
+          <tr><td>C — Unclear</td><td class="addr"><a href="https://sepolia.basescan.org/address/0xe50A8F382B3B751dBd7053963EbaBB59916f3788" target="_blank">0xe50A8F382B3B751dBd7053963EbaBB59916f3788 ↗</a></td></tr>
+          <tr><td>D — Minor delay</td><td class="addr"><a href="https://sepolia.basescan.org/address/0x08FB300E1290Fa3e12cdeD8B2Bf050Edd46fFf73" target="_blank">0x08FB300E1290Fa3e12cdeD8B2Bf050Edd46fFf73 ↗</a></td></tr>
+          <tr><td>F — Significant</td><td class="addr"><a href="https://sepolia.basescan.org/address/0x8edE7afc449CcA494fF3066aB020be143d784F91" target="_blank">0x8edE7afc449CcA494fF3066aB020be143d784F91 ↗</a></td></tr>
+          <tr><td>G — Very late</td><td class="addr"><a href="https://sepolia.basescan.org/address/0x2d14F1Ad43D90e8db1209A6cE3c1959c85b4D9e1" target="_blank">0x2d14F1Ad43D90e8db1209A6cE3c1959c85b4D9e1 ↗</a></td></tr>
+        </tbody>
+      </table>
+
+      <div class="group-header">Infrastructure</div>
+      <table class="p-table">
+        <thead><tr><th>Contract</th><th>Chain</th><th>Address</th></tr></thead>
+        <tbody>
+          <tr><td>InternetCourtFactory</td><td>Base Sepolia</td><td class="addr"><a href="https://sepolia.basescan.org/address/0xd533cB0B52E85b3F506b6f0c28b8f6bc4E449Dda" target="_blank">0xd533…9Dda ↗</a></td></tr>
+          <tr><td>MockUSDC (PEN)</td><td>Base Sepolia</td><td class="addr"><a href="https://sepolia.basescan.org/address/0x58C27C7C1Ff5DBF480c956acf6b119508b6FBa4f" target="_blank">0x58C2…a4f ↗</a></td></tr>
+          <tr><td>FxBenchmarkOracle</td><td>GenLayer</td><td class="addr"><a href="https://explorer-studio.genlayer.com/transactions/0x8085b03f9fc857785a242e64c7b00051790f04847de1b22e4b163ae5318f71c1" target="_blank">0x3B85…73e ↗</a></td></tr>
+          <tr><td>BridgeSender</td><td>GenLayer</td><td class="addr"><a href="https://explorer-studio.genlayer.com/transactions/0x80f82a1021ea681a81023699b1822c8698052d8b041e9adb5439360536191907" target="_blank">0xC94b…729 ↗</a></td></tr>
+          <tr><td>BridgeForwarder</td><td>zkSync Sepolia</td><td class="addr"><a href="https://sepolia.explorer.zksync.io/address/0x95c4E5b042d75528f7df355742e48B298028b3f2" target="_blank">0x95c4…3f2 ↗</a></td></tr>
+          <tr><td>BridgeReceiver</td><td>Base Sepolia</td><td class="addr"><a href="https://sepolia.basescan.org/address/0xc3e6aE892A704c875bF74Df46eD873308db15d82" target="_blank">0xc3e6…d82 ↗</a></td></tr>
+        </tbody>
+      </table>
+
+      <div class="group-header">GenLayer oracle contracts</div>
+      <table class="p-table">
+        <thead><tr><th>Scenario</th><th>Oracle</th><th>Verdict</th><th>Consensus</th></tr></thead>
+        <tbody>
+          <tr><td>A</td><td class="addr"><a href="https://explorer-studio.genlayer.com/transactions/0x96fd014f7d806ce228525524987575cb8b136ccf323c79d15bd5c1e23ba3be2b" target="_blank">0x2293…FbedE ↗</a></td><td><strong style="color:var(--green);">ON_TIME</strong></td><td>4/1</td></tr>
+          <tr><td>B</td><td class="addr"><a href="https://explorer-studio.genlayer.com/transactions/0xc7302e49a80e1997e43fffa7fb2d8b3c2ca9d93e1a8e61d5b73da25d63e5d3aa" target="_blank">0x435b…5E29 ↗</a></td><td><strong style="color:var(--amber);">LATE_1_4</strong></td><td>4/1</td></tr>
+          <tr><td>C</td><td class="addr"><a href="https://explorer-studio.genlayer.com/transactions/0x9bcb2b9855eaf90d34175796c0a18569fb9e4bf81869dce98044d27f35846aab" target="_blank">0xb7CC…5E48 ↗</a></td><td><strong style="color:var(--amber);">UNDETERMINED</strong></td><td>4/1</td></tr>
+          <tr><td>D</td><td class="addr"><a href="https://explorer-studio.genlayer.com/transactions/0xdf87c6c4611f8f12eaec576708aa2aef918379bf51790adc6102c05385fd3812" target="_blank">0x7cce…9Ce5 ↗</a></td><td><strong style="color:var(--amber);">LATE_1_4</strong></td><td>5/0</td></tr>
+          <tr><td>F</td><td class="addr"><a href="https://explorer-studio.genlayer.com/transactions/0xc10b7c597681345e9ab364c940aa5199a110df0d7c9e8790b62f4d63a6b6bb5f" target="_blank">0x7E23…7D62 ↗</a></td><td><strong style="color:var(--amber);">LATE_7_8</strong></td><td>5/0</td></tr>
+          <tr><td>G</td><td class="addr"><a href="https://explorer-studio.genlayer.com/transactions/0x68be2c64356a15dc4e223ed9e48dd61b9f2183ce5adbacbf10bb1e7db979071d" target="_blank">0x2539…A1C9 ↗</a></td><td><strong style="color:var(--red);">VERY_LATE</strong></td><td>5/0</td></tr>
+        </tbody>
+      </table>
+
+      <div class="group-header">Participants</div>
+      <table class="p-table">
+        <thead><tr><th>Role</th><th>Address</th></tr></thead>
+        <tbody>
+          <tr><td>Exporter</td><td class="addr"><a href="https://sepolia.basescan.org/address/0xe9630ba0e3cc2d3BFC58fbE1Bbde478f06E4CE87" target="_blank">0xe963…CE87 ↗</a></td></tr>
+          <tr><td>Importer</td><td class="addr"><a href="https://sepolia.basescan.org/address/0x942C20d078f7417aD67E96714310DA8068850B77" target="_blank">0x942C…0B77 ↗</a></td></tr>
+          <tr><td>Relayer</td><td class="addr"><a href="https://sepolia.basescan.org/address/0x7b9797c4c2DA625b120A27AD2c07bECB7A0E30fa" target="_blank">0x7b97…30fa ↗</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Trust model -->
+    <h2 class="collapsible-toggle" onclick="toggleCollapse(this)" style="margin-top:32px;" id="trust">Trust model</h2>
+    <div class="collapsible-body">
+      <div class="trust-grid" style="margin-bottom:24px;">
+        <div class="trust-card">
+          <h3>Benchmark path (relayer)</h3>
+          <p>GenLayer validators agree on the rate. Relayer calls <code>receiveRate()</code> on Base. Protected by <code>onlyRelayer</code>. The rate is a public market number — verifiable by anyone.</p>
+        </div>
+        <div class="trust-card">
+          <h3>Verdict path (bridge)</h3>
+          <p>GenLayer evaluates shipment evidence. Delivery via BridgeSender → BridgeForwarder → LayerZero V2 → BridgeReceiver → Factory. Protected by <code>onlyVerdictSource</code>. Relayer cannot forge a verdict.</p>
+        </div>
+      </div>
+      <div class="bridge-chain">
+        <div class="bridge-step"><div class="bridge-num">1</div><div><div class="bridge-label">GenLayer oracle</div><div class="bridge-detail">Evaluates evidence, returns classification</div></div></div>
+        <div class="bridge-step"><div class="bridge-num">2</div><div><div class="bridge-label">Bridge</div><div class="bridge-detail">BridgeSender → BridgeForwarder (zkSync) → LayerZero V2</div></div></div>
+        <div class="bridge-step"><div class="bridge-num">3</div><div><div class="bridge-label">Factory</div><div class="bridge-detail">BridgeReceiver → InternetCourtFactory → settlement contract</div></div></div>
+        <div class="bridge-step"><div class="bridge-num">4</div><div><div class="bridge-label">Settlement</div><div class="bridge-detail">Verdict applied → escrow released or held</div></div></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -702,12 +484,30 @@
       <div class="footer-note">Conditional Payment × GenLayer · 2026</div>
       <div class="footer-links">
         <a href="index.html">← Overview</a>
+        <a href="https://internetcourt.org" target="_blank">InternetCourt</a>
         <a href="https://genlayer.com" target="_blank">GenLayer</a>
         <a href="https://github.com/acastellana/conditional-payment-cross-border-trade" target="_blank">GitHub</a>
       </div>
     </div>
   </div>
 </footer>
+
+<script>
+function toggle(row) {
+  row.classList.toggle('open');
+  const detail = row.nextElementSibling;
+  if (detail && detail.classList.contains('expand-detail')) {
+    detail.classList.toggle('open');
+  }
+}
+function toggleCollapse(el) {
+  el.classList.toggle('open');
+  const body = el.nextElementSibling;
+  if (body && body.classList.contains('collapsible-body')) {
+    body.classList.toggle('open');
+  }
+}
+</script>
 
 </body>
 </html>
