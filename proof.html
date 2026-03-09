@@ -140,7 +140,6 @@
       <a href="#contracts">Contracts</a>
       <a href="#txs">Transactions</a>
       <a href="#scenarios">Scenarios</a>
-      <a href="#evidence">Evidence</a>
       <a href="#trust">Trust Model</a>
     </nav>
   </div>
@@ -369,264 +368,24 @@
 </section>
 
 
-<!-- ═══════ SCENARIOS ═══════ -->
+<!-- ═══════ SCENARIOS & EVIDENCE ═══════ -->
 <section class="proof-section" id="scenarios">
   <div class="container">
-    <div class="section-label">Disputed-Shipment Scenarios</div>
-    <h2>Three parallel deployments — one per disputed-shipment outcome</h2>
-    <p style="font-size:15px;color:var(--muted);margin-bottom:12px;max-width:620px;">Each scenario contract was deployed with different disputed shipment evidence to produce a different GenLayer verdict. They are not branches of one live trade.</p>
-    <p style="font-size:14px;color:var(--muted);margin-bottom:28px;max-width:620px;">The scenarios below reflect the currently deployed v0.1 contracts. The graduated penalty schedule above is the target economic model and will be reflected in future deployments.</p>
+    <div class="section-label">Scenarios & Evidence</div>
+    <h2>Five scenarios — five verdicts</h2>
+    <p style="font-size:15px;color:var(--muted);margin-bottom:8px;max-width:620px;">Each scenario uses the same contract ref <span class="mono" style="font-size:13px;">ISPA-2025-BOL-PER-0047</span> with a different shipment timeline. GenLayer validators examined real customs documents stored on IPFS. All verdicts are final and economic outcomes are executed on-chain.</p>
 
-    <div class="scenario-grid">
-
-      <!-- A — ON TIME -->
-      <div class="scenario-card">
-        <h3>Scenario A — On time</h3>
-        <div class="plain-label">Shipment arrived on time</div>
-        <div class="sc-detail">
-          <span class="label">Plain-language outcome</span>
-          <strong>100% released to exporter.</strong>
-        </div>
-        <div class="sc-detail">
-          <span class="label">Technical classification</span>
-          <span class="mono" style="font-size:12px;">ON_TIME</span>
-        </div>
-        <div class="verdict-tag green"><span class="vd"></span> ON_TIME → 100% RELEASED</div>
-        <div class="sc-detail">
-          <span class="label">Economic consequence</span>
-          <strong>73,950 PEN (100%) released to exporter.</strong>
-        </div>
-        <div class="sc-detail">
-          <span class="label">Contract</span>
-          <a href="https://sepolia.basescan.org/address/0xb4700D67d6cBeF18011021A2A20389ea88753234" target="_blank" class="mono" style="font-size:11px;">0xb470…3234 ↗</a>
-        </div>
-        <div class="sc-detail">
-          <span class="label">Evidence</span>
-          Exporter's customs exit receipt showed crossing at 22:41, 78 minutes before deadline. Importer's border gate record showed 00:18, 18 minutes after.
-        </div>
-        <div class="sc-detail">
-          <span class="label">GenLayer verdict reasoning</span>
-          Customs exit receipt is the authoritative crossing document.
-        </div>
-        <div class="sc-links">
-          <a href="https://internetcourt.org/cases/0xb4700D67d6cBeF18011021A2A20389ea88753234" target="_blank">IC docket ↗</a>
-          <a href="https://sepolia.basescan.org/tx/0x7c02ae194c6a29a1b63fddcad70ebbad5d962faaa32dfa2725df7df14f93ac52" target="_blank">contest tx ↗</a>
-          <a href="https://sepolia.basescan.org/tx/0x95f8f27ed0af49a35300568796e0cfc28943a6a483018689dc0ec67fa0b7cc88" target="_blank">verdict tx ↗</a>
-          <a href="https://sepolia.basescan.org/tx/0x35ab0764fc3edd0ed5d42558f6dab6dcecefaf3c2eb51ffa843c843be68fb1e0" target="_blank">settle tx ↗</a>
-          <a href="https://explorer-studio.genlayer.com/transactions/0x96fd014f7d806ce228525524987575cb8b136ccf323c79d15bd5c1e23ba3be2b" target="_blank">AI jury tx ↗</a>
-        </div>
-      </div>
-
-      <!-- B — MINOR DELAY -->
-      <div class="scenario-card">
-        <h3>Scenario B — Minor delay (v0.1)</h3>
-        <div class="plain-label">Shipment arrived 1–4 days late (v0.1 binary contract, not the graduated model)</div>
-        <div class="sc-detail">
-          <span class="label">Plain-language outcome</span>
-          <strong>GenLayer classified as LATE. Refund executed under v0.1 binary logic.</strong>
-        </div>
-        <div class="sc-detail">
-          <span class="label">Technical classification</span>
-          <span class="mono" style="font-size:12px;">LATE (v0.1) → LATE_1_4 under updated contract</span>
-        </div>
-        <div class="verdict-tag red"><span class="vd"></span> LATE → REFUND (v0.1)</div>
-        <div class="sc-detail">
-          <span class="label">V0.1 on-chain outcome</span>
-          <strong>73,950 PEN refunded to importer (binary late → refund).</strong>
-        </div>
-        <div class="sc-detail">
-          <span class="label">Updated contract outcome (after redeployment)</span>
-          <strong style="color:var(--muted);">99.5% release to exporter, 0.5% adjustment to importer.</strong>
-        </div>
-        <div class="sc-detail">
-          <span class="label">Contract</span>
-          <a href="https://sepolia.basescan.org/address/0xbd0dB046A913817522B595CFEb922D5E2aad4268" target="_blank" class="mono" style="font-size:11px;">0xbd0d…4268 ↗</a>
-        </div>
-        <div class="sc-detail">
-          <span class="label">Evidence</span>
-          Exporter's pre-departure clearance stamp dated April 5. Importer's border gate record shows physical crossing on April 9 — four days after deadline.
-        </div>
-        <div class="sc-detail">
-          <span class="label">GenLayer verdict reasoning</span>
-          Pre-clearance stamp is not a crossing event. Gate record shows crossing four days late.
-        </div>
-        <div class="sc-links">
-          <a href="https://internetcourt.org/cases/0xbd0dB046A913817522B595CFEb922D5E2aad4268" target="_blank">IC docket ↗</a>
-          <a href="https://sepolia.basescan.org/tx/0x57cb5fa07a798e8faf0c73ce183c02c4ff97a4a0ba329c3a194c475a66c6b879" target="_blank">contest tx ↗</a>
-          <a href="https://sepolia.basescan.org/tx/0x6dbf8870c8dfb02a6f4c5664913f138dfe93a4286c43c348c764caa2738b94c3" target="_blank">verdict + settlement tx ↗</a>
-          <a href="https://explorer-studio.genlayer.com/transactions/0xc7302e49a80e1997e43fffa7fb2d8b3c2ca9d93e1a8e61d5b73da25d63e5d3aa" target="_blank">AI jury tx ↗</a>
-        </div>
-      </div>
-
-      <!-- C — EVIDENCE UNCLEAR -->
-      <div class="scenario-card">
-        <h3>Scenario C — Evidence unclear</h3>
-        <div class="plain-label">Evidence insufficient or contradictory</div>
-        <div class="sc-detail">
-          <span class="label">Plain-language outcome</span>
-          <strong>Manual review. Funds held in escrow.</strong>
-        </div>
-        <div class="sc-detail">
-          <span class="label">Technical classification</span>
-          <span class="mono" style="font-size:12px;">UNDETERMINED</span>
-        </div>
-        <div class="verdict-tag amber"><span class="vd"></span> UNDETERMINED → MANUAL REVIEW</div>
-        <div class="sc-detail">
-          <span class="label">Economic consequence</span>
-          <strong>73,950 PEN held in escrow.</strong> 14-day arbitrator window. If no ruling, defaults to refund.
-        </div>
-        <div class="sc-detail">
-          <span class="label">Contract</span>
-          <a href="https://sepolia.basescan.org/address/0xe50A8F382B3B751dBd7053963EbaBB59916f3788" target="_blank" class="mono" style="font-size:11px;">0xe50A…3788 ↗</a>
-        </div>
-        <div class="sc-detail">
-          <span class="label">Evidence</span>
-          Exporter's customs receipt had illegible shipment ref. Importer's gate record had an ambiguous date (could read Apr 4 or Apr 14).
-        </div>
-        <div class="sc-detail">
-          <span class="label">GenLayer verdict reasoning</span>
-          Neither document yields a verifiable crossing timestamp.
-        </div>
-        <div class="sc-links">
-          <a href="https://internetcourt.org/cases/0xe50A8F382B3B751dBd7053963EbaBB59916f3788" target="_blank">IC docket ↗</a>
-          <a href="https://sepolia.basescan.org/tx/0xc9d93c813a336e24e7e484503ec1e02c64038ecb4dc6f1d953e476d0702ba68e" target="_blank">contest tx ↗</a>
-          <a href="https://sepolia.basescan.org/tx/0x5b70ac102e29e15e22337fea6506cccfaf22c7fc85b853e094fedaecba3e5053" target="_blank">verdict tx ↗</a>
-          <a href="https://explorer-studio.genlayer.com/transactions/0x9bcb2b9855eaf90d34175796c0a18569fb9e4bf81869dce98044d27f35846aab" target="_blank">AI jury tx ↗</a>
-        </div>
-      </div>
-
-      <!-- D — MINOR DELAY -->
-      <div class="scenario-card">
-        <h3>Scenario D — Minor delay (LATE_1_4, graduated)</h3>
-        <div class="plain-label">Shipment arrived 2 days late</div>
-        <div class="sc-detail">
-          <span class="label">Plain-language outcome</span>
-          <strong>99.5% released to exporter.</strong>
-        </div>
-        <div class="sc-detail">
-          <span class="label">Technical classification</span>
-          <span class="mono" style="font-size:12px;">LATE_1_4</span>
-        </div>
-        <div class="verdict-tag amber"><span class="vd"></span> LATE_1_4 → 99.5% RELEASED</div>
-        <div class="sc-detail">
-          <span class="label">Economic consequence</span>
-          <strong>73,580.25 PEN (99.5%) released to exporter.</strong>
-        </div>
-        <div class="sc-detail">
-          <span class="label">Contract</span>
-          <a href="https://sepolia.basescan.org/address/0x08FB300E1290Fa3e12cdeD8B2Bf050Edd46fFf73" target="_blank" class="mono" style="font-size:11px;">0x08FB…fF73 ↗</a>
-        </div>
-        <div class="sc-detail">
-          <span class="label">Evidence</span>
-          Exporter's receipt showed departure Apr 5. Importer's gate record showed arrival Apr 7.
-        </div>
-        <div class="sc-detail">
-          <span class="label">GenLayer verdict reasoning</span>
-          Shipment was 2 days late.
-        </div>
-        <div class="sc-links">
-          <a href="https://internetcourt.org/cases/0x08FB300E1290Fa3e12cdeD8B2Bf050Edd46fFf73" target="_blank">IC docket ↗</a>
-          <a href="https://sepolia.basescan.org/tx/0x3d3b0f365c7db6b1b060b985f1ed7c25d71dcc4ac1b2624fb95d8fa1254421b5" target="_blank">bridge tx ↗</a>
-          <a href="https://explorer-studio.genlayer.com/transactions/0xdf87c6c4611f8f12eaec576708aa2aef918379bf51790adc6102c05385fd3812" target="_blank">AI jury tx ↗</a>
-        </div>
-      </div>
-
-
-
-      <!-- F — SIGNIFICANT DELAY -->
-      <div class="scenario-card">
-        <h3>Scenario F — Significant delay (LATE_7_8)</h3>
-        <div class="plain-label">Shipment arrived 8 days late</div>
-        <div class="sc-detail">
-          <span class="label">Plain-language outcome</span>
-          <strong>98.5% released to exporter.</strong>
-        </div>
-        <div class="sc-detail">
-          <span class="label">Technical classification</span>
-          <span class="mono" style="font-size:12px;">LATE_7_8</span>
-        </div>
-        <div class="verdict-tag amber"><span class="vd"></span> LATE_7_8 → 98.5% RELEASED</div>
-        <div class="sc-detail">
-          <span class="label">Economic consequence</span>
-          <strong>72,840.75 PEN (98.5%) released to exporter.</strong>
-        </div>
-        <div class="sc-detail">
-          <span class="label">Contract</span>
-          <a href="https://sepolia.basescan.org/address/0x8edE7afc449CcA494fF3066aB020be143d784F91" target="_blank" class="mono" style="font-size:11px;">0x8edE…4F91 ↗</a>
-        </div>
-        <div class="sc-detail">
-          <span class="label">Evidence</span>
-          Shipment crossed the border on Apr 13.
-        </div>
-        <div class="sc-detail">
-          <span class="label">GenLayer verdict reasoning</span>
-          Shipment was 8 days late.
-        </div>
-        <div class="sc-links">
-          <a href="https://internetcourt.org/cases/0x8edE7afc449CcA494fF3066aB020be143d784F91" target="_blank">IC docket ↗</a>
-          <a href="https://sepolia.basescan.org/tx/0xf9dcbc0ac3e5bd0263204cae573a303ceb4d9034bb4875d196141f5a33375780" target="_blank">bridge tx ↗</a>
-          <a href="https://explorer-studio.genlayer.com/transactions/0xc10b7c597681345e9ab364c940aa5199a110df0d7c9e8790b62f4d63a6b6bb5f" target="_blank">AI jury tx ↗</a>
-        </div>
-      </div>
-
-      <!-- G — VERY LATE (timeout settlement) -->
-      <div class="scenario-card">
-        <h3>Scenario G — Very late</h3>
-        <div class="plain-label">Shipment arrived 12 days late → timeout → settled at 98.5%</div>
-        <div class="sc-detail">
-          <span class="label">Plain-language outcome</span>
-          <strong>Return required → no proof submitted → highest penalty applied.</strong>
-        </div>
-        <div class="sc-detail">
-          <span class="label">Technical classification</span>
-          <span class="mono" style="font-size:12px;">VERY_LATE → RETURN_REQUIRED → timeoutReturnProof()</span>
-        </div>
-        <div class="verdict-tag red"><span class="vd"></span> VERY_LATE → RETURN_REQUIRED → SETTLED (98.5%)</div>
-        <div class="sc-detail">
-          <span class="label">Economic consequence</span>
-          <strong>72,840.75 PEN (98.5%)</strong> to exporter · <strong>1,109.25 PEN (1.5%)</strong> to importer
-        </div>
-        <div class="sc-detail">
-          <span class="label">Contract</span>
-          <a href="https://sepolia.basescan.org/address/0x2d14F1Ad43D90e8db1209A6cE3c1959c85b4D9e1" target="_blank" class="mono" style="font-size:11px;">0x2d14…9e1 ↗</a>
-        </div>
-        <div class="sc-detail">
-          <span class="label">Evidence</span>
-          Shipment crossed the border on Apr 17. Same evidence as original G scenario.
-        </div>
-        <div class="sc-detail">
-          <span class="label">Full lifecycle</span>
-          Contest → GenLayer VERY_LATE verdict → RETURN_REQUIRED state → return proof window expired → <code>timeoutReturnProof()</code> settled at highest penalty tier.
-        </div>
-        <div class="sc-links">
-          <a href="https://sepolia.basescan.org/tx/0x73369ee4eb6682b3cc0301f415a5f0b46b29260f735ae488cbd16a7fdfd1fa66" target="_blank">contest tx ↗</a>
-          <a href="https://sepolia.basescan.org/tx/0x882e53ff477912edd62889cf14a4f412dbc9e65e1855c603bd046d900f4c40eb" target="_blank">timeoutReturnProof tx ↗</a>
-          <a href="https://internetcourt.org/cases/0x2d14F1Ad43D90e8db1209A6cE3c1959c85b4D9e1" target="_blank">IC docket ↗</a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- ═══════ EVIDENCE & EVALUATION ═══════ -->
-<section class="proof-section" id="evidence">
-  <div class="container">
-    <div class="section-label">Evidence & Evaluation</div>
-    <h2>What the AI jury evaluated</h2>
-    <p style="font-size:15px;color:var(--muted);margin-bottom:12px;max-width:620px;">Each disputed scenario was evaluated by GenLayer validators examining real customs documents stored on IPFS. This section shows the exact evidence and jury question for the currently deployed scenarios.</p>
-    <p style="font-size:14px;color:var(--muted);margin-bottom:32px;max-width:620px;font-style:italic;">Additional delay buckets (moderate delay, significant delay, very late / return-required) are defined in the contract but not yet deployed as live scenarios.</p>
-
-    <h3 style="font-size:16px;font-weight:700;margin-bottom:20px;">Jury question</h3>
     <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 22px;margin-bottom:32px;max-width:660px;">
+      <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.8px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Jury question</div>
       <p style="font-size:14px;color:var(--dark);line-height:1.6;font-style:italic;">"Shipment under Contract ISPA-2025-BOL-PER-0047 crossed Bolivian export customs at Desaguadero on or before 2026-04-05T23:59:59-04:00."</p>
       <p style="font-size:13px;color:var(--muted);margin-top:8px;">Guideline: <span class="mono" style="font-size:12px;">shipment-deadline-v1</span> — validators determine the crossing date from two court sheet images, then classify the delay bucket.</p>
     </div>
 
-    <!-- Scenario A evidence -->
-    <div style="margin-bottom:36px;">
-      <h3 style="font-size:15px;font-weight:700;margin-bottom:12px;">Scenario A — On time</h3>
+    <!-- ── A — ON TIME ── -->
+    <div style="margin-bottom:48px;" id="evidence">
+      <h3 style="font-size:17px;font-weight:700;margin-bottom:4px;">Scenario A — On time</h3>
+      <div class="verdict-tag green"><span class="vd"></span> ON_TIME → 100% RELEASED</div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:16px;">73,950 PEN (100%) released to exporter. Customs exit receipt showed crossing at 22:41, 78 minutes before deadline.</p>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:12px;">
         <div>
           <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.8px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Court Sheet A — Exporter evidence (ANB customs exit)</div>
@@ -643,40 +402,24 @@
           <div class="mono" style="font-size:11px;color:var(--muted);margin-top:4px;">Qmex77PpZJaqMfjugbanC316drLcN9BjzGzErf6WgSSeGM</div>
         </div>
       </div>
-      <div style="font-size:14px;color:var(--muted);line-height:1.55;">
-        <strong style="color:var(--green);">Verdict: ON_TIME</strong> — Customs exit receipt is the authoritative crossing document. Crossing at 22:41, 78 minutes before deadline.<br/>
-        <span class="mono" style="font-size:12px;">AI jury tx: <a href="https://explorer-studio.genlayer.com/transactions/0x96fd014f7d806ce228525524987575cb8b136ccf323c79d15bd5c1e23ba3be2b" target="_blank">0x96fd…be2b ↗</a></span>
+      <div style="font-size:14px;color:var(--muted);line-height:1.55;margin-bottom:8px;">
+        <strong style="color:var(--green);">Verdict: ON_TIME</strong> — Customs exit receipt is the authoritative crossing document. Importer's border gate record showed 00:18, 18 minutes after deadline, but exit receipt takes precedence.
+      </div>
+      <div class="sc-links">
+        <a href="https://internetcourt.org/cases/0xb4700D67d6cBeF18011021A2A20389ea88753234" target="_blank">IC docket ↗</a>
+        <a href="https://sepolia.basescan.org/address/0xb4700D67d6cBeF18011021A2A20389ea88753234" target="_blank">contract ↗</a>
+        <a href="https://sepolia.basescan.org/tx/0x7c02ae194c6a29a1b63fddcad70ebbad5d962faaa32dfa2725df7df14f93ac52" target="_blank">contest tx ↗</a>
+        <a href="https://sepolia.basescan.org/tx/0x95f8f27ed0af49a35300568796e0cfc28943a6a483018689dc0ec67fa0b7cc88" target="_blank">verdict tx ↗</a>
+        <a href="https://sepolia.basescan.org/tx/0x35ab0764fc3edd0ed5d42558f6dab6dcecefaf3c2eb51ffa843c843be68fb1e0" target="_blank">settle tx ↗</a>
+        <a href="https://explorer-studio.genlayer.com/transactions/0x96fd014f7d806ce228525524987575cb8b136ccf323c79d15bd5c1e23ba3be2b" target="_blank">AI jury tx ↗</a>
       </div>
     </div>
 
-    <!-- Scenario B evidence -->
-    <div style="margin-bottom:36px;">
-      <h3 style="font-size:15px;font-weight:700;margin-bottom:12px;">Scenario B — Minor delay</h3>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:12px;">
-        <div>
-          <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.8px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Court Sheet A — Exporter evidence (ANB customs exit)</div>
-          <a href="https://ipfs.io/ipfs/QmeJdpMNJnx62T2PwCgKhgtaj9e3PPvVRhboF5HLzynSBB" target="_blank">
-            <img src="https://ipfs.io/ipfs/QmeJdpMNJnx62T2PwCgKhgtaj9e3PPvVRhboF5HLzynSBB" alt="Court Sheet A — Minor delay" style="width:100%;border-radius:var(--radius);border:1px solid var(--border);" loading="lazy" />
-          </a>
-          <div class="mono" style="font-size:11px;color:var(--muted);margin-top:4px;">QmeJdpMNJnx62T2PwCgKhgtaj9e3PPvVRhboF5HLzynSBB</div>
-        </div>
-        <div>
-          <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.8px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Court Sheet B — Importer evidence (SUNAT border gate)</div>
-          <a href="https://ipfs.io/ipfs/QmX6VTDAaV8uQLVDjgG99HnELDpyo74RfAEv3zP3Y6XPz8" target="_blank">
-            <img src="https://ipfs.io/ipfs/QmX6VTDAaV8uQLVDjgG99HnELDpyo74RfAEv3zP3Y6XPz8" alt="Court Sheet B — Minor delay" style="width:100%;border-radius:var(--radius);border:1px solid var(--border);" loading="lazy" />
-          </a>
-          <div class="mono" style="font-size:11px;color:var(--muted);margin-top:4px;">QmX6VTDAaV8uQLVDjgG99HnELDpyo74RfAEv3zP3Y6XPz8</div>
-        </div>
-      </div>
-      <div style="font-size:14px;color:var(--muted);line-height:1.55;">
-        <strong style="color:var(--red);">Verdict: LATE_1_4</strong> — Pre-clearance stamp is not a crossing event. Gate record shows crossing four days late.<br/>
-        <span class="mono" style="font-size:12px;">AI jury tx: <a href="https://explorer-studio.genlayer.com/transactions/0xc7302e49a80e1997e43fffa7fb2d8b3c2ca9d93e1a8e61d5b73da25d63e5d3aa" target="_blank">0xc730…d3aa ↗</a></span>
-      </div>
-    </div>
-
-    <!-- Scenario C evidence -->
-    <div style="margin-bottom:36px;">
-      <h3 style="font-size:15px;font-weight:700;margin-bottom:12px;">Scenario C — Evidence unclear</h3>
+    <!-- ── C — EVIDENCE UNCLEAR ── -->
+    <div style="margin-bottom:48px;">
+      <h3 style="font-size:17px;font-weight:700;margin-bottom:4px;">Scenario C — Evidence unclear</h3>
+      <div class="verdict-tag amber"><span class="vd"></span> UNDETERMINED → MANUAL REVIEW</div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:16px;">73,950 PEN held in escrow. 14-day arbitrator window — if no ruling, defaults to refund.</p>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:12px;">
         <div>
           <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.8px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Court Sheet A — Exporter evidence (ANB customs exit)</div>
@@ -693,15 +436,23 @@
           <div class="mono" style="font-size:11px;color:var(--muted);margin-top:4px;">QmZa1Vmt3KWJxo9MtY9pitf3L9iHLL2WoKGpJgS4Tb6eHX</div>
         </div>
       </div>
-      <div style="font-size:14px;color:var(--muted);line-height:1.55;">
-        <strong style="color:var(--amber);">Verdict: UNDETERMINED</strong> — Neither document yields a verifiable crossing timestamp. Illegible shipment ref, ambiguous date.<br/>
-        <span class="mono" style="font-size:12px;">AI jury tx: <a href="https://explorer-studio.genlayer.com/transactions/0x9bcb2b9855eaf90d34175796c0a18569fb9e4bf81869dce98044d27f35846aab" target="_blank">0x9bcb…6aab ↗</a></span>
+      <div style="font-size:14px;color:var(--muted);line-height:1.55;margin-bottom:8px;">
+        <strong style="color:var(--amber);">Verdict: UNDETERMINED</strong> — Exporter's customs receipt had illegible shipment ref. Importer's gate record had an ambiguous date (could read Apr 4 or Apr 14). Neither document yields a verifiable crossing timestamp.
+      </div>
+      <div class="sc-links">
+        <a href="https://internetcourt.org/cases/0xe50A8F382B3B751dBd7053963EbaBB59916f3788" target="_blank">IC docket ↗</a>
+        <a href="https://sepolia.basescan.org/address/0xe50A8F382B3B751dBd7053963EbaBB59916f3788" target="_blank">contract ↗</a>
+        <a href="https://sepolia.basescan.org/tx/0xc9d93c813a336e24e7e484503ec1e02c64038ecb4dc6f1d953e476d0702ba68e" target="_blank">contest tx ↗</a>
+        <a href="https://sepolia.basescan.org/tx/0x5b70ac102e29e15e22337fea6506cccfaf22c7fc85b853e094fedaecba3e5053" target="_blank">verdict tx ↗</a>
+        <a href="https://explorer-studio.genlayer.com/transactions/0x9bcb2b9855eaf90d34175796c0a18569fb9e4bf81869dce98044d27f35846aab" target="_blank">AI jury tx ↗</a>
       </div>
     </div>
 
-    <!-- Scenario D evidence -->
-    <div style="margin-bottom:36px;">
-      <h3 style="font-size:15px;font-weight:700;margin-bottom:12px;">Scenario D — Minor delay (graduated)</h3>
+    <!-- ── D — MINOR DELAY (graduated) ── -->
+    <div style="margin-bottom:48px;">
+      <h3 style="font-size:17px;font-weight:700;margin-bottom:4px;">Scenario D — Minor delay (2 days late)</h3>
+      <div class="verdict-tag amber"><span class="vd"></span> LATE_1_4 → 99.5% RELEASED</div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:16px;">73,580.25 PEN (99.5%) released to exporter · 369.75 PEN (0.5%) returned to importer.</p>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:12px;">
         <div>
           <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.8px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Court Sheet A — Exporter evidence</div>
@@ -718,17 +469,22 @@
           <div class="mono" style="font-size:11px;color:var(--muted);margin-top:4px;">QmZJVetdVoK59msaerPaucc3paRDrypgUdiKZ2x3rAu6Xh</div>
         </div>
       </div>
-      <div style="font-size:14px;color:var(--muted);line-height:1.55;">
-        <strong style="color:var(--amber);">Verdict: LATE_1_4</strong> — Shipment was 2 days late. 50 bps penalty applied.<br/>
-        <span class="mono" style="font-size:12px;">AI jury tx: <a href="https://explorer-studio.genlayer.com/transactions/0xdf87c6c4611f8f12eaec576708aa2aef918379bf51790adc6102c05385fd3812" target="_blank">0xdf87…3812 ↗</a></span>
+      <div style="font-size:14px;color:var(--muted);line-height:1.55;margin-bottom:8px;">
+        <strong style="color:var(--amber);">Verdict: LATE_1_4</strong> — Exporter's receipt showed departure Apr 5. Importer's gate record showed arrival Apr 7 — 2 days late. 50 bps penalty applied.
+      </div>
+      <div class="sc-links">
+        <a href="https://internetcourt.org/cases/0x08FB300E1290Fa3e12cdeD8B2Bf050Edd46fFf73" target="_blank">IC docket ↗</a>
+        <a href="https://sepolia.basescan.org/address/0x08FB300E1290Fa3e12cdeD8B2Bf050Edd46fFf73" target="_blank">contract ↗</a>
+        <a href="https://sepolia.basescan.org/tx/0x3d3b0f365c7db6b1b060b985f1ed7c25d71dcc4ac1b2624fb95d8fa1254421b5" target="_blank">bridge tx ↗</a>
+        <a href="https://explorer-studio.genlayer.com/transactions/0xdf87c6c4611f8f12eaec576708aa2aef918379bf51790adc6102c05385fd3812" target="_blank">AI jury tx ↗</a>
       </div>
     </div>
 
-
-
-    <!-- Scenario F evidence -->
-    <div style="margin-bottom:36px;">
-      <h3 style="font-size:15px;font-weight:700;margin-bottom:12px;">Scenario F — Significant delay</h3>
+    <!-- ── F — SIGNIFICANT DELAY ── -->
+    <div style="margin-bottom:48px;">
+      <h3 style="font-size:17px;font-weight:700;margin-bottom:4px;">Scenario F — Significant delay (8 days late)</h3>
+      <div class="verdict-tag amber"><span class="vd"></span> LATE_7_8 → 98.5% RELEASED</div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:16px;">72,840.75 PEN (98.5%) released to exporter · 1,109.25 PEN (1.5%) returned to importer.</p>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:12px;">
         <div>
           <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.8px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Court Sheet A — Exporter evidence</div>
@@ -745,15 +501,22 @@
           <div class="mono" style="font-size:11px;color:var(--muted);margin-top:4px;">QmfJ3UWX72icpCobUxDssViaLsiJGk6qq4mZEddSuZVoNL</div>
         </div>
       </div>
-      <div style="font-size:14px;color:var(--muted);line-height:1.55;">
-        <strong style="color:var(--amber);">Verdict: LATE_7_8</strong> — Shipment was 8 days late. 150 bps penalty applied.<br/>
-        <span class="mono" style="font-size:12px;">AI jury tx: <a href="https://explorer-studio.genlayer.com/transactions/0xc10b7c597681345e9ab364c940aa5199a110df0d7c9e8790b62f4d63a6b6bb5f" target="_blank">0xc10b…bb5f ↗</a></span>
+      <div style="font-size:14px;color:var(--muted);line-height:1.55;margin-bottom:8px;">
+        <strong style="color:var(--amber);">Verdict: LATE_7_8</strong> — Shipment crossed the border on Apr 13 — 8 days late. 150 bps penalty applied.
+      </div>
+      <div class="sc-links">
+        <a href="https://internetcourt.org/cases/0x8edE7afc449CcA494fF3066aB020be143d784F91" target="_blank">IC docket ↗</a>
+        <a href="https://sepolia.basescan.org/address/0x8edE7afc449CcA494fF3066aB020be143d784F91" target="_blank">contract ↗</a>
+        <a href="https://sepolia.basescan.org/tx/0xf9dcbc0ac3e5bd0263204cae573a303ceb4d9034bb4875d196141f5a33375780" target="_blank">bridge tx ↗</a>
+        <a href="https://explorer-studio.genlayer.com/transactions/0xc10b7c597681345e9ab364c940aa5199a110df0d7c9e8790b62f4d63a6b6bb5f" target="_blank">AI jury tx ↗</a>
       </div>
     </div>
 
-    <!-- Scenario G evidence -->
-    <div style="margin-bottom:0;">
-      <h3 style="font-size:15px;font-weight:700;margin-bottom:12px;">Scenario G — Very late</h3>
+    <!-- ── G — VERY LATE ── -->
+    <div style="margin-bottom:32px;">
+      <h3 style="font-size:17px;font-weight:700;margin-bottom:4px;">Scenario G — Very late (12 days late)</h3>
+      <div class="verdict-tag red"><span class="vd"></span> VERY_LATE → RETURN_REQUIRED → SETTLED (98.5%)</div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:16px;">72,840.75 PEN (98.5%) to exporter · 1,109.25 PEN (1.5%) to importer. Return proof window expired → <code style="font-size:12px;">timeoutReturnProof()</code> settled at highest penalty tier.</p>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:12px;">
         <div>
           <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.8px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Court Sheet A — Exporter evidence</div>
@@ -770,14 +533,25 @@
           <div class="mono" style="font-size:11px;color:var(--muted);margin-top:4px;">QmQH94aKszWKkEqyWzu7411Ke6yQN9aKgQNbeCqYzhfmsu</div>
         </div>
       </div>
-      <div style="font-size:14px;color:var(--muted);line-height:1.55;">
-        <strong style="color:var(--red);">Verdict: VERY_LATE</strong> — Shipment was 12 days late. RETURN_REQUIRED state triggered.<br/>
-        <span class="mono" style="font-size:12px;">AI jury tx: <a href="https://explorer-studio.genlayer.com/transactions/0x68be2c64356a15dc4e223ed9e48dd61b9f2183ce5adbacbf10bb1e7db979071d" target="_blank">0x68be…071d ↗</a></span>
+      <div style="font-size:14px;color:var(--muted);line-height:1.55;margin-bottom:8px;">
+        <strong style="color:var(--red);">Verdict: VERY_LATE</strong> — Shipment crossed the border on Apr 17 — 12 days late. RETURN_REQUIRED state triggered, return proof window expired, settled at highest penalty tier.
       </div>
+      <div class="sc-links">
+        <a href="https://internetcourt.org/cases/0x2d14F1Ad43D90e8db1209A6cE3c1959c85b4D9e1" target="_blank">IC docket ↗</a>
+        <a href="https://sepolia.basescan.org/address/0x2d14F1Ad43D90e8db1209A6cE3c1959c85b4D9e1" target="_blank">contract ↗</a>
+        <a href="https://sepolia.basescan.org/tx/0x73369ee4eb6682b3cc0301f415a5f0b46b29260f735ae488cbd16a7fdfd1fa66" target="_blank">contest tx ↗</a>
+        <a href="https://sepolia.basescan.org/tx/0x882e53ff477912edd62889cf14a4f412dbc9e65e1855c603bd046d900f4c40eb" target="_blank">timeoutReturnProof tx ↗</a>
+        <a href="https://explorer-studio.genlayer.com/transactions/0x68be2c64356a15dc4e223ed9e48dd61b9f2183ce5adbacbf10bb1e7db979071d" target="_blank">AI jury tx ↗</a>
+      </div>
+    </div>
+
+    <!-- B footnote -->
+    <div style="margin-top:32px;padding:16px 20px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);max-width:660px;font-size:13px;color:var(--muted);">
+      <strong style="color:var(--dark);">Historical note — Scenario B (v0.1 binary contract)</strong><br/>
+      An earlier version used binary on-time/late logic — any delay triggered full refund. Scenario B (4 days late) resulted in 73,950 PEN refunded to importer. Under the current graduated model, this would be a LATE_1_4 classification with 99.5% release. Contract: <a href="https://sepolia.basescan.org/address/0xbd0dB046A913817522B595CFEb922D5E2aad4268" target="_blank" class="mono" style="font-size:11px;">0xbd0d…4268 ↗</a> · <a href="https://internetcourt.org/cases/0xbd0dB046A913817522B595CFEb922D5E2aad4268" target="_blank">IC docket ↗</a> · <a href="https://explorer-studio.genlayer.com/transactions/0xc7302e49a80e1997e43fffa7fb2d8b3c2ca9d93e1a8e61d5b73da25d63e5d3aa" target="_blank">AI jury tx ↗</a>
     </div>
   </div>
 </section>
-
 
 <!-- ═══════ GENLAYER VERDICTS ═══════ -->
 <section class="proof-section" id="verdicts">
