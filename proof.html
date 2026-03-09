@@ -268,9 +268,9 @@
           <td class="addr"><a href="https://sepolia.basescan.org/address/0x8edE7afc449CcA494fF3066aB020be143d784F91" target="_blank">0x8edE7afc449CcA494fF3066aB020be143d784F91 ↗</a></td>
         </tr>
         <tr>
-          <td>Scenario G — Very late</td>
+          <td>Scenario G — Very late (timeout settled)</td>
           <td>Base Sepolia</td>
-          <td class="addr"><a href="https://sepolia.basescan.org/address/0x87B5Afc78ca48D0EC62eEc7816884E0220c49978" target="_blank">0x87B5Afc78ca48D0EC62eEc7816884E0220c49978 ↗</a></td>
+          <td class="addr"><a href="https://sepolia.basescan.org/address/0x2d14F1Ad43D90e8db1209A6cE3c1959c85b4D9e1" target="_blank">0x2d14F1Ad43D90e8db1209A6cE3c1959c85b4D9e1 ↗</a></td>
         </tr>
       </tbody>
     </table>
@@ -497,7 +497,7 @@
 
       <!-- D — MINOR DELAY -->
       <div class="scenario-card">
-        <h3>Scenario D — Minor delay</h3>
+        <h3>Scenario D — Minor delay (LATE_1_4, graduated)</h3>
         <div class="plain-label">Shipment arrived 2 days late</div>
         <div class="sc-detail">
           <span class="label">Plain-language outcome</span>
@@ -535,7 +535,7 @@
 
       <!-- F — SIGNIFICANT DELAY -->
       <div class="scenario-card">
-        <h3>Scenario F — Significant delay</h3>
+        <h3>Scenario F — Significant delay (LATE_7_8)</h3>
         <div class="plain-label">Shipment arrived 8 days late</div>
         <div class="sc-detail">
           <span class="label">Plain-language outcome</span>
@@ -569,39 +569,39 @@
         </div>
       </div>
 
-      <!-- G — VERY LATE -->
+      <!-- G — VERY LATE (timeout settlement) -->
       <div class="scenario-card">
         <h3>Scenario G — Very late</h3>
-        <div class="plain-label">Shipment arrived 12 days late</div>
+        <div class="plain-label">Shipment arrived 12 days late → timeout → settled at 98.5%</div>
         <div class="sc-detail">
           <span class="label">Plain-language outcome</span>
-          <strong>Return required. Funds held in escrow.</strong>
+          <strong>Return required → no proof submitted → highest penalty applied.</strong>
         </div>
         <div class="sc-detail">
           <span class="label">Technical classification</span>
-          <span class="mono" style="font-size:12px;">VERY_LATE</span>
+          <span class="mono" style="font-size:12px;">VERY_LATE → RETURN_REQUIRED → timeoutReturnProof()</span>
         </div>
-        <div class="verdict-tag red"><span class="vd"></span> VERY_LATE → RETURN_REQUIRED</div>
+        <div class="verdict-tag red"><span class="vd"></span> VERY_LATE → RETURN_REQUIRED → SETTLED (98.5%)</div>
         <div class="sc-detail">
           <span class="label">Economic consequence</span>
-          <strong>Funds remain in escrow.</strong> Importer must prove return or rejection.
+          <strong>72,840.75 PEN (98.5%)</strong> to exporter · <strong>1,109.25 PEN (1.5%)</strong> to importer
         </div>
         <div class="sc-detail">
           <span class="label">Contract</span>
-          <a href="https://sepolia.basescan.org/address/0x87B5Afc78ca48D0EC62eEc7816884E0220c49978" target="_blank" class="mono" style="font-size:11px;">0x87B5…978 ↗</a>
+          <a href="https://sepolia.basescan.org/address/0x2d14F1Ad43D90e8db1209A6cE3c1959c85b4D9e1" target="_blank" class="mono" style="font-size:11px;">0x2d14…9e1 ↗</a>
         </div>
         <div class="sc-detail">
           <span class="label">Evidence</span>
-          Shipment crossed the border on Apr 17.
+          Shipment crossed the border on Apr 17. Same evidence as original G scenario.
         </div>
         <div class="sc-detail">
-          <span class="label">GenLayer verdict reasoning</span>
-          Shipment was 12 days late.
+          <span class="label">Full lifecycle</span>
+          Contest → GenLayer VERY_LATE verdict → RETURN_REQUIRED state → return proof window expired → <code>timeoutReturnProof()</code> settled at highest penalty tier.
         </div>
         <div class="sc-links">
-          <a href="https://internetcourt.org/cases/0x87B5Afc78ca48D0EC62eEc7816884E0220c49978" target="_blank">IC docket ↗</a>
-          <a href="https://sepolia.basescan.org/tx/0x04d5874b4acf35a75c01c7101476ba560e1cd4e8accceb37d40565f5a35fee6f" target="_blank">bridge tx ↗</a>
-          <a href="https://explorer-studio.genlayer.com/transactions/0x68be2c64356a15dc4e223ed9e48dd61b9f2183ce5adbacbf10bb1e7db979071d" target="_blank">AI jury tx ↗</a>
+          <a href="https://sepolia.basescan.org/tx/0x73369ee4eb6682b3cc0301f415a5f0b46b29260f735ae488cbd16a7fdfd1fa66" target="_blank">contest tx ↗</a>
+          <a href="https://sepolia.basescan.org/tx/0x882e53ff477912edd62889cf14a4f412dbc9e65e1855c603bd046d900f4c40eb" target="_blank">timeoutReturnProof tx ↗</a>
+          <a href="https://internetcourt.org/cases/0x2d14F1Ad43D90e8db1209A6cE3c1959c85b4D9e1" target="_blank">IC docket ↗</a>
         </div>
       </div>
 
