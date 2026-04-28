@@ -1,0 +1,12 @@
+{
+  "caseId": "qc-coop-2026-0009",
+  "txs": {
+    "requestRateLock": "0xeb520346aa56cc7001efabe60983ba4e73b882a7083ad5186e59c77572337adb",
+    "receiveRate": "0x53924770f5165e3f1aac24e29d1f83800f875d7e399e0478b3f0f2b7f43bbef5",
+    "approve": "0x926ea5b42d54620a9fdc772bcc426b8d7f2e114bbbe1c4710d812eb9850cbf19",
+    "fundSettlement": "0x6e7ffd6c8717662ac5a13f17cdd38f857bcee29342b0602de721dad336daf600",
+    "contestShipment": "0x524f1814fc50665455ca57ae7b2035c89f803c68f31c4bf3a1b23d7954bbdc34",
+    "resolveShipment": "0xaf0b89aeb2ba04ede952f7ce663d939f9c1d55b459690bc597489a246aba809c"
+  },
+  "contract": "0xf80F899994DBeDd592C5472C556d64847E0800B2"
+}
